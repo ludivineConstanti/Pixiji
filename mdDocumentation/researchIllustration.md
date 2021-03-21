@@ -10,6 +10,15 @@ This was before I started learning React, so I just made a lot of div manually. 
 
 I used a grid system where I just define how big the div container is, and how many columns and rows it has, and then I define how much space each div should take depending on there class (1 column, 2 columns...). I then put a border width the same color as the background to have the state where you can not see the pixel art. This way the colored square looks centered inside. I then put a border width of 0 when I want to show the visual properly (the illustration is first hidden when a user starts a quiz and appears little by little when he / she answers correctly).
 
+### Hidden
+![1_hidden](https://user-images.githubusercontent.com/24965333/111910251-e9446800-8a60-11eb-8500-1861a90fe43a.png)
+
+### Appearing
+![2_in_process](https://user-images.githubusercontent.com/24965333/111910263-f6f9ed80-8a60-11eb-868f-11cff79d58a9.png)
+
+### Revealed
+![3_shown](https://user-images.githubusercontent.com/24965333/111910271-feb99200-8a60-11eb-91e9-9f7ed6790ab7.png)
+
 ### Pros 👍 and cons 👎
 ✔️ It works  
 ✔️ As long as the parent div has the right aspect ratio, it can scale properly  
