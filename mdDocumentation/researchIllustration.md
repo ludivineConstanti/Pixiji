@@ -2,7 +2,7 @@
 
 The design part of the illustration process are not described here (since this is more focused on the coding part) but all illustrations were made by myself, based on research between pixel art and the almost square shape of kanjis (Japanese characters that were taken from the Chinese writing system).
 
-## First approach
+## 1️ First approach 
 
 I made a first try to see if it was possible to create those illustrations the way I wanted (see my previous github repo [here](https://github.com/ludivineConstanti/pixiji_test_visual/blob/main/html/index.html).  
 
@@ -22,12 +22,12 @@ I used a grid system where I just define how big the div container is, and how m
 ### Pros 👍 and cons 👎
 ✔️ It works  
 ✔️ As long as the parent div has the right aspect ratio, it can scale properly  
-
 ❌ There's a lot of repetitive code (each div written manually).  
 ❌ Transforming an illustration in that format is a bit painful (it works only if the parent div has the right dimensions, and if the squares are placed correctly, if there's one div that is where it shouldn't or is the wrong dimension, it destroys the rest).  
 ❌ It's not possible to make the square grow bigger or smaller (for animation purpose...) otherwise the layout of the rest of the divs is broken.  
+❌ I need to add unnecessary divs (with transparent background) to have the right spacing between divs
 
-###### Research time ⏱️ ⏱️ ⏱️
+##### Research time ⏱️ ⏱️ ⏱️
 
 ### Is it good to use divs this way or not? 🤔
 #### DIV Pros 👍 and cons 👎
@@ -51,3 +51,48 @@ I used a grid system where I just define how big the div container is, and how m
 [Ref => ](https://blog.logrocket.com/when-to-use-html5s-canvas-ce992b100ee8/)
 
 Conclusion: Canvas and WebGl seem a bit overkill and make interaction and responsiveness more difficult. Therefore, I will keep using the Dom's elements. I will use svg since they are more appropriate semantically for my needs.
+
+## 2️ Second approach 
+
+Needs 📝
+* Each svg must have it's own color
+* The final illustration needs to be responsive (scale + work on mobile)
+* Svg need to belong to a group, so that various ones can become bigger at the same time (tested one by one and randomly for the first approach, doesn't work well)  
+* The group needs to be linked to a specific name / number, so that there will be a way to trigger the animation for a specific group when the user answer something
+
+Optional 📝
+* Have bigger groups that allows more animations (pixels for a planet all grouped together so that the entire planet can be animated going left and right slowly)
+* Have as much control as possible to make more animations later
+
+### 2 possible ways (that I can think of 🤔) to make the svg 
+
+#### Export the svg directly
+❌ There would still be a lot of manual work left, since I need to differentiate them (classify per group) and lines of code that are automatically generated are not necessarily easy to read
+❌ There can be inaccuracy during the export (59.999 written instead of 60)  
+✔️ Colors and dimensions are automatically made  
+
+#### Make svg from an array of properties
+❌ A lot of manual work  
+✔️ More control other the final result and the process  
+
+### 2 possible ways (that I can think of 🤔) to control their style
+
+#### Sass / CSS
+✔️ It's made for it  
+❌ Defining the colors in CSS would be a nightmare, since each square needs an individual one  
+❌ If I define some things in JavaScript and some other in JS, I have no idea how to make those 2 communicate (JavaScript giving informations to CSS) I quickly researched this topic, I am not sure if it's possible at all  
+#### JavaScript (with or without additional tool) 
+✔️ Everything stays in one place (good for organisation and no potential future communication problem)  
+❌ CSS classes are generally better for performance than inline 
+
+##### Research time ⏱️ ⏱️ ⏱️
+
+### Generate an svg from an object
+###### (simplified version)
+``` Javascript
+const data = {
+    0: {x: 0, y: 0, size: 1 fill'#000'}, 
+    1: {x: 1, y: 1, size: 1 fill'#000'}, 
+    2: {x: 2, y: 2, size: 1 fill'#000'}}  
+<svg><rect /><rect /><rect /></svg>  
+```
