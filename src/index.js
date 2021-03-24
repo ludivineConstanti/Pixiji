@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 
 // == Import : local
 // Composants
-import App from 'src/components/0_root/App';
+import App from 'src/components/a_Root/App';
 
 // == Render
 // 1. Élément React racine (celui qui contient l'ensemble de l'app)

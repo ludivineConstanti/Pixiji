@@ -1,0 +1,25 @@
+.moonRabbitPlanet {
+  height: 10vw;
+  width: 10vw;
+  display: grid;
+  grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+  background-color: pink;
+}
+
+.square {
+  @for $i from 1 through 10 {
+    &--size#{$i} { 
+      grid-column-end: span $i; 
+      grid-row-end: span $i;}
+    }
+}
+
+@for $i from 1 through 10 {
+  .columnStart#{$i} { grid-column-start: $i; }
+  }
+
+@for $i from 1 through 10 {
+  .rowStart#{$i} { grid-row-start: $i; }
+  }
+
+

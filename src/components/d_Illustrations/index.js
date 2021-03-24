@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
-import 'src/components/3_illustrations/style.scss';
+import 'src/components/d_Illustrations/style.scss';
 
 const Illustration = ({ data, className }) => {
   const content = [];

@@ -2,8 +2,8 @@
 import React from 'react';
 
 // == Import
-import 'src/components/0_root/App/style.scss';
-import MoonRabbitPlanet from 'src/components/3_illustrations/MoonRabbitPlanet';
+import 'src/components/a_Root/App/style.scss';
+import MoonRabbitPlanet from 'src/components/d_Illustrations/MoonRabbitPlanet';
 
 // == Composant
 const App = () => (
