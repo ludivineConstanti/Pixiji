@@ -1,18 +1,8 @@
 @use 'reset';
 @use 'vars';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
 
 body {
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
 }
-
-/* 
-  // or you can import your own font
-  @font-face {
-    font-family: 'Roboto';
-    src: url('../assets/fonts/Roboto-Regular.ttf');
-  }
-
-  body {
-    font-family: 'Roboto', sans-serif;
-  }
-*/

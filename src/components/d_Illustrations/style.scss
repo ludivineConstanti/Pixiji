@@ -1,25 +1,38 @@
 .moonRabbitPlanet {
-  height: 10vw;
-  width: 10vw;
+  height: 13vw;
+  width: 13vw;
   display: grid;
   grid-template: repeat(10, 1fr) / repeat(10, 1fr);
-  background-color: pink;
+  position: absolute;
+  top: 20vh;
+  left: 40vw;
 }
 
 .square {
+
   @for $i from 1 through 10 {
     &--size#{$i} { 
       grid-column-end: span $i; 
       grid-row-end: span $i;}
     }
+
+  @for $i from 1 through 10 {
+     &--columnStart#{$i} { grid-column-start: $i; }
+    }
+    
+  @for $i from 1 through 10 {
+    &--rowStart#{$i} { grid-row-start: $i; }
+    }
+
 }
 
-@for $i from 1 through 10 {
-  .columnStart#{$i} { grid-column-start: $i; }
-  }
+.mainSquare {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-@for $i from 1 through 10 {
-  .rowStart#{$i} { grid-row-start: $i; }
-  }
+
 
 

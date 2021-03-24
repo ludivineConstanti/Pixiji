@@ -127,4 +127,6 @@ That made me realise an other need I have for the divs, if I want to make them b
 
 ### Update
 
-I looked at the documentation of GreenSocks for animation and it appears I don't actually need to have control over the position in JavaScript to animate them how I want. Since controling the position individually is a more buggy (especially when resizing, divs are a few pixels off) and awkward approach, I will go back to the initial position being controlled by css
+I looked at the documentation of GreenSocks for animation and it appears I don't actually need to have control over the position in JavaScript to animate them how I want. Since controling the position individually is a more buggy (especially when resizing, divs are a few pixels off) and awkward approach, I will go back to the initial position being controlled by css.
+
+The position controlled by css now fixes the bug of having strange gaps between the square, but animating the elements with GreenSock puts it back. I guessed that the unwanted side effect also came form the fact that GreenSock needs to manipulate the position with JavaScript to obtained the desired effect, and found there's a way to cancel that by clearing the styling properties made in JavaScript. By using clearProps all, I can now get rid of it and its sides effect. I can't do that since the color of the square is also part of the styling made in JavaScript, so I found an other option, which is to specify which properties I want to remove. Thanks to that, I got rid of the unwanted side effect.
