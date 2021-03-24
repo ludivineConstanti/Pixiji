@@ -1,17 +1,15 @@
 .moonRabbitPlanet {
-  height: 200px;
-  width: 200px;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
+  height: 20vw;
+  width: 20vw;
+  position: relative;
 
-.square {
-  height: 1px;
-  width: 1px;
-  position: absolute;
-  top: 10;
-  left: 10;
-  transform-origin: 50% 50%;
-  transform: matrix(.5,0,0,.5,0,0);
+  &__square {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    &--main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
