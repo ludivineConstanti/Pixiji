@@ -1,0 +1,12 @@
+@use 'src/styles/f';
+@use 'src/styles/typo';
+
+.buttonBig {
+  background-color: white;
+  height: f.$menu-sizeContainer;
+  width: f.$menu-sizeContainer;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  @include typo.component;
+}

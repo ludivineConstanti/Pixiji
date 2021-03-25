@@ -11,7 +11,7 @@ const Question = () => (
   <main className="question">
     <h2 className="question__text">Which character means {data[0][4].en}?</h2>
     <div className="question__options">
-      {data[0].map((e) => <ButtonKanji kanji={e.kanji} />)}
+      {data[0].map((e) => <ButtonKanji key={e.id} possibleAnswer={e} />)}
 
     </div>
   </main>

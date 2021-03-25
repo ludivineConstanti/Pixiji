@@ -1,18 +1,15 @@
-// == Import npm
-import React from 'react';
-// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {
+  updateValueQuiz,
+} from 'src/reducer/actions/quiz';
+import Component from './Component';
 
-// == Import
-import './style.scss';
-import MoonRabbitPlanet from 'src/components/d_Illustrations/MoonRabbitPlanet';
-import Question from './Question';
+const mapStateToProps = (state) => ({
+  userAnswer: state.quiz.user.answer,
+});
 
-const Quiz = () => (
-  <div className="quiz">
-    <Question />
-    <MoonRabbitPlanet />
-  </div>
-);
+const mapDispatchToProps = (dispatch) => ({
+  updateValueQuiz: (obj, prop, value) => dispatch(updateValueQuiz(obj, prop, value)),
+});
 
-// == Export
-export default Quiz;
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

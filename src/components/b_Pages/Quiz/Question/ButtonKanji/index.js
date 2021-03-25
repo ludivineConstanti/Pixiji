@@ -1,25 +1,15 @@
-// == Import npm
-import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {
+  updateValueQuiz,
+} from 'src/reducer/actions/quiz';
+import Component from './Component';
 
-// == Import
-import './style.scss';
+const mapStateToProps = (state) => ({
+  colorMain: state.global.UI.colorMain,
+});
 
-const ButtonKanji = ({ kanji }) => (
-  <button
-    className="buttonKanji"
-    type="button"
-    onClick={() => {
-      console.log(kanji);
-    }}
-  >
-    {kanji}
-  </button>
-);
+const mapDispatchToProps = (dispatch) => ({
+  updateValueQuiz: (obj, prop, value) => dispatch(updateValueQuiz(obj, prop, value)),
+});
 
-ButtonKanji.propTypes = {
-  kanji: PropTypes.string.isRequired,
-};
-
-// == Export
-export default ButtonKanji;
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

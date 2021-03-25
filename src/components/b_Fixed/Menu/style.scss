@@ -23,7 +23,7 @@
         width: menu.$sizeIcon;
       }
       &__middle {
-        width: 24px;
+        width: calc(#{menu.$sizeIcon} * 0.65);
       }
 
   }
