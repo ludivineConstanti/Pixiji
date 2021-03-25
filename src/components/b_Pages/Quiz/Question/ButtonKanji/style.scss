@@ -1,0 +1,11 @@
+@use 'buttonKanji';
+@use 'src/styles/g';
+
+.buttonKanji {
+  width: buttonKanji.$size;
+  height: buttonKanji.$size;
+  border: g.$strokeWidth solid white;
+  background-color: rgba($color: #0A2846, $alpha: 0.8);
+  color: white;
+  font-size: 18px;
+}

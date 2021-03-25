@@ -1,0 +1,21 @@
+@use 'src/styles/f';
+@use 'src/styles/z';
+
+.question {
+  width: calc(#{f.$buttonKanji-size} * 3 + #{f.$buttonKanji-sizeGap} * 2);
+  margin-left: calc(80px + #{f.$menu-sizeContainer});
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: z.$question;
+
+  &__text {
+    margin-bottom: 24px;
+  }
+  
+  &__options {
+    display: grid;
+    grid-template-columns: repeat(3, f.$buttonKanji-size);
+    gap: f.$buttonKanji-sizeGap;
+  }
+}

@@ -1,11 +1,24 @@
-.moonRabbitPlanet {
-  height: 13vw;
-  width: 13vw;
+@use 'src/styles/f';
+@use 'src/styles/z';
+
+$squareUnit: 1.3vw;
+
+@mixin gridContainer ($height, $width) {
+  height: calc(#{$height} * #{$squareUnit});
+  width: calc(#{$width} * #{$squareUnit});
   display: grid;
-  grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+  grid-template: repeat($height, 1fr) / repeat($width, 1fr);
   position: absolute;
-  top: 20vh;
-  left: 40vw;
+}
+
+@mixin quizContainerPos ($top, $left) {
+  top: calc(#{$top} * 1vh + #{f.$menu-sizeContainer});
+  left: calc(#{$left} * 1vw + 37.5vw);
+}
+
+.moonRabbit__Planet {
+  @include gridContainer(10, 10);
+  @include quizContainerPos(10, 10);
 }
 
 .square {
@@ -27,7 +40,7 @@
 }
 
 .mainSquare {
-  z-index: 1;
+  z-index: z.$illustrationMainSquare;
   display: flex;
   align-items: center;
   justify-content: center;

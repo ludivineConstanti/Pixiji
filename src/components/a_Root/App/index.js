@@ -1,14 +1,17 @@
 // == Import npm
 import React from 'react';
 
-// == Import
+// == Import local
 import 'src/components/a_Root/App/style.scss';
-import MoonRabbitPlanet from 'src/components/d_Illustrations/MoonRabbitPlanet';
+import Menu from 'src/components/b_Fixed/Menu';
+// Pages
+import Quiz from 'src/components/b_Pages/Quiz';
 
 // == Composant
 const App = () => (
   <div className="app">
-    <MoonRabbitPlanet />
+    <Menu />
+    <Quiz />
   </div>
 );
 

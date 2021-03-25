@@ -7,7 +7,6 @@ import './style.scss';
 import { squaresShrink, squaresGrow } from 'src/components/d_Illustrations/transitions';
 
 const MoonRabbitPlanet = () => {
-  const classMain = 'moonRabbitPlanet';
   const classSquare = 'square';
   // z because the z-index of the main squares needs to be higher than the rest
   const z = 'mainSquare';
@@ -29,7 +28,7 @@ const MoonRabbitPlanet = () => {
   }, []);
 
   return (
-    <div className={classMain}>
+    <div className="moonRabbit__Planet">
       <div className={`${s}1 ${y}4 ${x}1`} ref={(e) => g.current.g1.push(e)} style={{ backgroundColor: '#B6E7FF' }} />
       <div className={`${s}2 ${y}5 ${x}1`} ref={(e) => g.current.g1.push(e)} style={{ backgroundColor: '#83D0F6' }} />
       <div className={`${s}3 ${y}2 ${x}2 ${z}`} ref={(e) => g.current.g1.push(e)} style={{ backgroundColor: '#6DC7F4' }}>月</div>
