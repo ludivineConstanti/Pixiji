@@ -1,12 +1,39 @@
 @use 'src/styles/f';
+@use 'src/styles/g';
 @use 'src/styles/typo';
 
 .buttonBig {
+  @include typo.component;
+  text-align: center;
+
   background-color: white;
   height: f.$menu-sizeContainer;
   width: f.$menu-sizeContainer;
   position: fixed;
   bottom: 0;
   left: 0;
-  @include typo.component;
+  line-height: 20px;
+
+  &__result {
+    @include typo.componentSmall;
+  }
+  &__arrow {
+    background-color: pink;
+    position: relative;
+    width: 100%;
+    height: 15px;
+    &--stroke {
+      position: absolute;
+      height: g.$strokeWidth;
+      width: 20px;
+      margin: auto;
+    }
+    &--end {
+      position: absolute;
+      height: 12px;
+      width: 12px;
+      transform: rotate(45deg);
+      background-color: yellow;
+    }
+  }
 }

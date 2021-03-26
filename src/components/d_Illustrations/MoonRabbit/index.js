@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 import {
-  updateValueQuiz,
-} from 'src/reducer/actions/quizActions';
+  updateValueGlobal,
+} from 'src/reducer/actions/globalActions';
 import Component from './Component';
 
 const mapStateToProps = (state) => ({
-  data: state.quiz.data[0],
+  kanjisArr: state.quiz.user.rightAnswers,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateValueQuiz: (obj, prop, value) => dispatch(updateValueQuiz(obj, prop, value)),
+  updateValueGlobal: (obj, prop, value) => dispatch(updateValueGlobal(obj, prop, value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

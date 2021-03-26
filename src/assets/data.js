@@ -40,5 +40,18 @@ export default [
     { id: 34, kanji: '草', en: 'grass' },
     { id: 35, kanji: '虫', en: 'insect' },
     { id: 36, kanji: '犬', en: 'dog' },
+  ], [
+    { id: 37, kanji: '人', en: 'person' },
+    { id: 38, kanji: '名', en: 'name' },
+    { id: 39, kanji: '女', en: 'female' },
+    { id: 40, kanji: '男', en: 'male' },
+    { id: 41, kanji: '子', en: 'child' },
+    { id: 42, kanji: '目', en: 'eye' },
+    { id: 43, kanji: '耳', en: 'ear' },
+    { id: 44, kanji: '口', en: 'mouth' },
+    { id: 45, kanji: '手', en: 'hand' },
+    { id: 46, kanji: '足', en: 'foot' },
+    { id: 47, kanji: '見', en: 'see' },
+    { id: 48, kanji: '音', en: 'sound' },
   ],
 ];

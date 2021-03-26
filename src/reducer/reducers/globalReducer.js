@@ -1,21 +1,19 @@
 import {
-  UPDATE_VALUE_QUIZ,
-} from '../actions/quiz';
+  UPDATE_VALUE_GLOBAL,
+} from '../actions/globalActions';
 
 const initialState = {
-  data: [],
   current: {
-    rightAnswer: null,
-    illustation: [],
+    cheating: true,
   },
-  user: {
-    answer: null,
+  UI: {
+    colorMain: '#0A2846',
   },
 };
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case UPDATE_VALUE_QUIZ: {
+    case UPDATE_VALUE_GLOBAL: {
       return {
         ...state,
         [action.obj]: {
