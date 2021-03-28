@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import quizReducer from 'src/reducer/reducers/quizReducer';
+import quizSlice from 'src/reducer/slices/quizSlice';
 import globalReducer from 'src/reducer/reducers/globalReducer';
 
 // We export the result of all the combined reducers
@@ -8,7 +8,7 @@ import globalReducer from 'src/reducer/reducers/globalReducer';
 
 export default combineReducers({
   global: globalReducer,
-  quiz: quizReducer,
+  quiz: quizSlice,
 });
 
 // Everything is combined in a new state

@@ -1,0 +1,11 @@
+@use 'src/styles/f';
+@use 'src/styles/typo';
+
+.header {
+  @include typo.titleSmall;
+  width: 100vw;
+  height: f.$menu-sizeContainer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

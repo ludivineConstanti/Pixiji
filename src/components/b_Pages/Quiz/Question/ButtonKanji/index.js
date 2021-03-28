@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 import {
   updateValueQuiz, answeredCorrectlyQuiz,
-} from 'src/reducer/actions/quizActions';
+} from 'src/reducer/slices/quizSlice';
 import Component from './Component';
 
 const mapStateToProps = (state) => ({
   colorMain: state.global.UI.colorMain,
-  rightAnswer: state.quiz.current.rightAnswer,
+  rightAnswer: state.quiz.dataQuiz[0].arrAnswers[state.quiz.dataQuiz[0].infosAnswer.answerIndex],
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateValueQuiz: (obj, prop, value) => dispatch(updateValueQuiz(obj, prop, value)),
+  updateValueQuiz: (payload) => dispatch(updateValueQuiz(payload)),
   answeredCorrectlyQuiz: (payload) => dispatch(answeredCorrectlyQuiz(payload)),
 });
 

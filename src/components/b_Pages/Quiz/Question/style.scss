@@ -1,5 +1,6 @@
 @use 'src/styles/f';
 @use 'src/styles/z';
+@use 'src/styles/typo';
 
 .question {
   width: calc(#{f.$buttonKanji-size} * 3 + #{f.$buttonKanji-sizeGap} * 2);
@@ -10,6 +11,7 @@
   z-index: z.$question;
 
   &__text {
+    @include typo.text;
     margin-bottom: 24px;
   }
   

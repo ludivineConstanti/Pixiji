@@ -4,7 +4,6 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 // == Import : local
-// Composants
 import App from 'src/components/a_Root/App';
 import store from 'src/store';
 

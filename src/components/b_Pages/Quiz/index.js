@@ -1,16 +1,17 @@
 import { connect } from 'react-redux';
 import {
-  updateValueQuiz,
-} from 'src/reducer/actions/quizActions';
+  nextQuestionQuiz,
+} from 'src/reducer/slices/quizSlice';
 import Component from './Component';
 
 const mapStateToProps = (state) => ({
   answeredQuestion: state.quiz.user.answeredQuestion,
   answeredCorrectly: state.quiz.user.answeredCorrectly,
+  finishedQuiz: state.quiz.current.totalQuestions === state.quiz.user.rightAnswers.length,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateValueQuiz: (obj, prop, value) => dispatch(updateValueQuiz(obj, prop, value)),
+  nextQuestionQuiz: () => dispatch(nextQuestionQuiz()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);
