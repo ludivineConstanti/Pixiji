@@ -24,25 +24,32 @@ export const quizSlice = createSlice({
       // I didn't find how to dynamise the obj part of the statement
       // (how to go into a sub object of an object), but I could use an if / else statement
       // in the meantime (if obj.length === 1...)
+
       for (let i = 0; i < payload.prop.length; i += 1) {
         state[payload.obj[0]][payload.prop[i]] = payload.value[i];
       }
     },
     updateFirstQuestionQuiz: (state, { payload }) => {
       // {prop: ["prop1", "prop2"], value: ["valueforProp1", "valueForProp2"]}
+
       for (let i = 0; i < payload.prop.length; i += 1) {
         state.dataQuiz[0].infosAnswer[payload.prop[i]] = payload.value[i];
       }
     },
     answeredQuestionQuiz: (state, { payload }) => {
+      // {answer: answerObj}
+
       state.user.answeredQuestion = payload.answer.id;
 
-      const rightAnswerIndex = state.dataQuiz[0].infosAnswer.answerIndex;
+      const { infosAnswer } = state.dataQuiz[0];
 
-      if (payload.answer.id === state.dataQuiz[0].arrAnswers[rightAnswerIndex].id) {
+      if (payload.answer.id === state.dataQuiz[0].arrAnswers[infosAnswer.answerIndex].id) {
         state.user.answeredCorrectly = true;
-        state.user.rightAnswers = [...state.user.rightAnswers, payload];
         state.dataQuiz[0].infosAnswer.answeredRight += 1;
+        state.user.rightAnswers = [
+          ...state.user.rightAnswers,
+          { answer: payload.answer, infosAnswer },
+        ];
       }
       else {
         state.dataQuiz[0].infosAnswer.answeredWrong += 1;

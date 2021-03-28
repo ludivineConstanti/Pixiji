@@ -7,7 +7,7 @@ import { gsap, TimelineLite } from 'gsap';
 import './style.scss';
 
 const ButtonKanji = ({
-  possibleAnswer, disabled, colorMain, rightAnswer, updateValueQuiz, answeredQuestionQuiz,
+  possibleAnswer, disabled, colorMain, answeredQuestionQuiz,
 }) => {
   const component = useRef(null);
   const cC = 'buttonKanji';
@@ -48,8 +48,6 @@ ButtonKanji.propTypes = {
   possibleAnswer: PropTypes.object.isRequired,
   disabled: PropTypes.bool.isRequired,
   colorMain: PropTypes.string.isRequired,
-  rightAnswer: PropTypes.object.isRequired,
-  updateValueQuiz: PropTypes.func.isRequired,
   answeredQuestionQuiz: PropTypes.func.isRequired,
 };
 

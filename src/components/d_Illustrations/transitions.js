@@ -10,15 +10,15 @@ function squaresShrink(selector) {
 
   // one stagger call does all the animation:
   tl.to(selector, {
-    duration: 1.25,
+    duration: 0.75,
     scale: 0.1,
-    ease: 'power1.out',
+    ease: 'power1.inOut',
     // function helper because our array of div is not properly configurated
     // for greensocks to be able to know where the center is, otherwise
     stagger: distributeByPosition({
       // amout of time split up among all the staggers
       // negative value inverses the center of the animation
-      amount: 0.75,
+      amount: -0.75,
       // position from which the stagger will emanate
       from: 'center', // can also do from an index
     }),
@@ -60,7 +60,7 @@ function squaresGrow(selector) {
     }),
     // need to clear props to avoid the gap side effect that appears
     // when the div's position is controlled by JavaScript
-  }).set('.group1', { clearProps: 'x, y, scale' });
+  }).set(selector, { clearProps: 'x, y, scale' });
 }
 
 export { squaresShrink, squaresGrow };
