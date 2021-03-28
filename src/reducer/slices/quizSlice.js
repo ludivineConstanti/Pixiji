@@ -31,19 +31,22 @@ export const quizSlice = createSlice({
     updateFirstQuestionQuiz: (state, { payload }) => {
       // {prop: ["prop1", "prop2"], value: ["valueforProp1", "valueForProp2"]}
       for (let i = 0; i < payload.prop.length; i += 1) {
-        state.dataQuiz[0].infosAnswer = {
-          ...state.dataQuiz.infosAnswer,
-          [payload.prop[i]]: payload.value[i],
-        };
+        state.dataQuiz[0].infosAnswer[payload.prop[i]] = payload.value[i];
       }
     },
-    answeredCorrectlyQuiz: (state, { payload }) => {
-      state.user = {
-        ...state.user,
-        answeredQuestion: true,
-        answeredCorrectly: true,
-        rightAnswers: [...state.user.rightAnswers, payload],
-      };
+    answeredQuestionQuiz: (state, { payload }) => {
+      state.user.answeredQuestion = payload.answer.id;
+
+      const rightAnswerIndex = state.dataQuiz[0].infosAnswer.answerIndex;
+
+      if (payload.answer.id === state.dataQuiz[0].arrAnswers[rightAnswerIndex].id) {
+        state.user.answeredCorrectly = true;
+        state.user.rightAnswers = [...state.user.rightAnswers, payload];
+        state.dataQuiz[0].infosAnswer.answeredRight += 1;
+      }
+      else {
+        state.dataQuiz[0].infosAnswer.answeredWrong += 1;
+      }
     },
     nextQuestionQuiz: (state) => {
       const currentQuestion = state.dataQuiz[0];
@@ -59,7 +62,7 @@ export const quizSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  updateValueQuiz, updateFirstQuestionQuiz, answeredCorrectlyQuiz, nextQuestionQuiz,
+  updateValueQuiz, updateFirstQuestionQuiz, answeredQuestionQuiz, nextQuestionQuiz,
 } = quizSlice.actions;
 
 export default quizSlice.reducer;

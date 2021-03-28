@@ -14,26 +14,39 @@
   left: 0;
   line-height: 20px;
 
+  // need bacause of the gsap animation
+  // (if change the width)
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   &__result {
     @include typo.componentSmall;
   }
   &__arrow {
-    background-color: pink;
     position: relative;
-    width: 100%;
     height: 15px;
+    margin-top: 8px;
+    width: 100%;
     &--stroke {
+      $arrowWidth: 24px;
       position: absolute;
       height: g.$strokeWidth;
-      width: 20px;
+      width: $arrowWidth;
       margin: auto;
+      top: calc(50% - #{g.$strokeWidth} - 1px);
+      left:  calc(50% - #{$arrowWidth} / 2);
     }
     &--end {
       position: absolute;
       height: 12px;
       width: 12px;
+      left: calc( 50% );
       transform: rotate(45deg);
-      background-color: yellow;
+      border-style: solid;
+      border-top-width: g.$strokeWidth;
+      border-right-width: g.$strokeWidth;
     }
   }
 }

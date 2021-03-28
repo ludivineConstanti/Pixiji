@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
 import quizSlice from 'src/reducer/slices/quizSlice';
-import globalReducer from 'src/reducer/reducers/globalReducer';
+import globalSlice from 'src/reducer/slices/globalSlice';
 
 // We export the result of all the combined reducers
 // to use it in createStore
 
 export default combineReducers({
-  global: globalReducer,
+  global: globalSlice,
   quiz: quizSlice,
 });
 

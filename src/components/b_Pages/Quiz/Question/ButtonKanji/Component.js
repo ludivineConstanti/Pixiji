@@ -1,42 +1,43 @@
 // == Import npm
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { TweenMax, TimelineLite } from 'gsap';
+import { gsap, TimelineLite } from 'gsap';
 
 // == Import
 import './style.scss';
 
 const ButtonKanji = ({
-  possibleAnswer, disabled, colorMain, rightAnswer, updateValueQuiz, answeredCorrectlyQuiz,
+  possibleAnswer, disabled, colorMain, rightAnswer, updateValueQuiz, answeredQuestionQuiz,
 }) => {
   const component = useRef(null);
+  const cC = 'buttonKanji';
   const tl = new TimelineLite({ paused: true });
-  console.log('rendered button');
+  const colorMainRgb = gsap.utils.splitColor(colorMain);
+
+  if (disabled) {
+    tl.to(component.current, 0.35, {
+      ease: 'power1.inOut', borderColor: 'rgba(255, 255, 255, 0.25)', color: 'rgba(255, 255, 255, 0.25)', scale: 0.8,
+    }).play();
+  }
+
   return (
     <button
       ref={component}
-      className="buttonKanji"
+      className={cC}
       type="button"
       onClick={() => {
-        console.log(rightAnswer);
-        if (rightAnswer.id === possibleAnswer.id) {
-          answeredCorrectlyQuiz(rightAnswer);
-        }
-        else {
-          updateValueQuiz({ obj: ['user'], prop: ['answeredQuestion'], value: [true] });
-        }
+        answeredQuestionQuiz({ answer: possibleAnswer });
       }}
       onMouseOver={() => {
         if (!disabled) {
-          tl.to(component.current, 0.35, { ease: 'power1.inOut', scale: 1.2, boxShadow: '0 0 4px 10px rgba(0, 0, 0, 0.15)' }).play();
+          tl.to(component.current, 0.35, { ease: 'power1.inOut', scale: 1.2, boxShadow: `0 0 4px 8px rgba(${colorMainRgb[0] - 10}, ${colorMainRgb[1] - 10}, ${colorMainRgb[2] - 10}, 0.35)` }).play();
         }
       }}
       onMouseOut={() => {
-        if (!disabled) {
-          tl.to(component.current, 0.25, { ease: 'power1.out', scale: 1 }).play();
-        }
+        tl.to(component.current, 0.25, { ease: 'power1.out', scale: 1, boxShadow: 'none' }).play();
       }}
       disabled={disabled}
+      style={{ backgroundColor: `rgba(${colorMainRgb[0]}, ${colorMainRgb[1]}, ${colorMainRgb[2]}, 0.8)` }}
     >
       {possibleAnswer.kanji}
     </button>
@@ -49,7 +50,7 @@ ButtonKanji.propTypes = {
   colorMain: PropTypes.string.isRequired,
   rightAnswer: PropTypes.object.isRequired,
   updateValueQuiz: PropTypes.func.isRequired,
-  answeredCorrectlyQuiz: PropTypes.func.isRequired,
+  answeredQuestionQuiz: PropTypes.func.isRequired,
 };
 
 // == Export

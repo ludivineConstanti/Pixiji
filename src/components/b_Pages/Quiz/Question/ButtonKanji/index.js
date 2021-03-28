@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import {
-  updateValueQuiz, answeredCorrectlyQuiz,
+  updateValueQuiz, answeredQuestionQuiz,
 } from 'src/reducer/slices/quizSlice';
 import Component from './Component';
 
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   updateValueQuiz: (payload) => dispatch(updateValueQuiz(payload)),
-  answeredCorrectlyQuiz: (payload) => dispatch(answeredCorrectlyQuiz(payload)),
+  answeredQuestionQuiz: (payload) => dispatch(answeredQuestionQuiz(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);
