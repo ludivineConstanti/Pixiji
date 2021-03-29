@@ -65,5 +65,21 @@ export default [
       { id: 47, kanji: '見', en: 'see' },
       { id: 48, kanji: '音', en: 'sound' },
     ],
+  }, {
+    infosAnswer: { answerIndex: false, answeredRight: 0, answeredWrong: 0 },
+    arrAnswers: [
+      { id: 25, kanji: '林', en: 'woods' },
+      { id: 26, kanji: '山', en: 'mountain' },
+      { id: 27, kanji: '川', en: 'river' },
+      { id: 28, kanji: '土', en: 'soil' },
+      { id: 29, kanji: '空', en: 'sky' },
+      { id: 30, kanji: '田', en: 'rice field' },
+      { id: 31, kanji: '天', en: 'heaven' },
+      { id: 32, kanji: '生', en: 'birth' },
+      { id: 33, kanji: '花', en: 'flower' },
+      { id: 34, kanji: '草', en: 'grass' },
+      { id: 35, kanji: '虫', en: 'insect' },
+      { id: 36, kanji: '犬', en: 'dog' },
+    ],
   },
 ];

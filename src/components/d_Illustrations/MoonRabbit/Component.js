@@ -8,8 +8,10 @@ import { squaresShrink, squaresGrow } from 'src/components/d_Illustrations/_help
 import createIllustration from 'src/components/d_Illustrations/_helpers/createIllustration';
 import planet from './_data/planet';
 import rabbit from './_data/rabbit';
+import moon from './_data/moon';
 
 const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
+  const cC = 'moonRabbit';
   // I use 2 groups to keep a reference for the divs
   // one for the first animation where they all get reduced at the same time
   // GSAP needs individual arrays to figure out where their center is
@@ -18,7 +20,8 @@ const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
   const squareContainers = useRef([]);
 
   useEffect(() => {
-    squaresShrink(squareGroups.current.planet);
+    // squaresShrink(squareGroups.current.planet);
+    // squaresShrink(squareGroups.current.rabbit);
   }, []);
 
   useEffect(() => {
@@ -26,16 +29,19 @@ const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
   }, [kanjisArr]);
 
   const planetFormatted = createIllustration(planet, 'planet', squareGroups, squareContainers);
-  const rabbitFormatted = createIllustration(rabbit, 'rabbit', squareGroups, squareContainers);
-
+  const rabbitFormatted = createIllustration(rabbit, 'rabbit', squareGroups, squareContainers, 4);
+  const moonFormatted = createIllustration(moon, 'moon', squareGroups, squareContainers, 5);
   return (
     <>
-      <div className="moonRabbit__planet">
+      <div className={`${cC}__planet`}>
         {planetFormatted}
       </div>
-      <div className="moonRabbit__rabbitonMoon">
-        <div className="moonRabbit__rabbit">
+      <div className={`${cC}__rabbitOnMoon`}>
+        <div className={`${cC}__rabbit`}>
           {rabbitFormatted}
+        </div>
+        <div className={`${cC}__moon`}>
+          {moonFormatted}
         </div>
       </div>
     </>

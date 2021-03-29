@@ -12,7 +12,7 @@ const cRef = (e, group, groupNum, squareGroups, squareContainers) => {
   squareContainers.current[groupNum].push(e);
 };
 
-export default (data, group, squareGroups, squareContainers) => {
+export default (data, group, squareGroups, squareContainers, numPreviousGroups = 0) => {
   const formattedData = [];
   let counter = 0;
   for (let i = 0; i < data.length; i += 1) {
@@ -24,9 +24,9 @@ export default (data, group, squareGroups, squareContainers) => {
           size={square.s}
           columnStart={square.column}
           rowStart={square.row}
-          ref={(e) => cRef(e, group, i, squareGroups, squareContainers)}
+          ref={(e) => cRef(e, group, numPreviousGroups + i, squareGroups, squareContainers)}
           color={square.c}
-          kanjiIndex={i}
+          kanjiIndex={numPreviousGroups + i}
         />);
       }
       else {
@@ -35,7 +35,7 @@ export default (data, group, squareGroups, squareContainers) => {
           size={square.s}
           columnStart={square.column}
           rowStart={square.row}
-          ref={(e) => cRef(e, group, i, squareGroups, squareContainers)}
+          ref={(e) => cRef(e, group, numPreviousGroups + i, squareGroups, squareContainers)}
           color={square.c}
         />);
       }

@@ -8,11 +8,11 @@
       grid-row-end: span $i;}
     }
 
-  @for $i from 1 through 10 {
+  @for $i from 1 through 30 {
      &--columnStart#{$i} { grid-column-start: $i; }
     }
     
-  @for $i from 1 through 10 {
+  @for $i from 1 through 30 {
     &--rowStart#{$i} { grid-row-start: $i; }
     }
 
