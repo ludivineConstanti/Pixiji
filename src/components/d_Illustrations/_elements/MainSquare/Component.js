@@ -21,7 +21,7 @@ const MainSquare = React.forwardRef(({
 
   return (
     <div
-      className={`${cC} ${cC2}--size${size} ${cC2}--columnStart${columnStart} ${cC2}--rowStart${rowStart}`}
+      className={`${cC} ${cC2} ${cC2}--size${size} ${cC2}--columnStart${columnStart} ${cC2}--rowStart${rowStart}`}
       style={{ backgroundColor: `${color}` }}
       ref={ref}
     >
