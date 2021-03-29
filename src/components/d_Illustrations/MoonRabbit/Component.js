@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 // == Import
 import '../style.scss';
+import MainSquare from 'src/components/d_Illustrations/_elements/MainSquare';
+import Square from 'src/components/d_Illustrations/_elements/Square';
 import { squaresShrink, squaresGrow } from 'src/components/d_Illustrations/transitions';
 
 const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
@@ -42,27 +44,27 @@ const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
 
   return (
     <div className="moonRabbit__Planet">
-      <div className={`${s}1 ${y}4 ${x}1`} ref={(e) => cRef(e, 'planet', 0)} style={{ backgroundColor: '#B6E7FF' }} />
-      <div className={`${s}2 ${y}5 ${x}1`} ref={(e) => cRef(e, 'planet', 0)} style={{ backgroundColor: '#83D0F6' }} />
-      <div className={`${s}3 ${y}2 ${x}2 ${z}`} ref={(e) => cRef(e, 'planet', 0)} style={{ backgroundColor: '#6DC7F4' }}>{kanjisArr[0] ? kanjisArr[0].kanji : ''}</div>
-      <div className={`${s}1 ${y}1 ${x}4`} ref={(e) => cRef(e, 'planet', 0)} style={{ backgroundColor: '#60ACD2' }} />
-      <div className={`${s}2 ${y}1 ${x}5`} ref={(e) => cRef(e, 'planet', 0)} style={{ backgroundColor: '#5897B7' }} />
+      <Square size={1} columnStart={4} rowStart={1} ref={(e) => cRef(e, 'planet', 0)} color="#B6E7FF" />
+      <Square size={2} columnStart={5} rowStart={1} ref={(e) => cRef(e, 'planet', 0)} color="#83D0F6" />
+      <MainSquare size={3} columnStart={2} rowStart={2} ref={(e) => cRef(e, 'planet', 0)} color="#6DC7F4" kanjiIndex={0} />
+      <Square size={1} columnStart={1} rowStart={4} ref={(e) => cRef(e, 'planet', 0)} color="#60ACD2" />
+      <Square size={2} columnStart={1} rowStart={5} ref={(e) => cRef(e, 'planet', 0)} color="#5897B7" />
 
       <div className={`${s}1 ${y}7 ${x}1`} ref={(e) => cRef(e, 'planet', 1)} style={{ backgroundColor: '#B6E7FF' }} />
       <div className={`${s}2 ${y}5 ${x}3`} ref={(e) => cRef(e, 'planet', 1)} style={{ backgroundColor: '#5AB2DE' }} />
-      <div className={`${s}3 ${y}7 ${x}2 ${z}`} ref={(e) => cRef(e, 'planet', 1)} style={{ backgroundColor: '#58BDF0' }}>{kanjisArr[1] ? kanjisArr[1].kanji : ''}</div>
+      <MainSquare size={3} columnStart={7} rowStart={2} ref={(e) => cRef(e, 'planet', 1)} color="#58BDF0" kanjiIndex={1} />
       <div className={`${s}1 ${y}10 ${x}4`} ref={(e) => cRef(e, 'planet', 1)} style={{ backgroundColor: '#6CC9F8' }} />
       <div className={`${s}2 ${y}9 ${x}5`} ref={(e) => cRef(e, 'planet', 1)} style={{ backgroundColor: '#4788A8' }} />
 
       <div className={`${s}1 ${y}1 ${x}7`} ref={(e) => cRef(e, 'planet', 2)} style={{ backgroundColor: '#35637A' }} />
       <div className={`${s}2 ${y}3 ${x}5`} ref={(e) => cRef(e, 'planet', 2)} style={{ backgroundColor: '#3D7E9E' }} />
-      <div className={`${s}3 ${y}2 ${x}7 ${z}`} ref={(e) => cRef(e, 'planet', 2)} style={{ backgroundColor: '#1D4154' }}>{kanjisArr[2] ? kanjisArr[2].kanji : ''}</div>
+      <MainSquare size={3} columnStart={2} rowStart={7} ref={(e) => cRef(e, 'planet', 2)} color="#1D4154" kanjiIndex={2} />
       <div className={`${s}1 ${y}4 ${x}10`} ref={(e) => cRef(e, 'planet', 2)} style={{ backgroundColor: '#284A67' }} />
       <div className={`${s}2 ${y}5 ${x}9`} ref={(e) => cRef(e, 'planet', 2)} style={{ backgroundColor: '#203E4E' }} />
 
       <div className={`${s}1 ${y}7 ${x}10`} ref={(e) => cRef(e, 'planet', 3)} style={{ backgroundColor: '#284A67' }} />
       <div className={`${s}2 ${y}5 ${x}7`} ref={(e) => cRef(e, 'planet', 3)} style={{ backgroundColor: '#284F64' }} />
-      <div className={`${s}3 ${y}7 ${x}7 ${z}`} ref={(e) => cRef(e, 'planet', 3)} style={{ backgroundColor: '#1D4154' }}>{kanjisArr[3] ? kanjisArr[3].kanji : ''}</div>
+      <MainSquare size={3} columnStart={7} rowStart={7} ref={(e) => cRef(e, 'planet', 3)} color="#1D4154" kanjiIndex={3} />
       <div className={`${s}1 ${y}10 ${x}7`} ref={(e) => cRef(e, 'planet', 3)} style={{ backgroundColor: '#35637A' }} />
       <div className={`${s}2 ${y}7 ${x}5`} ref={(e) => cRef(e, 'planet', 3)} style={{ backgroundColor: '#40728B' }} />
 
@@ -82,3 +84,64 @@ MoonRabbit.defaultProps = {
 
 // == Export
 export default MoonRabbit;
+
+const dataDivs = [
+  {
+    squareContainer: 'planet',
+    squareGroups: [
+      [{
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }],
+      [{
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }],
+      [{
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }],
+      [{
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }],
+      [{
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }, {
+        s: 1, y: 4, x: 1, c: '#B6E7FF',
+      }]],
+  }];

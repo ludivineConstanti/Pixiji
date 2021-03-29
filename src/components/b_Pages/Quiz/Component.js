@@ -1,6 +1,6 @@
 // == Import npm
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { number } from 'prop-types';
 
 // == Import
 import './style.scss';
@@ -27,7 +27,7 @@ const Quiz = ({
 );
 
 Quiz.propTypes = {
-  answeredQuestion: PropTypes.bool.isRequired,
+  answeredQuestion: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
   answeredCorrectly: PropTypes.bool.isRequired,
   finishedQuiz: PropTypes.bool.isRequired,
   nextQuestionQuiz: PropTypes.func.isRequired,

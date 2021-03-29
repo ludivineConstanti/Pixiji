@@ -11,6 +11,17 @@
 ## The animation on hover, made with GSAP, blocked when the mouse entered the div slightly (when the enter and exit event of the mouse were not clear)
 => Fixed by using a timeline for the animation
 
-#### Disabling the button element did not work properly 
+#### Disabling the button element not working properly 
 => I used a state directly in the button element and set it to disabled when the user clicked on it, logically it only updated this one button
 => I used the parent element instead to decide if the elements are disabled or not, every time the element is rerendered (which happens when I click on one button, since I modify the state)
+
+## Passing a ref to a component not working
+
+=> I tried to make a custom element "MainSquare" for the illustrations, but passing a ref as a prop does not work in React, after reading the React doc, I found out that it does work if we use "React.forwardRef" to create the component, instead of making a simple function
+
+## Using redux with "React.forwardRef" not working
+
+=> Using redux modified the react component and converted it back to a function, which made using "React.forwardRef" pointless,it now works by adding extra arguments
+``` Javascript
+export default connect(mapStateToProps, {}, null, { forwardRef: true })(Component);
+``` 
