@@ -46,7 +46,7 @@ const ButtonKanji = ({
 
 ButtonKanji.propTypes = {
   possibleAnswer: PropTypes.object.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
   colorMain: PropTypes.string.isRequired,
   answeredQuestionQuiz: PropTypes.func.isRequired,
 };

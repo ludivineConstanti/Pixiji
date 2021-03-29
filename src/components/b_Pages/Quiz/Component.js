@@ -1,6 +1,6 @@
 // == Import npm
 import React from 'react';
-import PropTypes, { number } from 'prop-types';
+import PropTypes from 'prop-types';
 
 // == Import
 import './style.scss';

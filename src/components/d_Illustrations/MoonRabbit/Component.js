@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 // == Import
 import '../style.scss';
-import MainSquare from 'src/components/d_Illustrations/_elements/MainSquare';
-import Square from 'src/components/d_Illustrations/_elements/Square';
-import { squaresShrink, squaresGrow } from 'src/components/d_Illustrations/transitions';
+import { squaresShrink, squaresGrow } from 'src/components/d_Illustrations/_helpers/transitions';
+import createIllustration from 'src/components/d_Illustrations/_helpers/createIllustration';
 import planet from './_data/planet';
+import rabbit from './_data/rabbit';
 
 const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
   // I use 2 groups to keep a reference for the divs
@@ -25,35 +25,20 @@ const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
     squaresGrow(squareContainers.current[kanjisArr.length - 1]);
   }, [kanjisArr]);
 
-  const cRef = (e, group, groupNum) => {
-    squareGroups.current[group].push(e);
-    if (!squareContainers.current[groupNum]) {
-      squareContainers.current[groupNum] = [];
-    }
-    squareContainers.current[groupNum].push(e);
-  };
-
-  const createIllustration = (data) => {
-    const formattedData = [];
-    for (let i = 0; i < data.length; i += 1) {
-      data[i].forEach((square) => {
-        if (square.main) {
-          formattedData.push(<MainSquare size={square.s} columnStart={square.column} rowStart={square.row} ref={(e) => cRef(e, 'planet', i)} color={square.c} kanjiIndex={i} />);
-        }
-        else {
-          formattedData.push(<Square size={square.s} columnStart={square.column} rowStart={square.row} ref={(e) => cRef(e, 'planet', i)} color={square.c} />);
-        }
-      });
-    }
-    return formattedData;
-  };
-
-  const planetFormatted = createIllustration(planet);
+  const planetFormatted = createIllustration(planet, 'planet', squareGroups, squareContainers);
+  const rabbitFormatted = createIllustration(rabbit, 'rabbit', squareGroups, squareContainers);
 
   return (
-    <div className="moonRabbit__Planet">
-      {planetFormatted}
-    </div>
+    <>
+      <div className="moonRabbit__planet">
+        {planetFormatted}
+      </div>
+      <div className="moonRabbit__rabbitonMoon">
+        <div className="moonRabbit__rabbit">
+          {rabbitFormatted}
+        </div>
+      </div>
+    </>
   );
 };
 

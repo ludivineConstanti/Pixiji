@@ -30,7 +30,7 @@ const Question = ({
 
 Question.propTypes = {
   dataObj: PropTypes.object.isRequired,
-  answeredQuestion: PropTypes.bool.isRequired,
+  answeredQuestion: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
   updateFirstQuestionQuiz: PropTypes.func.isRequired,
 };
 

@@ -11,41 +11,32 @@ $squareUnit: 1.3vw;
   position: absolute;
 }
 
-@mixin quizContainerPos ($top, $left) {
+@mixin quizContainerTopLeft ($top, $left) {
   top: calc(#{$top} * 1vh + #{f.$menu-sizeContainer});
   left: calc(#{$left} * 1vw + 37.5vw);
 }
 
-.moonRabbit__Planet {
+@mixin quizContainerBottomRight ($bottom, $right) {
+  bottom: calc(#{$bottom} * 1vh);
+  right: calc(#{$right} * 1vw);
+}
+
+.moonRabbit__planet {
   @include gridContainer(10, 10);
-  @include quizContainerPos(10, 10);
+  @include quizContainerTopLeft(10, 10);
 }
 
-.square {
-
-  @for $i from 1 through 10 {
-    &--size#{$i} { 
-      grid-column-end: span $i; 
-      grid-row-end: span $i;}
-    }
-
-  @for $i from 1 through 10 {
-     &--columnStart#{$i} { grid-column-start: $i; }
-    }
-    
-  @for $i from 1 through 10 {
-    &--rowStart#{$i} { grid-row-start: $i; }
-    }
-
+.moonRabbit__rabbit {
+  @include gridContainer(15, 11);
 }
 
-.mainSquare {
-  z-index: z.$illustrationMainSquare;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.moonRabbit__rabbitonMoon {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background-color: pink;
+  @include quizContainerBottomRight(0, 0);
 }
-
 
 
 
