@@ -7,8 +7,9 @@ import { gsap, TimelineLite } from 'gsap';
 import './style.scss';
 
 const ButtonKanji = ({
-  possibleAnswer, disabled, colorMain, answeredQuestionQuiz,
+  possibleAnswer, disabled, colorMain, correctAnswer, cheating, answeredQuestionQuiz,
 }) => {
+  console.log(correctAnswer);
   const component = useRef(null);
   const cC = 'buttonKanji';
   const tl = new TimelineLite({ paused: true });
@@ -19,6 +20,9 @@ const ButtonKanji = ({
       ease: 'power1.inOut', borderColor: 'rgba(255, 255, 255, 0.25)', color: 'rgba(255, 255, 255, 0.25)', scale: 0.8,
     }).play();
   }
+
+  const styleRightAnswer = { backgroundColor: `rgba(${colorMainRgb[0]}, ${colorMainRgb[1]}, ${colorMainRgb[2]}, 0.8)` };
+  const styleWrongAnswer = { ...styleRightAnswer, borderColor: 'rgba(255, 255, 255, 0.4)', color: 'rgba(255, 255, 255, 0.4)' };
 
   return (
     <button
@@ -37,7 +41,9 @@ const ButtonKanji = ({
         tl.to(component.current, 0.25, { ease: 'power1.out', scale: 1, boxShadow: 'none' }).play();
       }}
       disabled={disabled}
-      style={{ backgroundColor: `rgba(${colorMainRgb[0]}, ${colorMainRgb[1]}, ${colorMainRgb[2]}, 0.8)` }}
+      style={
+        possibleAnswer.id !== correctAnswer.id && cheating ? styleWrongAnswer : styleRightAnswer
+      }
     >
       {possibleAnswer.kanji}
     </button>
