@@ -16,21 +16,27 @@ const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
   // one for the first animation where they all get reduced at the same time
   // GSAP needs individual arrays to figure out where their center is
   // the other to animate every time I answer a question
-  const squareGroups = useRef({ planet: [], rabbit: [], moon: [] });
-  const squareContainers = useRef([]);
+  const squareMainRef = useRef({ planet: [], rabbit: [], moon: [] });
+  const squareGroupRef = useRef([]);
 
   useEffect(() => {
-    // squaresShrink(squareGroups.current.planet);
-    // squaresShrink(squareGroups.current.rabbit);
+    squaresShrink(squareMainRef.current.planet);
+    squaresShrink(squareMainRef.current.rabbit);
+    squaresShrink(squareMainRef.current.moon);
   }, []);
 
   useEffect(() => {
-    squaresGrow(squareContainers.current[kanjisArr.length - 1]);
+    squaresGrow(squareGroupRef.current[kanjisArr.length - 1]);
   }, [kanjisArr]);
 
-  const planetFormatted = createIllustration(planet, 'planet', squareGroups, squareContainers);
-  const rabbitFormatted = createIllustration(rabbit, 'rabbit', squareGroups, squareContainers, 4);
-  const moonFormatted = createIllustration(moon, 'moon', squareGroups, squareContainers, 5);
+  // need the number at the end so that it doesn't always start from 0
+  // while pushing the groups in the squareContainer array
+  let beginAtIndex = 0;
+  const planetFormatted = createIllustration(planet, 'planet', squareMainRef, squareGroupRef, beginAtIndex);
+  beginAtIndex += planet.length;
+  const rabbitFormatted = createIllustration(rabbit, 'rabbit', squareMainRef, squareGroupRef, beginAtIndex);
+  beginAtIndex += rabbit.length;
+  const moonFormatted = createIllustration(moon, 'moon', squareMainRef, squareGroupRef, beginAtIndex);
   return (
     <>
       <div className={`${cC}__planet`}>

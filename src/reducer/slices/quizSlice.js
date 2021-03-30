@@ -1,13 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import dataQuiz from 'src/assets/dataQuiz';
+import grade3 from 'src/assets/dataQuiz/grade3';
+import quizFormatter from 'src/helpers/formatters/quizFormatter';
 
 export const quizSlice = createSlice({
   name: 'quiz',
   initialState: {
-    dataQuiz,
+    dataQuiz: quizFormatter(grade3),
     current: {
-      totalQuestions: dataQuiz.length,
+      totalQuestions: quizFormatter(grade3).length,
     },
     user: {
       answeredQuestion: false,

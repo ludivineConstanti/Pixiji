@@ -2,9 +2,8 @@ import { gsap, TweenMax } from 'gsap';
 
 import distributeByPosition from 'src/helpers/gsap/distributedByPosition';
 
-const tl = gsap.timeline();
-
 function squaresShrink(selector) {
+  const tl = gsap.timeline();
   // this just helps avoid the pixel-snapping that some browsers do.
   TweenMax.set(selector, { rotation: 0.5, force3D: true });
 
@@ -12,7 +11,7 @@ function squaresShrink(selector) {
   tl.to(selector, {
     duration: 0.75,
     scale: 0.1,
-    ease: 'power1.inOut',
+    ease: 'power1.in',
     // function helper because our array of div is not properly configurated
     // for greensocks to be able to know where the center is, otherwise
     stagger: distributeByPosition({
@@ -26,6 +25,7 @@ function squaresShrink(selector) {
 }
 
 function squaresGrow(selector) {
+  const tl = gsap.timeline();
   // this just helps avoid the pixel-snapping that some browsers do.
   TweenMax.set(selector, { rotation: 0.5, force3D: true });
 
