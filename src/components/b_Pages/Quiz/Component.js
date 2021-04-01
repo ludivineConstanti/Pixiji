@@ -13,10 +13,10 @@ const Quiz = ({
   answeredQuestion, answeredCorrectly, finishedQuiz, nextQuestionQuiz,
 }) => (
   <div className="quiz">
+    <Header />
     { finishedQuiz ? (<p>Awesome!</p>)
       : (
         <>
-          <Header />
           <Question />
           { answeredQuestion && <ButtonBig comment={answeredCorrectly ? 'correct!' : 'wrong!'} text="next" onClick={nextQuestionQuiz} /> }
         </>

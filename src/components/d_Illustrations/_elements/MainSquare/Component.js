@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { TimelineLite } from 'gsap';
+import { TimelineLite, TweenLite } from 'gsap';
 
 // == Import
 import '../style.scss';
@@ -49,8 +49,8 @@ const MainSquare = React.forwardRef(({
         const cWidth = cRef.current.clientWidth / document.documentElement.clientWidth * 100;
         const cNewSize = 8.8;
         const cOffset = (cWidth - cNewSize) / 2;
-        const y = cRef.current.position().left;
-        console.log(y);
+        // const y = cRef.current.position().left;
+        // console.log(y);
         if (answer) {
           cTl.timeScale(0.7).to(cRef.current, duration, {
             // needs to have a higher z-index than the rest (current highest is 2)
@@ -61,14 +61,23 @@ const MainSquare = React.forwardRef(({
             // otherwise the text in the middle jumps
             // need to try to keep the delay at a minimum
             // otherwise animation looks laggy (especially when exit)
-          }, '-= 0.25').play();
+          }, duration / 2.5).play();
         }
       }}
       onMouseLeave={() => {
         if (answer) {
+          const clearProps = () => {
+            console.log('on reverse complete');
+            TweenLite.set(cRef.current, { clearProps: 'all' });
+            TweenLite.to(cRef.current, 0, { backgroundColor: color });
+            TweenLite.set(infosRef.current, { clearProps: 'all' });
+          };
           // timescale, put 1 => plays normally
           // puts 2 => divide time per 2
-          cTl.timeScale(1.3).reverse();
+          cTl.timeScale(1.3).reverse().eventCallback('onReverseComplete', clearProps);
+          /* .eventCallback('onReverseComplete', () => {
+            cTl.set(cRef.current, { clearProps: 'all' });
+          }); */
         }
       }}
     >

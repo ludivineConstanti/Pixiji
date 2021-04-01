@@ -41,3 +41,7 @@ I tried animating the typo size from 0 to something in GSAP (just for one part o
 ## Clear GSAP inline styling
 
 I tried clearing the inline style that I added with gsap, at the end of the reversed animation (so when I don't need them anymore), since it caused bugs in an other of my animation, so I thought removing them for all might be a good practice... after trying it out it seems to add more bugs... so I won't remove the online styling anymore (unless when needed).
+
+## Update on clearing inline styling
+
+I realised removing inline styling was actually necessary because modifying the position of the elements by inline styling make them not resize properly (which doesn't matter when we are doing the hover effect, because hovering over the div and resizing the browser's window at the same time should be difficult). After a bit of testing with removing the properties and, causing more bugs doing so (div glitching...), I found out that removing the properties should not be done on the GSAP timeline directly but with TweenLite. I did so with an event callback function and now it seems to be much better.

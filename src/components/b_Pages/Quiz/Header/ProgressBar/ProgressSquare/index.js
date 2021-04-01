@@ -1,19 +1,32 @@
 // == Import npm
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { TimelineLite } from 'gsap';
 
 // == Import
 import './style.scss';
 
-const ProgressSquare = ({ current }) => {
+const ProgressSquare = ({ squareNum, currentQuestion }) => {
   const cC = 'progressSquare';
+  const cRef = useRef(null);
+  const cTl = new TimelineLite();
+  const duration = 0.5;
+  useEffect(() => {
+    if (squareNum === currentQuestion) {
+      cTl.to(cRef.current, duration, { ease: 'inOut', scale: '2', backgroundColor: 'white' }).play();
+    }
+    else if (squareNum === currentQuestion - 1) {
+      cTl.to(cRef.current, duration, { ease: 'inOut', scale: '1' }).play();
+    }
+  }, [currentQuestion]);
   return (
-    <div className={current ? `${cC} ${cC}--activated` : cC} />
+    <div ref={cRef} className={`${cC}`} />
   );
 };
 
 ProgressSquare.propTypes = {
-  current: PropTypes.bool.isRequired,
+  squareNum: PropTypes.number.isRequired,
+  currentQuestion: PropTypes.number.isRequired,
 };
 
 // == Export
