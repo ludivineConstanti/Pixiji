@@ -9,14 +9,13 @@ import './style.scss';
 const ButtonKanji = ({
   possibleAnswer, disabled, colorMain, correctAnswer, cheating, answeredQuestionQuiz,
 }) => {
-  console.log(correctAnswer);
-  const component = useRef(null);
+  const componentRef = useRef(null);
   const cC = 'buttonKanji';
   const tl = new TimelineLite({ paused: true });
   const colorMainRgb = gsap.utils.splitColor(colorMain);
 
   if (disabled) {
-    tl.to(component.current, 0.35, {
+    tl.to(componentRef.current, 0.35, {
       ease: 'power1.inOut', borderColor: 'rgba(255, 255, 255, 0.25)', color: 'rgba(255, 255, 255, 0.25)', scale: 0.8,
     }).play();
   }
@@ -26,7 +25,7 @@ const ButtonKanji = ({
 
   return (
     <button
-      ref={component}
+      ref={componentRef}
       className={cC}
       type="button"
       onClick={() => {
@@ -34,11 +33,11 @@ const ButtonKanji = ({
       }}
       onMouseOver={() => {
         if (!disabled) {
-          tl.to(component.current, 0.35, { ease: 'power1.inOut', scale: 1.2, boxShadow: `0 0 4px 8px rgba(${colorMainRgb[0] - 10}, ${colorMainRgb[1] - 10}, ${colorMainRgb[2] - 10}, 0.35)` }).play();
+          tl.to(componentRef.current, 0.35, { ease: 'power1.inOut', scale: 1.2, boxShadow: `0 0 4px 8px rgba(${colorMainRgb[0] - 10}, ${colorMainRgb[1] - 10}, ${colorMainRgb[2] - 10}, 0.35)` }).play();
         }
       }}
       onMouseOut={() => {
-        tl.to(component.current, 0.25, { ease: 'power1.out', scale: 1, boxShadow: 'none' }).play();
+        tl.to(componentRef.current, 0.25, { ease: 'power1.out', scale: 1, boxShadow: 'none' }).play();
       }}
       disabled={disabled}
       style={
@@ -54,6 +53,10 @@ ButtonKanji.propTypes = {
   possibleAnswer: PropTypes.object.isRequired,
   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
   colorMain: PropTypes.string.isRequired,
+  correctAnswer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }).isRequired,
+  cheating: PropTypes.bool.isRequired,
   answeredQuestionQuiz: PropTypes.func.isRequired,
 };
 
