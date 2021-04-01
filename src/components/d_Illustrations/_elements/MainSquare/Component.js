@@ -20,9 +20,6 @@ const MainSquare = React.forwardRef(({
 
   const [kanji, setKanji] = useState('');
 
-  // takes the width of the div, in px, and converts it in vw
-  const componentWidth = componentRef.current.clientWidth / document.documentElement.clientWidth * 100;
-
   useEffect(() => {
     if (!kanji && rightAnswers[kanjiIndex]) setKanji(rightAnswers[kanjiIndex].answer.kanji);
   }, [rightAnswers]);
@@ -38,17 +35,14 @@ const MainSquare = React.forwardRef(({
         componentRef.current = e;
       }}
       onMouseOver={() => {
+        // takes the width of the div, in px, and converts it in vw
+        // eslint-disable-next-line max-len
+        const componentWidth = componentRef.current.clientWidth / document.documentElement.clientWidth * 100;
         const componentNewSize = 8.8;
         const componentOffset = (componentWidth - componentNewSize) / 2;
         if (kanji !== '') {
           tl.to(componentRef.current, 0.35, {
-            // 1.1vw (current square unit need to chack in css * 8) => 8.8
             // needs to have a higher z-index than the rest (current highest is 2)
-            // since the scale is messing up all the sizes
-            // need to divide by componentScale to have consistent ones
-            // Needed to use scale to have the div growing from the center
-            // could also use height and width and then modify the y and x position
-            // but would need to put different settings for the different div sizes
             ease: 'power1.inOut', zIndex: 10, y: `${componentOffset}vw`, x: `${componentOffset}vw`, height: `${componentNewSize}vw`, width: `${componentNewSize}vw`, fontSize: '2vw',
           }).play();
         }
