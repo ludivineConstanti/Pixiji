@@ -31,3 +31,13 @@ ease: 'power1.inOut', zIndex: 10, y: `${componentOffset}vw`, x: `${componentOffs
 ```
 
 Somehow, causes the typo in the center to jump a bit sometimes, so I'll go with changing width and height.
+
+## Animating typo in GSAP
+
+I tried animating the typo size from 0 to something in GSAP (just for one part of the text, the text at the center of the div stays visible). It gave a slight staggering effect. I decided to simply remove this animation, (since I already have fade in and fade out on the text anyway, and I still need to figure out how to organise GSAP and SASS so that they work together, having different style in both is a bit messy).
+
+=> I thought GSAP would solve all problems linked to layout moving, turns out it doesn't do it 100%, which means I shoudl spend more time on learning what modifies the layout and what doesn't.
+
+## Clear GSAP inline styling
+
+I tried clearing the inline style that I added with gsap, at the end of the reversed animation (so when I don't need them anymore), since it caused bugs in an other of my animation, so I thought removing them for all might be a good practice... after trying it out it seems to add more bugs... so I won't remove the online styling anymore (unless when needed).

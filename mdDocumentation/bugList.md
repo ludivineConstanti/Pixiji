@@ -24,4 +24,8 @@
 => Using redux modified the react component and converted it back to a function, which made using "React.forwardRef" pointless,it now works by adding extra arguments
 ``` Javascript
 export default connect(mapStateToProps, {}, null, { forwardRef: true })(Component);
-``` 
+```
+
+### Width of the button component was not big enough after the GSAP animation
+
+=> removed the width prop at the end of the animation

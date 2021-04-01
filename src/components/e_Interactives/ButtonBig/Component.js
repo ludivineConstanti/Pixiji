@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { gsap, TimelineLite } from 'gsap';
+import { TimelineLite } from 'gsap';
 
 // == Import
 import './style.scss';
@@ -17,7 +17,7 @@ const ButtonBig = ({
   useEffect(() => {
     tl.from(component.current, 0.35, {
       ease: 'easeOut', xPercent: -100, width: '20%', color: 'white',
-    }).play();
+    }).set(component.current, { clearProps: 'width, translate' }).play();
     return () => tl.to(component.current, 0.35, { x: '-200px' }).play();
   }, []);
 

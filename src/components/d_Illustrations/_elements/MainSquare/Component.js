@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { gsap, TimelineLite } from 'gsap';
+import { TimelineLite } from 'gsap';
 
 // == Import
 import '../style.scss';
@@ -16,8 +16,8 @@ const MainSquare = React.forwardRef(({
 
   // c = component
   const cTl = new TimelineLite({ paused: true });
-  const infosTl = new TimelineLite({ paused: true });
-  // can update multiple timelines / animations at once without having to remember to copy paste every time
+  // can update multiple timelines / animations at once
+  // without having to remember to copy paste every time
   const duration = 0.35;
 
   const cRef = useRef(null);
@@ -49,20 +49,26 @@ const MainSquare = React.forwardRef(({
         const cWidth = cRef.current.clientWidth / document.documentElement.clientWidth * 100;
         const cNewSize = 8.8;
         const cOffset = (cWidth - cNewSize) / 2;
+        const y = cRef.current.position().left;
+        console.log(y);
         if (answer) {
-          cTl.to(cRef.current, duration, {
+          cTl.timeScale(0.7).to(cRef.current, duration, {
             // needs to have a higher z-index than the rest (current highest is 2)
             ease: 'power1.inOut', zIndex: 10, y: `${cOffset}vw`, x: `${cOffset}vw`, height: `${cNewSize}vw`, width: `${cNewSize}vw`, fontSize: '24px',
-          }).play();
-          infosTl.to(infosRef.current, duration, {
-            ease: 'power1.inOut', display: 'block', opacity: 1,
-          }).play();
+          }).to(infosRef.current, duration - 0.1, {
+            ease: 'power1.inOut', display: 'block', opacity: 1, margin: '8px 0 8px 0',
+            // the animation of the second group needs a slight delay
+            // otherwise the text in the middle jumps
+            // need to try to keep the delay at a minimum
+            // otherwise animation looks laggy (especially when exit)
+          }, '-= 0.25').play();
         }
       }}
       onMouseLeave={() => {
         if (answer) {
-          cTl.reverse();
-          infosTl.reverse();
+          // timescale, put 1 => plays normally
+          // puts 2 => divide time per 2
+          cTl.timeScale(1.3).reverse();
         }
       }}
     >
