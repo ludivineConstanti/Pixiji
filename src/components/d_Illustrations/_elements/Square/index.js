@@ -1,30 +1,8 @@
-// == Import npm
-import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Component from './Component';
 
-// == Import
-import '../style.scss';
-
-const Square = React.forwardRef(({
-  size, columnStart, rowStart, color,
-}, ref) => {
-  // cC for classComponent
-  const cC = 'square';
-  return (
-    <div
-      className={`${cC} ${cC}--size${size} ${cC}--columnStart${columnStart} ${cC}--rowStart${rowStart}`}
-      style={{ backgroundColor: `${color}` }}
-      ref={ref}
-    />
-  );
+const mapStateToProps = (state) => ({
+  rightAnswersLength: state.quiz.user.rightAnswers.length,
 });
 
-Square.propTypes = {
-  size: PropTypes.number.isRequired,
-  columnStart: PropTypes.number.isRequired,
-  rowStart: PropTypes.number.isRequired,
-  color: PropTypes.string.isRequired,
-};
-
-// == Export
-export default Square;
+export default connect(mapStateToProps, {}, null, { forwardRef: true })(Component);

@@ -1,21 +1,23 @@
 // == Import npm
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { TimelineLite, TweenLite } from 'gsap';
+import { gsap } from 'gsap';
 
 // == Import
 import '../style.scss';
 import './style.scss';
 
 const MainSquare = React.forwardRef(({
-  size, columnStart, rowStart, color, kanjiIndex, rightAnswers,
+  size, columnStart, rowStart, color, bottom, kanjiIndex, rightAnswers,
 }, ref) => {
   // cC for classComponent
   const cC = 'mainSquare';
   const cC2 = 'square';
 
+  const colorHsl = gsap.utils.splitColor(color, true);
+
   // c = component
-  const cTl = new TimelineLite({ paused: true });
+  const cTl = gsap.timeline({ paused: true });
   // can update multiple timelines / animations at once
   // without having to remember to copy paste every time
   const duration = 0.35;
@@ -54,7 +56,14 @@ const MainSquare = React.forwardRef(({
         if (answer) {
           cTl.timeScale(0.7).to(cRef.current, duration, {
             // needs to have a higher z-index than the rest (current highest is 2)
-            ease: 'power1.inOut', zIndex: 10, y: `${cOffset}vw`, x: `${cOffset}vw`, height: `${cNewSize}vw`, width: `${cNewSize}vw`, fontSize: '24px',
+            ease: 'power1.inOut',
+            zIndex: 10,
+            y: `${bottom ? cOffset * 2 : cOffset}vw`,
+            x: `${cOffset}vw`,
+            height: `${cNewSize}vw`,
+            width: `${cNewSize}vw`,
+            fontSize: '24px',
+            backgroundColor: `hsl(${colorHsl[0]}, ${colorHsl[1] > 75 ? 75 : colorHsl[1]}%, ${colorHsl[2] > 50 ? 50 : colorHsl[2]}%)`,
           }).to(infosRef.current, duration - 0.1, {
             ease: 'power1.inOut', display: 'block', opacity: 1, margin: '8px 0 8px 0',
             // the animation of the second group needs a slight delay
@@ -67,10 +76,14 @@ const MainSquare = React.forwardRef(({
       onMouseLeave={() => {
         if (answer) {
           const clearProps = () => {
-            console.log('on reverse complete');
-            TweenLite.set(cRef.current, { clearProps: 'all' });
-            TweenLite.to(cRef.current, 0, { backgroundColor: color });
-            TweenLite.set(infosRef.current, { clearProps: 'all' });
+            gsap.set(cRef.current, { clearProps: 'all' });
+            // I need to put the background color back in, since it is only in inline style
+            // I tried clearing all the properties individually so that I would not need to do that
+            // but somehow, it didn't work as well
+            // I also didn't find how to give a list of properties you want to keep
+            // instead of the ones you want to get rid of
+            gsap.to(cRef.current, 0, { backgroundColor: color });
+            gsap.set(infosRef.current, { clearProps: 'all' });
           };
           // timescale, put 1 => plays normally
           // puts 2 => divide time per 2
@@ -128,6 +141,7 @@ MainSquare.propTypes = {
   columnStart: PropTypes.number.isRequired,
   rowStart: PropTypes.number.isRequired,
   color: PropTypes.string.isRequired,
+  bottom: PropTypes.bool.isRequired,
   kanjiIndex: PropTypes.number.isRequired,
   rightAnswers: PropTypes.array.isRequired,
 };

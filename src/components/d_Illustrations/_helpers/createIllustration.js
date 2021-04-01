@@ -16,6 +16,7 @@ export default (data, group, squareGroups, squareContainers, numPreviousGroups =
   const formattedData = [];
   let counter = 0;
   for (let i = 0; i < data.length; i += 1) {
+    // eslint-disable-next-line no-loop-func
     data[i].forEach((square) => {
       counter += 1;
       if (square.main) {
@@ -27,6 +28,7 @@ export default (data, group, squareGroups, squareContainers, numPreviousGroups =
           ref={(e) => cRef(e, group, numPreviousGroups + i, squareGroups, squareContainers)}
           color={square.c}
           kanjiIndex={numPreviousGroups + i}
+          bottom={square.bottom || false}
         />);
       }
       else {
@@ -37,6 +39,7 @@ export default (data, group, squareGroups, squareContainers, numPreviousGroups =
           rowStart={square.row}
           ref={(e) => cRef(e, group, numPreviousGroups + i, squareGroups, squareContainers)}
           color={square.c}
+          kanjiIndex={numPreviousGroups + i}
         />);
       }
     });
