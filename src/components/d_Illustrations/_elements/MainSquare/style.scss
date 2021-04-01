@@ -1,0 +1,28 @@
+@use 'src/styles/typo';
+
+.mainSquare {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__text--hidden {
+    display: none;
+    opacity: 0;
+  }
+
+  &__text__kanjiInfos {
+    @include typo.infosKanji;
+    margin: 8px 0 8px 0;
+    &--kana {
+      margin-right: 8px;
+    }
+  }
+
+  &__text__bottom {
+    @include typo.infosKanjiBottom;
+    text-align: center;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+  }
+}

@@ -14,14 +14,24 @@ const MainSquare = React.forwardRef(({
   const cC = 'mainSquare';
   const cC2 = 'square';
 
-  const tl = new TimelineLite({ paused: true });
+  // c = component
+  const cTl = new TimelineLite({ paused: true });
+  const infosTl = new TimelineLite({ paused: true });
+  // can update multiple timelines / animations at once without having to remember to copy paste every time
+  const duration = 0.35;
 
-  const componentRef = useRef(null);
+  const cRef = useRef(null);
+  const infosRef = useRef([]);
 
-  const [kanji, setKanji] = useState('');
+  const [answer, setAnswer] = useState(false);
+  const [infos, setInfos] = useState(false);
 
   useEffect(() => {
-    if (!kanji && rightAnswers[kanjiIndex]) setKanji(rightAnswers[kanjiIndex].answer.kanji);
+    if (!answer && rightAnswers[kanjiIndex]) {
+      // could do it with one state but this makes it a bit esier for me, for the naming
+      setAnswer(rightAnswers[kanjiIndex].answer);
+      setInfos(rightAnswers[kanjiIndex].infosAnswer);
+    }
   }, [rightAnswers]);
 
   return (
@@ -32,28 +42,68 @@ const MainSquare = React.forwardRef(({
         // uses the function given by the parent to give references to it
         ref(e);
         // create local reference
-        componentRef.current = e;
+        cRef.current = e;
       }}
-      onMouseOver={() => {
+      onMouseEnter={() => {
         // takes the width of the div, in px, and converts it in vw
-        // eslint-disable-next-line max-len
-        const componentWidth = componentRef.current.clientWidth / document.documentElement.clientWidth * 100;
-        const componentNewSize = 8.8;
-        const componentOffset = (componentWidth - componentNewSize) / 2;
-        if (kanji !== '') {
-          tl.to(componentRef.current, 0.35, {
+        const cWidth = cRef.current.clientWidth / document.documentElement.clientWidth * 100;
+        const cNewSize = 8.8;
+        const cOffset = (cWidth - cNewSize) / 2;
+        if (answer) {
+          cTl.to(cRef.current, duration, {
             // needs to have a higher z-index than the rest (current highest is 2)
-            ease: 'power1.inOut', zIndex: 10, y: `${componentOffset}vw`, x: `${componentOffset}vw`, height: `${componentNewSize}vw`, width: `${componentNewSize}vw`, fontSize: '2vw',
+            ease: 'power1.inOut', zIndex: 10, y: `${cOffset}vw`, x: `${cOffset}vw`, height: `${cNewSize}vw`, width: `${cNewSize}vw`, fontSize: '24px',
+          }).play();
+          infosTl.to(infosRef.current, duration, {
+            ease: 'power1.inOut', display: 'block', opacity: 1,
           }).play();
         }
       }}
       onMouseLeave={() => {
-        if (kanji !== '') {
-          tl.to(componentRef.current, 0.35, { ease: 'power1.inOut', scale: 1 }).play();
+        if (answer) {
+          cTl.reverse();
+          infosTl.reverse();
         }
       }}
     >
-      {kanji}
+      {answer && (
+      <>
+        <span
+          className={`${cC}__text--hidden ${cC}__text__kanjiInfos`}
+          ref={(e) => {
+          // need the ref to make the additional infos visible, can't put in the other ref
+          // since display-none is on the blocs with text--hidden
+          // so need the inline style to be on them as well
+            infosRef.current.push(e);
+          }}
+        >
+          <span className={`${cC}__text__kanjiInfos--kana`}>
+            {answer.kana}
+          </span>
+          {answer.kanaEn}
+        </span>
+        {answer.kanji}
+        <span
+          className={`${cC}__text--hidden ${cC}__text__kanjiInfos`}
+          ref={(e) => {
+            infosRef.current.push(e);
+          }}
+        >
+          {answer.en}
+        </span>
+        {infos.answeredWrong > 0
+        && (
+        <span
+          className={`${cC}__text--hidden ${cC}__text__bottom`}
+          ref={(e) => {
+            infosRef.current.push(e);
+          }}
+        >
+          wrong: {infos.answeredWrong} time{infos.answeredWrong > 1 && 's'}
+        </span>
+        )}
+      </>
+      ) }
     </div>
   );
 });
