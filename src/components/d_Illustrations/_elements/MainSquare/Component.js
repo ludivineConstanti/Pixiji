@@ -53,13 +53,14 @@ const MainSquare = React.forwardRef(({
         const cOffset = (cWidth - cNewSize) / 2;
         // const y = cRef.current.position().left;
         // console.log(y);
+        console.log('cOffset', cOffset, 'cOffset * 2', cOffset * 2);
         if (answer) {
           cTl.timeScale(0.7).to(cRef.current, duration, {
             // needs to have a higher z-index than the rest (current highest is 2)
             ease: 'power1.inOut',
             zIndex: 10,
-            y: `${bottom ? cOffset * 2 : cOffset}vw`,
-            x: `${cOffset}vw`,
+            y: `${bottom ? (cOffset * 2).toFixed(0) : (cOffset).toFixed(0)}vw`,
+            x: `${(cOffset).toFixed(0)}vw`,
             height: `${cNewSize}vw`,
             width: `${cNewSize}vw`,
             fontSize: '24px',
