@@ -15,7 +15,12 @@ const Quiz = ({
 }) => (
   <div className="quiz">
     <Header />
-    { !finishedQuiz ? (<TextWithTitle />)
+    { finishedQuiz ? (
+      <TextWithTitle
+        title="Well done!"
+        text={['You answed all the questions correctly!', 'Try putting your mouse over the squares, on the right, to look at the answers again.']}
+      />
+    )
       : (
         <>
           <Question />

@@ -1,14 +1,19 @@
 @use 'menu';
 @use 'src/styles/g';
+@use 'src/styles/z';
 
 .menu {
+  z-index: z.$menu;
+  position: fixed;
+  &__icon__container {
+    position: fixed;
   background-color: white;
   height: menu.$sizeContainer;
   width: menu.$sizeContainer;
-  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
+  }
   &__icon {
     height: menu.$sizeIcon;
     width: menu.$sizeIcon;
@@ -26,5 +31,12 @@
         width: calc(#{menu.$sizeIcon} * 0.65);
       }
 
+  }
+  &__content {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: white;
+    width: g.$contentMenuWidth;
   }
 }
