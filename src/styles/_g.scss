@@ -1,2 +1,14 @@
+@use 'f';
+
 // g for global
 $strokeWidth: 2px;
+// I originally wanted to put it in the question component and then import it in f
+// but it seems I can't use variables from a file and then export other variables again from that file
+
+@mixin contentL {
+  width: calc(#{f.$buttonKanji-size} * 3 + #{f.$buttonKanji-sizeGap} * 2);
+  margin-left: calc(80px + #{f.$menu-sizeContainer});
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

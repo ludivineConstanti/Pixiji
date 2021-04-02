@@ -1,0 +1,14 @@
+@use 'src/styles/typo';
+@use 'src/styles/g';
+
+.textWithTitle {
+  @include g.contentL;
+  &__title {
+    @include typo.title;
+    margin-bottom: 24px;
+  }
+  &__text {
+    @include typo.text;
+    margin-bottom: 8px;
+  }
+}

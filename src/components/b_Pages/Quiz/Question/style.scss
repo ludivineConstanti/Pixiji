@@ -1,13 +1,10 @@
 @use 'src/styles/f';
+@use 'src/styles/g';
 @use 'src/styles/z';
 @use 'src/styles/typo';
 
 .question {
-  width: calc(#{f.$buttonKanji-size} * 3 + #{f.$buttonKanji-sizeGap} * 2);
-  margin-left: calc(80px + #{f.$menu-sizeContainer});
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  @include g.contentL;
   z-index: z.$question;
 
   &__text {

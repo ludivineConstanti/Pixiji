@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 import MoonRabbit from 'src/components/d_Illustrations/MoonRabbit';
 import ButtonBig from 'src/components/e_Interactives/ButtonBig';
+import TextWithTitle from 'src/components/c_Partials/TextWithTitle';
 import Header from './Header';
 import Question from './Question';
 
@@ -14,7 +15,7 @@ const Quiz = ({
 }) => (
   <div className="quiz">
     <Header />
-    { finishedQuiz ? (<p>Awesome!</p>)
+    { !finishedQuiz ? (<TextWithTitle />)
       : (
         <>
           <Question />

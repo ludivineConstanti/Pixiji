@@ -30,7 +30,7 @@ const MainSquare = React.forwardRef(({
 
   useEffect(() => {
     if (!answer && rightAnswers[kanjiIndex]) {
-      // could do it with one state but this makes it a bit esier for me, for the naming
+      // could do it with one state but this makes it a bit easier for me, for the naming
       setAnswer(rightAnswers[kanjiIndex].answer);
       setInfos(rightAnswers[kanjiIndex].infosAnswer);
     }
@@ -51,9 +51,6 @@ const MainSquare = React.forwardRef(({
         const cWidth = cRef.current.clientWidth / document.documentElement.clientWidth * 100;
         const cNewSize = 8.8;
         const cOffset = (cWidth - cNewSize) / 2;
-        // const y = cRef.current.position().left;
-        // console.log(y);
-        console.log('cOffset', cOffset, 'cOffset * 2', cOffset * 2);
         if (answer) {
           cTl.timeScale(0.7).to(cRef.current, duration, {
             // needs to have a higher z-index than the rest (current highest is 2)

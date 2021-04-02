@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { TimelineLite } from 'gsap';
+import { gsap } from 'gsap';
 
 // == Import
 import './style.scss';
@@ -9,7 +9,7 @@ import './style.scss';
 const ProgressSquare = ({ squareNum, currentQuestion }) => {
   const cC = 'progressSquare';
   const cRef = useRef(null);
-  const cTl = new TimelineLite();
+  const cTl = gsap.timeline();
   const duration = 0.5;
   useEffect(() => {
     if (squareNum === currentQuestion) {

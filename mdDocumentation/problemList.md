@@ -32,6 +32,12 @@ ease: 'power1.inOut', zIndex: 10, y: `${componentOffset}vw`, x: `${componentOffs
 
 Somehow, causes the typo in the center to jump a bit sometimes, so I'll go with changing width and height.
 
+## Update n°1 having the divs scaling from the center on hover
+
+Changing the height and width of the div and changing it's position by using x and y works properly 95% of the time... but sometimes it has a side effect, which consist in animating the div continuously in seemingly random directions on hover. It took me a while to find out why. It seems to work better if I round down the value of translation (before I had something like y: 2.7523124326vw which is calculated automatically based on the screen size and the div's width). The down side is that the squares can not be aligned with the others on the grid if I make the value less precise.
+
+I started testing with using percentage instead of vw, but I have different div width, which means I would need to calculate based on each individually, and somehow, the animation doesn't seem to start from the center (which works fine with the vw), it looks like it's making a diagonal translation, even when it should stay centered.
+
 ## Animating typo in GSAP
 
 I tried animating the typo size from 0 to something in GSAP (just for one part of the text, the text at the center of the div stays visible). It gave a slight staggering effect. I decided to simply remove this animation, (since I already have fade in and fade out on the text anyway, and I still need to figure out how to organise GSAP and SASS so that they work together, having different style in both is a bit messy).
@@ -49,3 +55,7 @@ I realised removing inline styling was actually necessary because modifying the 
 ## Update n°2 clear GSAP inline styling
 
 After reading the doc to understand what is TweenLite and why it's working better, I learned that it's actually deprecated (as is TweenMax, TimelineMax and TimelineLite) and has been replaced by gsap that covers all their fonctionnalities. But clearing props still works better with a callback function, instead of adding it directly to the timeline.
+
+## Blurry text
+
+Sometimes, the text appears blurry, I read in a GSAP forum that it can happen when you apply transformations for your element, since GSAP uses 3D transform to save on performance. It can be changed with gsap.config(force3D: false), but then performance drops, so will have to test it if I see too much blurry text.

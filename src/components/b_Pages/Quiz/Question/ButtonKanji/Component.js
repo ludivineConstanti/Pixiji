@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { gsap, TimelineLite } from 'gsap';
+import { gsap } from 'gsap';
 
 // == Import
 import './style.scss';
@@ -11,7 +11,7 @@ const ButtonKanji = ({
 }) => {
   const componentRef = useRef(null);
   const cC = 'buttonKanji';
-  const tl = new TimelineLite({ paused: true });
+  const tl = gsap.timeline({ paused: true });
   const colorMainRgb = gsap.utils.splitColor(colorMain);
 
   if (disabled) {

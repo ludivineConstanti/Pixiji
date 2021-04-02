@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { TimelineLite } from 'gsap';
+import { gsap } from 'gsap';
 
 // == Import
 import './style.scss';
@@ -11,7 +11,7 @@ const ButtonBig = ({
 }) => {
   // cC for classComponent
   const cC = 'buttonBig';
-  const tl = new TimelineLite({ paused: true });
+  const tl = gsap.timeline({ paused: true });
   const component = useRef(null);
 
   useEffect(() => {

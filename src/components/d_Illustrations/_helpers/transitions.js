@@ -1,11 +1,11 @@
-import { gsap, TweenMax } from 'gsap';
+import { gsap } from 'gsap';
 
 import distributeByPosition from 'src/helpers/gsap/distributedByPosition';
 
 function squaresShrink(selector) {
   const tl = gsap.timeline();
   // this just helps avoid the pixel-snapping that some browsers do.
-  TweenMax.set(selector, { rotation: 0.5, force3D: true });
+  gsap.set(selector, { rotation: 0.5, force3D: true });
 
   // one stagger call does all the animation:
   tl.to(selector, {
@@ -27,7 +27,7 @@ function squaresShrink(selector) {
 function squaresGrow(selector) {
   const tl = gsap.timeline();
   // this just helps avoid the pixel-snapping that some browsers do.
-  TweenMax.set(selector, { rotation: 0.5, force3D: true });
+  gsap.set(selector, { rotation: 0.5, force3D: true });
 
   // one stagger call does all the animation:
   tl.to(selector, {

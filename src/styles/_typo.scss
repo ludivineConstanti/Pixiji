@@ -15,6 +15,7 @@
   font-size: 80px;
   text-transform: uppercase;
   font-weight: 900;
+  line-height: 67px;
 }
 @mixin titleSmall {
   @include componentSmall;
