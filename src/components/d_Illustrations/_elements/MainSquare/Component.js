@@ -31,11 +31,8 @@ const MainSquare = React.forwardRef(({
   useEffect(() => {
     if (!answer && rightAnswers[kanjiIndex]) {
       // could do it with one state but this makes it a bit easier for me, for the naming
-      console.log('update main square');
       setAnswer(rightAnswers[kanjiIndex].answer);
-      console.log('rightAnswers[kanjiIndex]', rightAnswers[kanjiIndex]);
       setInfos(rightAnswers[kanjiIndex].infosAnswer);
-      console.log('rightAnswers[kanjiIndex].infosAnswer', rightAnswers[kanjiIndex].infosAnswer);
     }
   }, [rightAnswers]);
 

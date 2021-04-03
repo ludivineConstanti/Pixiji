@@ -6,7 +6,6 @@ import Component from './Component';
 
 const mapStateToProps = (state) => ({
   kanjisArr: state.quiz.user.rightAnswers,
-  grownSquares: state.quiz.current.grownSquares,
 });
 
 const mapDispatchToProps = (dispatch) => ({

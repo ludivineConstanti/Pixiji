@@ -9,7 +9,6 @@ export const quizSlice = createSlice({
     dataQuiz: quizFormatter(grade3),
     current: {
       totalQuestions: quizFormatter(grade3).length,
-      grownSquares: 0,
     },
     user: {
       answeredQuestion: false,

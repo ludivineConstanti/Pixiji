@@ -1,5 +1,5 @@
 // == Import npm
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
@@ -10,7 +10,7 @@ import planet from './_data/planet';
 import rabbit from './_data/rabbit';
 import moon from './_data/moon';
 
-const MoonRabbit = ({ kanjisArr, grownSquares, updateValueGlobal }) => {
+const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
   const cC = 'moonRabbit';
   // I use 2 groups to keep a reference for the divs
   // one for the first animation where they all get reduced at the same time
@@ -25,13 +25,14 @@ const MoonRabbit = ({ kanjisArr, grownSquares, updateValueGlobal }) => {
     squaresShrink(squareMainRef.current.moon);
   }, []);
 
+  const [lastUpdated, setLastUpdated] = useState(0);
+
   useEffect(() => {
-    let counter = grownSquares;
-    while (kanjisArr.length > counter) {
-      squaresGrow(squareGroupRef.current[counter]);
-      counter += 1;
+    // need a loop so that it works with the cheating button too
+    for (let i = lastUpdated; i < kanjisArr.length; i += 1) {
+      squaresGrow(squareGroupRef.current[i]);
     }
-    updateValueGlobal({ obj: 'current', prop: ['grownSquares'], value: [counter] });
+    setLastUpdated(kanjisArr.length);
   }, [kanjisArr]);
 
   // need the number at the end so that it doesn't always start from 0

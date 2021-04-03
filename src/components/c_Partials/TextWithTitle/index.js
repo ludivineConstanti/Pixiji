@@ -18,7 +18,7 @@ const TextWithTitle = ({ title, text }) => {
   return (
     <div className={cC}>
       <h1 className={`${cC}__title`}>{title}</h1>
-      {text.map((e) => <p className={`${cC}__text`}>{e}</p>)}
+      {text.map((e, i) => <p key={`textWithTitlePElement${i}`} className={`${cC}__text`}>{e}</p>)}
     </div>
   );
 };
