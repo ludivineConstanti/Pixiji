@@ -19,9 +19,7 @@ const ButtonBig = ({
   // need to put the animation in a hook, otherwise, the element we reference does not exist yet
   useEffect(() => {
     setTransition(
-      transition.fromTo(component.current, 0.35,
-        { xPercent: 0, color: 'white' },
-        { xPercent: 100, color: colorMain })
+      transition.to(component.current, 0.35, { xPercent: 100, color: colorMain })
         .play(),
     );
   }, []);
@@ -38,11 +36,15 @@ const ButtonBig = ({
       onClick={onClick}
       type="button"
     >
-      <span className={`${cC}__result`}>{comment}</span> {text}
-      <div className={`${cC}__arrow`}>
-        <div style={{ backgroundColor: `${colorMain}` }} className={`${cC}__arrow--stroke`} />
-        <div className={`${cC}__arrow--end`} style={{ borderColor: `${colorMain}` }} />
-      </div>
+      {show && (
+      <>
+        <span className={`${cC}__result`}>{comment}</span> {text}
+        <div className={`${cC}__arrow`}>
+          <div style={{ backgroundColor: `${colorMain}` }} className={`${cC}__arrow--stroke`} />
+          <div className={`${cC}__arrow--end`} style={{ borderColor: `${colorMain}` }} />
+        </div>
+      </>
+      )}
     </button>
   );
 };

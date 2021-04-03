@@ -1,8 +1,8 @@
 import { gsap } from 'gsap';
 
-const menuIntoCloseIcon = (menuIconRef, color) => {
+const menuIntoCloseIcon = (tl, menuIconRef, color) => {
   // 0 at the end of each "to" makes all of them start at the beginning
-  const tl = gsap.timeline({ paused: true });
+
   // background
   tl.to(menuIconRef.current[4], {
     margin: '24px',
@@ -39,7 +39,7 @@ const menuIntoCloseIcon = (menuIconRef, color) => {
     width: '61px',
     rotation: '315_ccw',
     ease: 'power1.out',
-  }, 0);
+  }, 0).play();
   return tl;
 };
 
