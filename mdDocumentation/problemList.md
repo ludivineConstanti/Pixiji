@@ -59,3 +59,7 @@ After reading the doc to understand what is TweenLite and why it's working bette
 ## Blurry text
 
 Sometimes, the text appears blurry, I read in a GSAP forum that it can happen when you apply transformations for your element, since GSAP uses 3D transform to save on performance. It can be changed with gsap.config(force3D: false), but then performance drops, so will have to test it if I see too much blurry text.
+
+## GSAP reverse animation not working
+
+The GSAP animations were working fine while using .to, but nothing happened while using reverse. After research, I found out that the hooks and lifecycle of React components can mix up badly with GSAP's timeline. However, by using hooks to create and modify the timeline, both work fine together.

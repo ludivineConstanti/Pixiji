@@ -1,5 +1,5 @@
 // == Import npm
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 
@@ -7,19 +7,29 @@ import { gsap } from 'gsap';
 import './style.scss';
 
 const ButtonBig = ({
-  comment, text, onClick, colorMain,
+  comment, text, onClick, colorMain, show,
 }) => {
   // cC for classComponent
   const cC = 'buttonBig';
-  const tl = gsap.timeline({ paused: true });
   const component = useRef(null);
+  // need to have the timeline inside a hook
+  // otherwise, it is recreated every time there is a change in the component's props
+  const [transition, setTransition] = useState(gsap.timeline({ paused: true }));
 
+  // need to put the animation in a hook, otherwise, the element we reference does not exist yet
   useEffect(() => {
-    tl.from(component.current, 0.35, {
-      ease: 'easeOut', xPercent: -100, width: '20%', color: 'white',
-    }).set(component.current, { clearProps: 'width, translate' }).play();
-    return () => tl.to(component.current, 0.35, { x: '-200px' }).play();
+    setTransition(
+      transition.fromTo(component.current, 0.35,
+        { xPercent: 0, color: 'white' },
+        { xPercent: 100, color: colorMain })
+        .play(),
+    );
   }, []);
+
+  // will automatically switch to reverse true or false for us
+  useEffect(() => {
+    transition.reversed(!show);
+  }, [show]);
 
   return (
     <button
@@ -27,7 +37,6 @@ const ButtonBig = ({
       className={`${cC}`}
       onClick={onClick}
       type="button"
-      style={{ color: `${colorMain}` }}
     >
       <span className={`${cC}__result`}>{comment}</span> {text}
       <div className={`${cC}__arrow`}>
@@ -43,6 +52,7 @@ ButtonBig.propTypes = {
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   colorMain: PropTypes.string.isRequired,
+  show: PropTypes.bool.isRequired,
 };
 
 ButtonBig.defaultProps = {

@@ -24,7 +24,7 @@ const Quiz = ({
       : (
         <>
           <Question />
-          { answeredQuestion && <ButtonBig comment={answeredCorrectly ? 'correct!' : 'wrong!'} text="next" onClick={nextQuestionQuiz} /> }
+          <ButtonBig comment={answeredCorrectly ? 'correct!' : 'wrong!'} text="next" onClick={nextQuestionQuiz} show={!!answeredQuestion} />
         </>
       )}
     <MoonRabbit />
