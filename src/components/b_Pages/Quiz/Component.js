@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 // == Import
 import './style.scss';
-import MoonRabbit from 'src/components/d_Illustrations/MoonRabbit';
 import ButtonBig from 'src/components/e_Interactives/ButtonBig';
 import TextWithTitle from 'src/components/c_Partials/TextWithTitle';
 import Header from './Header';
@@ -27,8 +26,6 @@ const Quiz = ({
           <ButtonBig comment={answeredCorrectly ? 'correct!' : 'wrong!'} text="next" onClick={nextQuestionQuiz} show={!!answeredQuestion} />
         </>
       )}
-    <MoonRabbit />
-
   </div>
 );
 

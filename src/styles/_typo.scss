@@ -1,13 +1,5 @@
-@mixin component {
-  font-size: 14px;
-  letter-spacing: 4px;
-  font-weight: 700;
+.boldUppercase {
   text-transform: uppercase;
-}
-
-@mixin componentSmall {
-  font-size: 10px;
-  letter-spacing: 6px;
   font-weight: 700;
 }
 
@@ -17,9 +9,17 @@
   font-weight: 900;
   line-height: 67px;
 }
-@mixin titleSmall {
-  @include componentSmall;
-  text-transform: uppercase;
+
+@mixin menuLink {
+  @extend .boldUppercase;
+  font-size: 22px;
+  letter-spacing: 4px;
+}
+
+@mixin menuSetting {
+  @extend .boldUppercase;
+  font-size: 14px;
+  letter-spacing: 2px;
 }
 
 @mixin text {
@@ -27,14 +27,33 @@
   letter-spacing: 0.75px;
 }
 
+@mixin component {
+  @extend .boldUppercase;
+  font-size: 14px;
+  letter-spacing: 4px;
+}
+
+@mixin menuSettingsTitle {
+  font-size: 10px;
+}
+
 @mixin infosKanji {
   font-size: 12px;
   letter-spacing: 0.75px;
 }
 
+@mixin componentSmall {
+  font-size: 10px;
+  letter-spacing: 6px;
+  font-weight: 700;
+}
+@mixin titleSmall {
+  @include componentSmall;
+  text-transform: uppercase;
+}
+
 @mixin infosKanjiBottom {
+  @extend .boldUppercase;
   font-size: 9px;
   letter-spacing: 4px;
-  font-weight: 700;
-  text-transform: uppercase;
 }

@@ -1,0 +1,11 @@
+@use 'src/styles/g';
+@use 'src/styles/typo';
+
+.menuSetting {
+  @include typo.menuSetting;
+  color: white;
+  width: 100%;
+  border-top: g.$strokeWidth solid white;
+  padding: 24px;
+  text-align: left;
+}

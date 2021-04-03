@@ -1,18 +1,15 @@
-// == Import npm
-import React from 'react';
-// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {
+  updateValueGlobal,
+} from 'src/reducer/slices/globalSlice';
+import Component from './Component';
 
-// == Import
-import './style.scss';
+const mapStateToProps = (state) => ({
+  colorMain: state.global.UI.colorMain,
+});
 
-const MenuLink = () => {
-  const cC = 'menulink';
-  return (
-    <div className={cC}>
-      link
-    </div>
-  );
-};
+const mapDispatchToProps = (dispatch) => ({
+  updateValueGlobal: (payload) => dispatch(updateValueGlobal(payload)),
+});
 
-// == Export
-export default MenuLink;
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

@@ -37,4 +37,10 @@ Based on my previous experience with the project [An intro to Blockchain](https:
 ## Store
 
 If I generate a value in a Component and pass it to the store (from redux) I will use that value directly, and not try to recuperate the same value from the store afterward (decision taken after a bug I had, of the component rendering multiple times when I got the value).
+
+Update: I ended up having to do it anyway, because it didn't work with the value in the local hook...
+
+## Typo
+
+I have more font sizes than intended, but I think, for the future, I might continue to use one name per role for the typo, and just extend a class if they are the same size. This way, I won't have to go look for it, in the original css file, if I want to make it different, I'll just remove the extend and write the new settings.
   

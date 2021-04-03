@@ -6,10 +6,11 @@ import Component from './Component';
 
 const mapStateToProps = (state) => ({
   kanjisArr: state.quiz.user.rightAnswers,
+  grownSquares: state.quiz.current.grownSquares,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateValueGlobal: (obj, prop, value) => dispatch(updateValueGlobal(obj, prop, value)),
+  updateValueGlobal: (payload) => dispatch(updateValueGlobal(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

@@ -2,6 +2,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 // == Import : local
 import App from 'src/components/a_Root/App';
@@ -12,7 +13,9 @@ import store from 'src/store';
 //    => crée une structure d'objets imbriqués (DOM virtuel)
 const rootReactElement = (
   <Provider store={store}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>
 );
 // 2. La cible du DOM (là où la structure doit prendre vie dans le DOM)
