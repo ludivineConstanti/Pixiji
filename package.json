@@ -16,6 +16,7 @@
     "@babel/preset-react": "^7.12.10",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
+    "babel-plugin-styled-components": "^1.12.0",
     "bundle-stats-webpack-plugin": "^2.5.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^7.0.0",
@@ -54,6 +55,10 @@
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "styled-components": "^5.2.3"
+  },
+  "resolutions": {
+    "styled-components": "^5"
   }
 }

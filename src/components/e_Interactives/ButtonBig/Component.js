@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 
 // == Import
 import './style.scss';
+import SButtonBig, { tIn } from './SButtonBig';
 
 const ButtonBig = ({
   comment, text, onClick, colorMain, show,
@@ -14,14 +15,11 @@ const ButtonBig = ({
   const component = useRef(null);
   // need to have the timeline inside a hook
   // otherwise, it is recreated every time there is a change in the component's props
-  const [transition, setTransition] = useState(gsap.timeline({ paused: true }));
+  const [transition, setTransition] = useState(gsap.timeline({ paused: true, duration: 0.35 }));
 
   // need to put the animation in a hook, otherwise, the element we reference does not exist yet
   useEffect(() => {
-    setTransition(
-      transition.to(component.current, 0.35, { xPercent: 100, color: colorMain })
-        .play(),
-    );
+    setTransition(tIn(transition, component.current, colorMain));
   }, []);
 
   // will automatically switch to reverse true or false for us
@@ -30,7 +28,7 @@ const ButtonBig = ({
   }, [show]);
 
   return (
-    <button
+    <SButtonBig
       ref={component}
       className={`${cC}`}
       onClick={onClick}
@@ -45,7 +43,7 @@ const ButtonBig = ({
         </div>
       </>
       )}
-    </button>
+    </SButtonBig>
   );
 };
 

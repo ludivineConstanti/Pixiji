@@ -6,33 +6,6 @@
 .menu {
   z-index: z.$menu;
   position: fixed;
-  &__icon__container {
-    position: fixed;
-  background-color: white;
-  height: menu.$sizeContainer;
-  width: menu.$sizeContainer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  }
-  &__icon {
-    height: menu.$sizeIcon;
-    width: menu.$sizeIcon;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    &__top, &__bottom, &__middle {
-      height: g.$strokeWidth;
-      background-color: #0C2C41;
-    }
-      &__top, &__bottom {
-        width: menu.$sizeIcon;
-      }
-      &__middle {
-        width: calc(#{menu.$sizeIcon} * 0.65);
-      }
-
-  }
   
   &__content {
     height: 100vh;

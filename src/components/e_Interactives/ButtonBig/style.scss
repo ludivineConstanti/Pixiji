@@ -4,14 +4,8 @@
 
 .buttonBig {
   @include typo.component;
-  text-align: center;
-
-  background-color: white;
-  height: f.$menu-sizeContainer;
-  width: f.$menu-sizeContainer;
   position: fixed;
   bottom: 0;
-  left: calc(#{f.$menu-sizeContainer} * - 1);
   line-height: 20px;
 
   // need because of the gsap animation

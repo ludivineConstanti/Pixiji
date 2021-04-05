@@ -28,4 +28,13 @@ export default connect(mapStateToProps, {}, null, { forwardRef: true })(Componen
 
 ### Width of the button component was not big enough after the GSAP animation
 
+=> the width was using vw, every time GSAP performs a "to" animation in reverse, it just takes the previous value in px, therefore it doesn't work well with it
 => removed the width prop at the end of the animation
+
+### Width of the menu button not being the right dimensions after the GSAP animation
+
+=> same problem, the value is put back in px.  
+=> I tried using a fromTo animation so that it goes back to a value with vw instead of just px, but the animation didn't transition smoothly (it looked like it was first changing the position of the button menu and then scaling it, instead of doing both at the same time smoothly).  
+=> I used scale instead.  
+=> I feel like every time I use width and height for animations, instead of scale, GSAP is trying to tell me that I shouldn't do it.  
+=> I read some comments on the internet about it, it seems scale does generally produce smoother results because of "subpixel rendering"  

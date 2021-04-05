@@ -5,7 +5,8 @@ import { gsap } from 'gsap';
 
 // == Import
 import './style.scss';
-import { menuIntoCloseIcon, menucontentComesIn } from './transition';
+import { contentToggle } from './transition';
+import MenuIcon from './MenuIcon';
 import MenuLink from './MenuLink';
 import MenuSetting from './MenuSetting';
 
@@ -16,26 +17,20 @@ const Menu = ({
 
   // need to have the timeline inside a hook
   // otherwise, it is recreated every time there is a change in the component's props
-  const [iconTransition, setIconTransition] = useState(gsap.timeline(
-    { paused: true, duration: 0.35 },
-  ));
   const [contentTransition, setContentTransition] = useState(
     gsap.timeline({ paused: true, duration: 0.35 }),
   );
   const colorHsl = gsap.utils.splitColor(colorMain, true);
   const lighterMainColor = `hsl(${colorHsl[0]}, ${colorHsl[1]}%, ${colorHsl[2] + 10}%)`;
 
-  const menuIconRef = useRef([]);
   const menuContentRef = useRef(null);
 
   useEffect(() => {
-    setContentTransition(menucontentComesIn(contentTransition, menuContentRef.current));
-    setIconTransition(menuIntoCloseIcon(iconTransition, menuIconRef, colorMain));
+    setContentTransition(contentToggle(contentTransition, menuContentRef.current));
   }, []);
 
   useEffect(() => {
     contentTransition.reversed(!menuIsOpen);
-    iconTransition.reversed(!menuIsOpen);
   }, [menuIsOpen]);
 
   return (
@@ -68,20 +63,7 @@ const Menu = ({
           />
         </div>
       </div>
-      <button
-        className={`${cC}__icon__container`}
-        type="button"
-        onClick={() => {
-          updateValueGlobal({ obj: 'UI', prop: ['menuIsOpen'], value: [!menuIsOpen] });
-        }}
-        ref={(e) => menuIconRef.current.push(e)}
-      >
-        <div className={`${cC}__icon`} ref={(e) => menuIconRef.current.push(e)}>
-          <div className={`${cC}__icon__top`} ref={(e) => menuIconRef.current.push(e)} />
-          <div className={`${cC}__icon__middle`} ref={(e) => menuIconRef.current.push(e)} />
-          <div className={`${cC}__icon__bottom`} ref={(e) => menuIconRef.current.push(e)} />
-        </div>
-      </button>
+      <MenuIcon />
     </div>
   );
 };

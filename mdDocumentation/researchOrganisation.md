@@ -30,6 +30,15 @@ I first thought about removing the "Reducer" or "Actions" at the end of the file
 
 I think what was the worst organised in "An intro to Blockchain" was the CSS. Probably mostly because I did not have a very good knowledge of Sass and how it allows us to reuse code. The main problem, in my opinion, in the last project is that I had a lot of values in pixels, which means that if I were to change some things, I would need to check the entire website to see if the margins still behave properly. I thought about using variables for everything, but that would probably be a nightmare with too many values.
 
+## Update n°1 on CSS organisation
+
+I tried using variables in individual files next to the components (when it was related to that component) and then restocking them in a file and reusing those variables from that file. That might have made sense if I had a lot of them, but turns out that so far, I don't. I also put a file with global variables that I use evrywhere and are not related to individual components, I could have just put everything there.
+
+## Update n°2 on CSS organisation
+
+After using GSAP to animate various things it becomes more and more obvious that the system that I wanted with global values that I can reuse everywhere and just modify in one central file doesn't work if I need to use values in both CSS and JavaScript...  
+I discovered there is a special tool for inline styling in React ("styled component"). I am now going to slowly transition to that, at least for the parts where I am using global values. Now I'll be able to have both initial style and style modified by GSAP in one file.
+
 ## Actions
 
 Based on my previous experience with the project [An intro to Blockchain](https://github.com/ludivineConstanti/an-intro-to-Blockchain) I made, I decided to always recycle the same action if I need to modify only one value and create new ones every time more values need to be modified at the same time. I now make a main object per file with multiple properties that all contain an object. This way I can always stay consistent while updating one value: action(propertyNameMainObject, propertyNameSubObject, value). I also put the name of the file I am modifying at the end of each action (I think it's clearer that way, and it avoids the potential problem of wanting to use similar action, with identical names for different files).

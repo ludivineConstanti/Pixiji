@@ -1,0 +1,15 @@
+@use 'src/styles/g';
+
+.menuIcon{
+position: fixed;
+background-color: white;
+display: flex;
+align-items: center;
+justify-content: center;
+
+&__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+}
