@@ -1,5 +1,3 @@
-@use 'src/styles/f';
-@use 'src/styles/g';
 @use 'src/styles/typo';
 
 .buttonBig {
@@ -28,10 +26,8 @@
     &--stroke {
       $arrowWidth: 24px;
       position: absolute;
-      height: g.$strokeWidth;
       width: $arrowWidth;
       margin: auto;
-      top: calc(50% - #{g.$strokeWidth} - 1px);
       left:  calc(50% - #{$arrowWidth} / 2);
     }
     &--end {
@@ -41,8 +37,6 @@
       left: calc( 50% );
       transform: rotate(45deg);
       border-style: solid;
-      border-top-width: g.$strokeWidth;
-      border-right-width: g.$strokeWidth;
     }
   }
 }

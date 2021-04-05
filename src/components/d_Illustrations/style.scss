@@ -1,6 +1,3 @@
-@use 'src/styles/f';
-@use 'src/styles/z';
-
 $squareUnit: 1.1vw;
 
 @mixin dimensions ($height, $width) {
@@ -16,7 +13,7 @@ $squareUnit: 1.1vw;
 }
 
 @mixin quizContainerTopLeft ($top, $left) {
-  top: calc(#{$top} * 1vh + #{f.$menu-sizeContainer});
+  top: calc(#{$top} * 1vh);
   left: calc(#{$left} * 1vw + 37.5vw);
 }
 

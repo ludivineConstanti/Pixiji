@@ -1,18 +1,12 @@
-@use 'menu';
 @use 'src/styles/typo';
-@use 'src/styles/g';
-@use 'src/styles/z';
 
 .menu {
-  z-index: z.$menu;
   position: fixed;
   
   &__content {
     height: 100vh;
     position: fixed;
     top: 0;
-    left: calc(#{g.$contentMenuWidth} * - 1);
-    width: g.$contentMenuWidth;
     display: flex;
     flex-direction: column;
     background-color: white;

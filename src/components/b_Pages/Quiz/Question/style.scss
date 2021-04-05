@@ -1,20 +1,8 @@
-@use 'src/styles/f';
-@use 'src/styles/g';
-@use 'src/styles/z';
 @use 'src/styles/typo';
 
 .question {
-  @include g.contentL;
-  z-index: z.$question;
-
   &__text {
     @include typo.text;
     margin-bottom: 24px;
-  }
-  
-  &__options {
-    display: grid;
-    grid-template-columns: repeat(3, f.$buttonKanji-size);
-    gap: f.$buttonKanji-sizeGap;
   }
 }

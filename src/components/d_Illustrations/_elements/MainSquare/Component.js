@@ -6,6 +6,7 @@ import { gsap } from 'gsap';
 // == Import
 import '../style.scss';
 import './style.scss';
+import SMainSquare from './SMainSquare';
 
 const MainSquare = React.forwardRef(({
   size, columnStart, rowStart, color, bottom, kanjiIndex, rightAnswers,
@@ -37,7 +38,7 @@ const MainSquare = React.forwardRef(({
   }, [rightAnswers]);
 
   return (
-    <div
+    <SMainSquare
       className={`${cC} ${cC2} ${cC2}--size${size} ${cC2}--columnStart${columnStart} ${cC2}--rowStart${rowStart}`}
       style={{ backgroundColor: `${color}` }}
       ref={(e) => {
@@ -130,7 +131,7 @@ const MainSquare = React.forwardRef(({
         )}
       </>
       ) }
-    </div>
+    </SMainSquare>
   );
 });
 

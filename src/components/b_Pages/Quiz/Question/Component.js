@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 
 // == Import
 import './style.scss';
-import ButtonKanji from './ButtonKanji';
+import ButtonKanji from '../ButtonKanji';
+import SQuestion from './SQuestion';
 
 const Question = ({
   dataObj, answeredQuestion, updateFirstQuestionQuiz,
@@ -17,14 +18,14 @@ const Question = ({
   }
   else rightAnswerIndex = infosAnswer.answerIndex;
   return (
-    <main className="question">
+    <SQuestion className="question">
       <h2 className="question__text">Which character means {arrAnswers[rightAnswerIndex].en}?</h2>
       <div className="question__options">
         {// eslint-disable-next-line max-len
         arrAnswers.map((e) => <ButtonKanji key={e.id} possibleAnswer={e} disabled={answeredQuestion} />)
 }
       </div>
-    </main>
+    </SQuestion>
   );
 };
 

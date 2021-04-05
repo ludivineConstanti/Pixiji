@@ -1,10 +1,8 @@
-@use 'src/styles/f';
 @use 'src/styles/typo';
 
 .header {
   @include typo.titleSmall;
   width: 100vw;
-  height: f.$menu-sizeContainer;
   display: flex;
   flex-direction: column;
   align-items: center;

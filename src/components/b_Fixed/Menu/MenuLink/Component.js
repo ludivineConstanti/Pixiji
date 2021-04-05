@@ -1,7 +1,7 @@
 // == Import npm
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import SMenuLink from './SMenuLink';
 
 // == Import
 import './style.scss';
@@ -11,18 +11,18 @@ const MenuLink = ({
 }) => {
   const cC = 'menulink';
   return (
-    <NavLink
+    <SMenuLink
       to={`/${path}`}
       exact
       className={cC}
-      style={{ color: colorMain }}
+      colorMain={colorMain}
       onClick={() => {
         updateValueGlobal({ obj: 'UI', prop: ['menuIsOpen'], value: [false] });
       }}
     >
       <div className={`${cC}__square`} />
       {text}
-    </NavLink>
+    </SMenuLink>
   );
 };
 

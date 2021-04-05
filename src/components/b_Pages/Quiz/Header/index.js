@@ -4,17 +4,18 @@ import React from 'react';
 
 // == Import
 import './style.scss';
-import ProgressBar from './ProgressBar';
+import SHeader from './SHeader';
+import ProgressBar from '../ProgressBar';
 
 const Header = () => {
   // cC for classComponent
   const cC = 'header';
 
   return (
-    <header className={cC}>
+    <SHeader className={cC}>
       <h2>Quiz 1 - 1st grade (80 kanjis)</h2>
       <ProgressBar />
-    </header>
+    </SHeader>
   );
 };
 

@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 
 // == Import
 import './style.scss';
+import SButtonKanji from './SButtonKanji';
 
 const ButtonKanji = ({
   possibleAnswer, disabled, colorMain, correctAnswer, cheating, answeredQuestionQuiz,
@@ -24,7 +25,7 @@ const ButtonKanji = ({
   const styleWrongAnswer = { ...styleRightAnswer, borderColor: 'rgba(255, 255, 255, 0.4)', color: 'rgba(255, 255, 255, 0.4)' };
 
   return (
-    <button
+    <SButtonKanji
       ref={componentRef}
       className={cC}
       type="button"
@@ -45,7 +46,7 @@ const ButtonKanji = ({
       }
     >
       {possibleAnswer.kanji}
-    </button>
+    </SButtonKanji>
   );
 };
 

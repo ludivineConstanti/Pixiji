@@ -9,6 +9,7 @@ import { contentToggle } from './transition';
 import MenuIcon from './MenuIcon';
 import MenuLink from './MenuLink';
 import MenuSetting from './MenuSetting';
+import SMenu from './SMenu';
 
 const Menu = ({
   colorMain, menuIsOpen, cheating, updateValueGlobal, cheatingButtonFinishQuiz,

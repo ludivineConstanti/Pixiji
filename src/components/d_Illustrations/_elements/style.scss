@@ -1,5 +1,3 @@
-@use 'src/styles/z';
-
 .square {
 
   @for $i from 1 through 10 {
@@ -19,7 +17,6 @@
 }
 
 .mainSquare {
-  z-index: z.$illustrationMainSquare;
   display: flex;
   align-items: center;
   justify-content: center;

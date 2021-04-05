@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 
 // == Import
 import './style.scss';
-import ProgressSquare from './ProgressSquare';
+import ProgressSquare from '../ProgressSquare';
 
 const ProgressBar = ({ questionNumber, currentNumber, finishedQuiz }) => {
   const cC = 'progressBar';
