@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 
 // == Import
 import './style.scss';
-import SMenuIcon, { tToggle } from './SMenuIcon';
+import SMenuIcon, { tHoverMenuIcon, tHoverCloseIcon, tClick } from './SMenuIcon';
 
 const MenuIcon = ({
   colorMain, menuIsOpen, updateValueGlobal,
@@ -14,18 +14,26 @@ const MenuIcon = ({
 
   // need to have the timeline inside a hook
   // otherwise, it is recreated every time there is a change in the component's props
-  const [transitionToggle, setTransitionToggle] = useState(gsap.timeline(
-    { paused: true, duration: 0.35 },
-  ));
+  const [transition, setTransition] = useState({
+    hoverMenuIcon: gsap.timeline({ paused: true, duration: 0.1, ease: 'inOut' }),
+    hoverCloseIcon: gsap.timeline({ paused: true, duration: 0.1, ease: 'inOut' }),
+    click: gsap.timeline({ paused: true, duration: 0.2 }),
+  });
 
   const componentRef = useRef([]);
+  const colorHsl = gsap.utils.splitColor(colorMain, true);
+  const colorMainL1 = `hsl(${colorHsl[0]}, ${colorHsl[1]}%, ${colorHsl[2] + 10}%)`;
 
   useEffect(() => {
-    setTransitionToggle(tToggle(transitionToggle, componentRef, colorMain));
+    setTransition({
+      hoverMenuIcon: tHoverMenuIcon(transition.hoverMenuIcon, componentRef, colorMainL1),
+      hoverCloseIcon: tHoverCloseIcon(transition.hoverCloseIcon, componentRef, colorMainL1),
+      click: tClick(transition.click, componentRef, colorMain),
+    });
   }, []);
 
   useEffect(() => {
-    transitionToggle.reversed(!menuIsOpen);
+    transition.click.reversed(!menuIsOpen);
   }, [menuIsOpen]);
 
   return (
@@ -34,6 +42,14 @@ const MenuIcon = ({
       type="button"
       onClick={() => {
         updateValueGlobal({ obj: 'UI', prop: ['menuIsOpen'], value: [!menuIsOpen] });
+      }}
+      onMouseOver={() => {
+        if (menuIsOpen) transition.hoverCloseIcon.play();
+        else transition.hoverMenuIcon.play();
+      }}
+      onMouseLeave={() => {
+        if (menuIsOpen) transition.hoverCloseIcon.reverse();
+        else transition.hoverMenuIcon.reverse();
       }}
       ref={(e) => componentRef.current.push(e)}
       colorMain={colorMain}

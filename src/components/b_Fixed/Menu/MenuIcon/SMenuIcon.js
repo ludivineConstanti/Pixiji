@@ -22,8 +22,35 @@ export default styled.button`
   }
 `;
 
+// ref is an array
+// ref[0] = icon stroke top
+// ref[1] = icon stroke middle
+// ref[2] = icon stroke bottom
+// ref[3] = rectangle containing the icon
+// ref[4] = biggest rectangle surrounding everything
+export const tHoverMenuIcon = (tl, ref, color) => {
+  tl.to(ref.current[4], {
+    scale: 0.9,
+  }, 0)
+    .to(ref.current[0], {
+      backgroundColor: color,
+    }, 0).to(ref.current[1], {
+      backgroundColor: color,
+    }, 0).to(ref.current[2], {
+      backgroundColor: color,
+    }, 0);
+  return tl;
+};
+
+export const tHoverCloseIcon = (tl, ref, color) => {
+  tl.to(ref.current[4], {
+    backgroundColor: color,
+  });
+  return tl;
+};
+
 // new css after toggle is activated
-export const tToggle = (tl, ref, color) => {
+export const tClick = (tl, ref, color) => {
   // 0 at the end of each "to" makes all of them start at the beginning
 
   // background = biggest container square
@@ -37,13 +64,13 @@ export const tToggle = (tl, ref, color) => {
   // div containing the 3 strokes
   tl.to(ref.current[3], {
     scale: 1.5,
-    padding: '5%',
     ease: 'power1.out',
   }, 0);
   // first stroke turns into cross
   tl.to(ref.current[0], {
     backgroundColor: 'white',
-    transformOrigin: '0% 0%',
+    // transformOrigin: '0% 0%',
+    y: 20,
     rotation: '45_cw',
     ease: 'power1.out',
   }, 0);
@@ -56,7 +83,7 @@ export const tToggle = (tl, ref, color) => {
   // third stroke turns into cross
   tl.to(ref.current[2], {
     backgroundColor: 'white',
-    transformOrigin: '0% 100%',
+    y: -20,
     rotation: '315_ccw',
     ease: 'power1.out',
   }, 0).play();

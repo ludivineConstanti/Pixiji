@@ -18,14 +18,8 @@ const MainSquare = React.forwardRef(({
   const colorHsl = gsap.utils.splitColor(color, true);
 
   const [transitionHover, setTransitionHover] = useState(gsap.timeline(
-    { paused: true, duration: 0.35 },
+    { paused: true },
   ));
-
-  // c = component
-  const cTl = gsap.timeline({ paused: true });
-  // can update multiple timelines / animations at once
-  // without having to remember to copy paste every time
-  const duration = 0.35;
 
   const cRef = useRef(null);
   const infosRef = useRef([]);
@@ -35,7 +29,7 @@ const MainSquare = React.forwardRef(({
 
   useEffect(() => {
     setTransitionHover(tHover(
-      transitionHover, cRef.current, infosRef.current, colorHsl, duration, bottom,
+      transitionHover, cRef.current, infosRef.current, colorHsl, 0.35, bottom,
     ));
   }, []);
 
