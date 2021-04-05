@@ -7,13 +7,15 @@ export default styled.button`
   height: ${buttonWidth};
   width: ${buttonWidth};
   left: calc(${buttonWidth} * -1);
-  .buttonBig--stroke {
+  .buttonBig__arrow--stroke {
     height: ${strokeWidth};
     top: calc(50% - ${strokeWidth} - 1px);
+    background-color: ${(props) => props.colorMain};
   }
-  .buttonBig--end {
+  .buttonBig__arrow--end {
     border-top-width: ${strokeWidth};
     border-right-width: ${strokeWidth};
+    border-color: ${(props) => props.colorMain};
   }
 `;
 

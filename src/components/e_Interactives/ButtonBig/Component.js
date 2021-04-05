@@ -33,13 +33,14 @@ const ButtonBig = ({
       className={`${cC}`}
       onClick={onClick}
       type="button"
+      colorMain={colorMain}
     >
       {show && (
       <>
         <span className={`${cC}__result`}>{comment}</span> {text}
         <div className={`${cC}__arrow`}>
-          <div style={{ backgroundColor: `${colorMain}` }} className={`${cC}__arrow--stroke`} />
-          <div className={`${cC}__arrow--end`} style={{ borderColor: `${colorMain}` }} />
+          <div className={`${cC}__arrow--stroke`} />
+          <div className={`${cC}__arrow--end`} />
         </div>
       </>
       )}

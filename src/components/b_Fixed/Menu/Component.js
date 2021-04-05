@@ -5,11 +5,10 @@ import { gsap } from 'gsap';
 
 // == Import
 import './style.scss';
-import { contentToggle } from './transition';
 import MenuIcon from './MenuIcon';
 import MenuLink from './MenuLink';
 import MenuSetting from './MenuSetting';
-import SMenu from './SMenu';
+import SMenu, { contentToggle } from './SMenu';
 
 const Menu = ({
   colorMain, menuIsOpen, cheating, updateValueGlobal, cheatingButtonFinishQuiz,
@@ -35,7 +34,7 @@ const Menu = ({
   }, [menuIsOpen]);
 
   return (
-    <div className={cC}>
+    <SMenu className={cC}>
       <div className={`${cC}__content`} ref={menuContentRef}>
         <nav className={`${cC}__content__links`}>
           <ul className={`${cC}__content__links__container`}>
@@ -65,7 +64,7 @@ const Menu = ({
         </div>
       </div>
       <MenuIcon />
-    </div>
+    </SMenu>
   );
 };
 
