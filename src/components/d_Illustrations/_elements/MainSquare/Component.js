@@ -6,7 +6,7 @@ import { gsap } from 'gsap';
 // == Import
 import '../style.scss';
 import './style.scss';
-import SMainSquare, { tHover } from './SMainSquare';
+import SMainSquare from './SMainSquare';
 
 const MainSquare = React.forwardRef(({
   size, columnStart, rowStart, color, bottom, kanjiIndex, rightAnswers,
@@ -17,21 +17,17 @@ const MainSquare = React.forwardRef(({
 
   const colorHsl = gsap.utils.splitColor(color, true);
 
-  const [transitionHover, setTransitionHover] = useState(gsap.timeline(
-    { paused: true },
-  ));
+  // c = component
+  const cTl = gsap.timeline({ paused: true });
+  // can update multiple timelines / animations at once
+  // without having to remember to copy paste every time
+  const duration = 0.35;
 
   const cRef = useRef(null);
   const infosRef = useRef([]);
 
   const [answer, setAnswer] = useState(false);
   const [infos, setInfos] = useState(false);
-
-  useEffect(() => {
-    setTransitionHover(tHover(
-      transitionHover, cRef.current, infosRef.current, colorHsl, 0.35, bottom,
-    ));
-  }, []);
 
   useEffect(() => {
     if (!answer && rightAnswers[kanjiIndex]) {
@@ -52,8 +48,28 @@ const MainSquare = React.forwardRef(({
         cRef.current = e;
       }}
       onMouseEnter={() => {
+        // takes the width of the div, in px, and converts it in vw
+        const cWidth = cRef.current.clientWidth / document.documentElement.clientWidth * 100;
+        const cNewSize = 8.8;
+        const cOffset = (cWidth - cNewSize) / 2;
         if (answer) {
-          transitionHover.play();
+          cTl.timeScale(0.7).to(cRef.current, duration, {
+            // needs to have a higher z-index than the rest (current highest is 2)
+            ease: 'power1.inOut',
+            zIndex: 10,
+            y: `${bottom ? (cOffset * 2).toFixed(0) : (cOffset).toFixed(0)}vw`,
+            x: `${(cOffset).toFixed(0)}vw`,
+            height: `${cNewSize}vw`,
+            width: `${cNewSize}vw`,
+            fontSize: '24px',
+            backgroundColor: `hsl(${colorHsl[0]}, ${colorHsl[1] > 75 ? 75 : colorHsl[1]}%, ${colorHsl[2] > 50 ? 50 : colorHsl[2]}%)`,
+          }).to(infosRef.current, duration - 0.1, {
+            ease: 'power1.inOut', display: 'block', opacity: 1, margin: '8px 0 8px 0',
+            // the animation of the second group needs a slight delay
+            // otherwise the text in the middle jumps
+            // need to try to keep the delay at a minimum
+            // otherwise animation looks laggy (especially when exit)
+          }, duration / 2.5).play();
         }
       }}
       onMouseLeave={() => {
@@ -70,7 +86,10 @@ const MainSquare = React.forwardRef(({
           };
           // timescale, put 1 => plays normally
           // puts 2 => divide time per 2
-          transitionHover.timeScale(1.3).reverse().eventCallback('onReverseComplete', clearProps);
+          cTl.timeScale(1.3).reverse().eventCallback('onReverseComplete', clearProps);
+          /* .eventCallback('onReverseComplete', () => {
+            cTl.set(cRef.current, { clearProps: 'all' });
+          }); */
         }
       }}
     >
