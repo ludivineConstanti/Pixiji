@@ -21,6 +21,10 @@ const App = () => (
         <Quiz />
         <MoonRabbit />
       </Route>
+      <Route path="/quiz/:slug" exact>
+        <Quiz />
+        <MoonRabbit />
+      </Route>
       <Route>
         error 404 not found
       </Route>

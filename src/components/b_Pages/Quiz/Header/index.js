@@ -1,23 +1,9 @@
-// == Import npm
-import React from 'react';
-// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Component from './Component';
 
-// == Import
-import './style.scss';
-import SHeader from './SHeader';
-import ProgressBar from '../ProgressBar';
+const mapStateToProps = (state) => ({
+  totalOptions: state.quiz.current.totalOptions,
+  title: state.quiz.current.title,
+});
 
-const Header = () => {
-  // cC for classComponent
-  const cC = 'header';
-
-  return (
-    <SHeader className={cC}>
-      <h2>Quiz 1 - 1st grade (80 kanjis)</h2>
-      <ProgressBar />
-    </SHeader>
-  );
-};
-
-// == Export
-export default Header;
+export default connect(mapStateToProps, {})(Component);

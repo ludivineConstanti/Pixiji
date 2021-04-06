@@ -1,14 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import grade3 from 'src/assets/dataQuiz/grade3';
+import quizzes from 'src/assets/dataQuiz/quizzes';
+import kanjisInitial from 'src/assets/dataQuiz/kanjisInitial';
+import kanjis from 'src/assets/dataQuiz/kanjis';
 import quizFormatter from 'src/helpers/formatters/quizFormatter';
 
 export const quizSlice = createSlice({
   name: 'quiz',
   initialState: {
-    dataQuiz: quizFormatter(grade3),
+    dataQuizzes: quizzes,
+    dataQuiz: quizFormatter(kanjisInitial),
     current: {
-      totalQuestions: quizFormatter(grade3).length,
+      totalQuestions: 0,
+      totalOptions: 0,
+      title: 'loading...',
     },
     user: {
       answeredQuestion: false,
@@ -23,6 +28,15 @@ export const quizSlice = createSlice({
       for (let i = 0; i < payload.prop.length; i += 1) {
         state[payload.obj][payload.prop[i]] = payload.value[i];
       }
+    },
+    initializeQuiz: (state, { payload }) => {
+      // {quizId: number}
+      const currentQuiz = kanjis.filter((e) => e.quizId === payload.quizId);
+      const formattedQuiz = quizFormatter(currentQuiz);
+      state.dataQuiz = formattedQuiz;
+      state.current.totalQuestions = formattedQuiz.length;
+      state.current.totalOptions = currentQuiz.length;
+      state.current.title = payload.title;
     },
     updateFirstQuestionQuiz: (state, { payload }) => {
       // {prop: ["prop1", "prop2"], value: ["valueforProp1", "valueForProp2"]}
@@ -80,6 +94,7 @@ export const quizSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {
   updateValueQuiz,
+  initializeQuiz,
   updateFirstQuestionQuiz,
   answeredQuestionQuiz,
   nextQuestionQuiz,
