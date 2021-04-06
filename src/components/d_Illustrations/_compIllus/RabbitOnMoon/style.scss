@@ -1,0 +1,30 @@
+@use '../s';
+
+.moonRabbit__planet {
+  position: absolute;
+  @include s.gridContainer(10, 10);
+  @include s.quizContainerTopLeft(10, 0);
+}
+
+$rabbitHeight: 15;
+$rabbitWidth: 11;
+
+.moonRabbit__rabbit {
+  grid-column-start: 2;
+  @include s.gridContainer($rabbitHeight, $rabbitWidth);
+}
+
+$moonHeight: 14;
+$moonWidth: 28;
+
+.moonRabbit__moon {
+  @include s.gridContainer($moonHeight, $moonWidth); 
+}
+
+.moonRabbit__rabbitOnMoon {
+  position: fixed;
+  @include s.dimensions($rabbitHeight + $moonHeight, $moonWidth);
+  @include s.quizContainerBottomRight(0, 4);
+  display: grid;
+  grid-template-columns: calc(10 * #{s.$squareUnit});
+}

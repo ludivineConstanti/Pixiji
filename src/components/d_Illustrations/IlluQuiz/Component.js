@@ -3,11 +3,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
-import '../style.scss';
 import { squaresShrink, squaresGrow } from 'src/components/d_Illustrations/_helpers/transitions';
 import createIllustration from 'src/components/d_Illustrations/_helpers/createIllustration';
-import arrDataIllu from './_data';
-import RabbitOnMoon from './RabbitOnMoon';
+import RabbitOnMoon from 'src/components/d_Illustrations/_compIllus/RabbitOnMoon';
+import SnowMonkeys from 'src/components/d_Illustrations/_compIllus/SnowMonkeys';
+import arrDataIllu from 'src/components/d_Illustrations/_data/indexQuiz';
 
 const IlluQuiz = ({ kanjisArr, updateValueGlobal }) => {
   const { arrIllu, colorIllu } = arrDataIllu[0];
@@ -24,7 +24,7 @@ const IlluQuiz = ({ kanjisArr, updateValueGlobal }) => {
   useEffect(() => {
     updateValueGlobal({ obj: 'UI', prop: ['colorMain'], value: [colorIllu] });
     for (let i = 0; i < arrIllu.length; i += 1) {
-      squaresShrink(squareMainRef.current[i]);
+      // squaresShrink(squareMainRef.current[i]);
     }
   }, []);
 
@@ -50,7 +50,7 @@ const IlluQuiz = ({ kanjisArr, updateValueGlobal }) => {
   }
   return (
     <>
-      <RabbitOnMoon arrIlluFormatted={arrIlluFormatted} />
+      <SnowMonkeys arrIlluFormatted={arrIlluFormatted} />
     </>
   );
 };

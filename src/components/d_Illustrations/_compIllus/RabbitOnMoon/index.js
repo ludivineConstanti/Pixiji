@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
-import '../style.scss';
+import './style.scss';
 
 const RabbitOnMoon = ({ arrIlluFormatted }) => {
   const cC = 'moonRabbit';

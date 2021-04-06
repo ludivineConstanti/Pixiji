@@ -1,0 +1,7 @@
+@use '../s';
+
+.snowMonkeys__monkeyRight {
+  position: absolute;
+  @include s.gridContainer(10, 7);
+  @include s.quizContainerTopLeft(10, 0);
+}

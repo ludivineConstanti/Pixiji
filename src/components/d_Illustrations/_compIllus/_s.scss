@@ -22,34 +22,5 @@ $squareUnit: 1.1vw;
   right: calc(#{$right} * #{$squareUnit});
 }
 
-.moonRabbit__planet {
-  position: absolute;
-  @include gridContainer(10, 10);
-  @include quizContainerTopLeft(10, 0);
-}
-
-$rabbitHeight: 15;
-$rabbitWidth: 11;
-
-.moonRabbit__rabbit {
-  grid-column-start: 2;
-  @include gridContainer($rabbitHeight, $rabbitWidth);
-}
-
-$moonHeight: 14;
-$moonWidth: 28;
-
-.moonRabbit__moon {
-  @include gridContainer($moonHeight, $moonWidth); 
-}
-
-.moonRabbit__rabbitOnMoon {
-  position: fixed;
-  @include dimensions($rabbitHeight + $moonHeight, $moonWidth);
-  @include quizContainerBottomRight(0, 4);
-  display: grid;
-  grid-template-columns: calc(10 * #{$squareUnit});
-}
-
 
 
