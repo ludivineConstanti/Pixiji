@@ -279,4 +279,5 @@ const moon = [
   ],
 ];
 
-export default [planet, rabbit, moon];
+export const arrRabbitOnMoon = [planet, rabbit, moon];
+export const colorRabbitOnMoon = '#0A2846';

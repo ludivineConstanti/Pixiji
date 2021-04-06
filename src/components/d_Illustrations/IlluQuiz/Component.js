@@ -6,10 +6,11 @@ import PropTypes from 'prop-types';
 import '../style.scss';
 import { squaresShrink, squaresGrow } from 'src/components/d_Illustrations/_helpers/transitions';
 import createIllustration from 'src/components/d_Illustrations/_helpers/createIllustration';
-import arrIllu from './_data/arrIllu';
+import arrDataIllu from './_data';
+import RabbitOnMoon from './RabbitOnMoon';
 
-const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
-  const cC = 'moonRabbit';
+const IlluQuiz = ({ kanjisArr, updateValueGlobal }) => {
+  const { arrIllu, colorIllu } = arrDataIllu[0];
   // I use 2 groups to keep a reference for the divs
   // one for the first animation where they all get reduced at the same time
   // GSAP needs individual arrays to figure out where their center is
@@ -21,7 +22,7 @@ const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
   const squareGroupRef = useRef([]);
 
   useEffect(() => {
-    updateValueGlobal({ obj: 'UI', prop: ['colorMain'], value: ['#0A2846'] });
+    updateValueGlobal({ obj: 'UI', prop: ['colorMain'], value: [colorIllu] });
     for (let i = 0; i < arrIllu.length; i += 1) {
       squaresShrink(squareMainRef.current[i]);
     }
@@ -49,29 +50,19 @@ const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
   }
   return (
     <>
-      <div className={`${cC}__planet`}>
-        {arrIlluFormatted[0]}
-      </div>
-      <div className={`${cC}__rabbitOnMoon`}>
-        <div className={`${cC}__rabbit`}>
-          {arrIlluFormatted[1]}
-        </div>
-        <div className={`${cC}__moon`}>
-          {arrIlluFormatted[2]}
-        </div>
-      </div>
+      <RabbitOnMoon arrIlluFormatted={arrIlluFormatted} />
     </>
   );
 };
 
-MoonRabbit.propTypes = {
+IlluQuiz.propTypes = {
   kanjisArr: PropTypes.array,
   updateValueGlobal: PropTypes.func.isRequired,
 };
 
-MoonRabbit.defaultProps = {
+IlluQuiz.defaultProps = {
   kanjisArr: [],
 };
 
 // == Export
-export default MoonRabbit;
+export default IlluQuiz;
