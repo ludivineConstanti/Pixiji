@@ -6,6 +6,7 @@ import { gsap } from 'gsap';
 // == Import
 import '../style.scss';
 import './style.scss';
+import { zIMainSquareHover } from 'src/styles/g';
 import SMainSquare from './SMainSquare';
 
 const MainSquare = React.forwardRef(({
@@ -56,7 +57,7 @@ const MainSquare = React.forwardRef(({
           cTl.timeScale(0.7).to(cRef.current, duration, {
             // needs to have a higher z-index than the rest (current highest is 2)
             ease: 'power1.inOut',
-            zIndex: 10,
+            zIndex: `${zIMainSquareHover}`,
             y: `${bottom ? (cOffset * 2).toFixed(0) : (cOffset).toFixed(0)}vw`,
             x: `${(cOffset).toFixed(0)}vw`,
             height: `${cNewSize}vw`,

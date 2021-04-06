@@ -4,14 +4,24 @@ import PropTypes from 'prop-types';
 
 // == Import
 import './style.scss';
+import { SWater, SMonkeyLeft, SMonkeyOnRocks } from './SSnowMonkey';
 
 const SnowMonkeys = ({ arrIlluFormatted }) => {
   const cC = 'snowMonkeys';
   return (
     <>
-      <div className={`${cC}__monkeyRight`}>
+      <SMonkeyLeft className={`${cC}__monkeyLeft`}>
         {arrIlluFormatted[0]}
-      </div>
+      </SMonkeyLeft>
+      <SMonkeyOnRocks>
+        <div className={`${cC}__monkeyRight`}>
+          {arrIlluFormatted[1]}
+        </div>
+        <div className={`${cC}__rocks`}>
+          {arrIlluFormatted[2]}
+        </div>
+      </SMonkeyOnRocks>
+      <SWater className={`${cC}__water`} />
     </>
   );
 };

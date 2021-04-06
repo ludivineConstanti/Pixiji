@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 
 // == Import
 import '../style.scss';
+import { zISquareHover } from 'src/styles/g';
 
 const Square = React.forwardRef(({
   size, columnStart, rowStart, color, kanjiIndex, rightAnswersLength,
@@ -23,8 +24,8 @@ const Square = React.forwardRef(({
         cRef.current = e;
       }}
       onMouseOver={() => {
-        if (rightAnswersLength >= kanjiIndex) {
-          cTl.to(cRef.current, 0.25, { scale: '1.5', zIndex: '5' }).play();
+        if (rightAnswersLength > kanjiIndex) {
+          cTl.to(cRef.current, 0.25, { scale: '1.5', zIndex: `${zISquareHover}` }).play();
         }
       }}
       onMouseLeave={() => {

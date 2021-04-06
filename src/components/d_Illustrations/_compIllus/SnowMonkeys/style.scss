@@ -1,7 +1,14 @@
 @use '../s';
 
-.snowMonkeys__monkeyRight {
+.snowMonkeys__monkeyLeft {
   position: absolute;
   @include s.gridContainer(10, 7);
-  @include s.quizContainerTopLeft(10, 0);
+}
+
+.snowMonkeys__monkeyRight {
+  @include s.gridContainer(9, 11);
+}
+
+.snowMonkeys__rocks {
+  @include s.gridContainer(7, 20);
 }
