@@ -1,7 +1,56 @@
 const white = '#FFFFFF';
 const lightGrey = '#DFDFDF';
 
-export default [
+const planet = [
+  [{
+    s: 1, column: 4, row: 1, c: '#B6E7FF',
+  }, {
+    s: 2, column: 5, row: 1, c: '#83D0F6',
+  }, {
+    s: 3, column: 2, row: 2, c: '#6DC7F4', main: true,
+  }, {
+    s: 1, column: 1, row: 4, c: '#60ACD2',
+  }, {
+    s: 2, column: 1, row: 5, c: '#5897B7',
+  }],
+  [{
+    s: 1, column: 7, row: 1, c: '#B6E7FF',
+  }, {
+    s: 2, column: 5, row: 3, c: '#5AB2DE',
+  }, {
+    s: 3, column: 7, row: 2, c: '#58BDF0', main: true,
+  }, {
+    s: 1, column: 10, row: 4, c: '#6CC9F8',
+  }, {
+    s: 2, column: 9, row: 5, c: '#4788A8',
+  }],
+  [{
+    s: 1, column: 1, row: 7, c: '#35637A',
+  }, {
+    s: 2, column: 3, row: 5, c: '#3D7E9E',
+  }, {
+    s: 3, column: 2, row: 7, c: '#1D4154', main: true,
+  }, {
+    s: 1, column: 4, row: 10, c: '#284A67',
+  }, {
+    s: 2, column: 5, row: 9, c: '#203E4E',
+  }],
+  [{
+    s: 1, column: 7, row: 10, c: '#284A67',
+  }, {
+    s: 2, column: 5, row: 7, c: '#284F64',
+  }, {
+    s: 3, column: 7, row: 7, c: '#1D4154', main: true,
+  }, {
+    s: 1, column: 10, row: 7, c: '#35637A',
+  }, {
+    s: 2, column: 7, row: 5, c: '#40728B',
+  }, {
+    s: 2, column: 5, row: 5, c: '#48819D',
+  }],
+];
+
+const rabbit = [
   [{
     s: 1, column: 5, row: 1, c: 'rgba(255, 255, 255, 0.25)',
   }, {
@@ -133,3 +182,101 @@ export default [
   },
   ],
 ];
+
+const moon = [
+  [{
+    s: 2, column: 11, row: 1, c: '#FED480',
+  },
+  {
+    s: 4, column: 13, row: 1, c: '#FEC475', main: true,
+  },
+  {
+    s: 2, column: 17, row: 1, c: '#FFBF68',
+  },
+  ],
+  [{
+    s: 2, column: 9, row: 1, c: '#FAE0AB',
+  },
+  {
+    s: 4, column: 5, row: 3, c: '#FECF7F', main: true,
+  },
+  {
+    s: 2, column: 3, row: 5, c: '#FBDCA2',
+  },
+  ], [{
+    s: 4, column: 9, row: 3, c: '#FFB361', main: true,
+  },
+  {
+    s: 2, column: 13, row: 5, c: '#F9AB50',
+  },
+  {
+    s: 2, column: 13, row: 7, c: '#E48259',
+  },
+  ], [{
+    s: 2, column: 15, row: 5, c: '#EF9D3C',
+  }, {
+    s: 2, column: 15, row: 7, c: '#E28865',
+  }, {
+    s: 4, column: 17, row: 3, c: '#F9AB50', main: true,
+  },
+  ], [{
+    s: 2, column: 19, row: 1, c: '#FFB44F',
+  },
+  {
+    s: 4, column: 21, row: 3, c: '#EF9D3C', main: true,
+  }, {
+    s: 2, column: 25, row: 5, c: '#E99633',
+  },
+  ], [{
+    s: 2, column: 3, row: 7, c: '#FBA06D',
+  }, {
+    s: 6, column: 1, row: 9, c: '#DE7D56', main: true, bottom: true,
+  },
+  ], [{
+    s: 2, column: 5, row: 7, c: '#F0976D',
+  }, {
+    s: 4, column: 7, row: 7, c: '#E28865', main: true,
+  }, {
+    s: 2, column: 11, row: 7, c: '#F5986D',
+  },
+  ], [{
+    s: 4, column: 7, row: 11, c: '#D2724C', main: true, bottom: true,
+  }, {
+    s: 2, column: 11, row: 9, c: '#E57C55',
+  }, {
+    s: 2, column: 11, row: 13, c: '#C2643F',
+  },
+  ], [{
+    s: 2, column: 11, row: 11, c: '#D06A42',
+  }, {
+    s: 2, column: 13, row: 9, c: '#C86540',
+  }, {
+    s: 2, column: 15, row: 9, c: '#E27750',
+  }, {
+    s: 4, column: 13, row: 11, c: '#D46E44', main: true, bottom: true,
+  }, {
+    s: 2, column: 17, row: 11, c: '#CF6741',
+  },
+  ], [{
+    s: 2, column: 17, row: 7, c: '#F5986D',
+  }, {
+    s: 4, column: 19, row: 7, c: '#F68F67', main: true,
+  }, {
+    s: 2, column: 23, row: 7, c: '#E17C53',
+  },
+  ], [{
+    s: 2, column: 17, row: 9, c: '#D37754',
+  }, {
+    s: 2, column: 17, row: 13, c: '#C2633F',
+  }, {
+    s: 4, column: 19, row: 11, c: '#E87343', main: true, bottom: true,
+  },
+  ], [{
+    s: 2, column: 25, row: 7, c: '#DC7245',
+  }, {
+    s: 6, column: 23, row: 9, c: '#D46E44', main: true, bottom: true,
+  },
+  ],
+];
+
+export default [planet, rabbit, moon];

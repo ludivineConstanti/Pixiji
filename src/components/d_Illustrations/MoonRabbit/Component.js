@@ -6,9 +6,7 @@ import PropTypes from 'prop-types';
 import '../style.scss';
 import { squaresShrink, squaresGrow } from 'src/components/d_Illustrations/_helpers/transitions';
 import createIllustration from 'src/components/d_Illustrations/_helpers/createIllustration';
-import planet from './_data/planet';
-import rabbit from './_data/rabbit';
-import moon from './_data/moon';
+import arrIllu from './_data/arrIllu';
 
 const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
   const cC = 'moonRabbit';
@@ -16,13 +14,17 @@ const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
   // one for the first animation where they all get reduced at the same time
   // GSAP needs individual arrays to figure out where their center is
   // the other to animate every time I answer a question
-  const squareMainRef = useRef({ planet: [], rabbit: [], moon: [] });
+  const squareMainRef = useRef([]);
+  for (let i = 0; i < arrIllu.length; i += 1) {
+    squareMainRef.current.push([]);
+  }
   const squareGroupRef = useRef([]);
 
   useEffect(() => {
-    squaresShrink(squareMainRef.current.planet);
-    squaresShrink(squareMainRef.current.rabbit);
-    squaresShrink(squareMainRef.current.moon);
+    updateValueGlobal({ obj: 'UI', prop: ['colorMain'], value: ['#0A2846'] });
+    for (let i = 0; i < arrIllu.length; i += 1) {
+      squaresShrink(squareMainRef.current[i]);
+    }
   }, []);
 
   const [lastUpdated, setLastUpdated] = useState(0);
@@ -35,25 +37,27 @@ const MoonRabbit = ({ kanjisArr, updateValueGlobal }) => {
     setLastUpdated(kanjisArr.length);
   }, [kanjisArr]);
 
+  const arrIlluFormatted = [];
   // need the number at the end so that it doesn't always start from 0
   // while pushing the groups in the squareContainer array
   let beginAtIndex = 0;
-  const planetFormatted = createIllustration(planet, 'planet', squareMainRef, squareGroupRef, beginAtIndex);
-  beginAtIndex += planet.length;
-  const rabbitFormatted = createIllustration(rabbit, 'rabbit', squareMainRef, squareGroupRef, beginAtIndex);
-  beginAtIndex += rabbit.length;
-  const moonFormatted = createIllustration(moon, 'moon', squareMainRef, squareGroupRef, beginAtIndex);
+  for (let i = 0; i < arrIllu.length; i += 1) {
+    arrIlluFormatted.push(
+      createIllustration(arrIllu[i], i, squareMainRef, squareGroupRef, beginAtIndex),
+    );
+    beginAtIndex += arrIllu[i].length;
+  }
   return (
     <>
       <div className={`${cC}__planet`}>
-        {planetFormatted}
+        {arrIlluFormatted[0]}
       </div>
       <div className={`${cC}__rabbitOnMoon`}>
         <div className={`${cC}__rabbit`}>
-          {rabbitFormatted}
+          {arrIlluFormatted[1]}
         </div>
         <div className={`${cC}__moon`}>
-          {moonFormatted}
+          {arrIlluFormatted[2]}
         </div>
       </div>
     </>
