@@ -7,10 +7,11 @@ import { squaresShrink, squaresGrow } from 'src/components/d_Illustrations/_help
 import createIllustration from 'src/components/d_Illustrations/_helpers/createIllustration';
 import RabbitOnMoon from 'src/components/d_Illustrations/_compIllus/RabbitOnMoon';
 import SnowMonkeys from 'src/components/d_Illustrations/_compIllus/SnowMonkeys';
+import CraneSunset from 'src/components/d_Illustrations/_compIllus/CraneSunset';
 import arrDataIllu from 'src/components/d_Illustrations/_data/indexQuiz';
 
-const IlluQuiz = ({ kanjisArr, updateValueGlobal }) => {
-  const { arrIllu, colorIllu } = arrDataIllu[0];
+const IlluQuiz = ({ quizId, kanjisArr, updateValueGlobal }) => {
+  const { arrIllu, colorIllu } = arrDataIllu[quizId - 1];
   // I use 2 groups to keep a reference for the divs
   // one for the first animation where they all get reduced at the same time
   // GSAP needs individual arrays to figure out where their center is
@@ -48,14 +49,16 @@ const IlluQuiz = ({ kanjisArr, updateValueGlobal }) => {
     );
     beginAtIndex += arrIllu[i].length;
   }
-  return (
-    <>
-      <SnowMonkeys arrIlluFormatted={arrIlluFormatted} />
-    </>
-  );
+  if (quizId - 1 === 0) {
+    return <SnowMonkeys arrIlluFormatted={arrIlluFormatted} />;
+  }
+  if (quizId - 1 === 1) {
+    return <CraneSunset arrIlluFormatted={arrIlluFormatted} />;
+  }
 };
 
 IlluQuiz.propTypes = {
+  quizId: PropTypes.number.isRequired,
   kanjisArr: PropTypes.array,
   updateValueGlobal: PropTypes.func.isRequired,
 };

@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 import ButtonBig from 'src/components/e_Interactives/ButtonBig';
 import TextWithTitle from 'src/components/c_Partials/TextWithTitle';
+import IlluQuiz from 'src/components/d_Illustrations/IlluQuiz';
 import Header from './Header';
 import Question from './Question';
 
@@ -24,21 +25,24 @@ const Quiz = ({
     initializeQuiz({ quizId: currentQuiz[0].id, title: currentQuiz[0].title });
   }, [match]);
   return (
-    <div className="quiz">
-      <Header />
-      { finishedQuiz ? (
-        <TextWithTitle
-          title="Well done!"
-          text={['You answed all the questions correctly!', 'Try putting your mouse over the squares, on the right, to look at the answers again.']}
-        />
-      )
-        : (
-          <>
-            <Question />
-            <ButtonBig comment={answeredCorrectly ? 'correct!' : 'wrong!'} text="next" onClick={nextQuestionQuiz} show={!!answeredQuestion} />
-          </>
-        )}
-    </div>
+    <>
+      <div className="quiz">
+        <Header />
+        { finishedQuiz ? (
+          <TextWithTitle
+            title="Well done!"
+            text={['You answed all the questions correctly!', 'Try putting your mouse over the squares, on the right, to look at the answers again.']}
+          />
+        )
+          : (
+            <>
+              <Question />
+              <ButtonBig comment={answeredCorrectly ? 'correct!' : 'wrong!'} text="next" onClick={nextQuestionQuiz} show={!!answeredQuestion} />
+            </>
+          )}
+      </div>
+      <IlluQuiz quizId={currentQuiz[0].id} />
+    </>
   );
 };
 

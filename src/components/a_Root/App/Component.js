@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 
 // == Import local
 import Menu from 'src/components/b_Fixed/Menu';
-import IlluQuiz from 'src/components/d_Illustrations/IlluQuiz';
 // Pages
 import Quiz from 'src/components/b_Pages/Quiz';
 import SApp from './SApp';
@@ -19,12 +18,10 @@ const App = ({ colorMain }) => (
     <Menu />
     <Switch>
       <Route path="/" exact>
-        <Quiz />
-        <IlluQuiz />
+        home
       </Route>
       <Route path="/quiz/:slug" exact>
         <Quiz />
-        <IlluQuiz />
       </Route>
       <Route>
         error 404 not found

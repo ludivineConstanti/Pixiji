@@ -73,6 +73,24 @@ const monkeyLeft = [
   }, {
     s: 1, column: 6, row: 10, c: '#CDA37C',
   },
+  // tail
+  {
+    s: 1, column: 12, row: 5, c: '#EBCCB0',
+  }, {
+    s: 1, column: 12, row: 6, c: '#EBCCB0',
+  }, {
+    s: 1, column: 11, row: 6, c: '#EBCCB0',
+  }, {
+    s: 1, column: 10, row: 6, c: '#EBCCB0',
+  }, {
+    s: 1, column: 10, row: 7, c: '#EBCCB0',
+  }, {
+    s: 1, column: 10, row: 8, c: '#E0C3A7',
+  }, {
+    s: 1, column: 10, row: 9, c: '#D2B08F',
+  }, {
+    s: 1, column: 10, row: 10, c: '#C39C78',
+  },
   ],
 ];
 
@@ -164,7 +182,7 @@ const rocks = [[
   }, {
     s: 1, column: 4, row: 3, c: '#D4DCDE',
   }, {
-    s: 4, column: 1, row: 4, c: '#013434', main: true,
+    s: 4, column: 1, row: 4, c: '#013A3A', main: true,
   },
 ], [
   {
@@ -176,7 +194,7 @@ const rocks = [[
   }, {
     s: 1, column: 8, row: 3, c: '#F1F3F3',
   }, {
-    s: 4, column: 5, row: 4, c: '#064141', main: true,
+    s: 4, column: 5, row: 4, c: '#065151', main: true,
   },
 ], [
   {
@@ -193,6 +211,32 @@ const rocks = [[
     s: 1, column: 14, row: 1, c: '#E6F1F1',
   }, {
     s: 6, column: 9, row: 2, c: '#013434', main: true,
+  },
+], [
+  {
+    s: 1, column: 15, row: 1, c: '#E1E5E6',
+  }, {
+    s: 1, column: 16, row: 1, c: '#E6F1F1',
+  }, {
+    s: 1, column: 17, row: 1, c: '#D4DCDE',
+  }, {
+    s: 1, column: 18, row: 1, c: '#E6F1F1',
+  }, {
+    s: 1, column: 19, row: 1, c: '#D4DCDE',
+  }, {
+    s: 1, column: 20, row: 1, c: '#E6F1F1',
+  }, {
+    s: 6, column: 15, row: 2, c: '#055757', main: true,
+  }, {
+    s: 1, column: 21, row: 1, c: '#D4DCDE',
+  }, {
+    s: 1, column: 22, row: 1, c: '#E6F1F1',
+  }, {
+    s: 1, column: 23, row: 1, c: '#D4DCDE',
+  }, {
+    s: 3, column: 21, row: 2, c: '#013434',
+  }, {
+    s: 3, column: 21, row: 5, c: '#044848',
   },
 ]];
 
