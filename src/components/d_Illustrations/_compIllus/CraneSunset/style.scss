@@ -2,38 +2,26 @@
 
 .craneSunset__sun {
   @include s.gridContainer(5, 5);
-  position: absolute;
-  top: 2vh;
-  left: 50vw;
 }
 
 .craneSunset__cloudLeft {
   @include s.gridContainer(3, 16);
-  position: absolute;
-  top: 10vh;
-  left: 50vw;
 }
 
 .craneSunset__cloudRight {
   @include s.gridContainer(3, 14);
-  position: absolute;
-  top: 20vh;
-  left: 50vw;
 }
 
 .craneSunset__rockLeft {
   @include s.gridContainer(3, 6);
-  left: 50vw;
 }
 
 .craneSunset__baby {
   @include s.gridContainer(16, 9);
-  left: 50vw;
 }
 
 .craneSunset__adult {
   @include s.gridContainer(24, 16);
-  left: 70vw;
 }
 
 .craneSunset__rockRight {

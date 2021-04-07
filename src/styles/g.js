@@ -12,6 +12,9 @@ export const contentLWidth = `calc(${buttonKanjiSize} * 3 + ${buttonKanjiSizeGap
 export const contentLMarginL = `calc(80px + ${buttonWidth})`;
 // menu (open)
 export const contentMenuWidth = `calc(${contentLMarginL} + ${contentLWidth})`;
+// Illus
+// also is in the scss file in the illu folder
+export const squareUnit = '1.1vw';
 
 // MARGINS (some are in sizes because it's used there)
 // Illus

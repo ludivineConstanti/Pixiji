@@ -5,22 +5,22 @@ import PropTypes from 'prop-types';
 // == Import
 import './style.scss';
 import {
-  SRockLeft, SBaby, SAdult, SRockRight, SWater,
+  SSun, SCloudLeft, SCloudRight, SRockLeft, SBaby, SAdult, SRockRight, SWater,
 } from './SCraneSunset';
 
 const CraneSunset = ({ arrIlluFormatted }) => {
   const cC = 'craneSunset';
   return (
     <>
-      <div className={`${cC}__sun`}>
+      <SSun className={`${cC}__sun`}>
         {arrIlluFormatted[0]}
-      </div>
-      <div className={`${cC}__cloudLeft`}>
+      </SSun>
+      <SCloudLeft className={`${cC}__cloudLeft`}>
         {arrIlluFormatted[1]}
-      </div>
-      <div className={`${cC}__cloudRight`}>
+      </SCloudLeft>
+      <SCloudRight className={`${cC}__cloudRight`}>
         {arrIlluFormatted[2]}
-      </div>
+      </SCloudRight>
       <SRockLeft className={`${cC}__rockLeft`}>
         {arrIlluFormatted[3]}
       </SRockLeft>
