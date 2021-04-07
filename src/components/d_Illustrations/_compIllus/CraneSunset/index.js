@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 
 // == Import
 import './style.scss';
+import {
+  SRockLeft, SBaby, SAdult, SRockRight, SWater,
+} from './SCraneSunset';
 
 const CraneSunset = ({ arrIlluFormatted }) => {
   const cC = 'craneSunset';
@@ -18,19 +21,19 @@ const CraneSunset = ({ arrIlluFormatted }) => {
       <div className={`${cC}__cloudRight`}>
         {arrIlluFormatted[2]}
       </div>
-      <div className={`${cC}__rockLeft`}>
+      <SRockLeft className={`${cC}__rockLeft`}>
         {arrIlluFormatted[3]}
-      </div>
-      <div className={`${cC}__baby`}>
+      </SRockLeft>
+      <SBaby className={`${cC}__baby`}>
         {arrIlluFormatted[4]}
-      </div>
-      <div className={`${cC}__adult`}>
+      </SBaby>
+      <SAdult className={`${cC}__adult`}>
         {arrIlluFormatted[5]}
-      </div>
-      <div className={`${cC}__rockRight`}>
+      </SAdult>
+      <SRockRight className={`${cC}__rockRight`}>
         {arrIlluFormatted[6]}
-      </div>
-      <div className={`${cC}__water`} />
+      </SRockRight>
+      <SWater />
     </>
   );
 };

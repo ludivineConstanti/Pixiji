@@ -277,28 +277,80 @@ const adult = [
     },
   ], // bottom wings
   [{
-    s: 1, column: 14, row: 5, c: '#EEEBE6',
+    s: 1, column: 14, row: 6, c: '#EEEBE6',
   }, {
-    s: 1, column: 15, row: 5, c: '#FBFDFF',
+    s: 1, column: 15, row: 6, c: '#FBFDFF',
   }, {
-    s: 1, column: 14, row: 6, c: '#022227',
+    s: 1, column: 14, row: 7, c: '#022227',
   }, {
-    s: 2, column: 15, row: 6, c: '#AABDC8',
+    s: 2, column: 15, row: 7, c: '#AABDC8',
   }, {
-    s: 2, column: 14, row: 7, c: '#001013',
+    s: 1, column: 14, row: 8, c: '#001013',
   }, {
-    s: 3, column: 11, row: 7, c: black, main: true,
+    s: 3, column: 11, row: 8, c: black, main: true,
   }, {
-    s: 2, column: 10, row: 10, c: black,
+    s: 2, column: 10, row: 11, c: black,
   }, {
-    s: 1, column: 12, row: 10, c: '#EEEBE6',
+    s: 1, column: 12, row: 11, c: '#EEEBE6',
   }, {
-    s: 1, column: 12, row: 11, c: '#FBFDFF',
+    s: 1, column: 12, row: 12, c: '#FBFDFF',
+  },
+  ], // legs
+  [{
+    s: 2, column: 8, row: 12, c: '#D6DEE0',
+  }, {
+    s: 1, column: 10, row: 13, c: white,
+  }, {
+    s: 1, column: 8, row: 14, c: '#BECACD',
+  }, {
+    s: 3, column: 9, row: 14, c: '#8AAFBD', main: true,
+  }, {
+    s: 2, column: 7, row: 15, c: '#B4BFC3',
+  }, {
+    s: 1, column: 8, row: 17, c: '#8EA0A4',
+  }, {
+    s: 1, column: 8, row: 18, c: black,
+  }, {
+    s: 1, column: 8, row: 19, c: black,
+  }, {
+    s: 1, column: 8, row: 20, c: black,
+  }, {
+    s: 1, column: 8, row: 21, c: black,
+  }, {
+    s: 1, column: 8, row: 22, c: black,
+  }, {
+    s: 1, column: 8, row: 23, c: black,
+  }, {
+    s: 1, column: 8, row: 24, c: black,
+  }, {
+    s: 1, column: 11, row: 17, c: '#8EA0A4',
+  }, {
+    s: 1, column: 12, row: 17, c: black,
+  }, {
+    s: 1, column: 12, row: 18, c: black,
+  }, {
+    s: 1, column: 12, row: 19, c: black,
+  }, {
+    s: 1, column: 12, row: 20, c: black,
+  }, {
+    s: 1, column: 12, row: 21, c: black,
+  }, {
+    s: 1, column: 12, row: 22, c: black,
+  }, {
+    s: 1, column: 12, row: 23, c: black,
+  }, {
+    s: 1, column: 12, row: 24, c: black,
   },
   ],
 ];
 
-const rockRight = [];
+const rockRight = [[
+  {
+    s: 2, column: 1, row: 2, c: '#A4B5BD',
+  }, {
+    s: 3, column: 3, row: 1, c: '#C5CDD0', main: true,
+  },
+]];
 
 export const arrCraneSunset = [sun, cloudLeft, cloudRight, rockLeft, baby, adult, rockRight];
 export const colorCraneSunset = '#004953';

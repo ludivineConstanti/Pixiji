@@ -23,22 +23,16 @@
 
 .craneSunset__rockLeft {
   @include s.gridContainer(3, 6);
-  position: absolute;
-  top: 30vh;
   left: 50vw;
 }
 
 .craneSunset__baby {
   @include s.gridContainer(16, 9);
-  position: absolute;
-  top: 40vh;
   left: 50vw;
 }
 
 .craneSunset__adult {
   @include s.gridContainer(24, 16);
-  position: absolute;
-  top: 20vh;
   left: 70vw;
 }
 

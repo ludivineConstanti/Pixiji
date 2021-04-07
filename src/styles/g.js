@@ -13,6 +13,10 @@ export const contentLMarginL = `calc(80px + ${buttonWidth})`;
 // menu (open)
 export const contentMenuWidth = `calc(${contentLMarginL} + ${contentLWidth})`;
 
+// MARGINS (some are in sizes because it's used there)
+// Illus
+export const illuMarginL = `calc(${contentLWidth} + ${contentLMarginL} * 2)`;
+
 // z-index
 // parents
 export const zImenu = 20;
@@ -32,4 +36,18 @@ export const contentL = `
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+`;
+// for Illustrations
+export const groundDeco = `
+position: fixed;
+left: 0;
+bottom: 0;
+height: ${buttonWidth};
+width: 100vw;
+`;
+
+export const illuTouchingGround = `
+position: fixed;
+bottom: ${buttonWidth};
+z-index: ${zIIlluWithGrowingSquare};
 `;
