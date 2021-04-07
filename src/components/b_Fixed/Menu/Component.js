@@ -11,7 +11,7 @@ import MenuSetting from './MenuSetting';
 import SMenu, { contentToggle } from './SMenu';
 
 const Menu = ({
-  colorMain, menuIsOpen, cheating, updateValueGlobal, cheatingButtonFinishQuiz,
+  colorMain, menuIsOpen, cheating, finishedQuiz, updateValueGlobal, cheatingButtonFinishQuiz,
 }) => {
   const cC = 'menu';
 
@@ -57,7 +57,7 @@ const Menu = ({
             }}
           />
           <MenuSetting
-            text="Finish quiz"
+            text={finishedQuiz ? 'Restart quiz' : 'Finish quiz'}
             color={lighterMainColor}
             onClick={cheatingButtonFinishQuiz}
           />
@@ -72,6 +72,7 @@ Menu.propTypes = {
   colorMain: PropTypes.string.isRequired,
   menuIsOpen: PropTypes.bool.isRequired,
   cheating: PropTypes.bool.isRequired,
+  finishedQuiz: PropTypes.bool.isRequired,
   updateValueGlobal: PropTypes.func.isRequired,
   cheatingButtonFinishQuiz: PropTypes.func.isRequired,
 };

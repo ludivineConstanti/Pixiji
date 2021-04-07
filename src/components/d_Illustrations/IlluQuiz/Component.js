@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 // == Import
 import { squaresShrink, squaresGrow } from 'src/components/d_Illustrations/_helpers/transitions';
 import createIllustration from 'src/components/d_Illustrations/_helpers/createIllustration';
-import RabbitOnMoon from 'src/components/d_Illustrations/_compIllus/RabbitOnMoon';
 import SnowMonkeys from 'src/components/d_Illustrations/_compIllus/SnowMonkeys';
 import CraneSunset from 'src/components/d_Illustrations/_compIllus/CraneSunset';
 import arrDataIllu from 'src/components/d_Illustrations/_data/indexQuiz';
@@ -24,10 +23,15 @@ const IlluQuiz = ({ quizId, kanjisArr, updateValueGlobal }) => {
 
   useEffect(() => {
     updateValueGlobal({ obj: 'UI', prop: ['colorMain'], value: [colorIllu] });
-    for (let i = 0; i < arrIllu.length; i += 1) {
-      // squaresShrink(squareMainRef.current[i]);
-    }
   }, []);
+
+  useEffect(() => {
+    if (!kanjisArr.length) {
+      for (let i = 0; i < arrIllu.length; i += 1) {
+        squaresShrink(squareMainRef.current[i]);
+      }
+    }
+  }, [kanjisArr]);
 
   const [lastUpdated, setLastUpdated] = useState(0);
 

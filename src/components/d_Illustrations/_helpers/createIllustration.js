@@ -28,7 +28,7 @@ export default (data, groupIndex, squareGroups, squareContainers, numPreviousGro
           ref={(e) => cRef(e, groupIndex, numPreviousGroups + i, squareGroups, squareContainers)}
           color={square.c}
           kanjiIndex={numPreviousGroups + i}
-          bottom={square.bottom || false}
+          position={square.position || ''}
         />);
       }
       else {

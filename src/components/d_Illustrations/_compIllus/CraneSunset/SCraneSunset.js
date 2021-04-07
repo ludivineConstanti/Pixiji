@@ -13,7 +13,7 @@ top: ${buttonWidth}
 export const SCloudLeft = styled.div`
 position: fixed;
 left: calc(${illuMarginL} + ${squareUnit} * 2);
-top: calc(${buttonWidth} + ${squareUnit} * 2);
+top: calc(${buttonWidth} + ${squareUnit} * 5);
 `;
 
 export const SCloudRight = styled.div`

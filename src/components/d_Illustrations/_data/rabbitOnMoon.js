@@ -40,7 +40,7 @@ const planet = [
   }, {
     s: 2, column: 5, row: 7, c: '#284F64',
   }, {
-    s: 3, column: 7, row: 7, c: '#1D4154', main: true,
+    s: 3, column: 7, row: 7, c: '#1D4154', main: 'bottom',
   }, {
     s: 1, column: 10, row: 7, c: '#35637A',
   }, {
@@ -230,7 +230,7 @@ const moon = [
   ], [{
     s: 2, column: 3, row: 7, c: '#FBA06D',
   }, {
-    s: 6, column: 1, row: 9, c: '#DE7D56', main: true, bottom: true,
+    s: 6, column: 1, row: 9, c: '#DE7D56', main: true, position: 'bottom',
   },
   ], [{
     s: 2, column: 5, row: 7, c: '#F0976D',
@@ -240,7 +240,7 @@ const moon = [
     s: 2, column: 11, row: 7, c: '#F5986D',
   },
   ], [{
-    s: 4, column: 7, row: 11, c: '#D2724C', main: true, bottom: true,
+    s: 4, column: 7, row: 11, c: '#D2724C', main: true, position: 'bottom',
   }, {
     s: 2, column: 11, row: 9, c: '#E57C55',
   }, {
@@ -253,7 +253,7 @@ const moon = [
   }, {
     s: 2, column: 15, row: 9, c: '#E27750',
   }, {
-    s: 4, column: 13, row: 11, c: '#D46E44', main: true, bottom: true,
+    s: 4, column: 13, row: 11, c: '#D46E44', main: true, position: 'bottom',
   }, {
     s: 2, column: 17, row: 11, c: '#CF6741',
   },
@@ -269,12 +269,12 @@ const moon = [
   }, {
     s: 2, column: 17, row: 13, c: '#C2633F',
   }, {
-    s: 4, column: 19, row: 11, c: '#E87343', main: true, bottom: true,
+    s: 4, column: 19, row: 11, c: '#E87343', main: true, position: 'bottom',
   },
   ], [{
     s: 2, column: 25, row: 7, c: '#DC7245',
   }, {
-    s: 6, column: 23, row: 9, c: '#D46E44', main: true, bottom: true,
+    s: 6, column: 23, row: 9, c: '#D46E44', main: true, position: 'bottom',
   },
   ],
 ];

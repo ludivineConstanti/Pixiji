@@ -348,7 +348,7 @@ const rockRight = [[
   {
     s: 2, column: 1, row: 2, c: '#A4B5BD',
   }, {
-    s: 3, column: 3, row: 1, c: '#C5CDD0', main: true,
+    s: 3, column: 3, row: 1, c: '#C5CDD0', main: true, position: 'right',
   },
 ]];
 

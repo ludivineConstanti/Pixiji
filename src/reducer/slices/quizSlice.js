@@ -5,6 +5,17 @@ import kanjisInitial from 'src/assets/dataQuiz/kanjisInitial';
 import kanjis from 'src/assets/dataQuiz/kanjis';
 import quizFormatter from 'src/helpers/formatters/quizFormatter';
 
+// put it there since I need it in 2 different actions
+const initialize = (state, payload) => {
+  const currentQuiz = kanjis.filter((e) => e.quizId === payload.quizId);
+  const formattedQuiz = quizFormatter(currentQuiz);
+  state.dataQuiz = formattedQuiz;
+  state.current.totalQuestions = formattedQuiz.length;
+  state.current.totalOptions = currentQuiz.length;
+  state.current.title = payload.title;
+  state.user.rightAnswers = [];
+};
+
 export const quizSlice = createSlice({
   name: 'quiz',
   initialState: {
@@ -14,6 +25,7 @@ export const quizSlice = createSlice({
       totalQuestions: 0,
       totalOptions: 0,
       title: 'loading...',
+      quizId: 0,
     },
     user: {
       answeredQuestion: false,
@@ -31,12 +43,8 @@ export const quizSlice = createSlice({
     },
     initializeQuiz: (state, { payload }) => {
       // {quizId: number}
-      const currentQuiz = kanjis.filter((e) => e.quizId === payload.quizId);
-      const formattedQuiz = quizFormatter(currentQuiz);
-      state.dataQuiz = formattedQuiz;
-      state.current.totalQuestions = formattedQuiz.length;
-      state.current.totalOptions = currentQuiz.length;
-      state.current.title = payload.title;
+      initialize(state, payload);
+      state.current.quizId = payload.quizId;
     },
     updateFirstQuestionQuiz: (state, { payload }) => {
       // {prop: ["prop1", "prop2"], value: ["valueforProp1", "valueForProp2"]}
@@ -74,19 +82,24 @@ export const quizSlice = createSlice({
       state.user.answeredCorrectly = false;
     },
     cheatingButtonFinishQuiz: (state) => {
-      state.dataQuiz.forEach((e) => {
-        let answerIndex;
-        if (e.infosAnswer.answerIndex) {
-          answerIndex = e.infosAnswer.answerIndex;
-        }
-        else {
-          answerIndex = Math.floor(Math.random() * e.arrAnswers.length);
-        }
-        state.user.rightAnswers.push(
-          { answer: e.arrAnswers[answerIndex], infosAnswer: { ...e.infosAnswer, answerIndex } },
-        );
-        state.dataQuiz = [];
-      });
+      if (state.current.totalQuestions !== state.user.rightAnswers.length) {
+        state.dataQuiz.forEach((e) => {
+          let answerIndex;
+          if (e.infosAnswer.answerIndex) {
+            answerIndex = e.infosAnswer.answerIndex;
+          }
+          else {
+            answerIndex = Math.floor(Math.random() * e.arrAnswers.length);
+          }
+          state.user.rightAnswers.push(
+            { answer: e.arrAnswers[answerIndex], infosAnswer: { ...e.infosAnswer, answerIndex } },
+          );
+          state.dataQuiz = [];
+        });
+      }
+      else {
+        initialize(state, { quizId: state.current.quizId, title: state.current.title });
+      }
     },
   },
 });

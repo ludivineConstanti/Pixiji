@@ -20,4 +20,5 @@ left: ${illuMarginL};
 export const SMonkeyOnRocks = styled.div`
 ${illuTouchingGround};
 bottom: ${buttonWidth};
+right: 0;
 `;

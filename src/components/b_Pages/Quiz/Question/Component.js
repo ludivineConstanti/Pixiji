@@ -10,6 +10,7 @@ import SQuestion from './SQuestion';
 const Question = ({
   dataObj, answeredQuestion, updateFirstQuestionQuiz,
 }) => {
+  if (!dataObj) return null;
   const { infosAnswer, arrAnswers } = dataObj;
   let rightAnswerIndex;
   if (!infosAnswer.answerIndex) {
