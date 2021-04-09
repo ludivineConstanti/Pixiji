@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import RabbitOnMoon from 'src/components/d_Illustrations/_compIllus/RabbitOnMoon';
 import SnowMonkeys from 'src/components/d_Illustrations/_compIllus/SnowMonkeys';
 import CraneSunset from 'src/components/d_Illustrations/_compIllus/CraneSunset';
+import SakuraDeer from 'src/components/d_Illustrations/_compIllus/SakuraDeer';
 
 const IlluIndex = ({ useCase, index, data }) => {
   // naming with useCase and index is also used in the dataIndex in _data
@@ -14,6 +15,7 @@ const IlluIndex = ({ useCase, index, data }) => {
     // tried with an array but didn't work, always returned the last element
     quiz0: <SnowMonkeys data={data} />,
     quiz1: <CraneSunset data={data} />,
+    quiz2: <SakuraDeer data={data} />,
   };
   return illuObj[`${useCase}${index}`];
 };

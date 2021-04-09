@@ -9,7 +9,14 @@ import Illu from 'src/components/d_Illustrations/Illu';
 const Home = () => (
   <>
     <Illu useCase="home" />
-
+    <TextWithTitle
+      title="Pixiji"
+      text={
+        ['This website is born from the thought that kanjis (Chinese characters that are used in the Japanese writing system) would work well with pixel art.',
+        ]
+}
+    />
+    <ButtonBig text="next" />
   </>
 );
 

@@ -4,7 +4,6 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 // == Import local
 import Menu from 'src/components/b_Fixed/Menu';

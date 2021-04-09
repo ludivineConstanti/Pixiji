@@ -94,7 +94,7 @@ export const quizSlice = createSlice({
           state.user.rightAnswers.push(
             { answer: e.arrAnswers[answerIndex], infosAnswer: { ...e.infosAnswer, answerIndex } },
           );
-          state.dataQuiz = [];
+          state.dataQuiz = quizFormatter(kanjisInitial);
         });
       }
       else {

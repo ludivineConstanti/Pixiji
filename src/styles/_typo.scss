@@ -25,6 +25,7 @@
 @mixin text {
   font-size: 14px;
   letter-spacing: 0.75px;
+  line-height: 20px;
 }
 
 @mixin component {

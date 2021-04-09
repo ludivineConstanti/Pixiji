@@ -10,7 +10,7 @@ import IlluIndex from 'src/components/d_Illustrations/_compIllus/IlluIndex';
 import SIllu from './SIllu';
 
 const Illu = ({
-  useCase, index, kanjisArr, updateValueGlobal,
+  useCase, index, animationCase, kanjisArr, updateValueGlobal,
 }) => {
   const { arrIllu, colorIllu } = arrDataIllu[useCase][index];
   // I use 2 groups to keep a reference for the divs
@@ -28,9 +28,9 @@ const Illu = ({
   }, []);
 
   useEffect(() => {
-    if (!kanjisArr.length) {
+    if (!kanjisArr.length && animationCase === 'quiz') {
       for (let i = 0; i < arrIllu.length; i += 1) {
-        squaresShrink(squareMainRef.current[i]);
+        // squaresShrink(squareMainRef.current[i]);
       }
     }
   }, [kanjisArr]);
@@ -66,6 +66,7 @@ const Illu = ({
 Illu.propTypes = {
   useCase: PropTypes.string.isRequired,
   index: PropTypes.number,
+  animationCase: PropTypes.string,
   kanjisArr: PropTypes.array,
   updateValueGlobal: PropTypes.func.isRequired,
 };
@@ -73,6 +74,7 @@ Illu.propTypes = {
 Illu.defaultProps = {
   kanjisArr: [],
   index: 0,
+  animationCase: 'deco',
 };
 
 // == Export

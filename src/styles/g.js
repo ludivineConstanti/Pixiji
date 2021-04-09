@@ -27,10 +27,12 @@ export const zIBigButton = 10;
 export const zIquestion = 2;
 export const zIMainSquare = 1;
 export const zIIlluWithGrowingSquare = 1;
+export const zIIlluBackground = -1;
 
 // dependant on their parents
 export const zIMainSquareHover = 2;
 export const zISquareHover = 1;
+export const zIElementInFront = 1;
 
 // property group
 export const contentL = `

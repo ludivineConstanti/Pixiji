@@ -1,0 +1,21 @@
+@use '../s';
+
+.sakuraDeer__tree0 {
+  @include s.gridContainer(12, 10);
+}
+
+.sakuraDeer__tree1 {
+  @include s.gridContainer(14, 12);
+}
+
+.sakuraDeer__tree2 {
+  @include s.gridContainer(7, 13);
+}
+
+.sakuraDeer__tree3 {
+  @include s.gridContainer(24, 16);
+}
+
+.sakuraDeer__deer {
+  @include s.gridContainer(27, 23);
+}

@@ -26,6 +26,7 @@ const Quiz = ({
   }, [match]);
   return (
     <>
+      <Illu useCase="quiz" index={currentQuiz[0].id - 1} animationCase="quiz" />
       <div className="quiz">
         <Header />
         { finishedQuiz ? (
@@ -41,7 +42,6 @@ const Quiz = ({
             </>
           )}
       </div>
-      <Illu useCase="quiz" index={currentQuiz[0].id - 1} />
     </>
   );
 };
