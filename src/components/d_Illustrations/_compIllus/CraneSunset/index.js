@@ -8,30 +8,30 @@ import {
   SSun, SCloudLeft, SCloudRight, SRockLeft, SBaby, SAdult, SRockRight, SWater,
 } from './SCraneSunset';
 
-const CraneSunset = ({ arrIlluFormatted }) => {
+const CraneSunset = ({ data }) => {
   const cC = 'craneSunset';
   return (
     <>
       <SSun className={`${cC}__sun`}>
-        {arrIlluFormatted[0]}
+        {data[0]}
       </SSun>
       <SCloudLeft className={`${cC}__cloudLeft`}>
-        {arrIlluFormatted[1]}
+        {data[1]}
       </SCloudLeft>
       <SCloudRight className={`${cC}__cloudRight`}>
-        {arrIlluFormatted[2]}
+        {data[2]}
       </SCloudRight>
       <SRockLeft className={`${cC}__rockLeft`}>
-        {arrIlluFormatted[3]}
+        {data[3]}
       </SRockLeft>
       <SBaby className={`${cC}__baby`}>
-        {arrIlluFormatted[4]}
+        {data[4]}
       </SBaby>
       <SAdult className={`${cC}__adult`}>
-        {arrIlluFormatted[5]}
+        {data[5]}
       </SAdult>
       <SRockRight className={`${cC}__rockRight`}>
-        {arrIlluFormatted[6]}
+        {data[6]}
       </SRockRight>
       <SWater />
     </>
@@ -39,7 +39,7 @@ const CraneSunset = ({ arrIlluFormatted }) => {
 };
 
 CraneSunset.propTypes = {
-  arrIlluFormatted: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 // == Export

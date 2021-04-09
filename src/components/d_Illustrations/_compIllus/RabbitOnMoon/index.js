@@ -5,19 +5,19 @@ import PropTypes from 'prop-types';
 // == Import
 import './style.scss';
 
-const RabbitOnMoon = ({ arrIlluFormatted }) => {
+const RabbitOnMoon = ({ data }) => {
   const cC = 'moonRabbit';
   return (
     <>
       <div className={`${cC}__planet`}>
-        {arrIlluFormatted[0]}
+        {data[0]}
       </div>
       <div className={`${cC}__rabbitOnMoon`}>
         <div className={`${cC}__rabbit`}>
-          {arrIlluFormatted[1]}
+          {data[1]}
         </div>
         <div className={`${cC}__moon`}>
-          {arrIlluFormatted[2]}
+          {data[2]}
         </div>
       </div>
     </>
@@ -25,7 +25,7 @@ const RabbitOnMoon = ({ arrIlluFormatted }) => {
 };
 
 RabbitOnMoon.propTypes = {
-  arrIlluFormatted: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 // == Export

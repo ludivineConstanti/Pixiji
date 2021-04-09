@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 import ButtonBig from 'src/components/e_Interactives/ButtonBig';
 import TextWithTitle from 'src/components/c_Partials/TextWithTitle';
-import IlluQuiz from 'src/components/d_Illustrations/IlluQuiz';
+import Illu from 'src/components/d_Illustrations/Illu';
 import Header from './Header';
 import Question from './Question';
 
@@ -41,7 +41,7 @@ const Quiz = ({
             </>
           )}
       </div>
-      <IlluQuiz quizId={currentQuiz[0].id} />
+      <Illu useCase="quiz" index={currentQuiz[0].id - 1} />
     </>
   );
 };
