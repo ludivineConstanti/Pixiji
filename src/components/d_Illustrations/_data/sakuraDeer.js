@@ -30,11 +30,11 @@ const tree1 = [[{
 }]];
 
 const tree2 = [[{
-  s: 6, column: 1, row: 2, c: pink, main: true,
+  s: 6, column: 1, row: 2, c: pinkL1,
+}, {
+  s: 3, column: 7, row: 5, c: pink, main: true,
 }], [{
-  s: 3, column: 7, row: 5, c: pinkL1, main: true,
-}], [{
-  s: 2, column: 8, row: 3, c: pink,
+  s: 2, column: 8, row: 3, c: pinkL1,
 }, {
   s: 4, column: 10, row: 1, c: pinkD1, main: true,
 }]];
@@ -64,7 +64,7 @@ const tree3 = [[{
 }, {
   s: 2, column: 11, row: 17, c: pink,
 }], [{
-  s: 2, column: 13, row: 19, c: pinkD1, main: true,
+  s: 2, column: 13, row: 19, c: pinkD1,
 }, {
   s: 4, column: 9, row: 21, c: pinkD2, main: true,
 }]];
@@ -168,6 +168,66 @@ const deer = [[{ // horn left
   s: 1, column: 6, row: 9, c: light,
 }, {
   s: 1, column: 5, row: 10, c: brownL2,
+}, { // neck
+  s: 1, column: 6, row: 10, c: brownD2,
+}, {
+  s: 1, column: 7, row: 9, c: brownD2,
+}, {
+  s: 1, column: 7, row: 10, c: brownD1,
+}, {
+  s: 4, column: 5, row: 11, c: brownL1, main: true,
+}, {
+  s: 2, column: 7, row: 15, c: brownD1,
+}, {
+  s: 1, column: 8, row: 17, c: brownD2,
+}], [{ // body
+  s: 6, column: 9, row: 11, c: brown, main: true,
+}, {
+  s: 2, column: 15, row: 11, c: brown,
+}, { // front leg
+  s: 2, column: 9, row: 17, c: brownD1,
+}, {
+  s: 1, column: 11, row: 17, c: brownD5,
+}, {
+  s: 1, column: 9, row: 19, c: brownD2,
+}, {
+  s: 1, column: 10, row: 19, c: brownD2,
+}, {
+  s: 1, column: 9, row: 20, c: brownD3,
+}, {
+  s: 1, column: 10, row: 20, c: brownD3,
+}, {
+  s: 1, column: 9, row: 21, c: brownD4,
+}, {
+  s: 1, column: 9, row: 22, c: brownD5,
+}, {
+  s: 1, column: 9, row: 23, c: brownD5,
+}, {
+  s: 1, column: 8, row: 24, c: brownD6,
+}], [{ // back leg
+  s: 2, column: 15, row: 13, c: brownD2,
+}, {
+  s: 2, column: 15, row: 15, c: brownD3,
+}, {
+  s: 4, column: 17, row: 11, c: brownL1, main: true,
+}, {
+  s: 1, column: 17, row: 15, c: brownD5,
+}, { // tail
+  s: 2, column: 21, row: 9, c: brownL2,
+}], [{
+  s: 3, column: 18, row: 15, c: brownD1, main: true,
+}, {
+  s: 2, column: 19, row: 18, c: brownD2,
+}, {
+  s: 1, column: 20, row: 20, c: brownD3,
+}, {
+  s: 1, column: 20, row: 21, c: brownD4,
+}, {
+  s: 1, column: 20, row: 22, c: brownD5,
+}, {
+  s: 1, column: 20, row: 23, c: brownD5,
+}, {
+  s: 1, column: 19, row: 24, c: brownD6,
 }]];
 
 export const arrSakuraDeer = [tree0, tree1, tree2, tree3, deer];
