@@ -32,7 +32,6 @@ export const zIIlluBackground = -1;
 // dependant on their parents
 export const zIMainSquareHover = 2;
 export const zISquareHover = 1;
-export const zIElementInFront = 1;
 
 // property group
 export const contentL = `

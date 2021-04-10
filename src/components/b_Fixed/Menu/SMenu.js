@@ -11,6 +11,6 @@ z-index: ${zImenu};
 }
 `;
 export const contentToggle = (tl, ref) => {
-  tl.to(ref, { paddingLeft: '0px', left: 0, ease: 'inOut' }, 0).play();
+  tl.to(ref, { left: 0, ease: 'inOut' }, 0).play();
   return tl;
 };

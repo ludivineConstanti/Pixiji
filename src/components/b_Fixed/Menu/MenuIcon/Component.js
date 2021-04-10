@@ -14,11 +14,7 @@ const MenuIcon = ({
 
   // need to have the timeline inside a hook
   // otherwise, it is recreated every time there is a change in the component's props
-  const [transition, setTransition] = useState({
-    hoverMenuIcon: gsap.timeline({ paused: true, duration: 0.1, ease: 'inOut' }),
-    hoverCloseIcon: gsap.timeline({ paused: true, duration: 0.1, ease: 'inOut' }),
-    click: gsap.timeline({ paused: true, duration: 0.2 }),
-  });
+  const [transition, setTransition] = useState({});
 
   const componentRef = useRef([]);
   const colorHsl = gsap.utils.splitColor(colorMain, true);
@@ -26,15 +22,11 @@ const MenuIcon = ({
 
   useEffect(() => {
     setTransition({
-      hoverMenuIcon: tHoverMenuIcon(transition.hoverMenuIcon, componentRef, colorMainL1),
-      hoverCloseIcon: tHoverCloseIcon(transition.hoverCloseIcon, componentRef, colorMainL1),
-      click: tClick(transition.click, componentRef, colorMain),
+      hoverMenuIcon: tHoverMenuIcon(componentRef, colorMainL1),
+      hoverCloseIcon: tHoverCloseIcon(componentRef, colorMainL1),
+      click: tClick(componentRef, colorMain),
     });
-  }, []);
-
-  useEffect(() => {
-    transition.click.reversed(!menuIsOpen);
-  }, [menuIsOpen]);
+  }, [colorMain]);
 
   return (
     <SMenuIcon
@@ -42,14 +34,15 @@ const MenuIcon = ({
       type="button"
       onClick={() => {
         updateValueGlobal({ obj: 'UI', prop: ['menuIsOpen'], value: [!menuIsOpen] });
+        transition.click.reversed(!menuIsOpen).play();
       }}
       onMouseOver={() => {
-        if (menuIsOpen) transition.hoverCloseIcon.play();
-        else transition.hoverMenuIcon.play();
+        // if (menuIsOpen) transition.hoverCloseIcon.play();
+        // else transition.hoverMenuIcon.play();
       }}
       onMouseLeave={() => {
-        if (menuIsOpen) transition.hoverCloseIcon.reverse();
-        else transition.hoverMenuIcon.reverse();
+        // if (menuIsOpen) transition.hoverCloseIcon.reverse();
+        // else transition.hoverMenuIcon.reverse();
       }}
       ref={(e) => componentRef.current.push(e)}
       colorMain={colorMain}

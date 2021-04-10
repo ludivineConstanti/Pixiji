@@ -8,8 +8,7 @@ import {
   SGround,
   STrunk0, STree0,
   STrunk1, STree1,
-  STrunk2, STree2,
-  STrunk3, STree3,
+  STrunk2, STree2P1, STree2P2,
   SDeer, SIllu,
 } from './SSakuraDeer';
 
@@ -28,13 +27,12 @@ const SakuraDeer = ({ data }) => {
           {data[1]}
         </STree1>
         <STrunk2 />
-        <STree2 className={`${cC}__tree2`}>
+        <STree2P1 className={`${cC}__tree2P1`}>
           {data[2]}
-        </STree2>
-        <STrunk3 />
-        <STree3 className={`${cC}__tree3`}>
+        </STree2P1>
+        <STree2P2 className={`${cC}__tree2P2`}>
           {data[3]}
-        </STree3>
+        </STree2P2>
         <SDeer className={`${cC}__deer`}>
           {data[4]}
         </SDeer>

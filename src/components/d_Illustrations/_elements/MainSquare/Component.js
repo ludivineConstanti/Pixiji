@@ -67,7 +67,7 @@ const MainSquare = React.forwardRef(({
             height: `${cNewSize}vw`,
             width: `${cNewSize}vw`,
             fontSize: '24px',
-            backgroundColor: `hsl(${colorHsl[0]}, ${colorHsl[1] > 75 ? 75 : colorHsl[1]}%, ${colorHsl[2] > 50 ? 50 : colorHsl[2]}%)`,
+            backgroundColor: `hsl(${colorHsl[0]}, ${colorHsl[1] > 75 ? 75 : colorHsl[1]}%, ${colorHsl[2] > 50 ? 50 : colorHsl[2] - 10}%)`,
           }).to(infosRef.current, duration - 0.1, {
             ease: 'power1.inOut', display: 'block', opacity: 1, margin: '8px 0 8px 0',
             // the animation of the second group needs a slight delay

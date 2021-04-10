@@ -29,44 +29,48 @@ const tree1 = [[{
   s: 4, column: 7, row: 11, c: pink, main: true,
 }]];
 
-const tree2 = [[{
-  s: 6, column: 1, row: 2, c: pinkL1,
+/* const tree2 = [[{
+  s: 2, column: 1, row: 2, c: pinkL1,
 }, {
-  s: 3, column: 7, row: 5, c: pink, main: true,
+  s: 3, column: 3, row: 3, c: pink, main: true,
 }], [{
-  s: 2, column: 8, row: 3, c: pinkL1,
+  s: 2, column: 6, row: 1, c: pinkL1,
 }, {
-  s: 4, column: 10, row: 1, c: pinkD1, main: true,
+  s: 4, column: 8, row: 1, c: pinkD1, main: true,
+}]]; */
+
+const tree2P1 = [[{
+  s: 4, column: 1, row: 5, c: pinkD1, main: true,
+}, {
+  s: 2, column: 5, row: 3, c: pink,
+}], [{
+  s: 2, column: 7, row: 1, c: pinkL1,
+}, {
+  s: 6, column: 5, row: 9, c: pinkD2, main: true,
+}], [{
+  s: 2, column: 9, row: 3, c: pinkD2,
+}, {
+  s: 4, column: 11, row: 5, c: pinkD1, main: true,
+}], [{
+  s: 2, column: 19, row: 3, c: pinkD1,
+}, {
+  s: 6, column: 15, row: 5, c: pinkL1, main: true, position: 'right',
+}], [{
+  s: 2, column: 11, row: 9, c: pink,
+}, {
+  s: 6, column: 13, row: 11, c: pinkD1, main: true,
 }]];
 
-const tree3 = [[{
-  s: 2, column: 1, row: 3, c: pink,
+const tree2P2 = [[{
+  s: 4, column: 1, row: 1, c: pinkD2, main: true,
 }, {
-  s: 2, column: 3, row: 1, c: pinkL1,
-}, {
-  s: 6, column: 1, row: 9, c: pinkD2, main: true,
+  s: 2, column: 7, row: 1, c: pink,
 }], [{
-  s: 2, column: 5, row: 3, c: pinkD2,
+  s: 2, column: 9, row: 3, c: pinkD1,
 }, {
-  s: 4, column: 7, row: 5, c: pinkD1, main: true,
-}], [{
-  s: 2, column: 15, row: 3, c: pinkD1,
+  s: 4, column: 5, row: 5, c: pinkD2, main: true,
 }, {
-  s: 6, column: 11, row: 5, c: pinkL1, main: true, position: 'right',
-}], [{
-  s: 2, column: 7, row: 9, c: pink,
-}, {
-  s: 6, column: 9, row: 11, c: pinkD1, main: true,
-}, {
-  s: 2, column: 15, row: 17, c: pinkL1,
-}], [{
-  s: 4, column: 5, row: 17, c: pinkD2, main: true,
-}, {
-  s: 2, column: 11, row: 17, c: pink,
-}], [{
-  s: 2, column: 13, row: 19, c: pinkD1,
-}, {
-  s: 4, column: 9, row: 21, c: pinkD2, main: true,
+  s: 2, column: 11, row: 1, c: pinkL1,
 }]];
 
 const light = '#FFE8DD';
@@ -230,5 +234,5 @@ const deer = [[{ // horn left
   s: 1, column: 19, row: 24, c: brownD6,
 }]];
 
-export const arrSakuraDeer = [tree0, tree1, tree2, tree3, deer];
+export const arrSakuraDeer = [tree0, tree1, tree2P1, tree2P2, deer];
 export const colorSakuraDeer = '#260101';

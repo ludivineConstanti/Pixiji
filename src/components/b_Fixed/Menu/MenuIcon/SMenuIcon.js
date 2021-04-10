@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { gsap } from 'gsap';
 
 import { buttonWidth, buttonMenuIconSize, strokeWidth } from 'src/styles/g';
 
@@ -28,7 +29,8 @@ export default styled.button`
 // ref[2] = icon stroke bottom
 // ref[3] = rectangle containing the icon
 // ref[4] = biggest rectangle surrounding everything
-export const tHoverMenuIcon = (tl, ref, color) => {
+export const tHoverMenuIcon = (ref, color) => {
+  const tl = gsap.timeline({ paused: true, duration: 0.1, ease: 'inOut' });
   tl.to(ref.current[4], {
     scale: 0.9,
   }, 0)
@@ -42,7 +44,8 @@ export const tHoverMenuIcon = (tl, ref, color) => {
   return tl;
 };
 
-export const tHoverCloseIcon = (tl, ref, color) => {
+export const tHoverCloseIcon = (ref, color) => {
+  const tl = gsap.timeline({ paused: true, duration: 0.1, ease: 'inOut' });
   tl.to(ref.current[4], {
     backgroundColor: color,
   });
@@ -50,7 +53,8 @@ export const tHoverCloseIcon = (tl, ref, color) => {
 };
 
 // new css after toggle is activated
-export const tClick = (tl, ref, color) => {
+export const tClick = (ref, color) => {
+  const tl = gsap.timeline({ paused: true, duration: 0.2 });
   // 0 at the end of each "to" makes all of them start at the beginning
 
   // background = biggest container square
@@ -86,6 +90,6 @@ export const tClick = (tl, ref, color) => {
     y: -20,
     rotation: '315_ccw',
     ease: 'power1.out',
-  }, 0).play();
+  }, 0);
   return tl;
 };
