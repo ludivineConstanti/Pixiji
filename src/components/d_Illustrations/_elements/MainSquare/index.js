@@ -32,9 +32,13 @@ const MainSquare = React.forwardRef(({
 
   useEffect(() => {
     if (!answer && kanjisArr[kanjiIndex]) {
-      // could do it with one state but this makes it a bit easier for me, for the naming
-      setAnswer(kanjisArr[kanjiIndex].answer);
-      setInfos(kanjisArr[kanjiIndex].infosAnswer);
+      if (kanjisArr[kanjiIndex].answer) {
+        setAnswer(kanjisArr[kanjiIndex].answer);
+        setInfos(kanjisArr[kanjiIndex].infosAnswer);
+      }
+      else {
+        setAnswer(kanjisArr[kanjiIndex]);
+      }
     }
     else if (!kanjisArr.length) {
       setAnswer(false);
