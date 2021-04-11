@@ -1,13 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import kanjisArrFormatter from 'src/helpers/formatters/kanjisArrFormatter';
+import kanjisArrFormatter, { getKanjisNum } from 'src/helpers/formatters/kanjisArrFormatter';
+import data from 'src/components/d_Illustrations/_data/dataIndex';
 
 export const kanjisArrSlice = createSlice({
   name: 'kanjisArr',
   initialState: {
-    home: kanjisArrFormatter(17),
-    readMe: '',
-    about: '',
+    home: kanjisArrFormatter(getKanjisNum(data.home[0].arrIllu)),
+    readMe: kanjisArrFormatter(getKanjisNum(data.readMe[0].arrIllu)),
+    about: kanjisArrFormatter(getKanjisNum(data.about[0].arrIllu)),
     error404: '',
   },
 

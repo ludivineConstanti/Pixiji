@@ -40,6 +40,7 @@ const Menu = ({
           <ul className={`${cC}__content__links__container`}>
             <MenuLink text="Home" path="" />
             <MenuLink text="Quizzes" path="quizzes" />
+            <MenuLink text="Read me" path="read-me" />
             <MenuLink text="About" path="about" />
           </ul>
         </nav>

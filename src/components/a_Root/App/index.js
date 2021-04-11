@@ -11,6 +11,8 @@ import Menu from 'src/components/b_Fixed/Menu';
 import Home from 'src/components/b_Pages/Home';
 import Quizzes from 'src/components/b_Pages/Quizzes';
 import Quiz from 'src/components/b_Pages/Quiz';
+import ReadMe from 'src/components/b_Pages/ReadMe';
+import About from 'src/components/b_Pages/About';
 // == Composant
 const App = () => (
   <>
@@ -24,6 +26,12 @@ const App = () => (
       </Route>
       <Route path="/quiz/:slug" exact>
         <Quiz />
+      </Route>
+      <Route path="/read-me" exact>
+        <ReadMe />
+      </Route>
+      <Route path="/about" exact>
+        <About />
       </Route>
       <Route>
         error 404 not found

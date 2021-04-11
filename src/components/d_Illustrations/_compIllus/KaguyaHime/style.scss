@@ -1,0 +1,5 @@
+@use '../s';
+
+.kaguyaHime {
+  @include s.gridContainer(18, 24);
+}

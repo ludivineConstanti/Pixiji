@@ -9,3 +9,11 @@ export default (kanjisNum) => {
   }
   return kanjisArr;
 };
+
+export const getKanjisNum = (arrOfArrs) => {
+  let length = 0;
+  arrOfArrs.forEach((arr) => {
+    length += arr.length;
+  });
+  return length;
+};

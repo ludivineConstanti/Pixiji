@@ -1,0 +1,5 @@
+@use '../s';
+
+.kodomoNoHi__fish0, .kodomoNoHi__fish1, .kodomoNoHi__fish2 {
+  @include s.gridContainer(7, 23);
+}

@@ -38,3 +38,8 @@ export default connect(mapStateToProps, {}, null, { forwardRef: true })(Componen
 => I used scale instead.  
 => I feel like every time I use width and height for animations, instead of scale, GSAP is trying to tell me that I shouldn't do it.  
 => I read some comments on the internet about it, it seems scale does generally produce smoother results because of "subpixel rendering". It is generally recommended to use CSS transforms and opacity properties (x, y rotation, rotation, rotationX, rotationY, scaleX, scaleY or just scale, skewX and skewY) for animation. "Changing values that are not CSS Transforms or opacity can cause the browser to re-do its layout of the page which in extreme situations can hinder performance." (src: course from creative coding club).
+
+## Hue changing on hover even though it was not animated
+
+=> The animation that I use to make the squares darker on hover (so that the kanjis and their translation are more readable) should only animate the saturation and lightness of those square, but it changed from purple to green to red very fast for one of them (which was originally red).
+=> I tested with an over hue as a starting color (the one I used originally was 360), it worked by replacing 360 by 359, apparently GSAP has some trouble with some values (this one being the maximum hue we can put, it could be the reason?).

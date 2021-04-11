@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 // == Import
 import PageWithText from 'src/components/c_Partials/PageWithText';
 
-const Home = ({ kanjisArr }) => (
+const About = ({ kanjisArr }) => (
   <>
     <PageWithText
-      illu={{ useCase: 'home', kanjisArr }}
+      illu={{ useCase: 'readMe', kanjisArr }}
       textWithTitle={{
-        title: 'Pixiji',
-        text: ['This website is born from the thought that kanjis (Chinese characters that are used in the Japanese writing system) would work well with pixel art.',
+        title: 'Read me',
+        text: ['This website was made as a portfolio project, therefore it has feature (like the cheating buttons in the menu) that facilitates its use. You can learn more by clicking on this link.',
         ],
       }}
       buttonBig={{ text: 'next', show: true }}
@@ -19,9 +19,9 @@ const Home = ({ kanjisArr }) => (
   </>
 );
 
-Home.propTypes = {
+About.propTypes = {
   kanjisArr: PropTypes.array.isRequired,
 };
 
 // == Export
-export default Home;
+export default About;
