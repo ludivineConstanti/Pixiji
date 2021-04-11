@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
   answeredQuestion: state.quiz.user.answeredQuestion,
   answeredCorrectly: state.quiz.user.answeredCorrectly,
   finishedQuiz: state.quiz.current.totalQuestions === state.quiz.user.rightAnswers.length,
+  kanjisArr: state.quiz.user.rightAnswers,
   dataQuizzes: state.quiz.dataQuizzes,
 });
 

@@ -56,7 +56,7 @@ const Illu = ({
   let beginAtIndex = 0;
   for (let i = 0; i < arrIllu.length; i += 1) {
     arrIlluFormatted.push(
-      createIllustration(arrIllu[i], i, squareMainRef, squareGroupRef, beginAtIndex),
+      createIllustration(arrIllu[i], i, squareMainRef, squareGroupRef, beginAtIndex, kanjisArr),
     );
     beginAtIndex += arrIllu[i].length;
   }

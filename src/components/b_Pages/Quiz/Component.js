@@ -14,7 +14,13 @@ import Header from './Header';
 import Question from './Question';
 
 const Quiz = ({
-  answeredQuestion, answeredCorrectly, finishedQuiz, dataQuizzes, initializeQuiz, nextQuestionQuiz,
+  answeredQuestion,
+  answeredCorrectly,
+  finishedQuiz,
+  kanjisArr,
+  dataQuizzes,
+  initializeQuiz,
+  nextQuestionQuiz,
 }) => {
   const match = useRouteMatch();
   const currentQuiz = dataQuizzes.filter((quiz) => quiz.slug === match.params.slug);
@@ -26,7 +32,7 @@ const Quiz = ({
   }, [match]);
   return (
     <>
-      <Illu useCase="quiz" index={currentQuiz[0].id - 1} animationCase="quiz" />
+      <Illu useCase="quiz" index={currentQuiz[0].id - 1} animationCase="quiz" kanjisArr={kanjisArr} />
       <div className="quiz">
         <Header />
         { finishedQuiz ? (
@@ -50,6 +56,7 @@ Quiz.propTypes = {
   answeredQuestion: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
   answeredCorrectly: PropTypes.bool.isRequired,
   finishedQuiz: PropTypes.bool.isRequired,
+  kanjisArr: PropTypes.array.isRequired,
   dataQuizzes: PropTypes.array.isRequired,
   initializeQuiz: PropTypes.func.isRequired,
   nextQuestionQuiz: PropTypes.func.isRequired,

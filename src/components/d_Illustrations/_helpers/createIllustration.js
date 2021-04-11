@@ -12,7 +12,7 @@ const cRef = (e, groupIndex, groupNum, squareGroups, squareContainers) => {
   squareContainers.current[groupNum].push(e);
 };
 
-export default (data, groupIndex, squareGroups, squareContainers, numPreviousGroups = 0) => {
+export default (data, groupIndex, squareGroups, squareContainers, numPreviousGroups = 0, kanjisArr) => {
   const formattedData = [];
   let counter = 0;
   for (let i = 0; i < data.length; i += 1) {
@@ -29,6 +29,7 @@ export default (data, groupIndex, squareGroups, squareContainers, numPreviousGro
           color={square.c}
           kanjiIndex={numPreviousGroups + i}
           position={square.position || ''}
+          kanjisArr={kanjisArr}
         />);
       }
       else {
@@ -40,6 +41,7 @@ export default (data, groupIndex, squareGroups, squareContainers, numPreviousGro
           ref={(e) => cRef(e, groupIndex, numPreviousGroups + i, squareGroups, squareContainers)}
           color={square.c}
           kanjiIndex={numPreviousGroups + i}
+          kanjisArrLength={kanjisArr.length}
         />);
       }
     });
