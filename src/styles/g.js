@@ -3,7 +3,7 @@
 export const strokeWidth = '2px';
 // buttons
 export const buttonWidth = 'calc(4vw + 56px)';
-export const buttonMenuIconSize = 'calc(1vw + 24px)';
+export const buttonMenuIconSize = `calc(${buttonWidth} / 3)`;
 // buttons to answer in the quiz
 export const buttonKanjiSize = '72px';
 export const buttonKanjiSizeGap = '24px';

@@ -8,9 +8,9 @@ import {
 // == Import local
 import Menu from 'src/components/b_Fixed/Menu';
 // Pages
-import Quiz from 'src/components/b_Pages/Quiz';
 import Home from 'src/components/b_Pages/Home';
-
+import Quizzes from 'src/components/b_Pages/Quizzes';
+import Quiz from 'src/components/b_Pages/Quiz';
 // == Composant
 const App = () => (
   <>
@@ -18,6 +18,9 @@ const App = () => (
     <Switch>
       <Route path="/" exact>
         <Home />
+      </Route>
+      <Route path="/quizzes" exact>
+        <Quizzes />
       </Route>
       <Route path="/quiz/:slug" exact>
         <Quiz />

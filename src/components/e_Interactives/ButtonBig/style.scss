@@ -2,41 +2,8 @@
 
 .buttonBig {
   @include typo.component;
-  position: fixed;
-  bottom: 0;
-  line-height: 20px;
-
-  // need because of the gsap animation
-  // (if change the width)
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  
-  color: white;
 
   &__result {
     @include typo.componentSmall;
-  }
-  &__arrow {
-    position: relative;
-    height: 15px;
-    margin-top: 8px;
-    width: 100%;
-    &--stroke {
-      $arrowWidth: 24px;
-      position: absolute;
-      width: $arrowWidth;
-      margin: auto;
-      left:  calc(50% - #{$arrowWidth} / 2);
-    }
-    &--end {
-      position: absolute;
-      height: 12px;
-      width: 12px;
-      left: calc( 50% );
-      transform: rotate(45deg);
-      border-style: solid;
-    }
   }
 }

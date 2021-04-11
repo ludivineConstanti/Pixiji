@@ -5,10 +5,11 @@ import { gsap } from 'gsap';
 
 // == Import
 import './style.scss';
+import Arrow from 'src/components/e_Interactives/Arrow';
 import SButtonBig, { tIn } from './SButtonBig';
 
 const ButtonBig = ({
-  comment, text, onClick, colorMain, show,
+  comment, text, onClick, colorMain, show, side,
 }) => {
   // cC for classComponent
   const cC = 'buttonBig';
@@ -34,14 +35,12 @@ const ButtonBig = ({
       onClick={onClick}
       type="button"
       colorMain={colorMain}
+      side={side}
     >
       {show && (
       <>
         <span className={`${cC}__result`}>{comment}</span> {text}
-        <div className={`${cC}__arrow`}>
-          <div className={`${cC}__arrow--stroke`} />
-          <div className={`${cC}__arrow--end`} />
-        </div>
+        <Arrow />
       </>
       )}
     </SButtonBig>
@@ -54,11 +53,13 @@ ButtonBig.propTypes = {
   onClick: PropTypes.func,
   colorMain: PropTypes.string.isRequired,
   show: PropTypes.bool.isRequired,
+  side: PropTypes.string,
 };
 
 ButtonBig.defaultProps = {
   comment: '',
   onClick: () => {},
+  side: 'left',
 };
 
 // == Export

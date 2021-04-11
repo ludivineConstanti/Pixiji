@@ -14,19 +14,29 @@ const MenuIcon = ({
 
   // need to have the timeline inside a hook
   // otherwise, it is recreated every time there is a change in the component's props
+  const [transitionClick, setTransitionClick] = useState(
+    gsap.timeline({ paused: true, duration: 0.2 }),
+  );
   const [transition, setTransition] = useState({});
 
-  const componentRef = useRef([]);
+  const cRef = useRef([]);
   const colorHsl = gsap.utils.splitColor(colorMain, true);
   const colorMainL1 = `hsl(${colorHsl[0]}, ${colorHsl[1]}%, ${colorHsl[2] + 10}%)`;
 
   useEffect(() => {
+    for (let i = 0; i < 3; i += 1) {
+      gsap.to(cRef.current[i], { backgroundColor: colorMainL1 });
+    }
     setTransition({
-      hoverMenuIcon: tHoverMenuIcon(componentRef, colorMainL1),
-      hoverCloseIcon: tHoverCloseIcon(componentRef, colorMainL1),
-      click: tClick(componentRef, colorMain),
+      hoverMenuIcon: tHoverMenuIcon(cRef, colorMainL1),
+      hoverCloseIcon: tHoverCloseIcon(cRef, colorMainL1),
     });
+    setTransitionClick(tClick(transitionClick, cRef, colorMain));
   }, [colorMain]);
+
+  useEffect(() => {
+    setTransitionClick(transitionClick.reversed(!menuIsOpen));
+  }, [menuIsOpen]);
 
   return (
     <SMenuIcon
@@ -34,23 +44,23 @@ const MenuIcon = ({
       type="button"
       onClick={() => {
         updateValueGlobal({ obj: 'UI', prop: ['menuIsOpen'], value: [!menuIsOpen] });
-        transition.click.reversed(!menuIsOpen).play();
+        transitionClick.play();
       }}
       onMouseOver={() => {
-        // if (menuIsOpen) transition.hoverCloseIcon.play();
-        // else transition.hoverMenuIcon.play();
+        if (menuIsOpen) transition.hoverCloseIcon.play();
+        else transition.hoverMenuIcon.play();
       }}
       onMouseLeave={() => {
-        // if (menuIsOpen) transition.hoverCloseIcon.reverse();
-        // else transition.hoverMenuIcon.reverse();
+        if (menuIsOpen) transition.hoverCloseIcon.reverse();
+        else transition.hoverMenuIcon.reverse();
       }}
-      ref={(e) => componentRef.current.push(e)}
+      ref={(e) => cRef.current.push(e)}
       colorMain={colorMain}
     >
-      <div className={`${cC}__container`} ref={(e) => componentRef.current.push(e)}>
-        <div className={`${cC}__top`} ref={(e) => componentRef.current.push(e)} />
-        <div className={`${cC}__middle`} ref={(e) => componentRef.current.push(e)} />
-        <div className={`${cC}__bottom`} ref={(e) => componentRef.current.push(e)} />
+      <div className={`${cC}__container`} ref={(e) => cRef.current.push(e)}>
+        <div className={`${cC}__top`} ref={(e) => cRef.current.push(e)} />
+        <div className={`${cC}__middle`} ref={(e) => cRef.current.push(e)} />
+        <div className={`${cC}__bottom`} ref={(e) => cRef.current.push(e)} />
       </div>
     </SMenuIcon>
   );

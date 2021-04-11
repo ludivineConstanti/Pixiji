@@ -53,8 +53,7 @@ export const tHoverCloseIcon = (ref, color) => {
 };
 
 // new css after toggle is activated
-export const tClick = (ref, color) => {
-  const tl = gsap.timeline({ paused: true, duration: 0.2 });
+export const tClick = (tl, ref, color) => {
   // 0 at the end of each "to" makes all of them start at the beginning
 
   // background = biggest container square
@@ -64,7 +63,7 @@ export const tClick = (ref, color) => {
   tl.to(ref.current[4], {
     scale: 0.7,
     backgroundColor: color,
-  }, 0);
+  });
   // div containing the 3 strokes
   tl.to(ref.current[3], {
     scale: 1.5,
@@ -72,22 +71,22 @@ export const tClick = (ref, color) => {
   }, 0);
   // first stroke turns into cross
   tl.to(ref.current[0], {
+    scaleX: 1.35,
     backgroundColor: 'white',
-    // transformOrigin: '0% 0%',
-    y: 20,
+    transformOrigin: '0% 0%',
     rotation: '45_cw',
     ease: 'power1.out',
   }, 0);
   // second stroke disappears
   tl.to(ref.current[1], {
-    width: 0,
-    height: 0,
+    scale: 0,
     ease: 'power1.out',
   }, 0);
   // third stroke turns into cross
   tl.to(ref.current[2], {
+    scaleX: 1.35,
     backgroundColor: 'white',
-    y: -20,
+    transformOrigin: '0% 100%',
     rotation: '315_ccw',
     ease: 'power1.out',
   }, 0);

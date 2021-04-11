@@ -4,22 +4,23 @@ import PropTypes from 'prop-types';
 
 // == Import
 import './style.scss';
+import { SPlanet, SRabbitOnMoon } from './SRabbitOnMoon';
 
 const RabbitOnMoon = ({ data }) => {
   const cC = 'moonRabbit';
   return (
     <>
-      <div className={`${cC}__planet`}>
+      <SPlanet className={`${cC}__planet`}>
         {data[0]}
-      </div>
-      <div className={`${cC}__rabbitOnMoon`}>
+      </SPlanet>
+      <SRabbitOnMoon className={`${cC}__rabbitOnMoon`}>
         <div className={`${cC}__rabbit`}>
           {data[1]}
         </div>
         <div className={`${cC}__moon`}>
           {data[2]}
         </div>
-      </div>
+      </SRabbitOnMoon>
     </>
   );
 };

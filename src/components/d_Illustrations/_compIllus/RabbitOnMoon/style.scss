@@ -1,9 +1,7 @@
 @use '../s';
 
 .moonRabbit__planet {
-  position: absolute;
   @include s.gridContainer(10, 10);
-  @include s.quizContainerTopLeft(10, 0);
 }
 
 $rabbitHeight: 15;
@@ -22,9 +20,7 @@ $moonWidth: 28;
 }
 
 .moonRabbit__rabbitOnMoon {
-  position: fixed;
   @include s.dimensions($rabbitHeight + $moonHeight, $moonWidth);
-  @include s.quizContainerBottomRight(0, 4);
   display: grid;
   grid-template-columns: calc(10 * #{s.$squareUnit});
 }

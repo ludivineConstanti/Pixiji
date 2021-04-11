@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
-import { squaresShrink, squaresGrow } from 'src/components/d_Illustrations/_helpers/transitions';
+import { aQuiz, aQuizPreview, squaresGrow } from 'src/components/d_Illustrations/_helpers/transitions';
 import createIllustration from 'src/components/d_Illustrations/_helpers/createIllustration';
 import arrDataIllu from 'src/components/d_Illustrations/_data/dataIndex';
 import IlluIndex from 'src/components/d_Illustrations/_compIllus/IlluIndex';
@@ -30,7 +30,12 @@ const Illu = ({
   useEffect(() => {
     if (!kanjisArr.length && animationCase === 'quiz') {
       for (let i = 0; i < arrIllu.length; i += 1) {
-        // squaresShrink(squareMainRef.current[i]);
+        aQuiz(squareMainRef.current[i]);
+      }
+    }
+    else if (animationCase === 'quizPreview') {
+      for (let i = 0; i < arrIllu.length; i += 1) {
+        aQuizPreview(squareMainRef.current[i]);
       }
     }
   }, [kanjisArr]);

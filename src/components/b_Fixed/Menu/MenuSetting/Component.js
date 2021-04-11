@@ -16,16 +16,14 @@ const MenuSetting = ({
   const colorMainL1 = `hsl(${colorHsl[0]}, ${colorHsl[1]}%, ${colorHsl[2] + 10}%)`;
   const colorMainL2 = `hsl(${colorHsl[0]}, ${colorHsl[1]}%, ${colorHsl[2] + 20}%)`;
   const cRef = useRef(null);
-  const [transition, setTransition] = useState({
-    hover: gsap.timeline({ paused: true, duration: 0.05 }),
-    click: gsap.timeline({ paused: true, duration: 0.01 }),
-  });
+  const [transition, setTransition] = useState({});
   useEffect(() => {
+    gsap.to(cRef.current, { backgroundColor: colorMainL1 });
     setTransition({
-      hover: tHover(transition.hover, cRef.current, colorMainL2),
-      click: tClick(transition.click, cRef.current, colorMain),
+      hover: tHover(cRef.current, colorMainL2),
+      click: tClick(cRef.current, colorMain),
     });
-  }, []);
+  }, [colorMain]);
 
   return (
     <SMenuSetting
