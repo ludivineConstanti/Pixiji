@@ -1,5 +1,9 @@
 @use '../s';
 
-.kaguyaHime {
+.kaguyaHime__moon {
+  @include s.gridContainer(4, 4);
+}
+
+.kaguyaHime__hime {
   @include s.gridContainer(18, 24);
 }

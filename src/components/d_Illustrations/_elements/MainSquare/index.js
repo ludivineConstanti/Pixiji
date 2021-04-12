@@ -61,8 +61,12 @@ const MainSquare = React.forwardRef(({
         const cWidth = cRef.current.clientWidth / document.documentElement.clientWidth * 100;
         const cNewSize = 8.8;
         const cOffset = (cWidth - cNewSize) / 2;
-        let light = colorHsl[2] > 50 ? 50 : colorHsl[2] - 10;
-        if (colorHsl[2] < 20) light = colorHsl[2];
+        let [hue, light, saturation] = colorHsl;
+        if (saturation > 50) saturation = 50;
+        if (light > 50) light = 50;
+        else light -= 10;
+        // eslint-disable-next-line prefer-destructuring
+        if (light < 20) light = colorHsl[2];
         if (answer) {
           cTl.timeScale(0.7).to(cRef.current, duration, {
             // needs to have a higher z-index than the rest (current highest is 2)
@@ -73,7 +77,7 @@ const MainSquare = React.forwardRef(({
             height: `${cNewSize}vw`,
             width: `${cNewSize}vw`,
             fontSize: '24px',
-            backgroundColor: `hsl(${colorHsl[0]}, ${colorHsl[1] > 75 ? 75 : colorHsl[1]}%, ${light}%)`,
+            backgroundColor: `hsl(${hue}, ${saturation}%, ${light}%)`,
           }).to(infosRef.current, duration - 0.1, {
             ease: 'power1.inOut', display: 'block', opacity: 1, margin: '8px 0 8px 0',
             // the animation of the second group needs a slight delay
