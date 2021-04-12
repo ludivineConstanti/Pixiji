@@ -42,6 +42,7 @@ const Menu = ({
             <MenuLink text="Quizzes" path="quizzes" />
             <MenuLink text="Read me" path="read-me" />
             <MenuLink text="About" path="about" />
+            <MenuLink text="Page 404" path="404-not-found" />
           </ul>
         </nav>
         <div

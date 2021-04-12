@@ -7,7 +7,7 @@ import {
 export const SSun = styled.div`
 position: fixed;
 left: ${illuMarginL};
-top: ${buttonWidth}
+top: ${buttonWidth};
 `;
 
 export const SCloudLeft = styled.div`

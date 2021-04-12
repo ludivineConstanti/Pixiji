@@ -9,6 +9,7 @@ import CraneSunset from 'src/components/d_Illustrations/_compIllus/CraneSunset';
 import SakuraDeer from 'src/components/d_Illustrations/_compIllus/SakuraDeer';
 import KaguyaHime from 'src/components/d_Illustrations/_compIllus/KaguyaHime';
 import KodomoNoHi from 'src/components/d_Illustrations/_compIllus/KodomoNoHi';
+import CloudDragon from 'src/components/d_Illustrations/_compIllus/CloudDragon';
 
 const IlluIndex = ({ useCase, index, data }) => {
   // naming with useCase and index is also used in the dataIndex in _data
@@ -16,6 +17,7 @@ const IlluIndex = ({ useCase, index, data }) => {
     home0: <RabbitOnMoon data={data} />,
     readMe0: <KodomoNoHi data={data} />,
     about0: <KaguyaHime data={data} />,
+    error4040: <CloudDragon data={data} />,
     // tried with an array but didn't work, always returned the last element
     quiz0: <SnowMonkeys data={data} />,
     quiz1: <CraneSunset data={data} />,

@@ -4,6 +4,7 @@ import { arrCraneSunset, colorCraneSunset } from './craneSunset';
 import { arrSakuraDeer, colorSakuraDeer } from './sakuraDeer';
 import { arrKaguyaHime, colorKaguyaHime } from './kaguyaHime';
 import { arrKodomoNoHi, colorKodomoNoHi } from './kodomoNoHi';
+import { arrCloudDragon, colorCloudDragon } from './cloudDragon';
 
 // naming with useCase and index is also used in the IlluIndex in _compuIllus
 export default {
@@ -15,6 +16,9 @@ export default {
   ],
   about: [
     { arrIllu: arrKaguyaHime, colorIllu: colorKaguyaHime },
+  ],
+  error404: [
+    { arrIllu: arrCloudDragon, colorIllu: colorCloudDragon },
   ],
   quiz: [
     { arrIllu: arrSnowMonkeys, colorIllu: colorSnowMonkeys },

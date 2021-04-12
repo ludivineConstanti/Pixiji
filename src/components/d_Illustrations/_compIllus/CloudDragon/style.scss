@@ -1,0 +1,9 @@
+@use '../s';
+
+.cloudDragon__dragon {
+  @include s.gridContainer(18, 27);
+}
+
+.cloudDragon__cloud {
+  @include s.gridContainer(3, 20);
+}

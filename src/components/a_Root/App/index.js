@@ -13,6 +13,7 @@ import Quizzes from 'src/components/b_Pages/Quizzes';
 import Quiz from 'src/components/b_Pages/Quiz';
 import ReadMe from 'src/components/b_Pages/ReadMe';
 import About from 'src/components/b_Pages/About';
+import Error404 from 'src/components/b_Pages/Error404';
 // == Composant
 const App = () => (
   <>
@@ -34,7 +35,7 @@ const App = () => (
         <About />
       </Route>
       <Route>
-        error 404 not found
+        <Error404 />
       </Route>
     </Switch>
   </>
