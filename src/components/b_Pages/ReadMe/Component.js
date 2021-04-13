@@ -14,7 +14,7 @@ const About = ({ kanjisArr }) => (
         text: ['This website was made as a portfolio project, therefore it has feature (like the cheating buttons in the menu) that facilitates its use. You can learn more by clicking on this link.',
         ],
       }}
-      buttonBig={{ text: 'next', show: true }}
+      buttonBig={{ text: 'next', show: true, path: '/quizzes' }}
     />
   </>
 );

@@ -14,14 +14,18 @@ const PageWithText = ({ illu, textWithTitle, buttonBig }) => (
       title={textWithTitle.title}
       text={textWithTitle.text}
     />
-    <ButtonBig text={buttonBig.text} show={buttonBig.show} />
+    <ButtonBig text={buttonBig.text} show={buttonBig.show} path={buttonBig.path || ''} />
   </>
 );
 
 PageWithText.propTypes = {
   illu: PropTypes.object.isRequired,
   textWithTitle: PropTypes.object.isRequired,
-  buttonBig: PropTypes.object.isRequired,
+  buttonBig: PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    show: PropTypes.bool.isRequired,
+    path: PropTypes.string,
+  }).isRequired,
 };
 
 // == Export

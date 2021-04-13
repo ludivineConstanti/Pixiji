@@ -1,5 +1,6 @@
 // == Import npm
 import React, { useRef, useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 
@@ -9,7 +10,7 @@ import Arrow from 'src/components/e_Interactives/Arrow';
 import SButtonBig, { tIn } from './SButtonBig';
 
 const ButtonBig = ({
-  comment, text, onClick, colorMain, show, side,
+  comment, text, onClick, colorMain, show, side, path,
 }) => {
   // cC for classComponent
   const cC = 'buttonBig';
@@ -28,8 +29,16 @@ const ButtonBig = ({
     transition.reversed(!show);
   }, [show]);
 
+  const content = show && (
+    <>
+      <span className={`${cC}__result`}>{comment}</span> {text}
+      <Arrow />
+    </>
+  );
+
   return (
     <SButtonBig
+      as={path ? NavLink : 'button'}
       ref={component}
       className={`${cC}`}
       onClick={onClick}
@@ -37,13 +46,9 @@ const ButtonBig = ({
       colorMain={colorMain}
       side={side}
       disabled={!show}
+      to={path}
     >
-      {show && (
-      <>
-        <span className={`${cC}__result`}>{comment}</span> {text}
-        <Arrow />
-      </>
-      )}
+      {content}
     </SButtonBig>
   );
 };
@@ -55,12 +60,14 @@ ButtonBig.propTypes = {
   colorMain: PropTypes.string.isRequired,
   show: PropTypes.bool.isRequired,
   side: PropTypes.string,
+  path: PropTypes.string,
 };
 
 ButtonBig.defaultProps = {
   comment: '',
   onClick: () => {},
   side: 'left',
+  path: '',
 };
 
 // == Export
