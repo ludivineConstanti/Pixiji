@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
   colorMain: state.global.UI.colorMain,
   menuIsOpen: state.global.UI.menuIsOpen,
   cheating: state.global.current.cheating,
-  finishedQuiz: state.quiz.current.totalQuestions === state.quiz.user.rightAnswers.length,
+  finishedQuiz: state.quiz.current.finished,
 });
 
 const mapDispatchToProps = (dispatch) => ({

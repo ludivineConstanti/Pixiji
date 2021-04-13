@@ -36,6 +36,7 @@ const ButtonBig = ({
       type="button"
       colorMain={colorMain}
       side={side}
+      disabled={!show}
     >
       {show && (
       <>

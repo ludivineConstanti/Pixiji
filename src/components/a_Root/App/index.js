@@ -1,45 +1,8 @@
-// == Import npm
-import React from 'react';
-import {
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { connect } from 'react-redux';
+import Component from './Component';
 
-// == Import local
-import Menu from 'src/components/b_Fixed/Menu';
-// Pages
-import Home from 'src/components/b_Pages/Home';
-import Quizzes from 'src/components/b_Pages/Quizzes';
-import Quiz from 'src/components/b_Pages/Quiz';
-import ReadMe from 'src/components/b_Pages/ReadMe';
-import About from 'src/components/b_Pages/About';
-import Error404 from 'src/components/b_Pages/Error404';
-// == Composant
-const App = () => (
-  <>
-    <Menu />
-    <Switch>
-      <Route path="/" exact>
-        <Home />
-      </Route>
-      <Route path="/quizzes" exact>
-        <Quizzes />
-      </Route>
-      <Route path="/quiz/:slug" exact>
-        <Quiz />
-      </Route>
-      <Route path="/read-me" exact>
-        <ReadMe />
-      </Route>
-      <Route path="/about" exact>
-        <About />
-      </Route>
-      <Route>
-        <Error404 />
-      </Route>
-    </Switch>
-  </>
-);
+const mapStateToProps = (state) => ({
+  dataQuizzes: state.quiz.dataQuizzes,
+});
 
-// == Export
-export default App;
+export default connect(mapStateToProps, {})(Component);

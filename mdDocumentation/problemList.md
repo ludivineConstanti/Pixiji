@@ -63,3 +63,7 @@ Sometimes, the text appears blurry, I read in a GSAP forum that it can happen wh
 ## GSAP reverse animation not working
 
 The GSAP animations were working fine while using .to, but nothing happened while using reverse. After research, I found out that the hooks and lifecycle of React components can mix up badly with GSAP's timeline. However, by using hooks to create and modify the timeline, both work fine together.
+
+## Removing kanjis from the kanjis array, the illustration used for deco also remove it from the quiz
+
+I thought the data array from the kanjis was not going to be affected if I remove some characters from it, in another file, but I was wrong. I then tried again with making a local copy of it, but it didn't work (since it was a dynamic one). After another try, using the spread opearator, in an array, to make a copy, it worked.

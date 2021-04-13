@@ -9,10 +9,16 @@ import quizFormatter from 'src/helpers/formatters/quizFormatter';
 const initialize = (state, payload) => {
   const currentQuiz = kanjis.filter((e) => e.quizId === payload.quizId);
   const formattedQuiz = quizFormatter(currentQuiz);
+
   state.dataQuiz = formattedQuiz;
+
   state.current.totalQuestions = formattedQuiz.length;
   state.current.totalOptions = currentQuiz.length;
   state.current.title = payload.title;
+  state.current.finished = false;
+
+  state.user.answeredQuestion = false;
+  state.user.answeredCorrectly = false;
   state.user.rightAnswers = [];
 };
 
@@ -26,6 +32,7 @@ export const quizSlice = createSlice({
       totalOptions: 0,
       title: 'loading...',
       quizId: 0,
+      finished: false,
     },
     user: {
       answeredQuestion: false,
@@ -67,6 +74,9 @@ export const quizSlice = createSlice({
           ...state.user.rightAnswers,
           { answer: payload.answer, infosAnswer },
         ];
+        if (state.current.totalQuestions === state.user.rightAnswers.length) {
+          state.current.finished = true;
+        }
       }
       else {
         state.dataQuiz[0].infosAnswer.answeredWrong += 1;
@@ -95,6 +105,7 @@ export const quizSlice = createSlice({
             { answer: e.arrAnswers[answerIndex], infosAnswer: { ...e.infosAnswer, answerIndex } },
           );
           state.dataQuiz = quizFormatter(kanjisInitial);
+          state.current.finished = true;
         });
       }
       else {

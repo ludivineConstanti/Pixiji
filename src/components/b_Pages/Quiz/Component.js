@@ -18,21 +18,16 @@ const Quiz = ({
   answeredCorrectly,
   finishedQuiz,
   kanjisArr,
-  dataQuizzes,
   initializeQuiz,
   nextQuestionQuiz,
+  currentQuiz,
 }) => {
-  const match = useRouteMatch();
-  const currentQuiz = dataQuizzes.filter((quiz) => quiz.slug === match.params.slug);
-  if (!currentQuiz[0]) {
-    return <Redirect to="quiz/404-not-found" />;
-  }
   useEffect(() => {
-    initializeQuiz({ quizId: currentQuiz[0].id, title: currentQuiz[0].title });
-  }, [match]);
+    initializeQuiz({ quizId: currentQuiz.id, title: currentQuiz.title });
+  }, []);
   return (
     <>
-      <Illu useCase="quiz" index={currentQuiz[0].id - 1} animationCase="quiz" kanjisArr={kanjisArr} />
+      <Illu useCase="quiz" index={currentQuiz.id - 1} animationCase="quiz" kanjisArr={kanjisArr} />
       <div className="quiz">
         <Header />
         { finishedQuiz ? (
@@ -57,7 +52,7 @@ Quiz.propTypes = {
   answeredCorrectly: PropTypes.bool.isRequired,
   finishedQuiz: PropTypes.bool.isRequired,
   kanjisArr: PropTypes.array.isRequired,
-  dataQuizzes: PropTypes.array.isRequired,
+  currentQuiz: PropTypes.object.isRequired,
   initializeQuiz: PropTypes.func.isRequired,
   nextQuestionQuiz: PropTypes.func.isRequired,
 };

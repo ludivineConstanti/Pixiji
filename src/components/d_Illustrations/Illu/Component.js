@@ -27,27 +27,26 @@ const Illu = ({
     updateValueGlobal({ obj: 'UI', prop: ['colorMain'], value: [colorIllu] });
   }, []);
 
-  useEffect(() => {
-    if (!kanjisArr.length && animationCase === 'quiz') {
-      for (let i = 0; i < arrIllu.length; i += 1) {
-        aQuiz(squareMainRef.current[i]);
-      }
-    }
-    else if (animationCase === 'quizPreview') {
-      for (let i = 0; i < arrIllu.length; i += 1) {
-        aQuizPreview(squareMainRef.current[i]);
-      }
-    }
-  }, [kanjisArr]);
-
   const [lastUpdated, setLastUpdated] = useState(0);
 
   useEffect(() => {
+    // animation that updates the quiz when answer questions
     // need a loop so that it works with the cheating button too
     for (let i = lastUpdated; i < kanjisArr.length; i += 1) {
       squaresGrow(squareGroupRef.current[i]);
     }
     setLastUpdated(kanjisArr.length);
+    // animation intro for the quiz
+    if (!kanjisArr.length && animationCase === 'quiz') {
+      for (let i = 0; i < arrIllu.length; i += 1) {
+        aQuiz(squareMainRef.current[i]);
+      }
+    } // animation intro for the quiz preview
+    else if (animationCase === 'quizPreview') {
+      for (let i = 0; i < arrIllu.length; i += 1) {
+        aQuizPreview(squareMainRef.current[i]);
+      }
+    }
   }, [kanjisArr]);
 
   const arrIlluFormatted = [];
