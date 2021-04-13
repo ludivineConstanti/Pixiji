@@ -43,3 +43,9 @@ export default connect(mapStateToProps, {}, null, { forwardRef: true })(Componen
 
 => The animation that I use to make the squares darker on hover (so that the kanjis and their translation are more readable) should only animate the saturation and lightness of those square, but it changed from purple to green to red very fast for one of them (which was originally red).
 => I tested with an over hue as a starting color (the one I used originally was 360), it worked by replacing 360 by 359, apparently GSAP has some trouble with some values (this one being the maximum hue we can put, it could be the reason?).
+
+## Quiz Illustration not behaving properly
+
+=> The quiz Illustration was not shrinking at the beggining of a quiz
+=> turns out I forgot the if statement that blocks the animation from starting if the array of quiz answers is not empty (and at the moment, I do not suppress the answers, even if you leave the quiz) 
+=> I put an other condition to see if you're just starting the quiz or not (might have to change it later depending on what I decide UX wise)

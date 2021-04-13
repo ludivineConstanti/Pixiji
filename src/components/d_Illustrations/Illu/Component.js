@@ -27,6 +27,11 @@ const Illu = ({
     updateValueGlobal({ obj: 'UI', prop: ['colorMain'], value: [colorIllu] });
   }, []);
 
+  // useful for triggering the intro animation if left quiz and came back
+  // otherwise, it just triggers if the array of answer is empty
+  const [justStarted, setJustStarted] = useState(true);
+  // useful to keep track of which kanji was updated last
+  // useful mainly for knowing the starting point for the cheating button
   const [lastUpdated, setLastUpdated] = useState(0);
 
   useEffect(() => {
@@ -37,7 +42,9 @@ const Illu = ({
     }
     setLastUpdated(kanjisArr.length);
     // animation intro for the quiz
-    if (!kanjisArr.length && animationCase === 'quiz') {
+    // needs to check if the length of the kanjisArr changes
+    // because of the cheating button
+    if ((!kanjisArr.length || justStarted) && animationCase === 'quiz') {
       for (let i = 0; i < arrIllu.length; i += 1) {
         aQuiz(squareMainRef.current[i]);
       }
@@ -47,6 +54,7 @@ const Illu = ({
         aQuizPreview(squareMainRef.current[i]);
       }
     }
+    setJustStarted(false);
   }, [kanjisArr]);
 
   const arrIlluFormatted = [];

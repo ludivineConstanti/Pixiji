@@ -55,6 +55,7 @@ Quiz.propTypes = {
   currentQuiz: PropTypes.object.isRequired,
   initializeQuiz: PropTypes.func.isRequired,
   nextQuestionQuiz: PropTypes.func.isRequired,
+  onUnmountQuiz: PropTypes.func.isRequired,
 };
 
 // == Export

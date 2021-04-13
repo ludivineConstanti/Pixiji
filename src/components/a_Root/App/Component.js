@@ -1,11 +1,8 @@
 // == Import npm
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Route,
   Switch,
-  useHistory,
-  useLocation,
-  useRouteMatch,
   Redirect,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -19,7 +16,7 @@ import Quiz from 'src/components/b_Pages/Quiz';
 import ReadMe from 'src/components/b_Pages/ReadMe';
 import About from 'src/components/b_Pages/About';
 import Error404 from 'src/components/b_Pages/Error404';
-// == Composant
+
 const App = ({ dataQuizzes }) => (
   <>
     <Menu />

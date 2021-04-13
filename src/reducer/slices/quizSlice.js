@@ -5,40 +5,44 @@ import kanjisInitial from 'src/assets/dataQuiz/kanjisInitial';
 import kanjis from 'src/assets/dataQuiz/kanjis';
 import quizFormatter from 'src/helpers/formatters/quizFormatter';
 
+const initialState = {
+  dataQuizzes: quizzes,
+  dataQuiz: quizFormatter(kanjisInitial),
+  current: {
+    totalQuestions: 0,
+    totalOptions: 0,
+    title: 'loading...',
+    quizId: 0,
+    finished: false,
+  },
+  user: {
+    answeredQuestion: false,
+    answeredCorrectly: false,
+    rightAnswers: [],
+  },
+};
+
 // put it there since I need it in 2 different actions
 const initialize = (state, payload) => {
   const currentQuiz = kanjis.filter((e) => e.quizId === payload.quizId);
   const formattedQuiz = quizFormatter(currentQuiz);
-
   state.dataQuiz = formattedQuiz;
 
   state.current.totalQuestions = formattedQuiz.length;
   state.current.totalOptions = currentQuiz.length;
   state.current.title = payload.title;
-  state.current.finished = false;
 
-  state.user.answeredQuestion = false;
-  state.user.answeredCorrectly = false;
-  state.user.rightAnswers = [];
+  state.current.finished = initialState.current.finished;
+
+  state.user.answeredQuestion = initialState.user.answeredQuestion;
+  state.user.answeredCorrectly = initialState.user.answeredCorrectly;
+  state.user.rightAnswers = initialState.user.rightAnswers;
 };
 
 export const quizSlice = createSlice({
   name: 'quiz',
   initialState: {
-    dataQuizzes: quizzes,
-    dataQuiz: quizFormatter(kanjisInitial),
-    current: {
-      totalQuestions: 0,
-      totalOptions: 0,
-      title: 'loading...',
-      quizId: 0,
-      finished: false,
-    },
-    user: {
-      answeredQuestion: false,
-      answeredCorrectly: false,
-      rightAnswers: [],
-    },
+    ...initialState,
   },
 
   reducers: {
@@ -50,8 +54,10 @@ export const quizSlice = createSlice({
     },
     initializeQuiz: (state, { payload }) => {
       // {quizId: number}
-      initialize(state, payload);
-      state.current.quizId = payload.quizId;
+      if (state.current.quizId !== payload.quizId || state.current.finished) {
+        initialize(state, payload);
+        state.current.quizId = payload.quizId;
+      }
     },
     updateFirstQuestionQuiz: (state, { payload }) => {
       // {prop: ["prop1", "prop2"], value: ["valueforProp1", "valueForProp2"]}
