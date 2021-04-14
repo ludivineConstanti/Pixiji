@@ -1,15 +1,12 @@
 // == Import npm
 import React, { useEffect } from 'react';
-import {
-  useRouteMatch, Redirect,
-} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // == Import
-import './style.scss';
 import ButtonBig from 'src/components/e_Interactives/ButtonBig';
 import TextWithTitle from 'src/components/c_Partials/TextWithTitle';
 import Illu from 'src/components/d_Illustrations/Illu';
+import SQuiz from './SQuiz';
 import Header from './Header';
 import Question from './Question';
 
@@ -28,7 +25,7 @@ const Quiz = ({
   return (
     <>
       <Illu useCase="quiz" index={currentQuiz.id - 1} animationCase="quiz" kanjisArr={kanjisArr} />
-      <div className="quiz">
+      <SQuiz>
         <Header />
         { finishedQuiz ? (
           <TextWithTitle
@@ -42,7 +39,7 @@ const Quiz = ({
               <ButtonBig comment={answeredCorrectly ? 'correct!' : 'wrong!'} text="next" onClick={nextQuestionQuiz} show={!!answeredQuestion} />
             </>
           )}
-      </div>
+      </SQuiz>
     </>
   );
 };

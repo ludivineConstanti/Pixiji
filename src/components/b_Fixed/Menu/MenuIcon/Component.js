@@ -4,14 +4,19 @@ import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 
 // == Import
-import './style.scss';
-import SMenuIcon, { tHoverMenuIcon, tHoverCloseIcon, tClick } from './SMenuIcon';
+import SMenuIcon, {
+  SIconContainer,
+  SIconTop,
+  SIconMiddle,
+  SIconBottom,
+  tHoverMenuIcon,
+  tHoverCloseIcon,
+  tClick,
+} from './SMenuIcon';
 
 const MenuIcon = ({
   colorMain, menuIsOpen, updateValueGlobal,
 }) => {
-  const cC = 'menuIcon';
-
   // need to have the timeline inside a hook
   // otherwise, it is recreated every time there is a change in the component's props
   const [transitionClick, setTransitionClick] = useState(
@@ -40,7 +45,6 @@ const MenuIcon = ({
 
   return (
     <SMenuIcon
-      className={`${cC}`}
       type="button"
       onClick={() => {
         updateValueGlobal({ prop: ['menuIsOpen'], value: [!menuIsOpen] });
@@ -57,11 +61,11 @@ const MenuIcon = ({
       ref={(e) => cRef.current.push(e)}
       colorMain={colorMain}
     >
-      <div className={`${cC}__container`} ref={(e) => cRef.current.push(e)}>
-        <div className={`${cC}__top`} ref={(e) => cRef.current.push(e)} />
-        <div className={`${cC}__middle`} ref={(e) => cRef.current.push(e)} />
-        <div className={`${cC}__bottom`} ref={(e) => cRef.current.push(e)} />
-      </div>
+      <SIconContainer ref={(e) => cRef.current.push(e)}>
+        <SIconTop ref={(e) => cRef.current.push(e)} />
+        <SIconMiddle ref={(e) => cRef.current.push(e)} />
+        <SIconBottom ref={(e) => cRef.current.push(e)} />
+      </SIconContainer>
     </SMenuIcon>
   );
 };

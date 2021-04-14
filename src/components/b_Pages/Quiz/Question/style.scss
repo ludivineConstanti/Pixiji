@@ -1,8 +1,0 @@
-@use 'src/styles/typo';
-
-.question {
-  &__text {
-    @include typo.text;
-    margin-bottom: 24px;
-  }
-}

@@ -7,20 +7,43 @@ import { buttonWidth, buttonMenuIconSize, strokeWidth } from 'src/styles/g';
 export default styled.button`
   height: ${buttonWidth};
   width: ${buttonWidth};
-  .menuIcon__container {
-    height: ${buttonMenuIconSize};
-    width: ${buttonMenuIconSize};
-  }
-  .menuIcon__top, .menuIcon__middle, .menuIcon__bottom {
-    background-color: ${(props) => (props.colorMain)};
-    height: ${strokeWidth};
-  }
-  .menuIcon__middle {
-    width: calc(${buttonMenuIconSize}* 0.75);
-  }
-  .menuIcon__top, .menuIcon__bottom {
-    width: ${buttonMenuIconSize};
-  }
+  position: fixed;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const SIconContainer = styled.div`
+  height: ${buttonMenuIconSize};
+  width: ${buttonMenuIconSize};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const iconS = `
+  background-color: ${(props) => (props.colorMain)};
+  height: ${strokeWidth};
+  `;
+
+const iconSTB = `
+  width: ${buttonMenuIconSize};
+`;
+
+export const SIconTop = styled.div`
+  ${iconS}
+  ${iconSTB}
+`;
+
+export const SIconMiddle = styled.div`
+  ${iconS}
+  width: calc(${buttonMenuIconSize}* 0.75);
+`;
+
+export const SIconBottom = styled.div`
+  ${iconS}
+  ${iconSTB}
 `;
 
 // ref is an array

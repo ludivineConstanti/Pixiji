@@ -1,9 +1,0 @@
-@use 'src/styles/typo';
-
-.menuSetting {
-  @include typo.menuSetting;
-  color: white;
-  width: 100%;
-  padding: 24px;
-  text-align: left;
-}

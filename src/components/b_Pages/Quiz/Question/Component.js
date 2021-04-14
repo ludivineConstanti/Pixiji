@@ -3,9 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
-import './style.scss';
 import ButtonKanji from '../ButtonKanji';
-import SQuestion from './SQuestion';
+import SQuestion, { SText, SOptions } from './SQuestion';
 
 const Question = ({
   dataObj, answeredQuestion, updateFirstQuestionQuiz,
@@ -19,13 +18,13 @@ const Question = ({
   }
   else rightAnswerIndex = infosAnswer.answerIndex;
   return (
-    <SQuestion className="question">
-      <h2 className="question__text">Which character means {arrAnswers[rightAnswerIndex].en}?</h2>
-      <div className="question__options">
+    <SQuestion>
+      <SText>Which character means {arrAnswers[rightAnswerIndex].en}?</SText>
+      <SOptions>
         {// eslint-disable-next-line max-len
         arrAnswers.map((e) => <ButtonKanji key={e.id} possibleAnswer={e} disabled={answeredQuestion} />)
 }
-      </div>
+      </SOptions>
     </SQuestion>
   );
 };

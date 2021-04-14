@@ -1,12 +1,18 @@
 import styled from 'styled-components';
+import { gsap } from 'gsap';
 
 import { strokeWidth } from 'src/styles/g';
-import { gsap } from 'gsap';
+import { tMenuSetting } from 'src/styles/typo';
 
 // initial css before comes in transition
 export default styled.button`
-border-top: ${strokeWidth} solid white;
-background-color: ${(props) => props.colorMainL1}
+  ${tMenuSetting}
+  border-top: ${strokeWidth} solid white;
+  background-color: ${(props) => props.colorMainL1};
+  color: white;
+  width: 100%;
+  padding: 24px;
+  text-align: left;
 `;
 
 export const tHover = (ref, color) => {

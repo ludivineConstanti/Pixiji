@@ -4,13 +4,11 @@ import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 
 // == Import
-import './style.scss';
 import SMenuSetting, { tHover, tClick } from './SMenuSetting';
 
 const MenuSetting = ({
   text, hasSwitch, onClick, colorMain,
 }) => {
-  const cC = 'menuSetting';
   const colorHsl = gsap.utils.splitColor(colorMain, true);
   // lighter 1
   const colorMainL1 = `hsl(${colorHsl[0]}, ${colorHsl[1]}%, ${colorHsl[2] + 10}%)`;
@@ -27,7 +25,6 @@ const MenuSetting = ({
 
   return (
     <SMenuSetting
-      className={cC}
       type="button"
       onClick={() => {
         onClick();
@@ -47,8 +44,8 @@ const MenuSetting = ({
       {text}
       {hasSwitch && (
       <>
-        <span className={`${cC}__square`}>off</span>
-        <span className={`${cC}__square`}>on</span>
+        <span>off</span>
+        <span>on</span>
       </>
       )}
     </SMenuSetting>

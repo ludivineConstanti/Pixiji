@@ -4,17 +4,16 @@ import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 
 // == Import
-import './style.scss';
 import MenuIcon from './MenuIcon';
 import MenuLink from './MenuLink';
 import MenuSetting from './MenuSetting';
-import SMenu, { contentToggle } from './SMenu';
+import SMenu, {
+  SContent, SLinks, SContainer, SSettings, STitle, contentToggle,
+} from './SMenu';
 
 const Menu = ({
   colorMain, menuIsOpen, cheating, finishedQuiz, updateValueGlobal, cheatingButtonFinishQuiz,
 }) => {
-  const cC = 'menu';
-
   // need to have the timeline inside a hook
   // otherwise, it is recreated every time there is a change in the component's props
   const [contentTransition, setContentTransition] = useState(
@@ -34,22 +33,21 @@ const Menu = ({
   }, [menuIsOpen]);
 
   return (
-    <SMenu className={cC}>
-      <div className={`${cC}__content`} ref={menuContentRef}>
-        <nav className={`${cC}__content__links`}>
-          <ul className={`${cC}__content__links__container`}>
+    <SMenu>
+      <SContent ref={menuContentRef}>
+        <SLinks>
+          <SContainer>
             <MenuLink text="Home" path="" />
             <MenuLink text="Quizzes" path="quizzes" />
             <MenuLink text="Read me" path="read-me" />
             <MenuLink text="About" path="about" />
-            <MenuLink text="Page 404" path="404-not-found" />
-          </ul>
-        </nav>
-        <div
-          className={`${cC}__content__settings`}
+            <MenuLink text="404" path="404-not-found" />
+          </SContainer>
+        </SLinks>
+        <SSettings
           style={{ color: lighterMainColor }}
         >
-          <h1 className={`${cC}__content__settings__title`}>settings</h1>
+          <STitle>settings</STitle>
           <MenuSetting
             text="Cheat mode"
             hasSwitch
@@ -63,8 +61,8 @@ const Menu = ({
             color={lighterMainColor}
             onClick={cheatingButtonFinishQuiz}
           />
-        </div>
-      </div>
+        </SSettings>
+      </SContent>
       <MenuIcon />
     </SMenu>
   );

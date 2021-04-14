@@ -29,6 +29,12 @@ export const tMenuSetting = `
   font-size: 14px;
   letter-spacing: 2px;
 `;
+export const tMenuSettingsTitle = `
+  ${boldUppercase}
+  font-size: 12px;
+  letter-spacing: 2px;
+`;
+
 // QUIZ
 export const tQuizHeader = `
   font-size: 10px;
