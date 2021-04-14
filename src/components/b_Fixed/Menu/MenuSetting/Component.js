@@ -7,7 +7,7 @@ import { gsap } from 'gsap';
 import SMenuSetting, { tHover, tClick } from './SMenuSetting';
 
 const MenuSetting = ({
-  text, hasSwitch, onClick, colorMain,
+  text, hasSwitch, onClick, colorMain, updateValueGlobal,
 }) => {
   const colorHsl = gsap.utils.splitColor(colorMain, true);
   // lighter 1
@@ -31,6 +31,7 @@ const MenuSetting = ({
         transition.click.play().eventCallback('onComplete', () => {
           transition.click.reverse();
         });
+        updateValueGlobal({ prop: ['menuIsOpen'], value: [false] });
       }}
       onMouseEnter={() => {
         transition.hover.play();
@@ -57,6 +58,7 @@ MenuSetting.propTypes = {
   colorMain: PropTypes.string.isRequired,
   hasSwitch: PropTypes.bool,
   onClick: PropTypes.func,
+  updateValueGlobal: PropTypes.func.isRequired,
 };
 
 MenuSetting.defaultProps = {

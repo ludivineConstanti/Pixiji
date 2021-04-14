@@ -11,14 +11,11 @@ import Header from './Header';
 import Question from './Question';
 
 const Quiz = ({
-  answeredQuestion,
-  answeredCorrectly,
-  finishedQuiz,
-  kanjisArr,
-  initializeQuiz,
-  nextQuestionQuiz,
-  currentQuiz,
+  answeredQuestion, answeredCorrectly, finishedQuiz, kanjisArr, currentQuiz,
+  dataQuizzes,
+  initializeQuiz, nextQuestionQuiz, restartQuiz,
 }) => {
+  const nextQuiz = dataQuizzes.filter((quiz) => quiz.id === currentQuiz.id + 1);
   useEffect(() => {
     initializeQuiz({ quizId: currentQuiz.id, title: currentQuiz.title });
   }, []);
@@ -28,10 +25,14 @@ const Quiz = ({
       <SQuiz>
         <Header />
         { finishedQuiz ? (
-          <TextWithTitle
-            title="Well done!"
-            text={['You answed all the questions correctly!', 'Try putting your mouse over the squares, on the right, to look at the answers again.']}
-          />
+          <>
+            <TextWithTitle
+              title="Well done!"
+              text={['You answed all the questions correctly!', 'Try putting your mouse over the squares, on the right, to look at the answers again.']}
+            />
+            <ButtonBig text="Replay" onClick={restartQuiz} show />
+            {nextQuiz.length ? <ButtonBig text={`Quiz ${nextQuiz[0].id}`} side="right" show path={`/quiz/${nextQuiz[0].slug}`} /> : ''}
+          </>
         )
           : (
             <>
@@ -53,8 +54,10 @@ Quiz.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
+  dataQuizzes: PropTypes.array.isRequired,
   initializeQuiz: PropTypes.func.isRequired,
   nextQuestionQuiz: PropTypes.func.isRequired,
+  restartQuiz: PropTypes.func.isRequired,
 };
 
 // == Export

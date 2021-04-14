@@ -63,7 +63,9 @@ ButtonBig.propTypes = {
 
 ButtonBig.defaultProps = {
   comment: '',
-  onClick: () => {},
+  onClick: () => {
+    console.log('ButtonBig default function');
+  },
   side: 'left',
   path: '',
   arrowDirection: 'right',
