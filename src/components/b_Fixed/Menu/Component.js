@@ -12,7 +12,8 @@ import SMenu, {
 } from './SMenu';
 
 const Menu = ({
-  colorMain, menuIsOpen, cheating, finishedQuiz, updateValueGlobal, cheatingButtonFinishQuiz,
+  colorMain, menuIsOpen, cheating, finishedQuiz, quizzesSlug,
+  updateValueGlobal, cheatingButtonFinishQuiz,
 }) => {
   // need to have the timeline inside a hook
   // otherwise, it is recreated every time there is a change in the component's props
@@ -39,7 +40,7 @@ const Menu = ({
           <SContainer>
             <MenuLink text="Home" path="" />
             <MenuLink text="Read me" path="read-me" />
-            <MenuLink text="Quizzes" path="quizzes" />
+            <MenuLink text="Quizzes" path={`quizzes/${quizzesSlug}`} />
             <MenuLink text="About" path="about" />
             <MenuLink text="404" path="404-not-found" />
           </SContainer>
@@ -73,6 +74,7 @@ Menu.propTypes = {
   menuIsOpen: PropTypes.bool.isRequired,
   cheating: PropTypes.bool.isRequired,
   finishedQuiz: PropTypes.bool.isRequired,
+  quizzesSlug: PropTypes.string.isRequired,
   updateValueGlobal: PropTypes.func.isRequired,
   cheatingButtonFinishQuiz: PropTypes.func.isRequired,
 };

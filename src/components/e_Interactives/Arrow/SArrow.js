@@ -11,7 +11,7 @@ export const SArrow = styled.div`
   width: ${arrowWidth};
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: ${(props) => (props.pointsToward === 'right' ? 'flex-end' : 'flex-start')};
 `;
 
 export const SStroke = styled.div`
@@ -20,9 +20,11 @@ export const SStroke = styled.div`
   background-color: ${(props) => props.colorMain};
 `;
 
+const borderOnR = `${strokeWidth} ${strokeWidth} 0 0`;
+const borderOnL = `0 0 ${strokeWidth} ${strokeWidth}`;
+
 export const SEnd = styled.div`
-  border-top-width: ${strokeWidth};
-  border-right-width: ${strokeWidth};
+  border-width: ${(props) => (props.pointsToward === 'right' ? borderOnR : borderOnL)};
   border-color: ${(props) => props.colorMain};
   position: absolute;
   height: ${arrowEndS}px;

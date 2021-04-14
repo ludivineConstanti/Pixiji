@@ -1,12 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import quizzes from 'src/assets/dataQuiz/quizzes';
 import kanjisInitial from 'src/assets/dataQuiz/kanjisInitial';
 import kanjis from 'src/assets/dataQuiz/kanjis';
 import quizFormatter from 'src/helpers/formatters/quizFormatter';
 
 const initialState = {
-  dataQuizzes: quizzes,
   dataQuiz: quizFormatter(kanjisInitial),
   totalQuestions: 0,
   totalOptions: 0,

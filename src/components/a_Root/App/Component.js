@@ -22,7 +22,17 @@ const App = ({ dataQuizzes }) => (
     <Menu />
     <Switch>
       <Route path="/" exact component={Home} />
-      <Route path="/quizzes" exact component={Quizzes} />
+      <Route
+        path="/quizzes/:slug"
+        exact
+        render={({ match }) => {
+          const currentQuiz = dataQuizzes.filter((quiz) => quiz.slug === match.params.slug);
+          if (!currentQuiz[0]) {
+            return <Redirect to="/404-not-found" />;
+          }
+          return <Quizzes currentQuiz={currentQuiz[0]} />;
+        }}
+      />
       <Route
         path="/quiz/:slug"
         exact

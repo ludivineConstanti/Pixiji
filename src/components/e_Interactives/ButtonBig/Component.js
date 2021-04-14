@@ -9,7 +9,7 @@ import Arrow from 'src/components/e_Interactives/Arrow';
 import SButtonBig, { SComment, SText, tIn } from './SButtonBig';
 
 const ButtonBig = ({
-  comment, text, onClick, colorMain, show, side, path,
+  comment, text, onClick, colorMain, colorButton, show, side, path, arrowDirection,
 }) => {
   const component = useRef(null);
   // need to have the timeline inside a hook
@@ -18,7 +18,7 @@ const ButtonBig = ({
 
   // need to put the animation in a hook, otherwise, the element we reference does not exist yet
   useEffect(() => {
-    setTransition(tIn(transition, component.current, colorMain, side));
+    setTransition(tIn(transition, component.current, colorButton !== 'white' ? 'white' : colorMain, side));
   }, []);
 
   // will automatically switch to reverse true or false for us
@@ -36,12 +36,13 @@ const ButtonBig = ({
       side={side}
       disabled={!show}
       to={path}
+      colorButton={colorButton}
     >
       {show && (
       <>
         <SComment>{comment}</SComment>
         <SText>{text}</SText>
-        <Arrow />
+        <Arrow pointsToward={arrowDirection} isWhite={colorButton !== 'white'} />
       </>
       )}
     </SButtonBig>
@@ -56,6 +57,8 @@ ButtonBig.propTypes = {
   show: PropTypes.bool.isRequired,
   side: PropTypes.string,
   path: PropTypes.string,
+  arrowDirection: PropTypes.string,
+  colorButton: PropTypes.string,
 };
 
 ButtonBig.defaultProps = {
@@ -63,6 +66,8 @@ ButtonBig.defaultProps = {
   onClick: () => {},
   side: 'left',
   path: '',
+  arrowDirection: 'right',
+  colorButton: 'white',
 };
 
 // == Export

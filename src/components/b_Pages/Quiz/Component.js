@@ -49,10 +49,12 @@ Quiz.propTypes = {
   answeredCorrectly: PropTypes.bool.isRequired,
   finishedQuiz: PropTypes.bool.isRequired,
   kanjisArr: PropTypes.array.isRequired,
-  currentQuiz: PropTypes.object.isRequired,
+  currentQuiz: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
   initializeQuiz: PropTypes.func.isRequired,
   nextQuestionQuiz: PropTypes.func.isRequired,
-  onUnmountQuiz: PropTypes.func.isRequired,
 };
 
 // == Export

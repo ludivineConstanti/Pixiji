@@ -9,7 +9,7 @@ ${tButtonBigText}
 position: fixed;
 bottom: 0;
 line-height: 20px;
-background-color: white;
+background-color: ${(props) => props.colorButton};
 height: ${buttonWidth};
 width: ${buttonWidth};
 ${((props) => props.side)}: calc(${buttonWidth} * -1);

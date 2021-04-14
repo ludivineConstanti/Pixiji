@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
+import quizzes from 'src/assets/dataQuiz/quizzes';
 
-export const globalSlice = createSlice({
-  name: 'global',
+export const quizzesSlice = createSlice({
+  name: 'quizzes',
   initialState: {
-    cheating: true,
-    colorMain: '#0A2846',
-    menuIsOpen: false,
+    data: quizzes,
+    currentSlug: quizzes[0].slug,
   },
 
   reducers: {
-    updateValueGlobal: (state, { payload }) => {
+    updateValueQuizzes: (state, { payload }) => {
       // the action prop will always have to be an object formatted as such
       // {prop: ["prop1", "prop2"], value: ["valueforProp1", "valueForProp2"]}
       // This way, I can change multiple values
@@ -22,7 +22,7 @@ export const globalSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  updateValueGlobal,
-} = globalSlice.actions;
+  updateValueQuizzes,
+} = quizzesSlice.actions;
 
-export default globalSlice.reducer;
+export default quizzesSlice.reducer;

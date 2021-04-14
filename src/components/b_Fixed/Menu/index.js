@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
   menuIsOpen: state.global.menuIsOpen,
   cheating: state.global.cheating,
   finishedQuiz: state.quiz.finished,
+  quizzesSlug: state.quizzes.currentSlug,
 });
 
 const mapDispatchToProps = (dispatch) => ({

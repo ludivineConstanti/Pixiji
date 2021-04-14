@@ -8,9 +8,9 @@ import { SArrow, SStroke, SEnd } from './SArrow';
 const Arrow = ({
   pointsToward, colorMain, isWhite,
 }) => (
-  <SArrow>
+  <SArrow pointsToward={pointsToward}>
     <SStroke colorMain={isWhite ? 'white' : colorMain} />
-    <SEnd colorMain={isWhite ? 'white' : colorMain} />
+    <SEnd colorMain={isWhite ? 'white' : colorMain} pointsToward={pointsToward} />
   </SArrow>
 );
 
