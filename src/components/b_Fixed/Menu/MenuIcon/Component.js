@@ -59,7 +59,7 @@ const MenuIcon = ({
         else transition.hoverMenuIcon.reverse();
       }}
       ref={(e) => cRef.current.push(e)}
-      colorMain={colorMain}
+      s={{ colorMain }}
     >
       <SIconContainer ref={(e) => cRef.current.push(e)}>
         <SIconTop ref={(e) => cRef.current.push(e)} />

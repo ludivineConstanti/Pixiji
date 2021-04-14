@@ -11,10 +11,10 @@ const MenuLink = ({
   <SMenuLink
     to={`/${path}`}
     exact
-    colorMain={colorMain}
     onClick={() => {
       updateValueGlobal({ prop: ['menuIsOpen'], value: [false] });
     }}
+    s={{ colorMain }}
   >
     <div />
     {text}

@@ -50,6 +50,6 @@ export const SBamboo = styled.div`
   height: 100vh;
   width: calc(${squareUnit} * 2);
   bottom: 0;
-  ${(props) => props.side}: ${(props) => props.margin};
-  background-color: ${(props) => props.color};
+  ${(props) => props.s.side}: ${(props) => props.s.margin};
+  background-color: ${(props) => props.s.color};
 `;

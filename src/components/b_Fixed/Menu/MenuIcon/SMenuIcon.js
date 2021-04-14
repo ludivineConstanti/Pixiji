@@ -23,7 +23,7 @@ export const SIconContainer = styled.div`
 `;
 
 const iconS = `
-  background-color: ${(props) => (props.colorMain)};
+  background-color: ${(props) => (props.s.colorMain)};
   height: ${strokeWidth};
   `;
 

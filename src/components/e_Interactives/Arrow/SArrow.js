@@ -11,21 +11,21 @@ export const SArrow = styled.div`
   width: ${arrowWidth};
   display: flex;
   align-items: center;
-  justify-content: ${(props) => (props.pointsToward === 'right' ? 'flex-end' : 'flex-start')};
+  justify-content: ${(props) => (props.s.pointsToward === 'right' ? 'flex-end' : 'flex-start')};
 `;
 
 export const SStroke = styled.div`
   width: ${arrowWidth};
   height: ${strokeWidth};
-  background-color: ${(props) => props.colorMain};
+  background-color: ${(props) => props.s.colorMain};
 `;
 
 const borderOnR = `${strokeWidth} ${strokeWidth} 0 0`;
 const borderOnL = `0 0 ${strokeWidth} ${strokeWidth}`;
 
 export const SEnd = styled.div`
-  border-width: ${(props) => (props.pointsToward === 'right' ? borderOnR : borderOnL)};
-  border-color: ${(props) => props.colorMain};
+  border-width: ${(props) => (props.s.pointsToward === 'right' ? borderOnR : borderOnL)};
+  border-color: ${(props) => props.s.colorMain};
   position: absolute;
   height: ${arrowEndS}px;
   width: ${arrowEndS}px;

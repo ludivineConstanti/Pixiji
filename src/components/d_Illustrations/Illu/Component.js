@@ -69,7 +69,7 @@ const Illu = ({
   }
   return (
     <>
-      <SIllu colorIllu={colorIllu} />
+      <SIllu s={{ colorIllu }} />
       <IlluIndex useCase={useCase} index={index} data={arrIlluFormatted} />
     </>
   );

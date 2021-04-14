@@ -32,11 +32,9 @@ const ButtonBig = ({
       ref={component}
       onClick={onClick}
       type="button"
-      colorMain={colorMain}
-      side={side}
       disabled={!show}
       to={path}
-      colorButton={colorButton}
+      s={{ colorButton, side }}
     >
       {show && (
       <>
@@ -63,9 +61,7 @@ ButtonBig.propTypes = {
 
 ButtonBig.defaultProps = {
   comment: '',
-  onClick: () => {
-    console.log('ButtonBig default function');
-  },
+  onClick: () => {},
   side: 'left',
   path: '',
   arrowDirection: 'right',

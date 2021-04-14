@@ -8,7 +8,7 @@ import { tMenuSetting } from 'src/styles/typo';
 export default styled.button`
   ${tMenuSetting}
   border-top: ${strokeWidth} solid white;
-  background-color: ${(props) => props.colorMainL1};
+  background-color: ${(props) => props.s.colorMainL1};
   color: white;
   width: 100%;
   padding: 24px;

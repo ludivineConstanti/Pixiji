@@ -7,7 +7,7 @@ import {
 export default styled.div`
 height: 100vh;
 width: 100vw;
-background-color: ${((props) => props.colorIllu)};
+background-color: ${((props) => props.s.colorIllu)};
 position: fixed;
 top: 0;
 left: 0;

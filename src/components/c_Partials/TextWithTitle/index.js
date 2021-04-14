@@ -18,7 +18,7 @@ const TextWithTitle = ({ title, text, button }) => (
 TextWithTitle.propTypes = {
   title: PropTypes.string.isRequired,
   text: PropTypes.array.isRequired,
-  button: PropTypes.object,
+  button: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
 };
 
 TextWithTitle.defaultProps = {

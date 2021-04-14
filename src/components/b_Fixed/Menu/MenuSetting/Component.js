@@ -39,8 +39,8 @@ const MenuSetting = ({
       onMouseLeave={() => {
         transition.hover.reverse();
       }}
-      colorMainL1={colorMainL1}
       ref={cRef}
+      s={{ colorMainL1 }}
     >
       {text}
       {hasSwitch && (

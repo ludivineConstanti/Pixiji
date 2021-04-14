@@ -39,6 +39,10 @@ I tried using variables in individual files next to the components (when it was 
 After using GSAP to animate various things it becomes more and more obvious that the system that I wanted with global values that I can reuse everywhere and just modify in one central file doesn't work if I need to use values in both CSS and JavaScript...  
 I discovered there is a special tool for inline styling in React ("styled component"). I am now going to slowly transition to that, at least for the parts where I am using global values. Now I'll be able to have both initial style and style modified by GSAP in one file.
 
+## Update n°3 on CSS organisation
+
+I had some errors showing up in the console.log, complaining about the props I give to some components so that styled-components can use them. Therefore, I decided to always give those props in an object prop that I call s. This way, it's also easier for me to differentiate the props that are just used for styling (especially when there's a lot of them).
+
 ## Actions
 
 Based on my previous experience with the project [An intro to Blockchain](https://github.com/ludivineConstanti/an-intro-to-Blockchain) I made, I decided to always recycle the same action if I need to modify only one value and create new ones every time more values need to be modified at the same time. I now make a main object per file with multiple properties that all contain an object. This way I can always stay consistent while updating one value: action(propertyNameMainObject, propertyNameSubObject, value). I also put the name of the file I am modifying at the end of each action (I think it's clearer that way, and it avoids the potential problem of wanting to use similar action, with identical names for different files).

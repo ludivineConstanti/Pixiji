@@ -15,7 +15,7 @@ const KaguyaHime = ({ data }) => {
       <SGround />
       <SIllu>
         {
-        bSettings.map((bamboo, i) => <SBamboo key={`${cC}__bamboo${i}`} side={bamboo.side} margin={bamboo.margin} color={bamboo.color} />)
+        bSettings.map((bamboo, i) => <SBamboo key={`${cC}__bamboo${i}`} s={{ side: bamboo.side, margin: bamboo.margin, color: bamboo.color }} />)
 }
 
         <SMoon className={`${cC}__moon`}>

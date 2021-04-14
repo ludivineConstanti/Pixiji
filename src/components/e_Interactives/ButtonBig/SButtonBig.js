@@ -9,10 +9,10 @@ ${tButtonBigText}
 position: fixed;
 bottom: 0;
 line-height: 20px;
-background-color: ${(props) => props.colorButton};
+background-color: ${(props) => props.s.colorButton};
 height: ${buttonWidth};
 width: ${buttonWidth};
-${((props) => props.side)}: calc(${buttonWidth} * -1);
+${((props) => props.s.side)}: calc(${buttonWidth} * -1);
 z-index: ${zIBigButton};
 display: flex;
 flex-direction: column;
