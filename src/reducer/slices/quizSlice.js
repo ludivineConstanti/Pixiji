@@ -29,7 +29,6 @@ const initialize = (state, payload) => {
   state.title = payload.title;
 
   state.finished = initialState.finished;
-
   state.answeredQuestion = initialState.answeredQuestion;
   state.answeredCorrectly = initialState.answeredCorrectly;
   state.rightAnswers = initialState.rightAnswers;
@@ -42,12 +41,6 @@ export const quizSlice = createSlice({
   },
 
   reducers: {
-    updateValueQuiz: (state, { payload }) => {
-      // {obj: "objName", prop: ["prop1", "prop2"], value: ["valueforProp1", "valueForProp2"]}
-      for (let i = 0; i < payload.prop.length; i += 1) {
-        [payload.prop[i]] = payload.value[i];
-      }
-    },
     initializeQuiz: (state, { payload }) => {
       // {quizId: number}
       if (state.quizId !== payload.quizId || state.finished) {
@@ -119,7 +112,6 @@ export const quizSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  updateValueQuiz,
   initializeQuiz,
   updateFirstQuestionQuiz,
   answeredQuestionQuiz,

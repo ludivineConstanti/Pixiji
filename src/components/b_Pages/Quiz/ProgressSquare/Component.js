@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 
 // == Import
-import './style.scss';
+import SProgressSquare from './SProgressSquare';
 
 const ProgressSquare = ({ squareNum, currentQuestion, finishedQuiz }) => {
-  const cC = 'progressSquare';
   const cRef = useRef(null);
   const cTl = gsap.timeline();
   const duration = 0.5;
@@ -41,7 +40,7 @@ const ProgressSquare = ({ squareNum, currentQuestion, finishedQuiz }) => {
     }
   }, [currentQuestion]);
   return (
-    <div ref={cRef} className={`${cC}`} />
+    <SProgressSquare ref={cRef} />
   );
 };
 

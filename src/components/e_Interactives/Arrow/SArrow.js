@@ -9,7 +9,7 @@ export const SArrow = styled.div`
   position: relative;
   height: 15px;
   margin-top: 8px;
-  width: 100%;
+  width: ${arrowWidth};
 `;
 
 export const SStroke = styled.div`

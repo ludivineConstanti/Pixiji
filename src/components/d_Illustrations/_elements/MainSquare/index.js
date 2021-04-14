@@ -5,9 +5,8 @@ import { gsap } from 'gsap';
 
 // == Import
 import '../style.scss';
-import './style.scss';
 import { zIMainSquareHover } from 'src/styles/g';
-import SMainSquare from './SMainSquare';
+import SMainSquare, { SInfos, SInfosKana, SInfosBottom } from './SMainSquare';
 
 const MainSquare = React.forwardRef(({
   size, columnStart, rowStart, color, position, kanjiIndex, kanjisArr,
@@ -110,8 +109,7 @@ const MainSquare = React.forwardRef(({
     >
       {answer && (
       <>
-        <span
-          className={`${cC}__text--hidden ${cC}__text__kanjiInfos`}
+        <SInfos
           ref={(e) => {
           // need the ref to make the additional infos visible, can't put in the other ref
           // since display-none is on the blocs with text--hidden
@@ -119,30 +117,28 @@ const MainSquare = React.forwardRef(({
             infosRef.current.push(e);
           }}
         >
-          <span className={`${cC}__text__kanjiInfos--kana`}>
+          <SInfosKana>
             {answer.kana}
-          </span>
+          </SInfosKana>
           {answer.kanaEn}
-        </span>
+        </SInfos>
         {answer.kanji}
-        <span
-          className={`${cC}__text--hidden ${cC}__text__kanjiInfos`}
+        <SInfos
           ref={(e) => {
             infosRef.current.push(e);
           }}
         >
           {answer.en}
-        </span>
+        </SInfos>
         {infos.answeredWrong > 0
         && (
-        <span
-          className={`${cC}__text--hidden ${cC}__text__bottom`}
+        <SInfosBottom
           ref={(e) => {
             infosRef.current.push(e);
           }}
         >
           wrong: {infos.answeredWrong} time{infos.answeredWrong > 1 && 's'}
-        </span>
+        </SInfosBottom>
         )}
       </>
       ) }

@@ -4,14 +4,12 @@ import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 
 // == Import
-import './style.scss';
 import SButtonKanji from './SButtonKanji';
 
 const ButtonKanji = ({
   possibleAnswer, disabled, colorMain, correctAnswer, cheating, answeredQuestionQuiz,
 }) => {
   const componentRef = useRef(null);
-  const cC = 'buttonKanji';
   const tl = gsap.timeline({ paused: true });
   const colorMainRgb = gsap.utils.splitColor(colorMain);
 
@@ -27,7 +25,6 @@ const ButtonKanji = ({
   return (
     <SButtonKanji
       ref={componentRef}
-      className={cC}
       type="button"
       onClick={() => {
         answeredQuestionQuiz({ answer: possibleAnswer });

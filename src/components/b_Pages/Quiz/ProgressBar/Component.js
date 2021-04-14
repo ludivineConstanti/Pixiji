@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 
 // == Import
-import './style.scss';
+import SProgressBar from './SProgressBar';
 import ProgressSquare from '../ProgressSquare';
 
 const ProgressBar = ({ questionNumber, currentNumber, finishedQuiz }) => {
-  const cC = 'progressBar';
   const squaresArr = [];
   const cRef = useRef(null);
 
@@ -30,9 +29,9 @@ const ProgressBar = ({ questionNumber, currentNumber, finishedQuiz }) => {
     squaresArr.push(<ProgressSquare key={`progressSquare${i}`} squareNum={i} currentQuestion={currentNumber} />);
   }
   return (
-    <div className={cC} ref={cRef}>
+    <SProgressBar ref={cRef}>
       {squaresArr}
-    </div>
+    </SProgressBar>
   );
 };
 

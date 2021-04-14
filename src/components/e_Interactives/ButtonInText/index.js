@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 
 // == Import
 import Arrow from 'src/components/e_Interactives/Arrow';
-import SButtonInText from './SButtonInText';
+import SButtonInText, { SText } from './SButtonInText';
 
 const ButtonInText = ({
   text, path,
 }) => (
   <SButtonInText to={`/${path}`}>
-    {text}<Arrow isWhite />
+    <SText>{text}</SText>
+    <Arrow isWhite />
   </SButtonInText>
 );
 

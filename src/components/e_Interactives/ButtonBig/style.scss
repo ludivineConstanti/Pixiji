@@ -1,9 +1,0 @@
-@use 'src/styles/typo';
-
-.buttonBig {
-  @include typo.component;
-
-  &__result {
-    @include typo.componentSmall;
-  }
-}

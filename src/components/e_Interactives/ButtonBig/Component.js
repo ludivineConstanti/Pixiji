@@ -5,15 +5,12 @@ import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 
 // == Import
-import './style.scss';
 import Arrow from 'src/components/e_Interactives/Arrow';
-import SButtonBig, { tIn } from './SButtonBig';
+import SButtonBig, { SComment, tIn } from './SButtonBig';
 
 const ButtonBig = ({
   comment, text, onClick, colorMain, show, side, path,
 }) => {
-  // cC for classComponent
-  const cC = 'buttonBig';
   const component = useRef(null);
   // need to have the timeline inside a hook
   // otherwise, it is recreated every time there is a change in the component's props
@@ -29,18 +26,10 @@ const ButtonBig = ({
     transition.reversed(!show);
   }, [show]);
 
-  const content = show && (
-    <>
-      <span className={`${cC}__result`}>{comment}</span> {text}
-      <Arrow />
-    </>
-  );
-
   return (
     <SButtonBig
       as={path ? NavLink : 'button'}
       ref={component}
-      className={`${cC}`}
       onClick={onClick}
       type="button"
       colorMain={colorMain}
@@ -48,7 +37,12 @@ const ButtonBig = ({
       disabled={!show}
       to={path}
     >
-      {content}
+      {show && (
+      <>
+        <SComment>{comment}</SComment> {text}
+        <Arrow />
+      </>
+      )}
     </SButtonBig>
   );
 };
