@@ -58,7 +58,7 @@ export const tMSquareInfosBottom = `
 // BUTTON BIG
 export const tButtonBigComment = `
   font-size: 10px;
-  letter-spacing: 6px;
+  letter-spacing: 0.3vw;
   font-weight: 700;
 `;
 export const tButtonBigText = `

@@ -18,5 +18,5 @@ export default styled(NavLink)`
 
 export const SText = styled.p`
 ${tButtonInText}
-margin-right: 8px;
+margin-right: 12px;
 `;

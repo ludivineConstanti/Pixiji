@@ -17,6 +17,7 @@ const Quizzes = () => (
         button={{ text: 'start', path: 'quiz/first-grade' }}
       />
       <ButtonBig text="next" show />
+      <ButtonBig text="next" side="right" show />
     </div>
   </>
 );

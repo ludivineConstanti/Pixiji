@@ -38,8 +38,8 @@ const Menu = ({
         <SLinks>
           <SContainer>
             <MenuLink text="Home" path="" />
-            <MenuLink text="Quizzes" path="quizzes" />
             <MenuLink text="Read me" path="read-me" />
+            <MenuLink text="Quizzes" path="quizzes" />
             <MenuLink text="About" path="about" />
             <MenuLink text="404" path="404-not-found" />
           </SContainer>

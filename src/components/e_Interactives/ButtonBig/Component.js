@@ -6,7 +6,7 @@ import { gsap } from 'gsap';
 
 // == Import
 import Arrow from 'src/components/e_Interactives/Arrow';
-import SButtonBig, { SComment, tIn } from './SButtonBig';
+import SButtonBig, { SComment, SText, tIn } from './SButtonBig';
 
 const ButtonBig = ({
   comment, text, onClick, colorMain, show, side, path,
@@ -18,7 +18,7 @@ const ButtonBig = ({
 
   // need to put the animation in a hook, otherwise, the element we reference does not exist yet
   useEffect(() => {
-    setTransition(tIn(transition, component.current, colorMain));
+    setTransition(tIn(transition, component.current, colorMain, side));
   }, []);
 
   // will automatically switch to reverse true or false for us
@@ -39,7 +39,8 @@ const ButtonBig = ({
     >
       {show && (
       <>
-        <SComment>{comment}</SComment> {text}
+        <SComment>{comment}</SComment>
+        <SText>{text}</SText>
         <Arrow />
       </>
       )}
