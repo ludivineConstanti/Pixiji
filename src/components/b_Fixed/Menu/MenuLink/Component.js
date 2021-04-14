@@ -17,7 +17,7 @@ const MenuLink = ({
       className={cC}
       colorMain={colorMain}
       onClick={() => {
-        updateValueGlobal({ obj: 'UI', prop: ['menuIsOpen'], value: [false] });
+        updateValueGlobal({ prop: ['menuIsOpen'], value: [false] });
       }}
     >
       <div className={`${cC}__square`} />

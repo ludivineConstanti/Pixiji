@@ -8,10 +8,10 @@ import {
 import Component from './Component';
 
 const mapStateToProps = (state) => ({
-  colorMain: state.global.UI.colorMain,
-  menuIsOpen: state.global.UI.menuIsOpen,
-  cheating: state.global.current.cheating,
-  finishedQuiz: state.quiz.current.finished,
+  colorMain: state.global.colorMain,
+  menuIsOpen: state.global.menuIsOpen,
+  cheating: state.global.cheating,
+  finishedQuiz: state.quiz.finished,
 });
 
 const mapDispatchToProps = (dispatch) => ({

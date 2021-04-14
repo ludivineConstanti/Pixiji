@@ -5,9 +5,9 @@ import {
 import Component from './Component';
 
 const mapStateToProps = (state) => ({
-  colorMain: state.global.UI.colorMain,
+  colorMain: state.global.colorMain,
   correctAnswer: state.quiz.dataQuiz[0].arrAnswers[state.quiz.dataQuiz[0].infosAnswer.answerIndex],
-  cheating: state.global.current.cheating,
+  cheating: state.global.cheating,
 });
 
 const mapDispatchToProps = (dispatch) => ({

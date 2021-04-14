@@ -24,7 +24,7 @@ const Illu = ({
   const squareGroupRef = useRef([]);
 
   useEffect(() => {
-    updateValueGlobal({ obj: 'UI', prop: ['colorMain'], value: [colorIllu] });
+    updateValueGlobal({ prop: ['colorMain'], value: [colorIllu] });
   }, []);
 
   // useful for triggering the intro animation if left quiz and came back

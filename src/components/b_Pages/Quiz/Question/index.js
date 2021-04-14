@@ -6,7 +6,7 @@ import Component from './Component';
 
 const mapStateToProps = (state) => ({
   dataObj: state.quiz.dataQuiz[0],
-  answeredQuestion: state.quiz.user.answeredQuestion,
+  answeredQuestion: state.quiz.answeredQuestion,
 });
 
 const mapDispatchToProps = (dispatch) => ({

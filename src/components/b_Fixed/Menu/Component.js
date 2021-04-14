@@ -55,7 +55,7 @@ const Menu = ({
             hasSwitch
             color={lighterMainColor}
             onClick={() => {
-              updateValueGlobal({ obj: 'current', prop: ['cheating'], value: [!cheating] });
+              updateValueGlobal({ prop: ['cheating'], value: [!cheating] });
             }}
           />
           <MenuSetting

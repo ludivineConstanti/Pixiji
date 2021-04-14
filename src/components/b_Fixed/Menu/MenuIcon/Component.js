@@ -43,7 +43,7 @@ const MenuIcon = ({
       className={`${cC}`}
       type="button"
       onClick={() => {
-        updateValueGlobal({ obj: 'UI', prop: ['menuIsOpen'], value: [!menuIsOpen] });
+        updateValueGlobal({ prop: ['menuIsOpen'], value: [!menuIsOpen] });
         transitionClick.play();
       }}
       onMouseOver={() => {

@@ -8,18 +8,14 @@ import quizFormatter from 'src/helpers/formatters/quizFormatter';
 const initialState = {
   dataQuizzes: quizzes,
   dataQuiz: quizFormatter(kanjisInitial),
-  current: {
-    totalQuestions: 0,
-    totalOptions: 0,
-    title: 'loading...',
-    quizId: 0,
-    finished: false,
-  },
-  user: {
-    answeredQuestion: false,
-    answeredCorrectly: false,
-    rightAnswers: [],
-  },
+  totalQuestions: 0,
+  totalOptions: 0,
+  title: 'loading...',
+  quizId: 0,
+  finished: false,
+  answeredQuestion: false,
+  answeredCorrectly: false,
+  rightAnswers: [],
 };
 
 // put it there since I need it in 2 different actions
@@ -28,15 +24,15 @@ const initialize = (state, payload) => {
   const formattedQuiz = quizFormatter(currentQuiz);
   state.dataQuiz = formattedQuiz;
 
-  state.current.totalQuestions = formattedQuiz.length;
-  state.current.totalOptions = currentQuiz.length;
-  state.current.title = payload.title;
+  state.totalQuestions = formattedQuiz.length;
+  state.totalOptions = currentQuiz.length;
+  state.title = payload.title;
 
-  state.current.finished = initialState.current.finished;
+  state.finished = initialState.finished;
 
-  state.user.answeredQuestion = initialState.user.answeredQuestion;
-  state.user.answeredCorrectly = initialState.user.answeredCorrectly;
-  state.user.rightAnswers = initialState.user.rightAnswers;
+  state.answeredQuestion = initialState.answeredQuestion;
+  state.answeredCorrectly = initialState.answeredCorrectly;
+  state.rightAnswers = initialState.rightAnswers;
 };
 
 export const quizSlice = createSlice({
@@ -49,14 +45,14 @@ export const quizSlice = createSlice({
     updateValueQuiz: (state, { payload }) => {
       // {obj: "objName", prop: ["prop1", "prop2"], value: ["valueforProp1", "valueForProp2"]}
       for (let i = 0; i < payload.prop.length; i += 1) {
-        state[payload.obj][payload.prop[i]] = payload.value[i];
+        [payload.prop[i]] = payload.value[i];
       }
     },
     initializeQuiz: (state, { payload }) => {
       // {quizId: number}
-      if (state.current.quizId !== payload.quizId || state.current.finished) {
+      if (state.quizId !== payload.quizId || state.finished) {
         initialize(state, payload);
-        state.current.quizId = payload.quizId;
+        state.quizId = payload.quizId;
       }
     },
     updateFirstQuestionQuiz: (state, { payload }) => {
@@ -69,19 +65,19 @@ export const quizSlice = createSlice({
     answeredQuestionQuiz: (state, { payload }) => {
       // {answer: answerObj}
 
-      state.user.answeredQuestion = payload.answer.id;
+      state.answeredQuestion = payload.answer.id;
 
       const { infosAnswer } = state.dataQuiz[0];
 
       if (payload.answer.id === state.dataQuiz[0].arrAnswers[infosAnswer.answerIndex].id) {
-        state.user.answeredCorrectly = true;
+        state.answeredCorrectly = true;
         state.dataQuiz[0].infosAnswer.answeredRight += 1;
-        state.user.rightAnswers = [
-          ...state.user.rightAnswers,
+        state.rightAnswers = [
+          ...state.rightAnswers,
           { answer: payload.answer, infosAnswer },
         ];
-        if (state.current.totalQuestions === state.user.rightAnswers.length) {
-          state.current.finished = true;
+        if (state.totalQuestions === state.rightAnswers.length) {
+          state.finished = true;
         }
       }
       else {
@@ -91,14 +87,14 @@ export const quizSlice = createSlice({
     nextQuestionQuiz: (state) => {
       const currentQuestion = state.dataQuiz[0];
       state.dataQuiz.shift();
-      if (!state.user.answeredCorrectly) {
+      if (!state.answeredCorrectly) {
         state.dataQuiz = [...state.dataQuiz, currentQuestion];
       }
-      state.user.answeredQuestion = false;
-      state.user.answeredCorrectly = false;
+      state.answeredQuestion = false;
+      state.answeredCorrectly = false;
     },
     cheatingButtonFinishQuiz: (state) => {
-      if (state.current.totalQuestions !== state.user.rightAnswers.length) {
+      if (state.totalQuestions !== state.rightAnswers.length) {
         state.dataQuiz.forEach((e) => {
           let answerIndex;
           if (e.infosAnswer.answerIndex) {
@@ -107,15 +103,15 @@ export const quizSlice = createSlice({
           else {
             answerIndex = Math.floor(Math.random() * e.arrAnswers.length);
           }
-          state.user.rightAnswers.push(
+          state.rightAnswers.push(
             { answer: e.arrAnswers[answerIndex], infosAnswer: { ...e.infosAnswer, answerIndex } },
           );
           state.dataQuiz = quizFormatter(kanjisInitial);
-          state.current.finished = true;
+          state.finished = true;
         });
       }
       else {
-        initialize(state, { quizId: state.current.quizId, title: state.current.title });
+        initialize(state, { quizId: state.quizId, title: state.title });
       }
     },
   },

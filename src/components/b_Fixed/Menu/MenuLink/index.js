@@ -5,7 +5,7 @@ import {
 import Component from './Component';
 
 const mapStateToProps = (state) => ({
-  colorMain: state.global.UI.colorMain,
+  colorMain: state.global.colorMain,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -6,10 +6,10 @@ import {
 import Component from './Component';
 
 const mapStateToProps = (state) => ({
-  answeredQuestion: state.quiz.user.answeredQuestion,
-  answeredCorrectly: state.quiz.user.answeredCorrectly,
-  finishedQuiz: state.quiz.current.finished,
-  kanjisArr: state.quiz.user.rightAnswers,
+  answeredQuestion: state.quiz.answeredQuestion,
+  answeredCorrectly: state.quiz.answeredCorrectly,
+  finishedQuiz: state.quiz.finished,
+  kanjisArr: state.quiz.rightAnswers,
 });
 
 const mapDispatchToProps = (dispatch) => ({
