@@ -118,7 +118,6 @@ export const quizSlice = createSlice({
         });
       }
       else {
-        console.log('reinitialize quiz cheating button');
         initialize(state, { quizId: payload.quizId, title: payload.title });
       }
     },

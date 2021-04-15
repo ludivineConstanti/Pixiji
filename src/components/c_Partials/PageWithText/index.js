@@ -14,7 +14,7 @@ const PageWithText = ({ illu, textWithTitle, buttonBig }) => (
       title={textWithTitle.title}
       text={textWithTitle.text}
     />
-    <ButtonBig text={buttonBig.text} show={buttonBig.show} path={buttonBig.path || ''} />
+    <ButtonBig text={buttonBig.text} path={buttonBig.path || ''} />
   </>
 );
 
@@ -23,7 +23,6 @@ PageWithText.propTypes = {
   textWithTitle: PropTypes.object.isRequired,
   buttonBig: PropTypes.shape({
     text: PropTypes.string.isRequired,
-    show: PropTypes.bool.isRequired,
     path: PropTypes.string,
   }).isRequired,
 };

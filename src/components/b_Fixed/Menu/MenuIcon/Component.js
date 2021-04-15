@@ -4,14 +4,10 @@ import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 
 // == Import
+import { buttonMenuIconSize } from 'src/styles/g';
 import SMenuIcon, {
-  SIconContainer,
-  SIconTop,
-  SIconMiddle,
-  SIconBottom,
-  tHoverMenuIcon,
-  tHoverCloseIcon,
-  tClick,
+  SIconContainer, SIconTop, SIconTopI, SIconMiddle, SIconBottom,
+  tHoverMenuIcon, tHoverCloseIcon, tClick,
 } from './SMenuIcon';
 
 const MenuIcon = ({
@@ -62,9 +58,20 @@ const MenuIcon = ({
       s={{ colorMain }}
     >
       <SIconContainer ref={(e) => cRef.current.push(e)}>
-        <SIconTop ref={(e) => cRef.current.push(e)} />
-        <SIconMiddle ref={(e) => cRef.current.push(e)} />
-        <SIconBottom ref={(e) => cRef.current.push(e)} />
+        <SIconTop
+          initial={SIconTopI}
+          animate={{ width: buttonMenuIconSize }}
+          ref={(e) => cRef.current.push(e)}
+          s={{ colorMain }}
+        />
+        <SIconMiddle
+          animate={{ width: `calc(${buttonMenuIconSize}* 0.75)` }}
+          ref={(e) => cRef.current.push(e)}
+        />
+        <SIconBottom
+          animate={{ width: buttonMenuIconSize, color: colorMain }}
+          ref={(e) => cRef.current.push(e)}
+        />
       </SIconContainer>
     </SMenuIcon>
   );

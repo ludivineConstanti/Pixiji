@@ -14,7 +14,7 @@ const About = ({ kanjisArr }) => (
         text: ['The data for the quiz and answers was taken from wikipedia and jisho.org',
         ],
       }}
-      buttonBig={{ text: 'next', show: true }}
+      buttonBig={{ text: 'next' }}
     />
   </>
 );

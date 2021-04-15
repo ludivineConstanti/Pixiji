@@ -14,7 +14,7 @@ const Home = ({ kanjisArr }) => (
         text: ['This website is born from the thought that kanjis (Chinese characters that are used in the Japanese writing system) would work well with pixel art.',
         ],
       }}
-      buttonBig={{ text: 'next', show: true, path: '/read-me' }}
+      buttonBig={{ text: 'next', path: '/read-me' }}
     />
   </>
 );

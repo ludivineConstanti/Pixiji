@@ -14,7 +14,7 @@ const Error404 = ({ kanjisArr }) => (
         text: ['Congratulation! You found the 404 page!',
         ],
       }}
-      buttonBig={{ text: 'next', show: true }}
+      buttonBig={{ text: 'next' }}
     />
   </>
 );

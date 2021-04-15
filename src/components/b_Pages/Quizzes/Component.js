@@ -19,8 +19,8 @@ const Quizzes = ({ currentQuiz, dataQuizzes }) => {
           text={[`This quiz contains the 80 kanjis that are taught in the ${currentQuiz.title}, in Japan.`]}
           button={{ text: 'start', path: `quiz/${currentQuiz.slug}` }}
         />
-        {previousQuiz.length ? <ButtonBig text={`Quiz ${previousQuiz[0].id}`} arrowDirection="left" show path={`/quizzes/${previousQuiz[0].slug}`} /> : ''}
-        {nextQuiz.length ? <ButtonBig text={`Quiz ${nextQuiz[0].id}`} side="right" show path={`/quizzes/${nextQuiz[0].slug}`} /> : ''}
+        {previousQuiz.length ? <ButtonBig text={`Quiz ${previousQuiz[0].id}`} arrowDirection="left" path={`/quizzes/${previousQuiz[0].slug}`} /> : ''}
+        {nextQuiz.length ? <ButtonBig text={`Quiz ${nextQuiz[0].id}`} side="right" path={`/quizzes/${nextQuiz[0].slug}`} /> : ''}
       </div>
     </>
   );

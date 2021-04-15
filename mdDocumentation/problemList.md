@@ -67,3 +67,7 @@ The GSAP animations were working fine while using .to, but nothing happened whil
 ## Removing kanjis from the kanjis array, the illustration used for deco also remove it from the quiz
 
 I thought the data array from the kanjis was not going to be affected if I remove some characters from it, in another file, but I was wrong. I then tried again with making a local copy of it, but it didn't work (since it was a dynamic one). After another try, using the spread opearator, in an array, to make a copy, it worked.
+
+## The as prop of styled component doesn't work with animate of framer motion
+
+To my knowledge, there's no solution to this, so I just stopped using as (I didn't find a solution on the forums, but might be that they fixed it or are planning to...).

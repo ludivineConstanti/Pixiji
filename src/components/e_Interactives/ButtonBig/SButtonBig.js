@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import { buttonWidth, zIBigButton } from 'src/styles/g';
 import { tButtonBigComment, tButtonBigText } from 'src/styles/typo';
 
 // initial css before comes in
-export default styled.button`
+export default styled(motion.div)`
 ${tButtonBigText}
 position: fixed;
 bottom: 0;
@@ -18,6 +19,13 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+`;
+
+// otherwise, the button is somehow floating near the menu...
+export const SButton = styled.button`
+  position: absolute;
+  bottom: 0;
+  ${((props) => props.s.side)}: 0;
 `;
 
 export const SComment = styled.p`

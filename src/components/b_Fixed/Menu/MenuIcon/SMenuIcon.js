@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 
 import { buttonWidth, buttonMenuIconSize, strokeWidth } from 'src/styles/g';
@@ -27,23 +28,22 @@ const iconS = `
   height: ${strokeWidth};
   `;
 
-const iconSTB = `
+export const SIconTop = styled(motion.div)`
+  background-color: ${(props) => (props.s.colorMain)};
+  height: ${strokeWidth};
   width: ${buttonMenuIconSize};
 `;
 
-export const SIconTop = styled.div`
+export const SIconTopI = { width: 0 };
+
+export const SIconMiddle = styled(motion.div)`
   ${iconS}
-  ${iconSTB}
+  width: 0;
 `;
 
-export const SIconMiddle = styled.div`
+export const SIconBottom = styled(motion.div)`
   ${iconS}
-  width: calc(${buttonMenuIconSize}* 0.75);
-`;
-
-export const SIconBottom = styled.div`
-  ${iconS}
-  ${iconSTB}
+  width: 0;
 `;
 
 // ref is an array

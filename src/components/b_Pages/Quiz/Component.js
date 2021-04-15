@@ -34,20 +34,21 @@ const Quiz = ({
               }}
               show
             />
-            {nextQuiz.length ? <ButtonBig text={`Quiz ${nextQuiz[0].id}`} side="right" show path={`/quiz/${nextQuiz[0].slug}`} /> : ''}
+            {nextQuiz.length ? <ButtonBig text={`Quiz ${nextQuiz[0].id}`} side="right" path={`/quiz/${nextQuiz[0].slug}`} /> : ''}
           </>
         )
           : (
             <>
               <Question quizId={currentQuiz.id} />
+              {!!answeredQuestion && (
               <ButtonBig
                 comment={answeredCorrectly ? 'correct!' : 'wrong!'}
                 text="next"
                 onClick={() => {
                   nextQuestionQuiz({ quizId: currentQuiz.id });
                 }}
-                show={!!answeredQuestion}
               />
+              )}
             </>
           )}
       </SQuiz>
