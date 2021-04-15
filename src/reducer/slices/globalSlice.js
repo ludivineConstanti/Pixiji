@@ -5,6 +5,7 @@ export const globalSlice = createSlice({
   initialState: {
     cheating: true,
     colorMain: '#0A2846',
+    pColorMain: '#0A2846',
     menuIsOpen: false,
   },
 

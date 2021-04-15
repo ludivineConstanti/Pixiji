@@ -15,8 +15,12 @@ import Quiz from 'src/components/b_Pages/Quiz';
 import ReadMe from 'src/components/b_Pages/ReadMe';
 import About from 'src/components/b_Pages/About';
 import Error404 from 'src/components/b_Pages/Error404';
+//
+import SApp from './SApp';
 
-const App = ({ dataQuizzes, updateIdQuiz, initializeQuiz }) => {
+const App = ({
+  pColorMain, dataQuizzes, updateIdQuiz, initializeQuiz,
+}) => {
   const location = useLocation();
   return (
     <>
@@ -53,11 +57,13 @@ const App = ({ dataQuizzes, updateIdQuiz, initializeQuiz }) => {
           <Route component={Error404} />
         </Switch>
       </AnimatePresence>
+      <SApp s={{ pColorMain }} />
     </>
   );
 };
 
 App.propTypes = {
+  pColorMain: PropTypes.string.isRequired,
   dataQuizzes: PropTypes.array.isRequired,
   updateIdQuiz: PropTypes.func.isRequired,
   initializeQuiz: PropTypes.func.isRequired,

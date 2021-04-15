@@ -25,6 +25,9 @@ const Illu = ({
 
   useEffect(() => {
     updateValueGlobal({ prop: ['colorMain'], value: [colorIllu] });
+    setTimeout(() => {
+      updateValueGlobal({ prop: ['pColorMain'], value: [colorIllu] });
+    }, 500);
   }, []);
 
   // useful for triggering the intro animation if left quiz and came back
@@ -67,9 +70,20 @@ const Illu = ({
     );
     beginAtIndex += arrIllu[i].length;
   }
+
+  const variants = {
+    initial: { width: 0 },
+    animate: { width: '100vw' },
+  };
+
   return (
     <>
-      <SIllu s={{ colorIllu }} />
+      <SIllu
+        s={{ colorIllu }}
+        variants={variants}
+        animate="animate"
+        initial="initial"
+      />
       <IlluIndex useCase={useCase} index={index} data={arrIlluFormatted} />
     </>
   );

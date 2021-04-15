@@ -28,6 +28,7 @@ export const zIquestion = 2;
 export const zIMainSquare = 1;
 export const zIIlluWithGrowingSquare = 1;
 export const zIIlluBackground = -1;
+export const zIAppBackground = -2;
 
 // dependant on their parents
 export const zIMainSquareHover = 2;

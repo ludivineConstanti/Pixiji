@@ -6,8 +6,7 @@ import { gsap } from 'gsap';
 // == Import
 import { buttonMenuIconSize } from 'src/styles/g';
 import SMenuIcon, {
-  SIconContainer, SIconTop, SIconTopI, SIconMiddle, SIconBottom,
-  tHoverMenuIcon, tHoverCloseIcon, tClick,
+  SIconContainer, SIconStroke, tClick,
 } from './SMenuIcon';
 
 const MenuIcon = ({
@@ -18,7 +17,6 @@ const MenuIcon = ({
   const [transitionClick, setTransitionClick] = useState(
     gsap.timeline({ paused: true, duration: 0.2 }),
   );
-  const [transition, setTransition] = useState({});
 
   const cRef = useRef([]);
   const colorHsl = gsap.utils.splitColor(colorMain, true);
@@ -28,16 +26,38 @@ const MenuIcon = ({
     for (let i = 0; i < 3; i += 1) {
       gsap.to(cRef.current[i], { backgroundColor: colorMainL1 });
     }
-    setTransition({
-      hoverMenuIcon: tHoverMenuIcon(cRef, colorMainL1),
-      hoverCloseIcon: tHoverCloseIcon(cRef, colorMainL1),
-    });
     setTransitionClick(tClick(transitionClick, cRef, colorMain));
   }, [colorMain]);
 
   useEffect(() => {
     setTransitionClick(transitionClick.reversed(!menuIsOpen));
   }, [menuIsOpen]);
+
+  const sWidth = `calc(${buttonMenuIconSize}* 0.75)`;
+
+  const vIconTB = {
+    initial: { width: 0 },
+    animate: { width: buttonMenuIconSize, alignSelf: 'flex-end' },
+    whileHover: {
+      width: '75%',
+      transition: {
+        yoyo: Infinity,
+        stiffness: 1,
+      },
+    },
+  };
+
+  const vIconM = {
+    initial: { width: 0 },
+    animate: { width: sWidth },
+    whileHover: {
+      width: '100%',
+      transition: {
+        yoyo: Infinity,
+        stiffness: 1,
+      },
+    },
+  };
 
   return (
     <SMenuIcon
@@ -46,31 +66,27 @@ const MenuIcon = ({
         updateValueGlobal({ prop: ['menuIsOpen'], value: [!menuIsOpen] });
         transitionClick.play();
       }}
-      onMouseOver={() => {
-        if (menuIsOpen) transition.hoverCloseIcon.play();
-        else transition.hoverMenuIcon.play();
-      }}
-      onMouseLeave={() => {
-        if (menuIsOpen) transition.hoverCloseIcon.reverse();
-        else transition.hoverMenuIcon.reverse();
-      }}
       ref={(e) => cRef.current.push(e)}
       s={{ colorMain }}
+      initial="initial"
+      animate="animate"
+      whileHover="whileHover"
     >
       <SIconContainer ref={(e) => cRef.current.push(e)}>
-        <SIconTop
-          initial={SIconTopI}
-          animate={{ width: buttonMenuIconSize }}
+        <SIconStroke
           ref={(e) => cRef.current.push(e)}
           s={{ colorMain }}
+          variants={vIconTB}
         />
-        <SIconMiddle
-          animate={{ width: `calc(${buttonMenuIconSize}* 0.75)` }}
+        <SIconStroke
+          s={{ colorMain }}
           ref={(e) => cRef.current.push(e)}
+          variants={vIconM}
         />
-        <SIconBottom
-          animate={{ width: buttonMenuIconSize, color: colorMain }}
+        <SIconStroke
           ref={(e) => cRef.current.push(e)}
+          s={{ colorMain }}
+          variants={vIconTB}
         />
       </SIconContainer>
     </SMenuIcon>

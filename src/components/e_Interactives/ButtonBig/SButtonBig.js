@@ -34,18 +34,3 @@ export const SComment = styled.p`
 export const SText = styled.p`
   margin-bottom: 4px;
 `;
-
-// new css after comes in
-export const tIn = (tl, ref, color, side) => {
-  if (side === 'left') {
-    tl.to(ref, {
-      ease: 'out', left: 0, color,
-    }).play();
-  }
-  else {
-    tl.to(ref, {
-      ease: 'out', right: 0, color,
-    }).play();
-  }
-  return tl;
-};

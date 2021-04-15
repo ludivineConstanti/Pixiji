@@ -71,3 +71,7 @@ I thought the data array from the kanjis was not going to be affected if I remov
 ## The as prop of styled component doesn't work with animate of framer motion
 
 To my knowledge, there's no solution to this, so I just stopped using as (I didn't find a solution on the forums, but might be that they fixed it or are planning to...).
+
+## The colors don't properly update
+
+I have one mainColor that I stock in my state, which worked fine when the site is loaded but didn't always update afterward. This problem was fixed when I started using animate presence in the app component, which also fixes the problem I had with intro animations not always triggering when (except when you reloaded the page).

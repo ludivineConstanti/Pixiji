@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import { zImenu, contentMenuWidth } from 'src/styles/g';
 import { tMenuSettingsTitle } from 'src/styles/typo';
@@ -8,8 +9,7 @@ export default styled.div`
 z-index: ${zImenu};
 position: fixed;
 `;
-export const SContent = styled.div`
-  left: calc(${contentMenuWidth} * -1);
+export const SContent = styled(motion.div)`
   width: ${contentMenuWidth};
   height: 100vh;
   position: fixed;
@@ -37,8 +37,3 @@ export const STitle = styled.h1`
   margin-left: 24px;
   margin-bottom: 12px;
 `;
-
-export const contentToggle = (tl, ref) => {
-  tl.to(ref, { left: 0, ease: 'inOut' }).play();
-  return tl;
-};

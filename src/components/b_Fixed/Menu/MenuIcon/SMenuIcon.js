@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
 
 import { buttonWidth, buttonMenuIconSize, strokeWidth } from 'src/styles/g';
 
 // initial css before comes in transition
-export default styled.button`
+export default styled(motion.button)`
   height: ${buttonWidth};
   width: ${buttonWidth};
   position: fixed;
@@ -23,27 +22,9 @@ export const SIconContainer = styled.div`
   justify-content: space-between;
 `;
 
-const iconS = `
+export const SIconStroke = styled(motion.div)`
   background-color: ${(props) => (props.s.colorMain)};
   height: ${strokeWidth};
-  `;
-
-export const SIconTop = styled(motion.div)`
-  background-color: ${(props) => (props.s.colorMain)};
-  height: ${strokeWidth};
-  width: ${buttonMenuIconSize};
-`;
-
-export const SIconTopI = { width: 0 };
-
-export const SIconMiddle = styled(motion.div)`
-  ${iconS}
-  width: 0;
-`;
-
-export const SIconBottom = styled(motion.div)`
-  ${iconS}
-  width: 0;
 `;
 
 // ref is an array
@@ -52,28 +33,6 @@ export const SIconBottom = styled(motion.div)`
 // ref[2] = icon stroke bottom
 // ref[3] = rectangle containing the icon
 // ref[4] = biggest rectangle surrounding everything
-export const tHoverMenuIcon = (ref, color) => {
-  const tl = gsap.timeline({ paused: true, duration: 0.1, ease: 'inOut' });
-  tl.to(ref.current[4], {
-    scale: 0.9,
-  }, 0)
-    .to(ref.current[0], {
-      backgroundColor: color,
-    }, 0).to(ref.current[1], {
-      backgroundColor: color,
-    }, 0).to(ref.current[2], {
-      backgroundColor: color,
-    }, 0);
-  return tl;
-};
-
-export const tHoverCloseIcon = (ref, color) => {
-  const tl = gsap.timeline({ paused: true, duration: 0.1, ease: 'inOut' });
-  tl.to(ref.current[4], {
-    backgroundColor: color,
-  });
-  return tl;
-};
 
 // new css after toggle is activated
 export const tClick = (tl, ref, color) => {
