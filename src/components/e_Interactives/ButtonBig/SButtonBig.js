@@ -13,7 +13,6 @@ line-height: 20px;
 background-color: ${(props) => props.s.colorButton};
 height: ${buttonWidth};
 width: ${buttonWidth};
-${((props) => props.s.side)}: calc(${buttonWidth} * -1);
 z-index: ${zIBigButton};
 display: flex;
 flex-direction: column;
@@ -23,7 +22,7 @@ justify-content: center;
 
 // otherwise, the button is somehow floating near the menu...
 export const SButton = styled.button`
-  position: absolute;
+  position: fixed;
   bottom: 0;
   ${((props) => props.s.side)}: 0;
 `;

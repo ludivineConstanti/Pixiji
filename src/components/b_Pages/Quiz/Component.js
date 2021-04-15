@@ -1,5 +1,5 @@
 // == Import npm
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
@@ -32,7 +32,6 @@ const Quiz = ({
               onClick={() => {
                 restartQuiz({ quizId: currentQuiz.id, title: currentQuiz.title });
               }}
-              show
             />
             {nextQuiz.length ? <ButtonBig text={`Quiz ${nextQuiz[0].id}`} side="right" path={`/quiz/${nextQuiz[0].slug}`} /> : ''}
           </>

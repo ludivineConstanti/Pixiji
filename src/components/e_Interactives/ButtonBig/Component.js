@@ -2,7 +2,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { AnimatePresence } from 'framer-motion';
 
 // == Import
 import Arrow from 'src/components/e_Interactives/Arrow';
@@ -11,10 +10,18 @@ import SButtonBig, { SButton, SComment, SText } from './SButtonBig';
 const ButtonBig = ({
   comment, text, onClick, colorMain, colorButton, side, path, arrowDirection,
 }) => {
+  const variants = {
+    initial: { [side]: -300, color: 'white' },
+    animate: { [side]: 0, color: colorMain },
+  };
+
   const content = (
     <SButtonBig
-      animate={{ [side]: 0, color: colorMain }}
-      s={{ colorButton, side }}
+      variants={variants}
+      initial="initial"
+      animate="animate"
+      exit="initial"
+      s={{ colorButton }}
     >
       <SComment>{comment}</SComment>
       <SText>{text}</SText>
@@ -23,7 +30,7 @@ const ButtonBig = ({
   );
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <>
       {path ? (
         <NavLink to={path}>
           {content}
@@ -33,7 +40,7 @@ const ButtonBig = ({
           {content}
         </SButton>
       )}
-    </AnimatePresence>
+    </>
   );
 };
 
