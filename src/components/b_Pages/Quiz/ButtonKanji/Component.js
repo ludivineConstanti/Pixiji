@@ -7,7 +7,7 @@ import { gsap } from 'gsap';
 import SButtonKanji from './SButtonKanji';
 
 const ButtonKanji = ({
-  possibleAnswer, disabled, colorMain, correctAnswer, cheating, answeredQuestionQuiz,
+  quizId, possibleAnswer, disabled, colorMain, correctAnswer, cheating, answeredQuestionQuiz,
 }) => {
   const componentRef = useRef(null);
   const tl = gsap.timeline({ paused: true });
@@ -27,7 +27,7 @@ const ButtonKanji = ({
       ref={componentRef}
       type="button"
       onClick={() => {
-        answeredQuestionQuiz({ answer: possibleAnswer });
+        answeredQuestionQuiz({ quizId, answer: possibleAnswer });
       }}
       onMouseOver={() => {
         if (!disabled) {
@@ -48,6 +48,7 @@ const ButtonKanji = ({
 };
 
 ButtonKanji.propTypes = {
+  quizId: PropTypes.number.isRequired,
   possibleAnswer: PropTypes.object.isRequired,
   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
   colorMain: PropTypes.string.isRequired,

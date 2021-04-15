@@ -12,7 +12,7 @@ import SMenu, {
 } from './SMenu';
 
 const Menu = ({
-  colorMain, menuIsOpen, cheating, finishedQuiz, quizzesSlug,
+  colorMain, menuIsOpen, cheating, finishedQuiz, quizzesSlug, currentQuizId,
   updateValueGlobal, cheatingButtonFinishQuiz,
 }) => {
   // need to have the timeline inside a hook
@@ -60,7 +60,9 @@ const Menu = ({
           <MenuSetting
             text={finishedQuiz ? 'Restart quiz' : 'Finish quiz'}
             color={lighterMainColor}
-            onClick={cheatingButtonFinishQuiz}
+            onClick={() => {
+              cheatingButtonFinishQuiz({ quizId: currentQuizId });
+            }}
           />
         </SSettings>
       </SContent>
@@ -75,6 +77,7 @@ Menu.propTypes = {
   cheating: PropTypes.bool.isRequired,
   finishedQuiz: PropTypes.bool.isRequired,
   quizzesSlug: PropTypes.string.isRequired,
+  currentQuizId: PropTypes.number.isRequired,
   updateValueGlobal: PropTypes.func.isRequired,
   cheatingButtonFinishQuiz: PropTypes.func.isRequired,
 };

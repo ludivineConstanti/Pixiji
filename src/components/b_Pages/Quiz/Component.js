@@ -13,12 +13,9 @@ import Question from './Question';
 const Quiz = ({
   answeredQuestion, answeredCorrectly, finishedQuiz, kanjisArr, currentQuiz,
   dataQuizzes,
-  initializeQuiz, nextQuestionQuiz, restartQuiz,
+  nextQuestionQuiz, restartQuiz,
 }) => {
   const nextQuiz = dataQuizzes.filter((quiz) => quiz.id === currentQuiz.id + 1);
-  useEffect(() => {
-    initializeQuiz({ quizId: currentQuiz.id, title: currentQuiz.title });
-  }, []);
   return (
     <>
       <Illu useCase="quiz" index={currentQuiz.id - 1} animationCase="quiz" kanjisArr={kanjisArr} />
@@ -30,14 +27,27 @@ const Quiz = ({
               title="Well done!"
               text={['You answed all the questions correctly!', 'Try putting your mouse over the squares, on the right, to look at the answers again.']}
             />
-            <ButtonBig text="Replay" onClick={restartQuiz} show />
+            <ButtonBig
+              text="Replay"
+              onClick={() => {
+                restartQuiz({ quizId: currentQuiz.id, title: currentQuiz.title });
+              }}
+              show
+            />
             {nextQuiz.length ? <ButtonBig text={`Quiz ${nextQuiz[0].id}`} side="right" show path={`/quiz/${nextQuiz[0].slug}`} /> : ''}
           </>
         )
           : (
             <>
-              <Question />
-              <ButtonBig comment={answeredCorrectly ? 'correct!' : 'wrong!'} text="next" onClick={nextQuestionQuiz} show={!!answeredQuestion} />
+              <Question quizId={currentQuiz.id} />
+              <ButtonBig
+                comment={answeredCorrectly ? 'correct!' : 'wrong!'}
+                text="next"
+                onClick={() => {
+                  nextQuestionQuiz({ quizId: currentQuiz.id });
+                }}
+                show={!!answeredQuestion}
+              />
             </>
           )}
       </SQuiz>
@@ -55,7 +65,6 @@ Quiz.propTypes = {
     title: PropTypes.string.isRequired,
   }).isRequired,
   dataQuizzes: PropTypes.array.isRequired,
-  initializeQuiz: PropTypes.func.isRequired,
   nextQuestionQuiz: PropTypes.func.isRequired,
   restartQuiz: PropTypes.func.isRequired,
 };

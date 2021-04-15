@@ -9,7 +9,6 @@ const initialState = {
   totalQuestions: 0,
   totalOptions: 0,
   title: 'loading...',
-  quizId: 0,
   finished: false,
   answeredQuestion: false,
   answeredCorrectly: false,
@@ -18,75 +17,92 @@ const initialState = {
 
 // put it there since I need it in 2 different actions
 const initialize = (state, payload) => {
-  const currentQuiz = kanjis.filter((e) => e.quizId === payload.quizId);
+  const { quizId, title } = payload;
+
+  const cQ = state[`quiz${quizId}`];
+  const currentQuiz = kanjis.filter((e) => e.quizId === quizId);
   const formattedQuiz = quizFormatter(currentQuiz);
-  state.dataQuiz = formattedQuiz;
+  cQ.dataQuiz = formattedQuiz;
 
-  state.totalQuestions = formattedQuiz.length;
-  state.totalOptions = currentQuiz.length;
-  state.title = payload.title;
+  cQ.totalQuestions = formattedQuiz.length;
+  cQ.totalOptions = currentQuiz.length;
+  cQ.title = title;
 
-  state.finished = initialState.finished;
-  state.answeredQuestion = initialState.answeredQuestion;
-  state.answeredCorrectly = initialState.answeredCorrectly;
-  state.rightAnswers = initialState.rightAnswers;
+  cQ.finished = initialState.finished;
+  cQ.answeredQuestion = initialState.answeredQuestion;
+  cQ.answeredCorrectly = initialState.answeredCorrectly;
+  cQ.rightAnswers = initialState.rightAnswers;
 };
 
 export const quizSlice = createSlice({
   name: 'quiz',
   initialState: {
-    ...initialState,
+    currentQuizId: 1,
+    quiz1: initialState,
+    quiz2: initialState,
+    quiz3: initialState,
   },
 
   reducers: {
+    updateIdQuiz: (state, { payload }) => {
+      state.currentQuizId = payload.quizId;
+    },
     initializeQuiz: (state, { payload }) => {
       // {quizId: number}
-      if (state.quizId !== payload.quizId || state.finished) {
+      const cQ = state[`quiz${payload.quizId}`];
+      if (!cQ.rightAnswers.length) {
         initialize(state, payload);
-        state.quizId = payload.quizId;
       }
+      state.currentQuizId = payload.quizId;
     },
     updateFirstQuestionQuiz: (state, { payload }) => {
-      // {prop: ["prop1", "prop2"], value: ["valueforProp1", "valueForProp2"]}
+      // {quizId: num, prop: ["prop1", "prop2"], value: ["valueforProp1", "valueForProp2"]}
+      const cQ = state[`quiz${payload.quizId}`];
 
       for (let i = 0; i < payload.prop.length; i += 1) {
-        state.dataQuiz[0].infosAnswer[payload.prop[i]] = payload.value[i];
+        cQ.dataQuiz[0].infosAnswer[payload.prop[i]] = payload.value[i];
       }
     },
     answeredQuestionQuiz: (state, { payload }) => {
-      // {answer: answerObj}
+      // {quizId: num, answer: answerObj}
+      const cQ = state[`quiz${payload.quizId}`];
 
-      state.answeredQuestion = payload.answer.id;
+      cQ.answeredQuestion = payload.answer.id;
 
-      const { infosAnswer } = state.dataQuiz[0];
+      const { infosAnswer } = cQ.dataQuiz[0];
 
-      if (payload.answer.id === state.dataQuiz[0].arrAnswers[infosAnswer.answerIndex].id) {
-        state.answeredCorrectly = true;
-        state.dataQuiz[0].infosAnswer.answeredRight += 1;
-        state.rightAnswers = [
-          ...state.rightAnswers,
+      if (payload.answer.id === cQ.dataQuiz[0].arrAnswers[infosAnswer.answerIndex].id) {
+        cQ.answeredCorrectly = true;
+        cQ.dataQuiz[0].infosAnswer.answeredRight += 1;
+        cQ.rightAnswers = [
+          ...cQ.rightAnswers,
           { answer: payload.answer, infosAnswer },
         ];
-        if (state.totalQuestions === state.rightAnswers.length) {
-          state.finished = true;
+        if (cQ.totalQuestions === cQ.rightAnswers.length) {
+          cQ.finished = true;
         }
       }
       else {
-        state.dataQuiz[0].infosAnswer.answeredWrong += 1;
+        cQ.dataQuiz[0].infosAnswer.answeredWrong += 1;
       }
     },
-    nextQuestionQuiz: (state) => {
-      const currentQuestion = state.dataQuiz[0];
-      state.dataQuiz.shift();
-      if (!state.answeredCorrectly) {
-        state.dataQuiz = [...state.dataQuiz, currentQuestion];
+    nextQuestionQuiz: (state, { payload }) => {
+      // {quizId: num}
+      const cQ = state[`quiz${payload.quizId}`];
+
+      const currentQuestion = cQ.dataQuiz[0];
+      cQ.dataQuiz.shift();
+      if (!cQ.answeredCorrectly) {
+        cQ.dataQuiz = [...cQ.dataQuiz, currentQuestion];
       }
-      state.answeredQuestion = false;
-      state.answeredCorrectly = false;
+      cQ.answeredQuestion = false;
+      cQ.answeredCorrectly = false;
     },
-    cheatingButtonFinishQuiz: (state) => {
-      if (state.totalQuestions !== state.rightAnswers.length) {
-        state.dataQuiz.forEach((e) => {
+    cheatingButtonFinishQuiz: (state, { payload }) => {
+      const cQ = state[`quiz${payload.quizId}`];
+
+      if (cQ.totalQuestions !== cQ.rightAnswers.length) {
+        cQ.dataQuiz.forEach((e) => {
           let answerIndex;
           if (e.infosAnswer.answerIndex) {
             answerIndex = e.infosAnswer.answerIndex;
@@ -94,15 +110,16 @@ export const quizSlice = createSlice({
           else {
             answerIndex = Math.floor(Math.random() * e.arrAnswers.length);
           }
-          state.rightAnswers.push(
+          cQ.rightAnswers.push(
             { answer: e.arrAnswers[answerIndex], infosAnswer: { ...e.infosAnswer, answerIndex } },
           );
-          state.dataQuiz = quizFormatter(kanjisInitial);
-          state.finished = true;
+          cQ.dataQuiz = quizFormatter(kanjisInitial);
+          cQ.finished = true;
         });
       }
       else {
-        initialize(state, { quizId: state.quizId, title: state.title });
+        console.log('reinitialize quiz cheating button');
+        initialize(state, { quizId: payload.quizId, title: payload.title });
       }
     },
   },
@@ -110,6 +127,7 @@ export const quizSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  updateIdQuiz,
   initializeQuiz,
   updateFirstQuestionQuiz,
   answeredQuestionQuiz,

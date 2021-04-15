@@ -17,7 +17,7 @@ import ReadMe from 'src/components/b_Pages/ReadMe';
 import About from 'src/components/b_Pages/About';
 import Error404 from 'src/components/b_Pages/Error404';
 
-const App = ({ dataQuizzes }) => (
+const App = ({ dataQuizzes, updateIdQuiz, initializeQuiz }) => (
   <>
     <Menu />
     <Switch>
@@ -41,6 +41,8 @@ const App = ({ dataQuizzes }) => (
           if (!currentQuiz[0]) {
             return <Redirect to="/404-not-found" />;
           }
+          updateIdQuiz({ quizId: currentQuiz[0].id });
+          initializeQuiz({ quizId: currentQuiz[0].id, title: currentQuiz[0].title });
           return <Quiz currentQuiz={currentQuiz[0]} />;
         }}
       />
@@ -53,6 +55,8 @@ const App = ({ dataQuizzes }) => (
 
 App.propTypes = {
   dataQuizzes: PropTypes.array.isRequired,
+  updateIdQuiz: PropTypes.func.isRequired,
+  initializeQuiz: PropTypes.func.isRequired,
 };
 
 // == Export

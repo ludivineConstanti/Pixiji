@@ -4,11 +4,15 @@ import {
 } from 'src/reducer/slices/quizSlice';
 import Component from './Component';
 
-const mapStateToProps = (state) => ({
-  colorMain: state.global.colorMain,
-  correctAnswer: state.quiz.dataQuiz[0].arrAnswers[state.quiz.dataQuiz[0].infosAnswer.answerIndex],
-  cheating: state.global.cheating,
-});
+const mapStateToProps = (state) => {
+  const current = `quiz${state.quiz.currentQuizId}`;
+  return {
+    colorMain: state.global.colorMain,
+    cheating: state.global.cheating,
+    correctAnswer:
+    state.quiz[current].dataQuiz[0].arrAnswers[state.quiz[current].dataQuiz[0].infosAnswer.answerIndex],
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   answeredQuestionQuiz: (payload) => dispatch(answeredQuestionQuiz(payload)),
