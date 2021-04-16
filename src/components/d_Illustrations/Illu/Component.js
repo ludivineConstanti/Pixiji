@@ -7,7 +7,6 @@ import { aQuiz, aQuizPreview, squaresGrow } from 'src/components/d_Illustrations
 import createIllustration from 'src/components/d_Illustrations/_helpers/createIllustration';
 import arrDataIllu from 'src/components/d_Illustrations/_data/dataIndex';
 import IlluIndex from 'src/components/d_Illustrations/_compIllus/IlluIndex';
-import SIllu from './SIllu';
 
 const Illu = ({
   useCase, index, animationCase, kanjisArr, updateValueGlobal,
@@ -27,7 +26,7 @@ const Illu = ({
     updateValueGlobal({ prop: ['colorMain'], value: [colorIllu] });
     setTimeout(() => {
       updateValueGlobal({ prop: ['pColorMain'], value: [colorIllu] });
-    }, 500);
+    }, 1000);
   }, []);
 
   // useful for triggering the intro animation if left quiz and came back
@@ -71,21 +70,8 @@ const Illu = ({
     beginAtIndex += arrIllu[i].length;
   }
 
-  const variants = {
-    initial: { width: 0 },
-    animate: { width: '100vw' },
-  };
-
   return (
-    <>
-      <SIllu
-        s={{ colorIllu }}
-        variants={variants}
-        animate="animate"
-        initial="initial"
-      />
-      <IlluIndex useCase={useCase} index={index} data={arrIlluFormatted} />
-    </>
+    <IlluIndex useCase={useCase} index={index} data={arrIlluFormatted} />
   );
 };
 

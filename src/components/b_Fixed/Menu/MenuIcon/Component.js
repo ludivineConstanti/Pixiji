@@ -1,6 +1,5 @@
 // == Import npm
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 
@@ -11,8 +10,6 @@ import SMenuIcon, { SIconContainer, SIconStroke } from './SMenuIcon';
 const MenuIcon = ({
   colorMain, menuIsOpen, updateValueGlobal,
 }) => {
-  const location = useLocation();
-
   const colorHsl = gsap.utils.splitColor(colorMain, true);
   const colorMainL1 = `hsl(${colorHsl[0]}, ${colorHsl[1]}%, ${colorHsl[2] + 10}%)`;
 
