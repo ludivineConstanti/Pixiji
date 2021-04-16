@@ -10,4 +10,6 @@ export default styled(motion(NavLink))`
   color: ${(props) => props.s.colorMainL1};
   margin: 6px;
   width: 100%;
+  display: flex;
+  align-items: center;
 `;

@@ -1,3 +1,8 @@
+const blackUppercase = `
+  text-transform: uppercase;
+  font-weight: 900;
+`;
+
 const boldUppercase = `
   text-transform: uppercase;
   font-weight: 700;
@@ -6,9 +11,8 @@ const boldUppercase = `
 // general
 
 export const tTitle = `
+  ${blackUppercase}
   font-size: 64px;
-  text-transform: uppercase;
-  font-weight: 900;
   line-height: 62px;
   letter-spacing: 4px;
 `;
@@ -34,9 +38,8 @@ export const tMenuSetting = `
 `;
 
 export const tMenuSettingOnOff = `
-  ${boldUppercase}
-  font-size: 12px;
-  letter-spacing: 2px;
+  ${blackUppercase}
+  font-size: 10px;
 `;
 
 export const tMenuSettingsTitle = `

@@ -14,8 +14,8 @@ const MenuSetting = ({
   const colorMainL1 = `hsl(${colorHsl[0]}, ${colorHsl[1]}%, ${colorHsl[2] + 10}%)`;
 
   const vMenuSetting = {
-    initial: { padding: 0 },
-    animate: { padding: 24 },
+    initial: { height: '0px' },
+    animate: { height: '64px' },
     whileHover: { backgroundColor: colorMain },
   };
 

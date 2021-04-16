@@ -2,9 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
+import { motion } from 'framer-motion';
 
 // == Import
 import { tMLLetterSpacing } from 'src/styles/typo';
+import './style.scss';
 import SMenuLink from './SMenuLink';
 
 const MenuLink = ({
@@ -20,9 +22,14 @@ const MenuLink = ({
     whileHover: { color: colorMain, letterSpacing: `${tMLLetterSpacing * 2}px` },
   };
 
+  const vSquare = {
+    initial: { backgroundColor: colorMainL1 },
+    whileHover: { backgroundColor: colorMain },
+  };
+
   return (
     <SMenuLink
-      to={`/${path}`}
+      to={path}
       exact
       onClick={() => {
         updateValueGlobal({ prop: ['menuIsOpen'], value: [false] });
@@ -33,7 +40,7 @@ const MenuLink = ({
       animate="animate"
       whileHover="whileHover"
     >
-      <div />
+      <motion.div variants={vSquare} className="menuLink__square" />
       {text}
     </SMenuLink>
   );
