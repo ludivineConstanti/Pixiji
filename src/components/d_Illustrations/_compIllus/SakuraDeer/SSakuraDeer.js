@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import {
-  groundDeco,
   illuTouchingGround,
   squareUnit,
   buttonWidth,
@@ -11,12 +10,6 @@ background-color: #510909;
 position: absolute;
 bottom: 0;
 width: calc(${squareUnit} * 2);
-`;
-
-// initial css before comes in transition
-export const SGround = styled.div`
-${groundDeco}
-background-color: #9B3471;
 `;
 
 export const SIllu = styled.div`

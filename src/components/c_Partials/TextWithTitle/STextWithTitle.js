@@ -21,7 +21,7 @@ export const SSquareTitle = styled(motion.div)`
   background-color: white;
 `;
 
-export const SText = styled.p`
+export const SText = styled(motion.p)`
   ${tText}
   margin-bottom: 8px;
 `;

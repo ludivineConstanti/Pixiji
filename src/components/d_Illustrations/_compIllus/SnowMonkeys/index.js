@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 
 // == Import
 import './style.scss';
-import { SWater, SMonkeyLeft, SMonkeyOnRocks } from './SSnowMonkey';
+import { SMonkeyLeft, SMonkeyOnRocks } from './SSnowMonkey';
+import IlluGround from '../IlluGround';
 
 const SnowMonkeys = ({ data }) => {
   const cC = 'snowMonkeys';
   return (
     <>
+      <IlluGround color="#80ACAC" />
       <SMonkeyLeft className={`${cC}__monkeyLeft`}>
         {data[0]}
       </SMonkeyLeft>
@@ -21,7 +23,6 @@ const SnowMonkeys = ({ data }) => {
           {data[2]}
         </div>
       </SMonkeyOnRocks>
-      <SWater className={`${cC}__water`} />
     </>
   );
 };

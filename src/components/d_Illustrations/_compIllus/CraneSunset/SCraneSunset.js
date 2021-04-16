@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  groundDeco, illuTouchingGround, illuMarginL, squareUnit, buttonWidth,
+  illuTouchingGround, illuMarginL, squareUnit, buttonWidth,
 } from 'src/styles/g';
 
 // initial css before comes in transition
@@ -40,9 +40,4 @@ right: calc(${squareUnit} * 7);
 export const SRockRight = styled.div`
 ${illuTouchingGround}
 right: 0;
-`;
-
-export const SWater = styled.div`
-${groundDeco}
-background-color: #398084;
 `;

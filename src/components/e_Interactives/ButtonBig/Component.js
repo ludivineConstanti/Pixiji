@@ -12,13 +12,16 @@ const ButtonBig = ({
   comment, text, onClick, colorMain, colorButton, side, path, arrowDirection,
 }) => {
   const vButtonBig = {
-    initial: { [side]: -250, color: 'white' },
-    animate: { [side]: 0, color: colorMain },
+    initial: { [side]: -200, color: 'white', transition: { duration: 0.25 } },
+    animate: { [side]: 0, color: colorMain, transition: { duration: 0.25 } },
   };
 
   const MArrow = motion(Arrow);
 
   const vArrow = {
+    initial: { borderStyle: 'none' },
+    animate: { borderStyle: 'solid' },
+    exit: { borderStyle: 'none' },
     whileHover: {
       x: arrowDirection === 'right' ? 8 : -8,
       transition: {

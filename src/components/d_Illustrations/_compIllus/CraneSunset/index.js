@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 
 // == Import
 import './style.scss';
+import IlluGround from '../IlluGround';
 import {
-  SSun, SCloudLeft, SCloudRight, SRockLeft, SBaby, SAdult, SRockRight, SWater,
+  SSun, SCloudLeft, SCloudRight, SRockLeft, SBaby, SAdult, SRockRight,
 } from './SCraneSunset';
 
 const CraneSunset = ({ data }) => {
@@ -33,7 +34,7 @@ const CraneSunset = ({ data }) => {
       <SRockRight className={`${cC}__rockRight`}>
         {data[6]}
       </SRockRight>
-      <SWater />
+      <IlluGround color="#398084" />
     </>
   );
 };

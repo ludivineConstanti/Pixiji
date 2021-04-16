@@ -1,16 +1,12 @@
 import styled from 'styled-components';
 import {
-  groundDeco, illuTouchingGround, squareUnit, buttonWidth,
+  illuTouchingGround, squareUnit, buttonWidth,
 } from 'src/styles/g';
 import { green, greenL1 } from 'src/components/d_Illustrations/_data/kaguyaHime';
 
-const bambooColors = [greenL1, green, '#04645E'];
+export const greenD1 = '#04645E';
 
-// initial css before comes in transition
-export const SGround = styled.div`
-${groundDeco}
-background-color: ${bambooColors[2]};
-`;
+const bambooColors = [greenL1, green, greenD1];
 
 export const SIllu = styled.div`
 ${illuTouchingGround};

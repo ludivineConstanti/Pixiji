@@ -43,14 +43,6 @@ export const contentL = `
   transform: translateY(-50%);
 `;
 // for Illustrations
-export const groundDeco = `
-position: fixed;
-left: 0;
-bottom: 0;
-height: ${buttonWidth};
-width: 100vw;
-`;
-
 export const illuTouchingGround = `
 position: fixed;
 bottom: ${buttonWidth};

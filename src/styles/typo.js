@@ -80,8 +80,9 @@ export const tButtonBigText = `
   letter-spacing: 4px;
 `;
 // BUTTON IN TEXT
+export const tBInTFontSize = '14px';
+export const tBInTLetterSpacing = '4px';
+
 export const tButtonInText = `
   ${boldUppercase}
-  font-size: 14px;
-  letter-spacing: 4px;
 `;

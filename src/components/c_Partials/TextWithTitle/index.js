@@ -17,19 +17,33 @@ const TextWithTitle = ({ title, text, button }) => {
       },
     },
   };
+
   const vTitle = {
     initial: { opacity: 0 },
     animate: { opacity: 1, transition: { delay: 0.25 } },
+    exit: { opacity: 0, x: -150, transition: { duration: 0.25 } },
   };
+
+  const vText = {
+    initial: { opacity: 0, x: 100 },
+    animate: { opacity: 1, x: 0, transition: { delay: 0.25 } },
+    exit: { opacity: 0, x: -250, transition: { duration: 0.25 } },
+  };
+
   return (
     <STextWithTitle
       initial="initial"
       animate="animate"
+      exit="exit"
     >
       <STitle variants={vTitle}><SSquareTitle variants={vSquareTitle} />{title}
       </STitle>
       {// eslint-disable-next-line react/no-array-index-key
-      text.map((e, i) => <SText key={`textWithTitlePElement${i}`}>{e}</SText>)
+      text.map((e, i) => (
+        <SText variants={vText} key={`textWithTitlePElement${i}`}>
+          {e}
+        </SText>
+      ))
 }{ button && <ButtonInText text={button.text} path={button.path} />}
     </STextWithTitle>
   );

@@ -12,6 +12,7 @@ export const SArrow = styled.div`
   display: flex;
   align-items: center;
   justify-content: ${(props) => (props.s.pointsToward === 'right' ? 'flex-end' : 'flex-start')};
+  border-style: inherit;
 `;
 
 export const SStroke = styled.div`
@@ -30,5 +31,5 @@ export const SEnd = styled.div`
   height: ${arrowEndS}px;
   width: ${arrowEndS}px;
   transform: rotate(45deg);
-  border-style: solid;
+  border-style: inherit;
 `;

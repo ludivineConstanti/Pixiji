@@ -5,18 +5,18 @@ import PropTypes from 'prop-types';
 // == Import
 import './style.scss';
 import {
-  SGround,
   STrunk0, STree0,
   STrunk1, STree1,
   STrunk2, STree2P1, STree2P2,
   SDeer, SIllu,
 } from './SSakuraDeer';
+import IlluGround from '../IlluGround';
 
 const SakuraDeer = ({ data }) => {
   const cC = 'sakuraDeer';
   return (
     <>
-      <SGround />
+      <IlluGround color="#9B3471" />
       <SIllu>
         <STrunk0 />
         <STree0 className={`${cC}__tree0`}>
