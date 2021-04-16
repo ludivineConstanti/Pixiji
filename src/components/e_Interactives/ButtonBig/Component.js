@@ -2,6 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 
 // == Import
 import Arrow from 'src/components/e_Interactives/Arrow';
@@ -10,22 +11,34 @@ import SButtonBig, { SButton, SComment, SText } from './SButtonBig';
 const ButtonBig = ({
   comment, text, onClick, colorMain, colorButton, side, path, arrowDirection,
 }) => {
-  const variants = {
-    initial: { [side]: -300, color: 'white' },
+  const vButtonBig = {
+    initial: { [side]: -250, color: 'white' },
     animate: { [side]: 0, color: colorMain },
+  };
+
+  const MArrow = motion(Arrow);
+
+  const vArrow = {
+    whileHover: {
+      x: arrowDirection === 'right' ? 8 : -8,
+      transition: {
+        yoyo: Infinity,
+      },
+    },
   };
 
   const content = (
     <SButtonBig
-      variants={variants}
+      variants={vButtonBig}
       initial="initial"
       animate="animate"
       exit="initial"
+      whileHover="whileHover"
       s={{ colorButton }}
     >
       <SComment>{comment}</SComment>
       <SText>{text}</SText>
-      <Arrow pointsToward={arrowDirection} isWhite={colorButton !== 'white'} />
+      <MArrow variants={vArrow} pointsToward={arrowDirection} isWhite={colorButton !== 'white'} />
     </SButtonBig>
   );
 

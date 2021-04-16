@@ -15,7 +15,7 @@ export const SArrow = styled.div`
 `;
 
 export const SStroke = styled.div`
-  width: ${arrowWidth};
+  width: 100%;
   height: ${strokeWidth};
   background-color: ${(props) => props.s.colorMain};
 `;

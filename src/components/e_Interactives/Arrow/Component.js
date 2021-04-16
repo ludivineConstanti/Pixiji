@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 // == Import
 import { SArrow, SStroke, SEnd } from './SArrow';
 
-const Arrow = ({
+const Arrow = React.forwardRef(({
   pointsToward, colorMain, isWhite,
-}) => (
-  <SArrow s={{ pointsToward }}>
+}, ref) => (
+  <SArrow s={{ pointsToward }} ref={ref}>
     <SStroke s={{ colorMain: isWhite ? 'white' : colorMain }} />
     <SEnd s={{ colorMain: isWhite ? 'white' : colorMain, pointsToward }} />
   </SArrow>
-);
+));
 
 Arrow.propTypes = {
   pointsToward: PropTypes.string,

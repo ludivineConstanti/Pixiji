@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-import { zImenu, contentMenuWidth } from 'src/styles/g';
+import { zImenu, contentMenuWidth, buttonWidth } from 'src/styles/g';
 import { tMenuSettingsTitle } from 'src/styles/typo';
 
 // initial css before comes in transition
@@ -20,6 +20,7 @@ export const SContent = styled(motion.div)`
 `;
 // flex grow => takes maximum height available
 export const SLinks = styled.nav`
+margin-top: calc(${buttonWidth} / 2);
   flex-grow : 1;
   display: flex;
   flex-direction: column;

@@ -7,8 +7,9 @@ import { tMenuSetting } from 'src/styles/typo';
 // initial css before comes in transition
 export default styled.button`
   ${tMenuSetting}
-  border-top: ${strokeWidth} solid white;
-  background-color: ${(props) => props.s.colorMainL1};
+  border: ${strokeWidth} solid white;
+  border-top: 0 solid white;
+  background-color: ${(props) => props.s.colorMain};
   color: white;
   width: 100%;
   padding: 24px;

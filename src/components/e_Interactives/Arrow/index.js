@@ -6,4 +6,4 @@ const mapStateToProps = (state) => ({
   colorMain: state.global.colorMain,
 });
 
-export default connect(mapStateToProps, {})(Component);
+export default connect(mapStateToProps, {}, null, { forwardRef: true })(Component);
