@@ -1,5 +1,6 @@
 // == Import npm
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 
@@ -10,6 +11,8 @@ import SMenuIcon, { SIconContainer, SIconStroke } from './SMenuIcon';
 const MenuIcon = ({
   colorMain, menuIsOpen, updateValueGlobal,
 }) => {
+  const location = useLocation();
+
   const colorHsl = gsap.utils.splitColor(colorMain, true);
   const colorMainL1 = `hsl(${colorHsl[0]}, ${colorHsl[1]}%, ${colorHsl[2] + 10}%)`;
 
@@ -18,55 +21,58 @@ const MenuIcon = ({
     animate: { width: buttonMenuIconSize, alignSelf: 'flex-end', backgroundColor: colorMain },
   };
 
-  const [animate, setAnimate] = useState({
-    vMenuIcon: {},
-    vIconT: vIconTB.animate,
-    vIconM: { width: '75%', backgroundColor: colorMain },
-    vIconB: vIconTB.animate,
+  const [vMenuIcon, setVMenuIcon] = useState({
+    animate: {},
+    whileHover: {},
   });
 
-  const vMenuIcon = {
-    animate: animate.vMenuIcon,
-  };
-
-  const vIconT = {
+  const [vIconT, setVIconT] = useState({
     initial: vIconTB.initial,
-    animate: animate.vIconT,
-  };
-
-  const vIconM = {
+    animate: vIconTB.animate,
+  });
+  const [vIconM, setVIconM] = useState({
     initial: { width: 0, backgroundColor: colorMain },
     animate: { width: '75%', backgroundColor: colorMain },
-  };
-
-  const vIconB = {
+  });
+  const [vIconB, setVIconB] = useState({
     initial: vIconTB.initial,
-    animate: animate.vIconB,
-  };
+    animate: vIconTB.animate,
+  });
 
   useEffect(() => {
-    setAnimate(!menuIsOpen ? {
-      vMenuIcon: { backgroundColor: 'white' },
-      vIconT: vIconTB.animate,
-      vIconM: { width: '75%' },
-      vIconB: vIconTB.animate,
-    } : {
-      vMenuIcon: { backgroundColor: colorMainL1 },
-      vIconT: {
-        transformOrigin: '100% 0%',
-        width: '142%',
-        backgroundColor: 'white',
-        alignSelf: 'flex-end',
-        rotate: -45,
-      },
-      vIconM: vIconM.initial,
-      vIconB: {
-        transformOrigin: '100% 100%',
-        width: '142%',
-        backgroundColor: 'white',
-        alignSelf: 'flex-end',
-        rotate: 45,
-      },
+    setVMenuIcon({
+      ...vMenuIcon,
+      animate: !menuIsOpen
+        ? { backgroundColor: 'white' }
+        : { backgroundColor: colorMainL1 },
+    });
+    setVIconT({
+      ...vIconT,
+      animate: !menuIsOpen
+        ? vIconTB.animate
+        : {
+          transformOrigin: '100% 0%',
+          width: '142%',
+          backgroundColor: 'white',
+          alignSelf: 'flex-end',
+          rotate: -45,
+        },
+    });
+    setVIconM({
+      ...vIconM,
+      animate: !menuIsOpen ? { width: '75%' } : vIconM.initial,
+    });
+    setVIconB({
+      ...vIconB,
+      animate: !menuIsOpen
+        ? vIconTB.animate
+        : {
+          transformOrigin: '100% 100%',
+          width: '142%',
+          backgroundColor: 'white',
+          alignSelf: 'flex-end',
+          rotate: 45,
+        },
     });
   }, [menuIsOpen, colorMain]);
 
@@ -80,6 +86,7 @@ const MenuIcon = ({
       variants={vMenuIcon}
       initial="initial"
       animate="animate"
+      whileHover="whileHover"
     >
       <SIconContainer>
         <SIconStroke variants={vIconT} />

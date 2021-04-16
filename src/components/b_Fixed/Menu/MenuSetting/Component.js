@@ -1,18 +1,23 @@
 // == Import npm
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 
 // == Import
-import SMenuSetting, { tHover, tClick } from './SMenuSetting';
+import SMenuSetting, { SText, SOnOff } from './SMenuSetting';
 
 const MenuSetting = ({
-  text, hasSwitch, onClick, colorMain, updateValueGlobal,
+  text, hasSwitch, onClick, colorMain, updateValueGlobal, cheating,
 }) => {
   const colorHsl = gsap.utils.splitColor(colorMain, true);
   // lighter 1
   const colorMainL1 = `hsl(${colorHsl[0]}, ${colorHsl[1]}%, ${colorHsl[2] + 10}%)`;
-  const colorMainL2 = `hsl(${colorHsl[0]}, ${colorHsl[1]}%, ${colorHsl[2] + 20}%)`;
+
+  const vMenuSetting = {
+    initial: { padding: 0 },
+    animate: { padding: 24 },
+    whileHover: { backgroundColor: colorMain },
+  };
 
   return (
     <SMenuSetting
@@ -21,13 +26,17 @@ const MenuSetting = ({
         onClick();
         updateValueGlobal({ prop: ['menuIsOpen'], value: [false] });
       }}
-      s={{ colorMain }}
+      s={{ colorMainL1 }}
+      variants={vMenuSetting}
+      initial="initial"
+      animate="animate"
+      whileHover="whileHover"
     >
-      {text}
+      <SText>{text}</SText>
       {hasSwitch && (
       <>
-        <span>off</span>
-        <span>on</span>
+        <SOnOff s={{ active: !cheating, colorMain }}>off</SOnOff>
+        <SOnOff s={{ active: cheating, colorMain }}>on</SOnOff>
       </>
       )}
     </SMenuSetting>
@@ -40,6 +49,7 @@ MenuSetting.propTypes = {
   hasSwitch: PropTypes.bool,
   onClick: PropTypes.func,
   updateValueGlobal: PropTypes.func.isRequired,
+  cheating: PropTypes.bool.isRequired,
 };
 
 MenuSetting.defaultProps = {

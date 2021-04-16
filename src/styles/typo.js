@@ -10,6 +10,7 @@ export const tTitle = `
   text-transform: uppercase;
   font-weight: 900;
   line-height: 62px;
+  letter-spacing: 4px;
 `;
 export const tText = `
   font-size: 14px;
@@ -19,20 +20,29 @@ export const tText = `
 
 // components
 // MENU
+export const tMLLetterSpacing = 4;
+
 export const tMenuLink = `
   ${boldUppercase}
   font-size: 22px;
-  letter-spacing: 4px;
 `;
+
 export const tMenuSetting = `
   ${boldUppercase}
   font-size: 14px;
   letter-spacing: 2px;
 `;
-export const tMenuSettingsTitle = `
+
+export const tMenuSettingOnOff = `
   ${boldUppercase}
   font-size: 12px;
   letter-spacing: 2px;
+`;
+
+export const tMenuSettingsTitle = `
+  ${boldUppercase}
+  font-size: 12px;
+  letter-spacing: 6px;
 `;
 
 // QUIZ

@@ -20,12 +20,12 @@ export const SContent = styled(motion.div)`
 `;
 // flex grow => takes maximum height available
 export const SLinks = styled.nav`
-margin-top: calc(${buttonWidth} / 2);
+  margin-top: calc(${buttonWidth} / 2);
   flex-grow : 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  margin-left: ${buttonWidth};
 `;
 export const SContainer = styled.ul`
   display: flex;

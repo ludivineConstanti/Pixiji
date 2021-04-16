@@ -22,7 +22,9 @@ const ButtonBig = ({
     whileHover: {
       x: arrowDirection === 'right' ? 8 : -8,
       transition: {
-        yoyo: Infinity,
+        repeat: Infinity,
+        repeatType: 'mirror',
+        mass: 2,
       },
     },
   };

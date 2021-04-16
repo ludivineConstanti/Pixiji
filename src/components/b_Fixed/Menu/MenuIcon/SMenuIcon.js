@@ -8,7 +8,6 @@ export default styled(motion.button)`
   height: ${buttonWidth};
   width: ${buttonWidth};
   position: fixed;
-  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
