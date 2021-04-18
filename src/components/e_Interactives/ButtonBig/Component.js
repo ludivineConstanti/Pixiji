@@ -12,7 +12,7 @@ const ButtonBig = ({
   comment, text, onClick, colorMain, colorButton, side, path, arrowDirection,
 }) => {
   const vButtonBig = {
-    initial: { [side]: -200, color: 'white', transition: { duration: 0.25 } },
+    initial: { [side]: -200, color: '#FFF', transition: { duration: 0.25 } },
     animate: { [side]: 0, color: colorMain, transition: { duration: 0.25 } },
   };
 

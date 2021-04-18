@@ -15,30 +15,15 @@ import Quiz from 'src/components/b_Pages/Quiz';
 import ReadMe from 'src/components/b_Pages/ReadMe';
 import About from 'src/components/b_Pages/About';
 import Error404 from 'src/components/b_Pages/Error404';
-//
-import SApp from './SApp';
 
 const App = ({
-  colorMain, pColorMain, dataQuizzes, updateIdQuiz, initializeQuiz,
+  dataQuizzes, updateIdQuiz, initializeQuiz,
 }) => {
   const location = useLocation();
-
-  const vSApp = {
-    initial: { width: '0vw' },
-    animate: { width: '100vw', transition: { mass: 5 } },
-  };
-
   return (
     <>
-      <Menu />
+      <Menu isPlaying={/\/quiz\//.test(location.pathname)} />
       <AnimatePresence exitBeforeEnter>
-        <SApp s={{ color: pColorMain, width: '100vw' }} />
-        <SApp
-          s={{ color: colorMain, width: '0vw' }}
-          variants={vSApp}
-          initial="initial"
-          animate="animate"
-        />
         <Switch location={location} key={location.key}>
           <Route path="/" exact component={Home} />
           <Route
@@ -75,8 +60,6 @@ const App = ({
 };
 
 App.propTypes = {
-  colorMain: PropTypes.string.isRequired,
-  pColorMain: PropTypes.string.isRequired,
   dataQuizzes: PropTypes.array.isRequired,
   updateIdQuiz: PropTypes.func.isRequired,
   initializeQuiz: PropTypes.func.isRequired,

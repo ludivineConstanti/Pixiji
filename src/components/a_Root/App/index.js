@@ -3,8 +3,6 @@ import { updateIdQuiz, initializeQuiz } from 'src/reducer/slices/quizSlice';
 import Component from './Component';
 
 const mapStateToProps = (state) => ({
-  colorMain: state.global.colorMain,
-  pColorMain: state.global.pColorMain,
   dataQuizzes: state.quizzes.data,
 });
 

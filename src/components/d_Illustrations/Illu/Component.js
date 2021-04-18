@@ -7,9 +7,10 @@ import { aQuiz, aQuizPreview, squaresGrow } from 'src/components/d_Illustrations
 import createIllustration from 'src/components/d_Illustrations/_helpers/createIllustration';
 import arrDataIllu from 'src/components/d_Illustrations/_data/dataIndex';
 import IlluIndex from 'src/components/d_Illustrations/_compIllus/IlluIndex';
+import { SPColorMain, SColorMain } from './SIllu';
 
 const Illu = ({
-  useCase, index, animationCase, kanjisArr, updateValueGlobal,
+  useCase, index, animationCase, colorMain, pColorMain, kanjisArr, updateValueGlobal,
 }) => {
   const { arrIllu, colorIllu } = arrDataIllu[useCase][index];
   // I use 2 groups to keep a reference for the divs
@@ -70,8 +71,22 @@ const Illu = ({
     beginAtIndex += arrIllu[i].length;
   }
 
+  const vSColorMain = {
+    initial: { width: '0vw' },
+    animate: { width: '100vw', transition: { mass: 5 } },
+  };
+
   return (
-    <IlluIndex useCase={useCase} index={index} data={arrIlluFormatted} />
+    <>
+      <SPColorMain s={{ color: pColorMain }} />
+      <SColorMain
+        s={{ color: colorMain }}
+        variants={vSColorMain}
+        initial="initial"
+        animate="animate"
+      />
+      <IlluIndex useCase={useCase} index={index} data={arrIlluFormatted} />
+    </>
   );
 };
 
@@ -79,6 +94,8 @@ Illu.propTypes = {
   useCase: PropTypes.string.isRequired,
   index: PropTypes.number,
   animationCase: PropTypes.string,
+  colorMain: PropTypes.string.isRequired,
+  pColorMain: PropTypes.string.isRequired,
   kanjisArr: PropTypes.array,
   updateValueGlobal: PropTypes.func.isRequired,
 };

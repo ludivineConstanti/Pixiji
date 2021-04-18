@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { gsap } from 'gsap';
+import { Color } from 'framer';
 
 // == Import
 import { buttonMenuIconSize } from 'src/styles/g';
@@ -10,12 +10,12 @@ import SMenuIcon, { SIconContainer, SIconStroke } from './SMenuIcon';
 const MenuIcon = ({
   colorMain, menuIsOpen, updateValueGlobal,
 }) => {
-  const colorHsl = gsap.utils.splitColor(colorMain, true);
-  const colorMainL1 = `hsl(${colorHsl[0]}, ${colorHsl[1]}%, ${colorHsl[2] + 10}%)`;
+  // convert to rgb / hsl, lighten and convert back to hex code
+  const colorMainL1 = Color.toHexString(Color.lighten(Color(colorMain), 10));
 
   const vIconTB = {
-    initial: { width: 0, backgroundColor: colorMain },
-    animate: { width: buttonMenuIconSize, alignSelf: 'flex-end', backgroundColor: colorMain },
+    initial: { width: 0 },
+    animate: { width: buttonMenuIconSize, alignSelf: 'flex-end' },
   };
 
   const [vMenuIcon, setVMenuIcon] = useState({
@@ -28,8 +28,8 @@ const MenuIcon = ({
     animate: vIconTB.animate,
   });
   const [vIconM, setVIconM] = useState({
-    initial: { width: 0, backgroundColor: colorMain },
-    animate: { width: '75%', backgroundColor: colorMain },
+    initial: { width: 0 },
+    animate: { width: '75%' },
   });
   const [vIconB, setVIconB] = useState({
     initial: vIconTB.initial,
@@ -40,7 +40,7 @@ const MenuIcon = ({
     setVMenuIcon({
       ...vMenuIcon,
       animate: !menuIsOpen
-        ? { backgroundColor: 'white' }
+        ? { backgroundColor: '#fff' }
         : { backgroundColor: colorMainL1 },
     });
     setVIconT({
@@ -50,7 +50,6 @@ const MenuIcon = ({
         : {
           transformOrigin: '100% 0%',
           width: '142%',
-          backgroundColor: 'white',
           alignSelf: 'flex-end',
           rotate: -45,
         },
@@ -66,7 +65,6 @@ const MenuIcon = ({
         : {
           transformOrigin: '100% 100%',
           width: '142%',
-          backgroundColor: 'white',
           alignSelf: 'flex-end',
           rotate: 45,
         },
@@ -79,16 +77,15 @@ const MenuIcon = ({
       onClick={() => {
         updateValueGlobal({ prop: ['menuIsOpen'], value: [!menuIsOpen] });
       }}
-      s={{ colorMain }}
       variants={vMenuIcon}
       initial="initial"
       animate="animate"
       whileHover="whileHover"
     >
       <SIconContainer>
-        <SIconStroke variants={vIconT} />
-        <SIconStroke variants={vIconM} />
-        <SIconStroke variants={vIconB} />
+        <SIconStroke variants={vIconT} s={{ colorMain: menuIsOpen ? '#FFF' : colorMain }} key="SIconStrokeTop" />
+        <SIconStroke variants={vIconM} s={{ colorMain }} key="SIconStrokeMiddle" />
+        <SIconStroke variants={vIconB} s={{ colorMain: menuIsOpen ? '#FFF' : colorMain }} key="SIconStrokeBottom" />
       </SIconContainer>
     </SMenuIcon>
   );

@@ -23,4 +23,5 @@ export const SIconContainer = styled.div`
 
 export const SIconStroke = styled(motion.div)`
   height: ${strokeWidth};
+  background-color: ${(props) => props.s.colorMain};
 `;

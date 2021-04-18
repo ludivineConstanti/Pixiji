@@ -13,13 +13,13 @@ const ButtonInText = ({
 }) => {
   const vButtonInText = {
     initial: {
-      x: 500, width: '0%', padding: 0, border: 'none',
+      x: 500, width: '0%', padding: 0, border: '0px solid #FFF',
     },
     animate: {
-      x: 0, width: '100%', padding: '24px', border: `${strokeWidth} solid white`, transition: { delay: 0.3 },
+      x: 0, width: '100%', padding: '24px', border: `${strokeWidth} solid #FFF`, transition: { delay: 0.3 },
     },
     exit: {
-      x: -250, width: '0%', padding: 0, border: 'none',
+      x: -250, width: '0%', padding: 0, border: '0px solid #FFF',
     },
   };
   const vText = {
@@ -32,11 +32,6 @@ const ButtonInText = ({
     exit: { fontSize: 0, letterSpacing: 0, transition: { delay: 0.3 } },
   };
 
-  const vArrow = {
-    initial: { borderStyle: 'none' },
-    animate: { borderStyle: 'solid', transition: { delay: 0.3 } },
-    exit: { borderStyle: 'none' },
-  };
   return (
     <SButtonInText
       to={`/${path}`}
@@ -46,7 +41,7 @@ const ButtonInText = ({
       exit="exit"
     >
       <SText variants={vText}>{text}</SText>
-      <Arrow variants={vArrow} isWhite />
+      <Arrow isWhite />
     </SButtonInText>
   );
 };

@@ -14,7 +14,7 @@ import SMenu, {
 } from './SMenu';
 
 const Menu = ({
-  colorMain, menuIsOpen, cheating, finishedQuiz, quizzesSlug, currentQuizId,
+  isPlaying, colorMain, menuIsOpen, cheating, finishedQuiz, quizzesSlug, currentQuizId,
   updateValueGlobal, cheatingButtonFinishQuiz,
 }) => {
   const variants = {
@@ -56,6 +56,7 @@ const Menu = ({
                 updateValueGlobal({ prop: ['cheating'], value: [!cheating] });
               }}
             />
+            {isPlaying && (
             <MenuSetting
               text={finishedQuiz ? 'Restart quiz' : 'Finish quiz'}
               color={lighterMainColor}
@@ -63,6 +64,7 @@ const Menu = ({
                 cheatingButtonFinishQuiz({ quizId: currentQuizId });
               }}
             />
+            )}
           </SSettings>
         </SContent>
         )}
@@ -73,6 +75,7 @@ const Menu = ({
 };
 
 Menu.propTypes = {
+  isPlaying: PropTypes.bool.isRequired,
   colorMain: PropTypes.string.isRequired,
   menuIsOpen: PropTypes.bool.isRequired,
   cheating: PropTypes.bool.isRequired,

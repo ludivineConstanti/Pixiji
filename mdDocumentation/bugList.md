@@ -49,3 +49,9 @@ export default connect(mapStateToProps, {}, null, { forwardRef: true })(Componen
 => The quiz Illustration was not shrinking at the beggining of a quiz
 => turns out I forgot the if statement that blocks the animation from starting if the array of quiz answers is not empty (and at the moment, I do not suppress the answers, even if you leave the quiz) 
 => I put an other condition to see if you're just starting the quiz or not (might have to change it later depending on what I decide UX wise)
+
+## Menu icon not updating to the proper color
+
+=> I had a lot of problems with the color of the icon animation, first with GSAP, where it worked fine on the first page, but the colors value didn't update for the others, and then it kept a history of the colors, so it cycled through all of them...
+=> Most of the problems were solved when I started to use framer-motion, which is better integrated (to my knowledge) with react's lifecycle, but it still didn't want to update the colors properly.
+=> I still don't know why it didn't work, but I found an alternative way of toggling the color when it changes from the menu icon state, to the cross state, just by giving it as color prop to styled component (white if the menu is open and the current color if it's closed), and this one updates the colors correctly.
