@@ -25,3 +25,7 @@ export const SText = styled(motion.p)`
   ${tText}
   margin-bottom: 8px;
 `;
+
+export const SLink = styled(motion.a)`
+border-bottom: 1px solid white;
+`;

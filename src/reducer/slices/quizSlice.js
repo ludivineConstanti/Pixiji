@@ -4,15 +4,18 @@ import kanjisInitial from 'src/assets/dataQuiz/kanjisInitial';
 import kanjis from 'src/assets/dataQuiz/kanjis';
 import quizFormatter from 'src/helpers/formatters/quizFormatter';
 
-const initialState = {
-  dataQuiz: quizFormatter(kanjisInitial),
-  totalQuestions: 0,
-  totalOptions: 0,
-  title: 'loading...',
-  finished: false,
-  answeredQuestion: false,
-  answeredCorrectly: false,
-  rightAnswers: [],
+const initialState = (quizId) => {
+  const currentQuiz = kanjis.filter((e) => e.quizId === quizId);
+  return {
+    dataQuiz: quizFormatter(kanjisInitial),
+    totalQuestions: 0,
+    totalOptions: currentQuiz.length,
+    title: 'loading...',
+    finished: false,
+    answeredQuestion: false,
+    answeredCorrectly: false,
+    rightAnswers: [],
+  };
 };
 
 // put it there since I need it in 2 different actions
@@ -24,23 +27,24 @@ const initialize = (state, payload) => {
   const formattedQuiz = quizFormatter(currentQuiz);
   cQ.dataQuiz = formattedQuiz;
 
-  cQ.totalQuestions = formattedQuiz.length;
-  cQ.totalOptions = currentQuiz.length;
-  cQ.title = title;
+  if (cQ.totalQuestions === 0) {
+    cQ.totalQuestions = formattedQuiz.length;
+    cQ.title = title;
+  }
 
-  cQ.finished = initialState.finished;
-  cQ.answeredQuestion = initialState.answeredQuestion;
-  cQ.answeredCorrectly = initialState.answeredCorrectly;
-  cQ.rightAnswers = initialState.rightAnswers;
+  cQ.finished = false;
+  cQ.answeredQuestion = false;
+  cQ.answeredCorrectly = false;
+  cQ.rightAnswers = [];
 };
 
 export const quizSlice = createSlice({
   name: 'quiz',
   initialState: {
     currentQuizId: 1,
-    quiz1: initialState,
-    quiz2: initialState,
-    quiz3: initialState,
+    quiz1: initialState(1),
+    quiz2: initialState(2),
+    quiz3: initialState(3),
   },
 
   reducers: {

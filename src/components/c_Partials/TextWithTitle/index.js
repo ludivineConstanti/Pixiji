@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 
 // == Import
 import ButtonInText from 'src/components/e_Interactives/ButtonInText';
-import STextWithTitle, { STitle, SSquareTitle, SText } from './STextWithTitle';
+import STextWithTitle, {
+  STitle, SSquareTitle, SText, SLink,
+} from './STextWithTitle';
 
 const TextWithTitle = ({ title, text, button }) => {
   const vSquareTitle = {
@@ -41,10 +43,11 @@ const TextWithTitle = ({ title, text, button }) => {
       {// eslint-disable-next-line react/no-array-index-key
       text.map((e, i) => (
         <SText variants={vText} key={`textWithTitlePElement${i}`}>
-          {e}
+          {e.text ? (<>{e.text} <SLink href={e.path} target="_blank">{e.link}</SLink></>) : e}
         </SText>
       ))
-}{ button && <ButtonInText text={button.text} path={button.path} />}
+}
+      { button && <ButtonInText text={button.text} path={button.path} />}
     </STextWithTitle>
   );
 };
