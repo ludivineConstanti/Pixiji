@@ -13,7 +13,23 @@ const blue = '#39B5EC';
 const blueD1 = '#1AA1DD';
 const blueD2 = '#1677A3';
 
-const dark = '#0E5575';
+const dark = '#0057A8';
+
+const cloudTop = [[{
+  s: 1, column: 1, row: 4, c: orangeL2,
+}, {
+  s: 2, column: 2, row: 3, c: orangeL3,
+}, {
+  s: 4, column: 4, row: 1, c: orangeL2, main: true,
+}, {
+  s: 2, column: 8, row: 3, c: orangeL3,
+}, {
+  s: 1, column: 10, row: 4, c: orangeL2,
+}, {
+  s: 1, column: 11, row: 4, c: orangeL3,
+}, {
+  s: 1, column: 12, row: 4, c: orangeL2,
+}]];
 
 const dragon = [[{ // top tail (orange part)
   s: 1, column: 3, row: 1, c: orangeL4,
@@ -197,7 +213,69 @@ const dragon = [[{ // top tail (orange part)
   s: 1, column: 24, row: 5, c: blueL1,
 }]];
 
-const cloud = [];
+const cloudDragon = [[{
+  s: 1, column: 1, row: 4, c: orangeL2,
+}, {
+  s: 1, column: 2, row: 4, c: orangeL3,
+}, {
+  s: 1, column: 3, row: 4, c: orangeL2,
+}, {
+  s: 2, column: 4, row: 3, c: orangeL3,
+}, {
+  s: 3, column: 6, row: 2, c: orangeL2, main: true,
+}], [{
+  s: 4, column: 9, row: 1, c: orangeL3, main: true,
+}], [{
+  s: 4, column: 13, row: 1, c: orangeL2, main: true,
+}, {
+  s: 2, column: 17, row: 3, c: orangeL1,
+}], [{
+  s: 3, column: 19, row: 2, c: orangeL2, main: true,
+}], [{
+  s: 4, column: 22, row: 1, c: orangeL3, main: true,
+}, {
+  s: 2, column: 26, row: 3, c: orangeL2,
+}, {
+  s: 1, column: 28, row: 4, c: orangeL3,
+}, {
+  s: 1, column: 29, row: 4, c: orangeL2,
+}, {
+  s: 1, column: 30, row: 4, c: orangeL3,
+}]];
 
-export const arrCloudDragon = [dragon, cloud];
-export const colorCloudDragon = '#003348';
+const cloudBL = [[{
+  s: 1, column: 1, row: 4, c: orangeL3,
+}, {
+  s: 2, column: 2, row: 3, c: orangeL2,
+}, {
+  s: 4, column: 4, row: 1, c: orangeL3, main: true,
+}], [{
+  s: 4, column: 8, row: 1, c: orangeL2, main: true,
+}, {
+  s: 2, column: 12, row: 3, c: orangeL3,
+}, {
+  s: 1, column: 14, row: 4, c: orangeL2,
+}, {
+  s: 1, column: 15, row: 4, c: orangeL3,
+}, {
+  s: 1, column: 16, row: 4, c: orangeL2,
+}]];
+
+const cloudBR = [[{
+  s: 1, column: 1, row: 4, c: orangeL2,
+}, {
+  s: 1, column: 2, row: 4, c: orangeL3,
+}, {
+  s: 1, column: 3, row: 4, c: orangeL2,
+}, {
+  s: 2, column: 4, row: 3, c: orangeL3,
+}, {
+  s: 4, column: 6, row: 1, c: orangeL2, main: true,
+}], [{
+  s: 4, column: 10, row: 1, c: orangeL3, main: true,
+}, {
+  s: 2, column: 14, row: 3, c: orangeL2,
+}]];
+
+export const arrCloudDragon = [cloudTop, dragon, cloudDragon, cloudBL, cloudBR];
+export const colorCloudDragon = '#002A51';

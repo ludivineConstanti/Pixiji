@@ -4,18 +4,29 @@ import PropTypes from 'prop-types';
 
 // == Import
 import './style.scss';
-import { SDragon, SCloud } from './SCloudDragon';
+import {
+  SCloudTop, SDragon, SCloudDragon, SCloudBL, SCloudBR,
+} from './SCloudDragon';
 
 const CloudDragon = ({ data }) => {
   const cC = 'cloudDragon';
   return (
     <>
-      <SDragon className={`${cC}__dragon`}>
+      <SCloudTop className={`${cC}__cloudTop`}>
         {data[0]}
-      </SDragon>
-      <SCloud className={`${cC}__cloud`}>
+      </SCloudTop>
+      <SDragon className={`${cC}__dragon`}>
         {data[1]}
-      </SCloud>
+      </SDragon>
+      <SCloudDragon className={`${cC}__cloudDragon`}>
+        {data[2]}
+      </SCloudDragon>
+      <SCloudBL className={`${cC}__cloudBL`}>
+        {data[3]}
+      </SCloudBL>
+      <SCloudBR className={`${cC}__cloudBR`}>
+        {data[4]}
+      </SCloudBR>
     </>
   );
 };
