@@ -105,7 +105,7 @@ export const quizSlice = createSlice({
     cheatingButtonFinishQuiz: (state, { payload }) => {
       const cQ = state[`quiz${payload.quizId}`];
 
-      if (cQ.totalQuestions !== cQ.rightAnswers.length) {
+      if (!cQ.finished) {
         cQ.dataQuiz.forEach((e) => {
           let answerIndex;
           if (e.infosAnswer.answerIndex) {

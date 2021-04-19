@@ -5,13 +5,6 @@ import {
   buttonWidth,
 } from 'src/styles/g';
 
-const trunk = `
-background-color: #510909;
-position: absolute;
-bottom: 0;
-width: calc(${squareUnit} * 2);
-`;
-
 export const SIllu = styled.div`
 ${illuTouchingGround};
 height: calc(100vh - ${buttonWidth});
@@ -19,22 +12,10 @@ right: 0;
 width: calc(${squareUnit} * 50);
 `;
 
-export const STrunk0 = styled.div`
-${trunk}
-left: calc(${squareUnit} * 2);
-height: calc(${squareUnit} * 10);
-`;
-
 export const STree0 = styled.div`
 position: absolute;
 bottom: calc(${squareUnit} * 2);
 left: 0;
-`;
-
-export const STrunk1 = styled.div`
-${trunk}
-left: calc(${squareUnit} * 10);
-height: calc(${squareUnit} * 20);
 `;
 
 // I don't put those z-index in the global variable files
@@ -45,12 +26,6 @@ position: absolute;
 bottom: calc(${squareUnit} * 9);
 left: calc(${squareUnit} * 6);
 z-index: 2;
-`;
-
-export const STrunk2 = styled.div`
-${trunk}
-right: calc(${squareUnit} * 8);
-height: calc(${squareUnit} * 25);
 `;
 
 export const STree2P1 = styled.div`

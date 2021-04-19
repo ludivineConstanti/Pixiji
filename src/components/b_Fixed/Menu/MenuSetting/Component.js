@@ -1,5 +1,5 @@
 // == Import npm
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Color } from 'framer';
 
@@ -7,25 +7,29 @@ import { Color } from 'framer';
 import SMenuSetting, { SText, SOnOff } from './SMenuSetting';
 
 const MenuSetting = ({
-  text, hasSwitch, onClick, colorMain, updateValueGlobal, cheating,
+  text, hasSwitch, onClick, colorMain, cheating,
 }) => {
   // convert to rgb / hsl, lighten and convert back to hex code
   const colorMainL1 = Color.toHexString(Color.lighten(Color(colorMain), 10));
 
-  const vMenuSetting = {
+  const [vMenuSetting, setVMenuSetting] = useState({
     initial: { height: '0px' },
     animate: { height: '64px' },
     whileHover: { backgroundColor: colorMain },
-  };
+  });
+
+  useEffect(() => {
+    setVMenuSetting({
+      ...vMenuSetting,
+      animate: { ...vMenuSetting.animate, backgroundColor: colorMainL1 },
+      whileHover: { backgroundColor: colorMain },
+    });
+  }, [colorMain]);
 
   return (
     <SMenuSetting
       type="button"
-      onClick={() => {
-        onClick();
-        updateValueGlobal({ prop: ['menuIsOpen'], value: [false] });
-      }}
-      s={{ colorMainL1 }}
+      onClick={onClick}
       variants={vMenuSetting}
       initial="initial"
       animate="animate"
@@ -47,7 +51,6 @@ MenuSetting.propTypes = {
   colorMain: PropTypes.string.isRequired,
   hasSwitch: PropTypes.bool,
   onClick: PropTypes.func,
-  updateValueGlobal: PropTypes.func.isRequired,
   cheating: PropTypes.bool.isRequired,
 };
 

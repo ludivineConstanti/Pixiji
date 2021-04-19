@@ -30,22 +30,13 @@ bottom: -1px;
 export const bSettings = [
   { side: 'left', margin: 0, color: bambooColors[2] },
   { side: 'left', margin: buttonWidth, color: bambooColors[2] },
-  { side: 'right', margin: `calc(${squareUnit} * 60)`, color: bambooColors[2] },
-  { side: 'right', margin: `calc(${squareUnit} * 56)`, color: bambooColors[0] },
-  { side: 'right', margin: `calc(${squareUnit} * 50)`, color: bambooColors[1] },
-  { side: 'right', margin: `calc(${squareUnit} * 42)`, color: bambooColors[0] },
-  { side: 'right', margin: `calc(${squareUnit} * 24)`, color: bambooColors[0] },
-  { side: 'right', margin: `calc(${squareUnit} * 17)`, color: bambooColors[0] },
-  { side: 'right', margin: `calc(${squareUnit} * 9)`, color: bambooColors[1] },
-  { side: 'right', margin: `calc(${squareUnit} * 5)`, color: bambooColors[0] },
+  { side: 'right', margin: 60, color: bambooColors[2] },
+  { side: 'right', margin: 56, color: bambooColors[0] },
+  { side: 'right', margin: 50, color: bambooColors[1] },
+  { side: 'right', margin: 42, color: bambooColors[0] },
+  { side: 'right', margin: 24, color: bambooColors[0] },
+  { side: 'right', margin: 17, color: bambooColors[0] },
+  { side: 'right', margin: 9, color: bambooColors[1] },
+  { side: 'right', margin: 5, color: bambooColors[0] },
   { side: 'right', margin: 0, color: bambooColors[2] },
 ];
-
-export const SBamboo = styled.div`
-  position: absolute;
-  height: 100vh;
-  width: calc(${squareUnit} * 2);
-  bottom: 0;
-  ${(props) => props.s.side}: ${(props) => props.s.margin};
-  background-color: ${(props) => props.s.color};
-`;

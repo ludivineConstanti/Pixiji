@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // == Import
 import './style.scss';
-import IlluGround from '../IlluGround';
+import IlluGround from 'src/components/d_Illustrations/_elements/IlluGround';
 import {
   SSun, SCloudLeft, SCloudRight, SRockLeft, SBaby, SAdult, SRockRight,
 } from './SCraneSunset';

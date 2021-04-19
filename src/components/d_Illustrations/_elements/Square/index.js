@@ -1,43 +1,38 @@
 // == Import npm
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { gsap } from 'gsap';
+import { motion } from 'framer-motion';
 
 // == Import
 import '../style.scss';
 import { zISquareHover } from 'src/styles/g';
 
-const Square = React.forwardRef(({
+const Square = ({
   size, columnStart, rowStart, color, kanjiIndex, kanjisArrLength,
-}, ref) => {
+}) => {
   // cC for classComponent
   const cC = 'square';
-  const cRef = useRef(null);
-  // c = component
-  const cTl = gsap.timeline({ paused: true });
+
+  const vSquare = {
+    initial: { scale: 0 },
+    animateOff: { scale: 0.2 },
+    animateOn: { scale: 1 },
+    whileHoverOff: {},
+    whileHoverOn: { scale: 1.5, zIndex: zISquareHover },
+  };
+
   return (
-    <div
+    <motion.div
       className={`${cC} ${cC}--size${size} ${cC}--columnStart${columnStart} ${cC}--rowStart${rowStart}`}
       style={{ backgroundColor: `${color}` }}
-      ref={(e) => {
-        ref(e);
-        cRef.current = e;
-      }}
-      onMouseOver={() => {
-        if (kanjisArrLength > kanjiIndex) {
-          cTl.to(cRef.current, 0.25, { scale: '1.5', zIndex: `${zISquareHover}` }).play();
-        }
-      }}
-      onMouseLeave={() => {
-        const clearProps = () => {
-          gsap.set(cRef.current, { clearProps: 'all' });
-          gsap.to(cRef.current, 0, { backgroundColor: color });
-        };
-        cTl.reverse().eventCallback('onReverseComplete', clearProps);
-      }}
+      variants={vSquare}
+      initial="initial"
+      animate={kanjisArrLength > kanjiIndex ? 'animateOn' : 'animateOff'}
+      whileHover={kanjisArrLength > kanjiIndex ? 'whileHoverOn' : 'whileHoverOff'}
+      exit="initial"
     />
   );
-});
+};
 
 Square.propTypes = {
   size: PropTypes.number.isRequired,

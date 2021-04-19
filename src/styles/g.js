@@ -31,8 +31,8 @@ export const zIIlluBackground = -1;
 export const zIAppBackground = -2;
 
 // dependant on their parents
-export const zIMainSquareHover = 2;
-export const zISquareHover = 1;
+export const zIMainSquareHover = 3;
+export const zISquareHover = 2;
 
 // property group
 export const contentL = `

@@ -8,7 +8,6 @@ import { tMenuSetting, tMenuSettingOnOff } from 'src/styles/typo';
 export default styled(motion.button)`
   ${tMenuSetting}
   border: ${strokeWidth} solid white;
-  background-color: ${((props) => props.s.colorMainL1)};
   border-top: 0 solid white;
   color: white;
   width: 100%;

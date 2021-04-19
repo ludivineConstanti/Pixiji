@@ -4,15 +4,9 @@ import React from 'react';
 import MainSquare from 'src/components/d_Illustrations/_elements/MainSquare';
 import Square from 'src/components/d_Illustrations/_elements/Square';
 
-const cRef = (e, groupIndex, groupNum, squareGroups, squareContainers) => {
-  squareGroups.current[groupIndex].push(e);
-  if (!squareContainers.current[groupNum]) {
-    squareContainers.current[groupNum] = [];
-  }
-  squareContainers.current[groupNum].push(e);
-};
-
-export default (data, groupIndex, squareGroups, squareContainers, numPreviousGroups = 0, kanjisArr) => {
+export default (
+  data, groupIndex, numPreviousGroups = 0, kanjisArr,
+) => {
   const formattedData = [];
   let counter = 0;
   for (let i = 0; i < data.length; i += 1) {
@@ -25,7 +19,6 @@ export default (data, groupIndex, squareGroups, squareContainers, numPreviousGro
           size={square.s}
           columnStart={square.column}
           rowStart={square.row}
-          ref={(e) => cRef(e, groupIndex, numPreviousGroups + i, squareGroups, squareContainers)}
           color={square.c}
           kanjiIndex={numPreviousGroups + i}
           position={square.position || ''}
@@ -38,7 +31,6 @@ export default (data, groupIndex, squareGroups, squareContainers, numPreviousGro
           size={square.s}
           columnStart={square.column}
           rowStart={square.row}
-          ref={(e) => cRef(e, groupIndex, numPreviousGroups + i, squareGroups, squareContainers)}
           color={square.c}
           kanjiIndex={numPreviousGroups + i}
           kanjisArrLength={kanjisArr.length}

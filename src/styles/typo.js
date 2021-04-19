@@ -59,15 +59,21 @@ export const tQuizButtonKanji = `
   font-size: 18px;
 `;
 // MAIN SQUARE
+export const tMSquareKanji = `
+  ${tQuizButtonKanji}
+`;
+
+export const tMSIFontSize = '12';
 export const tMSquareInfos = `
-  font-size: 12px;
   letter-spacing: 0.75px;
 `;
+
+export const tMSIBFontSize = '9';
 export const tMSquareInfosBottom = `
   ${boldUppercase}
-  font-size: 9px;
   letter-spacing: 4px;
 `;
+
 // BUTTON BIG
 export const tButtonBigComment = `
   font-size: 10px;

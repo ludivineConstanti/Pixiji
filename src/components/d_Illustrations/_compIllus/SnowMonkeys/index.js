@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 // == Import
 import './style.scss';
+import IlluGround from 'src/components/d_Illustrations/_elements/IlluGround';
 import { SMonkeyLeft, SMonkeyOnRocks } from './SSnowMonkey';
-import IlluGround from '../IlluGround';
 
 const SnowMonkeys = ({ data }) => {
   const cC = 'snowMonkeys';

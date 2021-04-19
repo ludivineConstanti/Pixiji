@@ -1,5 +1,5 @@
 // == Import npm
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { Color } from 'framer';
@@ -15,11 +15,19 @@ const MenuLink = ({
   // convert to rgb / hsl, lighten and convert back to hex code
   const colorMainL1 = Color.toHexString(Color.lighten(Color(colorMain), 10));
 
-  const vMenuLink = {
+  const [vMenuLink, setVMenuLink] = useState({
     initial: { letterSpacing: '0px' },
     animate: { letterSpacing: `${tMLLetterSpacing}px` },
     whileHover: { color: colorMain, letterSpacing: `${tMLLetterSpacing * 2}px` },
-  };
+  });
+
+  useEffect(() => {
+    setVMenuLink({
+      ...vMenuLink,
+      animate: { ...vMenuLink.animate, color: colorMainL1 },
+      whileHover: { color: colorMain },
+    });
+  }, [colorMain]);
 
   const vSquare = {
     initial: { backgroundColor: colorMainL1 },

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import { zIMainSquare } from 'src/styles/g';
-import { tMSquareInfos, tMSquareInfosBottom } from 'src/styles/typo';
+import { tMSquareInfos, tMSquareKanji, tMSquareInfosBottom } from 'src/styles/typo';
 
 const textHidden = `
   display: none;
@@ -9,7 +10,7 @@ const textHidden = `
 `;
 
 // initial css before comes in
-export default styled.div`
+export default styled(motion.div)`
   z-index: ${zIMainSquare};
   display: flex;
   align-items: center;
@@ -17,20 +18,20 @@ export default styled.div`
   justify-content: center;
 `;
 
-export const SInfos = styled.span`
+export const SInfos = styled(motion.span)`
   ${tMSquareInfos}
   ${textHidden}
+  text-align: center;
 `;
 
-export const SInfosKana = styled.span`
-  margin-right: 8px;
+export const SKanji = styled(motion.span)`
+  ${tMSquareKanji}
 `;
 
-export const SInfosBottom = styled.span`
+export const SInfosBottom = styled(motion.span)`
   ${tMSquareInfosBottom}
   ${textHidden}
   text-align: center;
   position: absolute;
-  bottom: 8px;
   width: 100%;
 `;
