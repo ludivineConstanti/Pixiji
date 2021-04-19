@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
     answeredCorrectly: state.quiz[current].answeredCorrectly,
     finishedQuiz: state.quiz[current].finished,
     kanjisArr: state.quiz[current].rightAnswers,
-    dataQuizzes: state.quizzes.data,
+    dataQuizzes: state.quiz.dataQuizzes,
   };
 };
 

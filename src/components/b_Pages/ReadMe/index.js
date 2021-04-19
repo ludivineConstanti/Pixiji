@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Component from './Component';
 
 const mapStateToProps = (state) => ({
-  quizzesSlug: state.quizzes.currentSlug,
+  quizzesSlug: state.quiz.currentSlug,
   kanjisArr: state.kanjisArr.readMe,
 });
 

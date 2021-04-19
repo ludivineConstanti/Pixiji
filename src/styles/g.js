@@ -9,7 +9,7 @@ export const buttonKanjiSize = '72px';
 export const buttonKanjiSizeGap = '24px';
 // partials
 export const contentLWidth = `calc(${buttonKanjiSize} * 3 + ${buttonKanjiSizeGap} * 2)`;
-export const contentLMarginL = `calc(80px + ${buttonWidth})`;
+export const contentLMarginL = `calc(3vw + ${buttonWidth})`;
 // menu (open)
 export const contentMenuWidth = `calc(${contentLMarginL} + ${contentLWidth})`;
 // Illus

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Component from './Component';
 
 const mapStateToProps = (state) => ({
-  quizzesData: state.quizzes.data,
+  quizzesData: state.quiz.dataQuizzes,
 });
 
 export default connect(mapStateToProps, {})(Component);

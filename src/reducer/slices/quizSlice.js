@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import kanjisInitial from 'src/assets/dataQuiz/kanjisInitial';
 import kanjis from 'src/assets/dataQuiz/kanjis';
 import quizFormatter from 'src/helpers/formatters/quizFormatter';
+import quizzes from 'src/assets/dataQuiz/quizzes';
 
 const initialState = (quizId) => {
   const currentQuiz = kanjis.filter((e) => e.quizId === quizId);
@@ -10,17 +11,18 @@ const initialState = (quizId) => {
     dataQuiz: quizFormatter(kanjisInitial),
     totalQuestions: 0,
     totalOptions: currentQuiz.length,
-    title: 'loading...',
+    title: quizzes[quizId - 1].title,
     finished: false,
     answeredQuestion: false,
     answeredCorrectly: false,
     rightAnswers: [],
+    wrongAnswers: [],
   };
 };
 
 // put it there since I need it in 2 different actions
 const initialize = (state, payload) => {
-  const { quizId, title } = payload;
+  const { quizId } = payload;
 
   const cQ = state[`quiz${quizId}`];
   const currentQuiz = kanjis.filter((e) => e.quizId === quizId);
@@ -29,7 +31,6 @@ const initialize = (state, payload) => {
 
   if (cQ.totalQuestions === 0) {
     cQ.totalQuestions = formattedQuiz.length;
-    cQ.title = title;
   }
 
   cQ.finished = false;
@@ -41,7 +42,9 @@ const initialize = (state, payload) => {
 export const quizSlice = createSlice({
   name: 'quiz',
   initialState: {
+    dataQuizzes: quizzes,
     currentQuizId: 1,
+    currentSlug: quizzes[0].slug,
     quiz1: initialState(1),
     quiz2: initialState(2),
     quiz3: initialState(3),
@@ -49,7 +52,9 @@ export const quizSlice = createSlice({
 
   reducers: {
     updateIdQuiz: (state, { payload }) => {
+      // { quizId, slug}
       state.currentQuizId = payload.quizId;
+      state.currentSlug = payload.slug;
     },
     initializeQuiz: (state, { payload }) => {
       // {quizId: number}
@@ -82,6 +87,23 @@ export const quizSlice = createSlice({
           ...cQ.rightAnswers,
           { answer: payload.answer, infosAnswer },
         ];
+        if (cQ.dataQuiz[0].infosAnswer.answeredWrong > 0) {
+          cQ.wrongAnswers = [
+            ...cQ.wrongAnswers,
+            { answer: payload.answer, infosAnswer },
+          ];
+        }
+        if (cQ.dataQuiz[0].infosAnswer.answeredWrong === 0) {
+          cQ.wrongAnswers = [
+            ...cQ.wrongAnswers,
+            {
+              answer: {
+                kanji: '', en: '', kana: '', kanaEn: '',
+              },
+              infosAnswer: { answeredRight: 1, answeredWrong: 0 },
+            },
+          ];
+        }
         if (cQ.totalQuestions === cQ.rightAnswers.length) {
           cQ.finished = true;
         }
@@ -122,7 +144,7 @@ export const quizSlice = createSlice({
         });
       }
       else {
-        initialize(state, { quizId: payload.quizId, title: payload.title });
+        initialize(state, { quizId: payload.quizId });
       }
     },
   },

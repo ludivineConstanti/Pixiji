@@ -3,7 +3,7 @@ import { updateIdQuiz, initializeQuiz } from 'src/reducer/slices/quizSlice';
 import Component from './Component';
 
 const mapStateToProps = (state) => ({
-  dataQuizzes: state.quizzes.data,
+  dataQuizzes: state.quiz.dataQuizzes,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -34,6 +34,7 @@ const App = ({
               if (!currentQuiz[0]) {
                 return <Redirect to="/404-not-found" />;
               }
+              updateIdQuiz({ quizId: currentQuiz[0].id, slug: currentQuiz[0].slug });
               return <Quizzes currentQuiz={currentQuiz[0]} />;
             }}
           />
@@ -45,7 +46,7 @@ const App = ({
               if (!currentQuiz[0]) {
                 return <Redirect to="/404-not-found" />;
               }
-              updateIdQuiz({ quizId: currentQuiz[0].id });
+              updateIdQuiz({ quizId: currentQuiz[0].id, slug: currentQuiz[0].slug });
               initializeQuiz({ quizId: currentQuiz[0].id, title: currentQuiz[0].title });
               return <Quiz currentQuiz={currentQuiz[0]} />;
             }}

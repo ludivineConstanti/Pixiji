@@ -37,7 +37,8 @@ const MainSquare = ({
   }, [kanjisArr]);
 
   const colorI = Color(color);
-  const colorD1 = Color.toHexString(Color.darken(colorI, colorI.l * 30));
+  let colorD1 = Color.darken(colorI, colorI.l * 30);
+  colorD1 = Color.toHexString(Color.desaturate(colorD1, colorI.l * 15));
 
   const scaleFactor = 8 / size;
 
@@ -45,6 +46,7 @@ const MainSquare = ({
     initial: { scale: 0 },
     animateOff: { scale: 0.2 },
     animateOn: { scale: 1 },
+    whileHoverEmpty: { scale: 1.5 },
     whileHoverOn: {
       scale: scaleFactor,
       zIndex: zIMainSquareHover,
@@ -79,7 +81,8 @@ const MainSquare = ({
       variants={vMainSquare}
       initial="initial"
       animate={kanjisArr.length > kanjiIndex ? 'animateOn' : 'animateOff'}
-      whileHover={kanjisArr.length > kanjiIndex ? 'whileHoverOn' : 'whileHoverOff'}
+      // eslint-disable-next-line no-nested-ternary
+      whileHover={!answer.kanji && kanjisArr.length > kanjiIndex ? 'whileHoverEmpty' : kanjisArr.length > kanjiIndex ? 'whileHoverOn' : 'whileHoverOff'}
       exit="initial"
     >
       {answer && (
