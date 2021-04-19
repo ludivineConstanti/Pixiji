@@ -6,6 +6,7 @@ import Component from './Component';
 
 const mapStateToProps = (state) => ({
   colorMain: state.global.colorMain,
+  colorMainL1: state.global.colorMainL1,
 });
 
 const mapDispatchToProps = (dispatch) => ({

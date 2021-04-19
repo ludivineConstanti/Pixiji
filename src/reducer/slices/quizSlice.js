@@ -79,6 +79,7 @@ export const quizSlice = createSlice({
       cQ.answeredQuestion = payload.answer.id;
 
       const { infosAnswer } = cQ.dataQuiz[0];
+      const tempWrongAnswers = cQ.wrongAnswers;
 
       if (payload.answer.id === cQ.dataQuiz[0].arrAnswers[infosAnswer.answerIndex].id) {
         cQ.answeredCorrectly = true;
@@ -88,25 +89,25 @@ export const quizSlice = createSlice({
           { answer: payload.answer, infosAnswer },
         ];
         if (cQ.dataQuiz[0].infosAnswer.answeredWrong > 0) {
-          cQ.wrongAnswers = [
-            ...cQ.wrongAnswers,
-            { answer: payload.answer, infosAnswer },
-          ];
+          tempWrongAnswers.push({ answer: payload.answer, infosAnswer });
         }
         if (cQ.dataQuiz[0].infosAnswer.answeredWrong === 0) {
-          cQ.wrongAnswers = [
-            ...cQ.wrongAnswers,
-            {
-              answer: {
-                kanji: '', en: '', kana: '', kanaEn: '',
-              },
-              infosAnswer: { answeredRight: 1, answeredWrong: 0 },
+          tempWrongAnswers.push({
+            answer: {
+              kanji: '', en: '', kana: '', kanaEn: '',
             },
-          ];
+            infosAnswer: { answeredRight: 1, answeredWrong: 0 },
+          });
         }
         if (cQ.totalQuestions === cQ.rightAnswers.length) {
           cQ.finished = true;
         }
+        tempWrongAnswers.sort((a, b) => {
+          console.log(a, a.infosAnswer.answeredWrong);
+          return a.infosAnswer.answeredWrong - b.infosAnswer.answeredWrong;
+        });
+        console.log(tempWrongAnswers);
+        cQ.wrongAnswers = tempWrongAnswers;
       }
       else {
         cQ.dataQuiz[0].infosAnswer.answeredWrong += 1;

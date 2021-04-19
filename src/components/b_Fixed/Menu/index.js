@@ -10,7 +10,7 @@ import Component from './Component';
 const mapStateToProps = (state) => {
   const current = `quiz${state.quiz.currentQuizId}`;
   return {
-    colorMain: state.global.colorMain,
+    colorMainL1: state.global.colorMainL1,
     menuIsOpen: state.global.menuIsOpen,
     cheating: state.global.cheating,
     finishedQuiz: state.quiz[current].finished,

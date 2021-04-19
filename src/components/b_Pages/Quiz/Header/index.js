@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
     quizId: state.quiz.currentQuizId,
     totalOptions: state.quiz[current].totalOptions,
     title: state.quiz[current].title,
+    finishedQuiz: state.quiz[current].finished,
   };
 };
 

@@ -1,6 +1,7 @@
 // == Import npm
 import React from 'react';
 import PropTypes from 'prop-types';
+import { AnimatePresence } from 'framer-motion';
 
 // == Import
 import ButtonBig from 'src/components/e_Interactives/ButtonBig';
@@ -21,35 +22,37 @@ const Quiz = ({
       <Illu useCase="quiz" index={currentQuiz.id - 1} animationCase="quiz" kanjisArr={kanjisArr} />
       <SQuiz>
         <Header />
-        { finishedQuiz ? (
-          <>
-            <TextWithTitle
-              title="Well done!"
-              text={['You answed all the questions correctly!', 'Try putting your mouse over the squares, on the right, to look at the answers again.']}
-            />
-            <ButtonBig
-              text="Replay"
-              onClick={() => {
-                restartQuiz({ quizId: currentQuiz.id, title: currentQuiz.title });
-              }}
-            />
-            {nextQuiz.length ? <ButtonBig text={`Quiz ${nextQuiz[0].id}`} side="right" path={`/quiz/${nextQuiz[0].slug}`} /> : ''}
-          </>
-        )
-          : (
+        <AnimatePresence exitBeforeEnter>
+          { finishedQuiz ? (
             <>
-              <Question quizId={currentQuiz.id} />
-              {!!answeredQuestion && (
+              <TextWithTitle
+                title="Well done!"
+                text={['You answed all the questions!', 'Try putting your mouse over the squares, on the right, to look at the answers again.']}
+              />
               <ButtonBig
-                comment={answeredCorrectly ? 'correct!' : 'wrong!'}
-                text="next"
+                text="Replay"
                 onClick={() => {
-                  nextQuestionQuiz({ quizId: currentQuiz.id });
+                  restartQuiz({ quizId: currentQuiz.id, title: currentQuiz.title });
                 }}
               />
-              )}
+              {nextQuiz.length ? <ButtonBig text={`Quiz ${nextQuiz[0].id}`} side="right" path={`/quiz/${nextQuiz[0].slug}`} /> : ''}
             </>
-          )}
+          )
+            : (
+              <>
+                <Question quizId={currentQuiz.id} />
+                {!!answeredQuestion && (
+                <ButtonBig
+                  comment={answeredCorrectly ? 'correct!' : 'wrong!'}
+                  text="next"
+                  onClick={() => {
+                    nextQuestionQuiz({ quizId: currentQuiz.id });
+                  }}
+                />
+                )}
+              </>
+            )}
+        </AnimatePresence>
       </SQuiz>
     </>
   );

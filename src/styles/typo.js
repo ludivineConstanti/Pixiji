@@ -56,7 +56,7 @@ export const tQuizHeader = `
   text-transform: uppercase;
 `;
 export const tQuizButtonKanji = `
-  font-size: 18px;
+  font-size: 20px;
 `;
 // MAIN SQUARE
 export const tMSquareKanji = `
@@ -87,7 +87,7 @@ export const tButtonBigText = `
 `;
 // BUTTON IN TEXT
 export const tBInTFontSize = '14px';
-export const tBInTLetterSpacing = '4px';
+export const tBInTLetterSpacing = 4;
 
 export const tButtonInText = `
   ${boldUppercase}

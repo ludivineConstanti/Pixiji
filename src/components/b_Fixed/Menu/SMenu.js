@@ -32,9 +32,10 @@ export const SContainer = styled.ul`
   flex-direction: column;
   justify-content: flex-start;
 `;
-export const SSettings = styled.div``;
+
 export const STitle = styled.h1`
   ${tMenuSettingsTitle}
   margin-left: 24px;
   margin-bottom: 12px;
+  color: ${(props) => props.s.colorMainL1};
 `;

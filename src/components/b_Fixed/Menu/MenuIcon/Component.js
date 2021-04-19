@@ -1,18 +1,14 @@
 // == Import npm
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Color } from 'framer';
 
 // == Import
 import { buttonMenuIconSize } from 'src/styles/g';
 import SMenuIcon, { SIconContainer, SIconStroke } from './SMenuIcon';
 
 const MenuIcon = ({
-  colorMain, menuIsOpen, updateValueGlobal,
+  colorMainL1, colorMain, menuIsOpen, updateValueGlobal,
 }) => {
-  // convert to rgb / hsl, lighten and convert back to hex code
-  const colorMainL1 = Color.toHexString(Color.lighten(Color(colorMain), 10));
-
   const vIconTB = {
     initial: { width: 0 },
     animate: { width: buttonMenuIconSize, alignSelf: 'flex-end' },
@@ -92,6 +88,7 @@ const MenuIcon = ({
 };
 
 MenuIcon.propTypes = {
+  colorMainL1: PropTypes.string.isRequired,
   colorMain: PropTypes.string.isRequired,
   menuIsOpen: PropTypes.bool.isRequired,
   updateValueGlobal: PropTypes.func.isRequired,

@@ -1,6 +1,7 @@
 // == Import npm
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Color } from 'framer';
 
 // == Import
 import createIllustration from 'src/components/d_Illustrations/_helpers/createIllustration';
@@ -19,9 +20,15 @@ const Illu = ({
     numKanjisCounter += arrIllu[i].length;
     arrNumKanjis.push(numKanjisCounter);
   }
+  const colorI = Color.toHsl(Color(colorIllu));
+  console.log(colorI);
+  colorI.l /= 1.25;
+  colorI.s = 1;
+  const colorIlluL1 = Color.toHexString(Color.lighten(Color(colorIllu), 10));
+  const colorIlluD1 = Color.toHexString(Color(colorI));
 
   useEffect(() => {
-    updateValueGlobal({ prop: ['colorMain'], value: [colorIllu] });
+    updateValueGlobal({ prop: ['colorMain', 'colorMainL1', 'colorMainD1'], value: [colorIllu, colorIlluL1, colorIlluD1] });
     setTimeout(() => {
       updateValueGlobal({ prop: ['pColorMain'], value: [colorIllu] });
     }, 1000);

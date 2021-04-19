@@ -1,11 +1,41 @@
-import { connect } from 'react-redux';
-import Component from './Component';
+// == Import npm
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
-const mapStateToProps = (state) => {
-  const current = `quiz${state.quiz.currentQuizId}`;
-  return {
-    finishedQuiz: state.quiz[current].finished,
-  };
+// == Import
+import SProgressSquare from './SProgressSquare';
+
+const ProgressSquare = ({ squareNum, currentQuestion }) => {
+  const [vProgressSquare, setVProgressSquare] = useState({
+    initial: { scale: 0, margin: 0 },
+    animate: { scale: 1, margin: '0 1.15vw' },
+  });
+
+  // animate when the question number changes
+  useEffect(() => {
+    if (squareNum === currentQuestion) {
+      setVProgressSquare({ ...vProgressSquare, animate: { ...vProgressSquare.animate, scale: 2 } });
+    }
+    else if (squareNum === currentQuestion - 1) {
+      setVProgressSquare({ ...vProgressSquare, animate: { ...vProgressSquare.animate, scale: 1 } });
+    }
+  }, [currentQuestion]);
+
+  return (
+    <SProgressSquare
+      s={{ isDone: squareNum <= currentQuestion }}
+      variants={vProgressSquare}
+      initial="initial"
+      animate="animate"
+      exit="initial"
+    />
+  );
 };
 
-export default connect(mapStateToProps, {})(Component);
+ProgressSquare.propTypes = {
+  squareNum: PropTypes.number.isRequired,
+  currentQuestion: PropTypes.number.isRequired,
+};
+
+// == Export
+export default ProgressSquare;

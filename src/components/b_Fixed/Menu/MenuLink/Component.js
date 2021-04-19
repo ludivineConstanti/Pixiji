@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
-import { Color } from 'framer';
 
 // == Import
 import { tMLLetterSpacing } from 'src/styles/typo';
@@ -10,11 +9,8 @@ import './style.scss';
 import SMenuLink from './SMenuLink';
 
 const MenuLink = ({
-  path, text, colorMain, updateValueGlobal,
+  path, text, colorMainL1, colorMain, updateValueGlobal,
 }) => {
-  // convert to rgb / hsl, lighten and convert back to hex code
-  const colorMainL1 = Color.toHexString(Color.lighten(Color(colorMain), 10));
-
   const [vMenuLink, setVMenuLink] = useState({
     initial: { letterSpacing: '0px' },
     animate: { letterSpacing: `${tMLLetterSpacing}px` },
@@ -56,6 +52,7 @@ const MenuLink = ({
 MenuLink.propTypes = {
   path: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  colorMainL1: PropTypes.string.isRequired,
   colorMain: PropTypes.string.isRequired,
   updateValueGlobal: PropTypes.func.isRequired,
 };

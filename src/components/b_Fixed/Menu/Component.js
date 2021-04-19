@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AnimatePresence } from 'framer-motion';
-import { gsap } from 'gsap';
 
 // == Import
 import { contentMenuWidth } from 'src/styles/g';
@@ -10,20 +9,17 @@ import MenuIcon from './MenuIcon';
 import MenuLink from './MenuLink';
 import MenuSetting from './MenuSetting';
 import SMenu, {
-  SContent, SLinks, SContainer, SSettings, STitle,
+  SContent, SLinks, SContainer, STitle,
 } from './SMenu';
 
 const Menu = ({
-  isPlaying, colorMain, menuIsOpen, cheating, finishedQuiz, quizzesSlug, currentQuizId,
+  isPlaying, colorMainL1, menuIsOpen, cheating, finishedQuiz, quizzesSlug, currentQuizId,
   updateValueGlobal, cheatingButtonFinishQuiz,
 }) => {
   const variants = {
     initial: { left: `calc((${contentMenuWidth} + 10px) * -1)` },
     animate: { left: 0 },
   };
-
-  const colorHsl = gsap.utils.splitColor(colorMain, true);
-  const lighterMainColor = `hsl(${colorHsl[0]}, ${colorHsl[1]}%, ${colorHsl[2] + 10}%)`;
 
   return (
     <SMenu>
@@ -44,14 +40,11 @@ const Menu = ({
               <MenuLink text="404" path="/404-not-found" />
             </SContainer>
           </SLinks>
-          <SSettings
-            style={{ color: lighterMainColor }}
-          >
-            <STitle>settings</STitle>
+          <div>
+            <STitle s={{ colorMainL1 }}>settings</STitle>
             <MenuSetting
               text="Cheat mode"
               hasSwitch
-              color={lighterMainColor}
               onClick={() => {
                 updateValueGlobal({ prop: ['cheating'], value: [!cheating] });
               }}
@@ -59,13 +52,12 @@ const Menu = ({
             {isPlaying && (
             <MenuSetting
               text={finishedQuiz ? 'Restart quiz' : 'Finish quiz'}
-              color={lighterMainColor}
               onClick={() => {
                 cheatingButtonFinishQuiz({ quizId: currentQuizId });
               }}
             />
             )}
-          </SSettings>
+          </div>
         </SContent>
         )}
       </AnimatePresence>
@@ -76,7 +68,7 @@ const Menu = ({
 
 Menu.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
-  colorMain: PropTypes.string.isRequired,
+  colorMainL1: PropTypes.string.isRequired,
   menuIsOpen: PropTypes.bool.isRequired,
   cheating: PropTypes.bool.isRequired,
   finishedQuiz: PropTypes.bool.isRequired,

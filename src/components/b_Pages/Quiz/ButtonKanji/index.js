@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
   const current = `quiz${state.quiz.currentQuizId}`;
   return {
     colorMain: state.global.colorMain,
+    colorMainD1: state.global.colorMainD1,
     cheating: state.global.cheating,
     correctAnswer:
     state.quiz[current].dataQuiz[0].arrAnswers[state.quiz[current].dataQuiz[0].infosAnswer.answerIndex],

@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 
 // == Import
 import Arrow from 'src/components/e_Interactives/Arrow';
+import { buttonArrowHT, buttonArrowHX } from 'src/styles/animation';
 import SButtonBig, { SButton, SComment, SText } from './SButtonBig';
 
 const ButtonBig = ({
@@ -23,12 +24,8 @@ const ButtonBig = ({
     animate: { borderStyle: 'solid' },
     exit: { borderStyle: 'none' },
     whileHover: {
-      x: arrowDirection === 'right' ? 8 : -8,
-      transition: {
-        repeat: Infinity,
-        repeatType: 'mirror',
-        mass: 2,
-      },
+      x: arrowDirection === 'right' ? buttonArrowHX : -buttonArrowHX,
+      transition: buttonArrowHT,
     },
   };
 

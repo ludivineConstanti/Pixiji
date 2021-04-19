@@ -51,7 +51,7 @@ const SakuraDeer = ({ data, kanjisArr, numKanjis }) => {
           height={25}
           touchGround
           kanjisArr={kanjisArr}
-          isOnNum={numKanjis[2]}
+          isOnNum={numKanjis[3]}
         />
         <STree2P1 className={`${cC}__tree2P1`}>
           {data[2]}

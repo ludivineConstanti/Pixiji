@@ -4,7 +4,9 @@ export const globalSlice = createSlice({
   name: 'global',
   initialState: {
     cheating: true,
+    colorMainL1: '#0A2846',
     colorMain: '#0A2846',
+    colorMainD1: '#0A2846',
     pColorMain: '#0A2846',
     menuIsOpen: false,
   },
