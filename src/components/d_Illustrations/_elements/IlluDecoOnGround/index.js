@@ -3,22 +3,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
-import { squareUnit } from 'src/styles/g';
 import SIlluDecoOnGround from './SIlluDecoOnGround';
 
 const IlluOnGround = ({
   color, side, margin, width, height, touchGround, isOnNum, kanjisArr,
 }) => {
   const vIlluDecoOnGround = {
-    initial: { width: 0 },
-    animateOn: { width: `calc(${squareUnit} * ${width})` },
-    animateOff: {},
+    initial: { scaleX: 0 },
+    animateOn: { scaleX: 1 },
   };
 
   return (
     <SIlluDecoOnGround
       s={{
-        color, side, margin, height, touchGround,
+        color, side, margin, height, touchGround, width,
       }}
       variants={vIlluDecoOnGround}
       initial="initial"

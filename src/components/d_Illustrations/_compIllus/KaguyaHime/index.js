@@ -3,23 +3,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
-import './style.scss';
 import IlluGround from 'src/components/d_Illustrations/_elements/IlluGround';
 import IlluDecoOnGround from 'src/components/d_Illustrations/_elements/IlluDecoOnGround';
 import {
-  greenD1, SIllu, SMoon, SHime, bSettings,
+  greenD1, SMoon, SHime, bSettings,
 } from './SKaguyaHime';
 
-const KaguyaHime = ({ data, kanjisArr, totalKanjis }) => {
-  const cC = 'kaguyaHime';
-  return (
-    <>
-      <IlluGround color={greenD1} />
-      <SIllu>
-        {
+const KaguyaHime = ({ data, kanjisArr, totalKanjis }) => (
+  <>
+    <IlluGround color={greenD1} />
+    {
         bSettings.map((bamboo, i) => (
           <IlluDecoOnGround
-            key={`${cC}__bamboo${i}`}
+            key={`bamboo${i}`}
             color={bamboo.color}
             side={bamboo.side}
             margin={bamboo.margin}
@@ -31,17 +27,14 @@ const KaguyaHime = ({ data, kanjisArr, totalKanjis }) => {
           />
         ))
 }
-
-        <SMoon className={`${cC}__moon`}>
-          {data[0]}
-        </SMoon>
-        <SHime className={`${cC}__hime`}>
-          {data[1]}
-        </SHime>
-      </SIllu>
-    </>
-  );
-};
+    <SMoon>
+      {data[0]}
+    </SMoon>
+    <SHime>
+      {data[1]}
+    </SHime>
+  </>
+);
 
 KaguyaHime.propTypes = {
   data: PropTypes.array.isRequired,

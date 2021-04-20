@@ -1,21 +1,23 @@
 import styled from 'styled-components';
 
-import { squareUnit } from 'src/styles/g';
+import { squareUnit, illuDimensions } from 'src/styles/g';
+
+const dFish = illuDimensions(7, 23);
 
 export const SFish0 = styled.div`
-position: fixed;
-right: calc(${squareUnit} * 10);
-bottom: calc(${squareUnit} * 27);
+  ${dFish}
+  right: calc(${squareUnit} * 10);
+  bottom: calc(${squareUnit} * 27);
 `;
 
 export const SFish1 = styled.div`
-position: fixed;
-right: calc(${squareUnit} * 27);
-bottom: calc(${squareUnit} * 15);
+  ${dFish}
+  right: calc(${squareUnit} * 27);
+  bottom: calc(${squareUnit} * 15);
 `;
 
 export const SFish2 = styled.div`
-position: fixed;
-right: calc(${squareUnit} * 10);
-bottom: calc(${squareUnit} * 5);
+  ${dFish}
+  right: calc(${squareUnit} * 10);
+  bottom: calc(${squareUnit} * 5);
 `;

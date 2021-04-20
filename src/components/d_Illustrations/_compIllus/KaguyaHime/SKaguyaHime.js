@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  illuTouchingGround, squareUnit, buttonWidth,
+  squareUnitM, buttonWidth, illuDimensions, illuPosition, breakPointD,
 } from 'src/styles/g';
 import { green, greenL1 } from 'src/components/d_Illustrations/_data/kaguyaHime';
 
@@ -8,23 +8,26 @@ export const greenD1 = '#04645E';
 
 const bambooColors = [greenL1, green, greenD1];
 
-export const SIllu = styled.div`
-${illuTouchingGround};
-height: calc(100vh - ${buttonWidth});
-width: 100vw;
-right: 0;
-`;
+const dMoon = illuDimensions(4, 4);
+const pMoon = illuPosition([0, 12, 0, 0]);
 
 export const SMoon = styled.div`
-position: absolute;
-right: calc(${squareUnit} * 12);
-top: ${buttonWidth};
+  ${dMoon}
+  ${pMoon.right}
+  bottom: calc((${squareUnitM} * 30) + ${buttonWidth});
+  ${breakPointD} {
+    bottom: auto;
+    top: ${buttonWidth};
+  }
 `;
 
+const dHime = illuDimensions(18, 24);
+const pHime = illuPosition([0, 22, 0, 0], true);
+
 export const SHime = styled.div`
-position: absolute;
-right: calc(${squareUnit} * 22);
-bottom: -1px;
+  ${dHime}
+  ${pHime.right}
+  ${pHime.bottom}
 `;
 
 export const bSettings = [

@@ -24,7 +24,7 @@ justify-content: center;
 export const SButton = styled.button`
   position: fixed;
   bottom: 0;
-  ${((props) => props.s.side)}: 0;
+  left: 0;
 `;
 
 export const SComment = styled.p`

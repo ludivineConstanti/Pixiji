@@ -13,8 +13,8 @@ export const contentLMarginL = `calc(3vw + ${buttonWidth})`;
 // menu (open)
 export const contentMenuWidth = `calc(${contentLMarginL} + ${contentLWidth})`;
 // Illus
-// also is in the scss file in the illu folder
-export const squareUnitM = '2.2vw';
+// export const squareUnitM = '2.2vw';
+export const squareUnitM = '1.5vw';
 export const squareUnit = '1.1vw';
 
 // MARGINS (some are in sizes because it's used there)
@@ -44,6 +44,7 @@ export const contentL = `
   z-index: ${zIContentL};
   margin: ${buttonWidth};
   position: absolute;
+  max-width: 450px;
     ${breakPointD} {
       margin: 0;
       width: ${contentLWidth}; 
@@ -54,7 +55,6 @@ export const contentL = `
 `;
 // for Illustrations
 export const illuTouchingGround = `
-position: fixed;
 bottom: ${buttonWidth};
 z-index: ${zIIlluWithGrowingSquare};
 `;
@@ -73,6 +73,7 @@ export const illuDimensions = (height, width) => `
 
 export const illuPosition = (arrCoordinates, touchesGround = false) => {
   const result = {};
+  // position order takes the same as the usual order used in CSS
   const arrPositions = ['top', 'right', 'bottom', 'left'];
   for (let i = 0; i < arrCoordinates.length; i += 1) {
     if (arrPositions[i] !== 0) {
@@ -86,6 +87,7 @@ export const illuPosition = (arrCoordinates, touchesGround = false) => {
   }
   if (touchesGround) {
     result.bottom = `
+    z-index: ${zIIlluWithGrowingSquare};
     bottom: calc((${arrCoordinates[2]} * ${squareUnitM}) + ${buttonWidth});
     ${breakPointD} {
       bottom: calc((${arrCoordinates[2]} * ${squareUnit}) + ${buttonWidth});

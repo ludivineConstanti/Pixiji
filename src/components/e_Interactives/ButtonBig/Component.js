@@ -1,13 +1,15 @@
 // == Import npm
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 // == Import
 import Arrow from 'src/components/e_Interactives/Arrow';
 import { buttonArrowHT, buttonArrowHX } from 'src/styles/animation';
-import SButtonBig, { SButton, SComment, SText } from './SButtonBig';
+import SButtonBig, {
+  SButton, SComment, SText,
+} from './SButtonBig';
 
 const ButtonBig = ({
   comment, text, onClick, colorMain, colorButton, side, path, arrowDirection,
@@ -77,6 +79,7 @@ ButtonBig.defaultProps = {
   path: '',
   arrowDirection: 'right',
   colorButton: 'white',
+  switchSide: true,
 };
 
 // == Export

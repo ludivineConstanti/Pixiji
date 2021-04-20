@@ -248,9 +248,9 @@ const cloudBL = [[{
 }, {
   s: 2, column: 2, row: 3, c: orangeL2,
 }, {
-  s: 4, column: 4, row: 1, c: orangeL3, main: true,
+  s: 4, column: 4, row: 1, c: orangeL3, main: true, position: 'bottom',
 }], [{
-  s: 4, column: 8, row: 1, c: orangeL2, main: true,
+  s: 4, column: 8, row: 1, c: orangeL2, main: true, position: 'bottom',
 }, {
   s: 2, column: 12, row: 3, c: orangeL3,
 }, {
@@ -270,9 +270,9 @@ const cloudBR = [[{
 }, {
   s: 2, column: 4, row: 3, c: orangeL3,
 }, {
-  s: 4, column: 6, row: 1, c: orangeL2, main: true,
+  s: 4, column: 6, row: 1, c: orangeL2, main: true, position: 'bottom',
 }], [{
-  s: 4, column: 10, row: 1, c: orangeL3, main: true,
+  s: 4, column: 10, row: 1, c: orangeL3, main: true, position: 'bottom',
 }, {
   s: 2, column: 14, row: 3, c: orangeL2,
 }]];
