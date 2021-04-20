@@ -1,15 +1,43 @@
 import styled from 'styled-components';
-import { squareUnit, buttonWidth, illuMarginL } from 'src/styles/g';
+import {
+  squareUnit, squareUnitM, buttonWidth, illuMarginL, breakPointD, illuDimensions,
+} from 'src/styles/g';
 
-// initial css before comes in transition
+const dPlanet = illuDimensions(10, 10);
+
 export const SPlanet = styled.div`
+${dPlanet}
 position: fixed;
-top: ${buttonWidth};
-left: ${illuMarginL};
+left: calc(${buttonWidth} / 2);
+bottom: calc(${squareUnitM} * 14);
+  ${breakPointD} {
+    left: ${illuMarginL};
+    top: ${buttonWidth};
+  }
 `;
 
-export const SRabbitOnMoon = styled.div`
-position: fixed;
-bottom: 0;
-right: calc(${squareUnit} * 2);
+const marginMoonM = 0;
+const marginMoon = 4;
+
+const dRabbit = illuDimensions(15, 11);
+
+export const SRabbit = styled.div`
+  ${dRabbit}
+  bottom: calc(${squareUnitM} * 14);
+  right: calc((${squareUnitM} * (${marginMoonM} + 7 )) + ${buttonWidth});
+  ${breakPointD} {
+    bottom: calc(${squareUnit} * 14);
+    right: calc(${squareUnit} * (${marginMoon} + 7 ));
+  }
+`;
+
+const dMoon = illuDimensions(14, 28);
+
+export const SMoon = styled.div`
+  ${dMoon}
+  bottom: 0;
+  right: calc((${squareUnitM} * ${marginMoonM}) + ${buttonWidth});
+  ${breakPointD} {
+    right: calc(${squareUnit} * ${marginMoon});
+  }
 `;

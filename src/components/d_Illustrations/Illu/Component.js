@@ -21,7 +21,6 @@ const Illu = ({
     arrNumKanjis.push(numKanjisCounter);
   }
   const colorI = Color.toHsl(Color(colorIllu));
-  console.log(colorI);
   colorI.l /= 1.25;
   colorI.s = 1;
   const colorIlluL1 = Color.toHexString(Color.lighten(Color(colorIllu), 10));

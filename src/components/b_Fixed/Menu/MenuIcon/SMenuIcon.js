@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-import { buttonWidth, buttonMenuIconSize, strokeWidth } from 'src/styles/g';
+import {
+  buttonWidth, buttonMenuIconSize, strokeWidth, breakPointD,
+} from 'src/styles/g';
 
 // initial css before comes in transition
 export default styled(motion.button)`
@@ -11,6 +13,10 @@ export default styled(motion.button)`
   display: flex;
   align-items: center;
   justify-content: center;
+  right: 0;
+  ${breakPointD} {
+    left: 0;
+  }
 `;
 
 export const SIconContainer = styled.div`

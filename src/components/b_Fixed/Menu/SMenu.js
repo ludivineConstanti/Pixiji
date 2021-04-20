@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-import { zImenu, contentMenuWidth, buttonWidth } from 'src/styles/g';
+import {
+  zImenu, contentMenuWidth, buttonWidth, breakPointD,
+} from 'src/styles/g';
 import { tMenuSettingsTitle } from 'src/styles/typo';
 
 // initial css before comes in transition
@@ -10,13 +12,16 @@ z-index: ${zImenu};
 position: fixed;
 `;
 export const SContent = styled(motion.div)`
-  width: ${contentMenuWidth};
+  width: 100vw;
   height: 100vh;
   position: fixed;
-  top: 0;
   display: flex;
   flex-direction: column;
   background-color: white;
+  ${breakPointD} {
+    width: ${contentMenuWidth};
+  }
+
 `;
 // flex grow => takes maximum height available
 export const SLinks = styled.nav`
@@ -25,7 +30,11 @@ export const SLinks = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: ${buttonWidth};
+  align-items: center;
+  ${breakPointD} {
+    align-items: flex-start;
+    margin-left: ${buttonWidth};
+  }
 `;
 export const SContainer = styled.ul`
   display: flex;

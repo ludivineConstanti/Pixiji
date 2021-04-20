@@ -30,7 +30,7 @@ const IlluIndex = ({
     error4040: <CloudDragon data={data} />,
     // tried with an array but didn't work, always returned the last element
     quiz0: <SnowMonkeys data={data} />,
-    quiz1: <CraneSunset data={data} />,
+    quiz1: <CraneSunset data={data} kanjisArr={kanjisArr} numKanjis={arrNumKanjis} />,
     quiz2: <SakuraDeer
       data={data}
       kanjisArr={kanjisArr}

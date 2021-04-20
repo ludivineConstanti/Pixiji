@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
-import { buttonMenuIconSize } from 'src/styles/g';
 import SMenuIcon, { SIconContainer, SIconStroke } from './SMenuIcon';
 
 const MenuIcon = ({
@@ -11,13 +10,10 @@ const MenuIcon = ({
 }) => {
   const vIconTB = {
     initial: { width: 0 },
-    animate: { width: buttonMenuIconSize, alignSelf: 'flex-end' },
+    animate: { width: '100%', alignSelf: 'flex-end' },
   };
 
-  const [vMenuIcon, setVMenuIcon] = useState({
-    animate: {},
-    whileHover: {},
-  });
+  const [vMenuIcon, setVMenuIcon] = useState({});
 
   const [vIconT, setVIconT] = useState({
     initial: vIconTB.initial,
@@ -31,14 +27,13 @@ const MenuIcon = ({
     initial: vIconTB.initial,
     animate: vIconTB.animate,
   });
+  const transitionMenuHover = {
+    repeat: Infinity,
+    repeatType: 'mirror',
+    mass: 2,
+  };
 
   useEffect(() => {
-    setVMenuIcon({
-      ...vMenuIcon,
-      animate: !menuIsOpen
-        ? { backgroundColor: '#fff' }
-        : { backgroundColor: colorMainL1 },
-    });
     setVIconT({
       ...vIconT,
       animate: !menuIsOpen
@@ -67,6 +62,24 @@ const MenuIcon = ({
     });
   }, [menuIsOpen, colorMain]);
 
+  useEffect(() => {
+    setVMenuIcon({
+      ...vMenuIcon,
+      animate: !menuIsOpen
+        ? { backgroundColor: '#fff' }
+        : { backgroundColor: colorMain },
+    });
+  }, [menuIsOpen]);
+
+  useEffect(() => {
+    setVMenuIcon({
+      ...vMenuIcon,
+      animate: !menuIsOpen
+        ? { backgroundColor: '#fff' }
+        : { backgroundColor: colorMainL1 },
+    });
+  }, [colorMain]);
+
   return (
     <SMenuIcon
       type="button"
@@ -76,7 +89,34 @@ const MenuIcon = ({
       variants={vMenuIcon}
       initial="initial"
       animate="animate"
-      whileHover="whileHover"
+      onMouseEnter={() => {
+        if (menuIsOpen) {
+          setVMenuIcon({
+            ...vMenuIcon,
+            animate: { backgroundColor: colorMain },
+          });
+        }
+        else {
+          console.log('trigger else');
+          setVIconT({ animate: { width: '20px' } });
+          setVIconM({
+            ...vIconM,
+            animate: { ...vIconM.initial, width: '100%', transition: transitionMenuHover },
+          });
+          setVIconB({
+            ...vIconB,
+            animate: { ...vIconTB.animate, width: '75%', transition: transitionMenuHover },
+          });
+        }
+      }}
+      onMouseLeave={() => {
+        if (menuIsOpen) {
+          setVMenuIcon({
+            ...vMenuIcon,
+            animate: { backgroundColor: colorMainL1 },
+          });
+        }
+      }}
     >
       <SIconContainer>
         <SIconStroke variants={vIconT} s={{ colorMain: menuIsOpen ? '#FFF' : colorMain }} key="SIconStrokeTop" />

@@ -3,27 +3,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
-import './style.scss';
-import { SPlanet, SRabbitOnMoon } from './SRabbitOnMoon';
+import { SPlanet, SRabbit, SMoon } from './SRabbitOnMoon';
 
-const RabbitOnMoon = ({ data }) => {
-  const cC = 'moonRabbit';
-  return (
-    <>
-      <SPlanet className={`${cC}__planet`}>
-        {data[0]}
-      </SPlanet>
-      <SRabbitOnMoon className={`${cC}__rabbitOnMoon`}>
-        <div className={`${cC}__rabbit`}>
-          {data[1]}
-        </div>
-        <div className={`${cC}__moon`}>
-          {data[2]}
-        </div>
-      </SRabbitOnMoon>
-    </>
-  );
-};
+const RabbitOnMoon = ({ data }) => (
+  <>
+    <SPlanet>
+      {data[0]}
+    </SPlanet>
+    <SRabbit>
+      {data[1]}
+    </SRabbit>
+    <SMoon>
+      {data[2]}
+    </SMoon>
+  </>
+);
 
 RabbitOnMoon.propTypes = {
   data: PropTypes.array.isRequired,

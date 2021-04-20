@@ -1,3 +1,5 @@
+import { breakPointD } from './g';
+
 const blackUppercase = `
   text-transform: uppercase;
   font-weight: 900;
@@ -12,9 +14,12 @@ const boldUppercase = `
 
 export const tTitle = `
   ${blackUppercase}
-  font-size: 64px;
-  line-height: 62px;
-  letter-spacing: 4px;
+  font-size: 42px;
+    ${breakPointD} {
+      font-size: 64px;
+      line-height: 62px;
+      letter-spacing: 4px;
+    }
 `;
 export const tText = `
   font-size: 14px;
@@ -82,8 +87,12 @@ export const tButtonBigComment = `
 `;
 export const tButtonBigText = `
   ${boldUppercase}
-  font-size: 14px;
-  letter-spacing: 4px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  ${breakPointD} {
+    font-size: 14px;
+    letter-spacing: 4px;
+  }
 `;
 // BUTTON IN TEXT
 export const tBInTFontSize = '14px';

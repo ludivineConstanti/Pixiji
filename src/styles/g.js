@@ -2,7 +2,7 @@
 // general
 export const strokeWidth = '2px';
 // buttons
-export const buttonWidth = 'calc(4vw + 56px)';
+export const buttonWidth = 'calc(3.7vw + 64px)';
 export const buttonMenuIconSize = `calc(${buttonWidth} / 3)`;
 // buttons to answer in the quiz
 export const buttonKanjiSize = '72px';
@@ -14,6 +14,7 @@ export const contentLMarginL = `calc(3vw + ${buttonWidth})`;
 export const contentMenuWidth = `calc(${contentLMarginL} + ${contentLWidth})`;
 // Illus
 // also is in the scss file in the illu folder
+export const squareUnitM = '2.2vw';
 export const squareUnit = '1.1vw';
 
 // MARGINS (some are in sizes because it's used there)
@@ -25,6 +26,7 @@ export const illuMarginL = `calc(${contentLWidth} + ${contentLMarginL} * 2)`;
 export const zImenu = 20;
 export const zIBigButton = 10;
 export const zIquestion = 2;
+export const zIContentL = 2;
 export const zIMainSquare = 1;
 export const zIIlluWithGrowingSquare = 1;
 export const zIIlluBackground = -1;
@@ -34,13 +36,21 @@ export const zIAppBackground = -2;
 export const zIMainSquareHover = 3;
 export const zISquareHover = 2;
 
+// Breakpoints
+export const breakPointD = '@media only screen and (min-width: 992px)';
+
 // property group
 export const contentL = `
-  width: ${contentLWidth}; 
-  margin-left: ${contentLMarginL};
+  z-index: ${zIContentL};
+  margin: ${buttonWidth};
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+    ${breakPointD} {
+      margin: 0;
+      width: ${contentLWidth}; 
+      margin-left: ${contentLMarginL};
+      top: 50%;
+      transform: translateY(-50%);
+  }
 `;
 // for Illustrations
 export const illuTouchingGround = `
@@ -48,3 +58,39 @@ position: fixed;
 bottom: ${buttonWidth};
 z-index: ${zIIlluWithGrowingSquare};
 `;
+
+export const illuDimensions = (height, width) => `
+  position: fixed;
+  display: grid;
+  grid-template: repeat(${height}, 1fr) / repeat(${width}, 1fr);
+  height: calc(${height} * ${squareUnitM});
+  width: calc(${width} * ${squareUnitM});
+  ${breakPointD} {
+    height: calc(${height} * ${squareUnit});
+    width: calc(${width} * ${squareUnit});
+  }
+  `;
+
+export const illuPosition = (arrCoordinates, touchesGround = false) => {
+  const result = {};
+  const arrPositions = ['top', 'right', 'bottom', 'left'];
+  for (let i = 0; i < arrCoordinates.length; i += 1) {
+    if (arrPositions[i] !== 0) {
+      result[arrPositions[i]] = `
+      ${arrPositions[i]}: calc(${arrCoordinates[i]} * ${squareUnitM});
+      ${breakPointD} {
+        ${arrPositions[i]}: calc(${arrCoordinates[i]} * ${squareUnit});
+      }
+    `;
+    }
+  }
+  if (touchesGround) {
+    result.bottom = `
+    bottom: calc((${arrCoordinates[2]} * ${squareUnitM}) + ${buttonWidth});
+    ${breakPointD} {
+      bottom: calc((${arrCoordinates[2]} * ${squareUnit}) + ${buttonWidth});
+    }
+  `;
+  }
+  return result;
+};

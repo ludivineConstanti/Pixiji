@@ -17,18 +17,23 @@ const MenuLink = ({
     whileHover: { color: colorMain, letterSpacing: `${tMLLetterSpacing * 2}px` },
   });
 
+  const [vSquare, setVSquare] = useState({
+    initial: { backgroundColor: colorMainL1 },
+    whileHover: { backgroundColor: colorMain },
+  });
+
   useEffect(() => {
+    setVSquare({
+      ...vSquare,
+      animate: { ...vSquare.animate, backgroundColor: colorMainL1 },
+      whileHover: { ...vSquare.whileHover, backgroundColor: colorMain },
+    });
     setVMenuLink({
       ...vMenuLink,
       animate: { ...vMenuLink.animate, color: colorMainL1 },
-      whileHover: { color: colorMain },
+      whileHover: { ...vMenuLink.whileHover, color: colorMain },
     });
   }, [colorMain]);
-
-  const vSquare = {
-    initial: { backgroundColor: colorMainL1 },
-    whileHover: { backgroundColor: colorMain },
-  };
 
   return (
     <SMenuLink
