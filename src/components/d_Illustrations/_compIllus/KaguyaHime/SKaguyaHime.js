@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import {
-  squareUnitM, buttonWidth, illuDimensions, breakPointD, illuCustomPos,
+  squareUnitM, squareUnitT, buttonWidth, illuDimensions, breakPointD, illuCustomPos,
+  breakPointT, contentLMarginL, contentLMarginLM, contentLMarginLT, contentLWidthR,
 } from 'src/styles/g';
+import { motion } from 'framer-motion';
+import { colorKaguyaHime } from 'src/components/d_Illustrations/_data/kaguyaHime';
 
 export const bambooColors = ['#057B73', '#04625C', '#034A45'];
 
@@ -12,6 +15,9 @@ export const SMoon = styled.div`
   ${dMoon}
   ${pMoon.right}
   bottom: calc((${squareUnitM} * 30) + ${buttonWidth});
+  ${breakPointT} {
+    bottom: calc((${squareUnitT} * 30) + ${buttonWidth});
+  }
   ${breakPointD} {
     bottom: auto;
     top: ${buttonWidth};
@@ -40,3 +46,21 @@ export const bSettings = [
   { side: 'right', margin: 5, color: bambooColors[0] },
   { side: 'right', margin: 0, color: bambooColors[2] },
 ];
+
+export const SBackgroundColor = styled(motion.div)`
+  ${contentLWidthR}
+  top: 0;
+  background-color: ${colorKaguyaHime};
+  left: ${contentLMarginLM};
+  position: fixed;
+  height: calc(${contentLMarginLM} * 1.5);
+  ${breakPointT} {
+    height: calc(${contentLMarginLT} * 1.5);
+    left: ${contentLMarginLT};
+  }
+  ${breakPointD} {
+    height: 50%;
+    margin: 0;
+    left: ${contentLMarginL};
+  }
+`;

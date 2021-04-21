@@ -7,7 +7,6 @@ import { tTitle, tText } from 'src/styles/typo';
 // initial css before comes in transition
 export default styled(motion.main)`
   ${contentL}
-  background-color: ${(props) => props.s.colorMain};
 `;
 
 export const STitle = styled(motion.h1)`
@@ -33,4 +32,15 @@ export const SText = styled(motion.p)`
 
 export const SLink = styled(motion.a)`
 border-bottom: 1px solid white;
+`;
+
+// local z-index
+
+export const SBackgroundColor = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: ${(props) => props.s.colorMain};
+  z-index: -1;
 `;

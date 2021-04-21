@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 // == Import
 import IlluGround from 'src/components/d_Illustrations/_elements/IlluGround';
 import IlluDecoOnGround from 'src/components/d_Illustrations/_elements/IlluDecoOnGround';
+import { vBackgroundText } from 'src/styles/animation';
 import {
-  bambooColors, SMoon, SHime, bSettings,
+  bambooColors, SMoon, SHime, bSettings, SBackgroundColor,
 } from './SKaguyaHime';
 
 const KaguyaHime = ({ data, kanjisArr, totalKanjis }) => (
@@ -33,6 +34,12 @@ const KaguyaHime = ({ data, kanjisArr, totalKanjis }) => (
     <SHime>
       {data[1]}
     </SHime>
+    <SBackgroundColor
+      variants={vBackgroundText}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    />
   </>
 );
 

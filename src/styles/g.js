@@ -1,3 +1,7 @@
+// Breakpoints
+export const breakPointT = '@media only screen and (min-width: 576px)';
+export const breakPointD = '@media only screen and (min-width: 992px)';
+
 // SIZES
 // general
 export const strokeWidth = '2px';
@@ -9,6 +13,18 @@ export const buttonKanjiSize = '72px';
 export const buttonKanjiSizeGap = '24px';
 // partials
 export const contentLWidth = `calc(${buttonKanjiSize} * 3 + ${buttonKanjiSizeGap} * 2)`;
+export const contentLWidthR = `
+  width: calc(100vw - ${buttonWidth});
+  ${breakPointT} {
+    width: calc(100vw - ${buttonWidth} * 2);
+    max-width: 450px;
+  }
+  ${breakPointD} {
+    width: ${contentLWidth};
+  }
+`;
+export const contentLMarginLM = `calc(${buttonWidth} / 2)`;
+export const contentLMarginLT = buttonWidth;
 export const contentLMarginL = `calc(3vw + ${buttonWidth})`;
 // menu (open)
 export const contentMenuWidth = `calc(${contentLMarginL} + ${contentLWidth})`;
@@ -38,29 +54,24 @@ export const zIMainSquareHover = 3;
 export const zISquareHover = 2;
 export const zIMainSquare = 1;
 
-// Breakpoints
-export const breakPointT = '@media only screen and (min-width: 576px)';
-export const breakPointD = '@media only screen and (min-width: 992px)';
-
 // property group
 export const contentL = `
+  ${contentLWidthR}
   z-index: ${zIContentL};
-  margin: calc(${buttonWidth} / 2);
+  margin: ${contentLMarginLM};
   position: absolute;
-  max-width: 450px;
   ${breakPointT} {
-    margin: ${buttonWidth};
+    margin: ${contentLMarginLT};
   }
   ${breakPointD} {
     margin: 0;
-    width: ${contentLWidth}; 
     margin-left: ${contentLMarginL};
     top: 50%;
     transform: translateY(-50%);
   }
 `;
-// for Illustrations
 
+// for Illustrations
 export const illuDimensions = (height, width) => `
   position: fixed;
   display: grid;

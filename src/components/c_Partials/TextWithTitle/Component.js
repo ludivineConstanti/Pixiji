@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 
 // == Import
 import ButtonInText from 'src/components/e_Interactives/ButtonInText';
+import { vBackgroundText } from 'src/styles/animation';
 import STextWithTitle, {
-  STitle, SSquareTitle, SText, SLink,
+  STitle, SSquareTitle, SText, SLink, SBackgroundColor,
 } from './STextWithTitle';
 
 const TextWithTitle = ({
@@ -36,7 +37,6 @@ const TextWithTitle = ({
 
   return (
     <STextWithTitle
-      s={{ colorMain }}
       initial="initial"
       animate="animate"
       exit="exit"
@@ -50,7 +50,10 @@ const TextWithTitle = ({
         </SText>
       ))
 }
-      { button && <ButtonInText text={button.text} path={button.path} />}
+      { button && (
+      <ButtonInText text={button.text} path={button.path} />
+      )}
+      <SBackgroundColor s={{ colorMain }} variants={vBackgroundText} />
     </STextWithTitle>
   );
 };
