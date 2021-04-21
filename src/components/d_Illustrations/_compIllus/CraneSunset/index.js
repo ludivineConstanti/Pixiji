@@ -9,7 +9,7 @@ import {
   SSun, SCloudLeft, SCloudRight, SRockLeft, SBaby, SAdult, SRockRight,
 } from './SCraneSunset';
 
-const CraneSunset = ({ data, kanjisArr, numKanjis }) => {
+const CraneSunset = ({ data, kanjis, numKanjis }) => {
   const cCloudLeft = useAnimation();
 
   const refCloudLeft = useRef(null);
@@ -17,7 +17,7 @@ const CraneSunset = ({ data, kanjisArr, numKanjis }) => {
   const [vCloudRight, setVCloudRight] = useState({});
 
   const animateCloudRight = () => {
-    if (kanjisArr.length >= numKanjis[2]) {
+    if (kanjis >= numKanjis[2]) {
       setVCloudRight({
         animate: {
           x: 70,
@@ -32,7 +32,7 @@ const CraneSunset = ({ data, kanjisArr, numKanjis }) => {
   };
 
   const animateCloudLeft = () => {
-    if (kanjisArr.length >= numKanjis[1]) {
+    if (kanjis >= numKanjis[1]) {
       cCloudLeft.start(() => ({
         x: 50,
         transition: {
@@ -49,7 +49,7 @@ const CraneSunset = ({ data, kanjisArr, numKanjis }) => {
     if (!vCloudRight.animate) {
       animateCloudRight();
     }
-  }, [kanjisArr]);
+  }, [kanjis]);
 
   return (
     <>
@@ -94,7 +94,7 @@ const CraneSunset = ({ data, kanjisArr, numKanjis }) => {
 
 CraneSunset.propTypes = {
   data: PropTypes.array.isRequired,
-  kanjisArr: PropTypes.array.isRequired,
+  kanjis: PropTypes.number.isRequired,
   numKanjis: PropTypes.array.isRequired,
 };
 

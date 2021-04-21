@@ -1,6 +1,6 @@
 const orangeL4 = '#FFDFD9';
 const orangeL3 = '#FFBFB3';
-const orangeL2 = '#FFA897';
+export const orangeL2 = '#FFA897';
 const orangeL1 = '#FF9A86';
 const orange = '#FF866F';
 const orangeD1 = '#F76C52';

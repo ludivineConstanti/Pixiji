@@ -62,7 +62,7 @@ const Illu = ({
         useCase={useCase}
         index={index}
         data={arrIlluFormatted}
-        kanjisArr={kanjisArr}
+        kanjis={kanjisArr.length}
         arrNumKanjis={arrNumKanjis}
       />
     </>

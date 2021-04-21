@@ -1,5 +1,7 @@
+export const colorMoon = '#EFC491';
+
 const moon = [[{
-  s: 4, column: 1, row: 1, c: '#EFC491', main: true,
+  s: 4, column: 1, row: 1, c: colorMoon, main: true,
 }]];
 
 const brown = '#3E322E';

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import SIlluDecoOnGround from './SIlluDecoOnGround';
 
 const IlluOnGround = ({
-  color, side, margin, width, height, touchGround, isOnNum, kanjisArr,
+  color, side, margin, width, height, touchGround, isOnNum, kanjis,
 }) => {
   const vIlluDecoOnGround = {
     initial: { scaleX: 0 },
@@ -20,7 +20,7 @@ const IlluOnGround = ({
       }}
       variants={vIlluDecoOnGround}
       initial="initial"
-      animate={isOnNum <= kanjisArr.length ? 'animateOn' : 'animateOff'}
+      animate={isOnNum <= kanjis ? 'animateOn' : 'animateOff'}
       exit="initial"
     />
   );
@@ -34,7 +34,7 @@ IlluOnGround.propTypes = {
   height: PropTypes.number.isRequired,
   touchGround: PropTypes.bool,
   isOnNum: PropTypes.number.isRequired,
-  kanjisArr: PropTypes.array.isRequired,
+  kanjis: PropTypes.number.isRequired,
 };
 
 IlluOnGround.defaultProps = {

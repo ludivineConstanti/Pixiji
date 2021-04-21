@@ -3,15 +3,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
+import Stars from 'src/components/d_Illustrations/_elements/Stars';
 import IlluGround from 'src/components/d_Illustrations/_elements/IlluGround';
 import IlluDecoOnGround from 'src/components/d_Illustrations/_elements/IlluDecoOnGround';
 import { vBackgroundText } from 'src/styles/animation';
+import { colorMoon } from 'src/components/d_Illustrations/_data/kaguyaHime';
 import {
   bambooColors, SMoon, SHime, bSettings, SBackgroundColor,
 } from './SKaguyaHime';
 
-const KaguyaHime = ({ data, kanjisArr, totalKanjis }) => (
+const KaguyaHime = ({ data, kanjis, totalKanjis }) => (
   <>
+    {totalKanjis >= kanjis && <Stars color={colorMoon} />}
     <IlluGround color={bambooColors[2]} />
     {
         bSettings.map((bamboo, i) => (
@@ -23,7 +26,7 @@ const KaguyaHime = ({ data, kanjisArr, totalKanjis }) => (
             width={2}
             touchGround
             height={100}
-            kanjisArr={kanjisArr}
+            kanjis={kanjis}
             isOnNum={totalKanjis}
           />
         ))
@@ -45,7 +48,7 @@ const KaguyaHime = ({ data, kanjisArr, totalKanjis }) => (
 
 KaguyaHime.propTypes = {
   data: PropTypes.array.isRequired,
-  kanjisArr: PropTypes.array.isRequired,
+  kanjis: PropTypes.number.isRequired,
   totalKanjis: PropTypes.number.isRequired,
 };
 

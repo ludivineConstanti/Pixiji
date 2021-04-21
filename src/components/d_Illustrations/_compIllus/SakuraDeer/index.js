@@ -9,7 +9,7 @@ import {
   STree0, STree1, STree2P1, STree2P2, SDeer,
 } from './SSakuraDeer';
 
-const SakuraDeer = ({ data, kanjisArr, numKanjis }) => {
+const SakuraDeer = ({ data, kanjis, numKanjis }) => {
   const trunkColor = '#510909';
   return (
     <>
@@ -21,7 +21,7 @@ const SakuraDeer = ({ data, kanjisArr, numKanjis }) => {
         width={2}
         height={10}
         touchGround
-        kanjisArr={kanjisArr}
+        kanjis={kanjis}
         isOnNum={numKanjis[0]}
       />
       <STree0>
@@ -34,7 +34,7 @@ const SakuraDeer = ({ data, kanjisArr, numKanjis }) => {
         width={2}
         height={20}
         touchGround
-        kanjisArr={kanjisArr}
+        kanjis={kanjis}
         isOnNum={numKanjis[1]}
       />
       <STree1>
@@ -47,7 +47,7 @@ const SakuraDeer = ({ data, kanjisArr, numKanjis }) => {
         width={2}
         height={25}
         touchGround
-        kanjisArr={kanjisArr}
+        kanjis={kanjis}
         isOnNum={numKanjis[3]}
       />
       <STree2P1>
@@ -65,7 +65,7 @@ const SakuraDeer = ({ data, kanjisArr, numKanjis }) => {
 
 SakuraDeer.propTypes = {
   data: PropTypes.array.isRequired,
-  kanjisArr: PropTypes.array.isRequired,
+  kanjis: PropTypes.number.isRequired,
   numKanjis: PropTypes.array.isRequired,
 };
 

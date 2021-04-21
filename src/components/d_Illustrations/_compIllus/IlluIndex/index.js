@@ -12,28 +12,36 @@ import KodomoNoHi from 'src/components/d_Illustrations/_compIllus/KodomoNoHi';
 import CloudDragon from 'src/components/d_Illustrations/_compIllus/CloudDragon';
 
 const IlluIndex = ({
-  useCase, index, data, kanjisArr, arrNumKanjis,
+  useCase, index, data, kanjis, arrNumKanjis,
 }) => {
   // naming with useCase and index is also used in the dataIndex in _data
   const illuObj = {
-    home0: <RabbitOnMoon data={data} />,
+    home0: <RabbitOnMoon
+      data={data}
+      kanjis={kanjis}
+      totalKanjis={arrNumKanjis[arrNumKanjis.length - 1]}
+    />,
     readMe0: <KodomoNoHi
       data={data}
-      kanjisArr={kanjisArr}
+      kanjis={kanjis}
       numKanjis={arrNumKanjis}
     />,
     about0: <KaguyaHime
       data={data}
-      kanjisArr={kanjisArr}
+      kanjis={kanjis}
       totalKanjis={arrNumKanjis[arrNumKanjis.length - 1]}
     />,
-    error4040: <CloudDragon data={data} />,
+    error4040: <CloudDragon
+      data={data}
+      kanjis={kanjis}
+      totalKanjis={arrNumKanjis[arrNumKanjis.length - 1]}
+    />,
     // tried with an array but didn't work, always returned the last element
     quiz0: <SnowMonkeys data={data} />,
-    quiz1: <CraneSunset data={data} kanjisArr={kanjisArr} numKanjis={arrNumKanjis} />,
+    quiz1: <CraneSunset data={data} kanjis={kanjis} numKanjis={arrNumKanjis} />,
     quiz2: <SakuraDeer
       data={data}
-      kanjisArr={kanjisArr}
+      kanjis={kanjis}
       numKanjis={arrNumKanjis}
     />,
   };
@@ -42,7 +50,7 @@ const IlluIndex = ({
 
 IlluIndex.propTypes = {
   useCase: PropTypes.string.isRequired,
-  kanjisArr: PropTypes.array.isRequired,
+  kanjis: PropTypes.number.isRequired,
   index: PropTypes.number,
   arrNumKanjis: PropTypes.array.isRequired,
 };
