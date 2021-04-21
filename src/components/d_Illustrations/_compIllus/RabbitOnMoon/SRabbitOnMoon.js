@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {
-  squareUnit, squareUnitM, buttonWidth, illuMarginL, breakPointD, illuDimensions,
+  squareUnitT, squareUnitM, buttonWidth, illuMarginL, breakPointT,
+  breakPointD, illuDimensions, illuCustomPos,
 } from 'src/styles/g';
 
 const dPlanet = illuDimensions(10, 10);
@@ -9,35 +10,30 @@ export const SPlanet = styled.div`
 ${dPlanet}
 position: fixed;
 left: calc(${buttonWidth} / 2);
-bottom: calc(${squareUnitM} * 14);
-  ${breakPointD} {
-    left: ${illuMarginL};
-    top: ${buttonWidth};
-  }
+bottom: calc(${squareUnitM} * 32);
+${breakPointT} {
+  bottom: calc(${squareUnitT} * 22);
+}
+${breakPointD} {
+  left: ${illuMarginL};
+  top: ${buttonWidth};
+}
 `;
 
-const marginMoonM = 0;
-const marginMoon = 4;
-
 const dRabbit = illuDimensions(15, 11);
+const pRabbit = illuCustomPos({ right: { pos: [7], sC: 'buttonWidth' }, bottom: { pos: [14] } });
 
 export const SRabbit = styled.div`
   ${dRabbit}
-  bottom: calc(${squareUnitM} * 14);
-  right: calc((${squareUnitM} * (${marginMoonM} + 7 )) + ${buttonWidth});
-  ${breakPointD} {
-    bottom: calc(${squareUnit} * 14);
-    right: calc(${squareUnit} * (${marginMoon} + 7 ));
-  }
+  ${pRabbit.bottom}
+  ${pRabbit.right}
 `;
 
 const dMoon = illuDimensions(14, 28);
+const pMoon = illuCustomPos({ right: { pos: [0], sC: 'buttonWidth' } });
 
 export const SMoon = styled.div`
   ${dMoon}
+  ${pMoon.right}
   bottom: 0;
-  right: calc((${squareUnitM} * ${marginMoonM}) + ${buttonWidth});
-  ${breakPointD} {
-    right: calc(${squareUnit} * ${marginMoon});
-  }
 `;

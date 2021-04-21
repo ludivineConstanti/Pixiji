@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Color } from 'framer';
 
 // == Import
-import '../style.scss';
 import { zIMainSquareHover } from 'src/styles/g';
 import { tMSIFontSize, tMSIBFontSize } from 'src/styles/typo';
 import { motion } from 'framer-motion';
@@ -13,10 +12,6 @@ import SMainSquare, { SKanji, SInfos, SInfosBottom } from './SMainSquare';
 const MainSquare = ({
   size, columnStart, rowStart, color, position, kanjiIndex, kanjisArr,
 }) => {
-  // cC for classComponent
-  const cC = 'mainSquare';
-  const cC2 = 'square';
-
   const [answer, setAnswer] = useState(false);
   const [infos, setInfos] = useState(false);
 
@@ -76,8 +71,9 @@ const MainSquare = ({
 
   return (
     <SMainSquare
-      className={`${cC} ${cC2} ${cC2}--size${size} ${cC2}--columnStart${columnStart} ${cC2}--rowStart${rowStart}`}
-      style={{ backgroundColor: `${color}` }}
+      s={{
+        color, size, columnStart, rowStart,
+      }}
       variants={vMainSquare}
       initial="initial"
       animate={kanjisArr.length > kanjiIndex ? 'animateOn' : 'animateOff'}

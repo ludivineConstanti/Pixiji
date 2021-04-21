@@ -29,7 +29,7 @@ const IlluOnGround = ({
 IlluOnGround.propTypes = {
   color: PropTypes.string.isRequired,
   side: PropTypes.string.isRequired,
-  margin: PropTypes.number.isRequired,
+  margin: PropTypes.array.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   touchGround: PropTypes.bool,

@@ -2,9 +2,11 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 import {
-  illuTouchingGround, illuMarginL, squareUnit, squareUnitM,
-  buttonWidth, illuDimensions, illuPosition, breakPointD,
+  illuMarginL, squareUnit, squareUnitT, squareUnitM, illuCustomPos,
+  buttonWidth, illuDimensions, breakPointD, breakPointT,
 } from 'src/styles/g';
+
+const touchingGround = illuCustomPos({ bottom: { pos: [0], sC: 'buttonWidth' } });
 
 const dSun = illuDimensions(5, 5);
 
@@ -13,6 +15,10 @@ export const SSun = styled.div`
   ${dSun}
   bottom: calc(${buttonWidth} + (${squareUnitM} * 10));
   left: calc(${squareUnitM} * 20);
+  ${breakPointT} {
+    bottom: calc(${buttonWidth} + (${squareUnitT} * 10));
+    left: calc(${squareUnitT} * 20);
+  }
   ${breakPointD} {
     left: ${illuMarginL};
     top: ${buttonWidth};
@@ -24,7 +30,11 @@ const dCloudLeft = illuDimensions(3, 16);
 export const SCloudLeft = styled(motion.div)`
   ${dCloudLeft}
   left: calc(${squareUnitM} * 2);
-  bottom: calc(${squareUnitM} * 25);
+  bottom: calc(${squareUnitM} * 35);
+  ${breakPointT} {
+    left: calc(${squareUnitT} * 2);
+    bottom: calc(${squareUnitT} * 25);
+  }
   ${breakPointD} {
     bottom: auto;
     left: calc(${illuMarginL} + ${squareUnit} * 2);
@@ -50,7 +60,7 @@ const dRockLeft = illuDimensions(3, 6);
 
 export const SRockLeft = styled.div`
   ${dRockLeft}
-  ${illuTouchingGround}
+  ${touchingGround.bottom}
   ${breakPointD} {
     left: ${illuMarginL};
   }
@@ -60,7 +70,7 @@ const dBaby = illuDimensions(16, 9);
 
 export const SBaby = styled.div`
   ${dBaby}
-  ${illuTouchingGround}
+  ${touchingGround.bottom}
   left: calc(${squareUnitM} * 6);
   ${breakPointD} {
     left: calc(${illuMarginL} + ${squareUnit} * 6);
@@ -68,18 +78,18 @@ export const SBaby = styled.div`
 `;
 
 const dAdult = illuDimensions(24, 16);
-const pAdult = illuPosition([0, 7, 0, 0], true);
+const pAdult = illuCustomPos({ right: { pos: [7] } });
 
 export const SAdult = styled.div`
   ${dAdult}
   ${pAdult.right}
-  ${pAdult.bottom}
+  ${touchingGround.bottom}
 `;
 
 const dRockRight = illuDimensions(3, 5);
 
 export const SRockRight = styled(motion.div)`
 ${dRockRight}
-${illuTouchingGround}
+${touchingGround.bottom}
 right: 0;
 `;

@@ -1,18 +1,23 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-import { contentL } from 'src/styles/g';
+import { contentL, breakPointT, buttonWidth } from 'src/styles/g';
 import { tTitle, tText } from 'src/styles/typo';
 
 // initial css before comes in transition
 export default styled(motion.main)`
-${contentL}
+  ${contentL}
+  background-color: ${(props) => props.s.colorMain};
 `;
 
 export const STitle = styled(motion.h1)`
   ${tTitle}
   margin-bottom: 24px;
+  margin-right: calc(${buttonWidth} / 2);
   position: relative;
+  ${breakPointT} {
+    margin-right: 0;
+  }
 `;
 
 export const SSquareTitle = styled(motion.div)`

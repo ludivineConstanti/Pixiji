@@ -8,7 +8,7 @@ import SProgressSquare from './SProgressSquare';
 const ProgressSquare = ({ squareNum, currentQuestion }) => {
   const [vProgressSquare, setVProgressSquare] = useState({
     initial: { scale: 0, margin: 0 },
-    animate: { scale: 1, margin: '0 1.15vw' },
+    animate: { scale: 1, margin: '4px 16px' },
   });
 
   // animate when the question number changes

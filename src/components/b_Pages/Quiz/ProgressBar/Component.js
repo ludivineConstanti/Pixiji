@@ -11,7 +11,7 @@ const ProgressBar = ({ questionNumber, currentNumber }) => {
 
   const vProgressBar = {
     initial: { marginTop: 0 },
-    animate: { marginTop: '24px' },
+    animate: { marginTop: '16px' },
   };
 
   for (let i = 0; i < questionNumber; i += 1) {

@@ -1,5 +1,5 @@
 const moon = [[{
-  s: 4, column: 1, row: 1, c: '#DBBB68', main: true,
+  s: 4, column: 1, row: 1, c: '#EFC491', main: true,
 }]];
 
 const brown = '#3E322E';
@@ -7,8 +7,8 @@ const brownD1 = '#2D2826';
 const brownD2 = '#211E1D';
 
 // use the same colors for the bamboos
-export const greenL1 = '#BFDEBC';
-export const green = '#ACD4A9';
+const greenL1 = '#BFDEBC';
+const green = '#ACD4A9';
 
 const pinkL2 = '#FAD3C2';
 const pinkL1 = '#F8BBBB';
@@ -75,4 +75,4 @@ const hime = [[{ // hair
 }]];
 
 export const arrKaguyaHime = [moon, hime];
-export const colorKaguyaHime = '#001C01';
+export const colorKaguyaHime = '#02312E';

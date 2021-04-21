@@ -55,10 +55,10 @@ export const tMenuSettingsTitle = `
 
 // QUIZ
 export const tQuizHeader = `
+  ${boldUppercase}
   font-size: 10px;
   letter-spacing: 6px;
-  font-weight: 700;
-  text-transform: uppercase;
+  line-height: 16px;
 `;
 export const tQuizButtonKanji = `
   font-size: 20px;

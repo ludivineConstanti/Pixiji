@@ -5,14 +5,16 @@ import PropTypes from 'prop-types';
 // == Import
 import SSQuizzesNav, { SNavSquare } from './SQuizzesNav';
 
-const QuizzesNav = ({ currentQuizId, quizzesData }) => {
+const QuizzesNav = ({
+  prevQuiz, nextQuiz, currentQuizId, quizzesData,
+}) => {
   const vNavSquare = {
     initial: { scale: 0 },
     animate: { scale: 1 },
     whileHover: { scale: 1.25 },
   };
   return (
-    <SSQuizzesNav>
+    <SSQuizzesNav s={{ prevQuiz, nextQuiz }}>
       {quizzesData.map((quiz) => (
         <SNavSquare
           to={`/quizzes/${quiz.slug}`}
@@ -32,6 +34,8 @@ const QuizzesNav = ({ currentQuizId, quizzesData }) => {
 QuizzesNav.propTypes = {
   currentQuizId: PropTypes.number.isRequired,
   quizzesData: PropTypes.array.isRequired,
+  prevQuiz: PropTypes.bool.isRequired,
+  nextQuiz: PropTypes.bool.isRequired,
 };
 
 // == Export

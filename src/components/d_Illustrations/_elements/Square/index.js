@@ -1,18 +1,14 @@
 // == Import npm
 import React from 'react';
 import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
 
 // == Import
-import '../style.scss';
 import { zISquareHover } from 'src/styles/g';
+import SSquare from './SSquare';
 
 const Square = ({
   size, columnStart, rowStart, color, kanjiIndex, kanjisArrLength,
 }) => {
-  // cC for classComponent
-  const cC = 'square';
-
   const vSquare = {
     initial: { scale: 0 },
     animateOff: { scale: 0.2 },
@@ -22,9 +18,10 @@ const Square = ({
   };
 
   return (
-    <motion.div
-      className={`${cC} ${cC}--size${size} ${cC}--columnStart${columnStart} ${cC}--rowStart${rowStart}`}
-      style={{ backgroundColor: `${color}` }}
+    <SSquare
+      s={{
+        color, size, columnStart, rowStart,
+      }}
       variants={vSquare}
       initial="initial"
       animate={kanjisArrLength > kanjiIndex ? 'animateOn' : 'animateOff'}

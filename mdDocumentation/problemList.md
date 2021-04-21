@@ -38,6 +38,10 @@ Changing the height and width of the div and changing it's position by using x a
 
 I started testing with using percentage instead of vw, but I have different div width, which means I would need to calculate based on each individually, and somehow, the animation doesn't seem to start from the center (which works fine with the vw), it looks like it's making a diagonal translation, even when it should stay centered.
 
+## Update n°2 having the divs scaling from the center on hover
+
+After transitioning to framer-motion, I updated the scale instead of the width and the height, and it worked just fine. I had to animate the typo too, so that it's not influenced by the scale (I wanted to scale the parent div instead, but then it influences the total width that the text can take).
+
 ## Animating typo in GSAP
 
 I tried animating the typo size from 0 to something in GSAP (just for one part of the text, the text at the center of the div stays visible). It gave a slight staggering effect. I decided to simply remove this animation, (since I already have fade in and fade out on the text anyway, and I still need to figure out how to organise GSAP and SASS so that they work together, having different style in both is a bit messy).
@@ -56,9 +60,13 @@ I realised removing inline styling was actually necessary because modifying the 
 
 After reading the doc to understand what is TweenLite and why it's working better, I learned that it's actually deprecated (as is TweenMax, TimelineMax and TimelineLite) and has been replaced by gsap that covers all their fonctionnalities. But clearing props still works better with a callback function, instead of adding it directly to the timeline.
 
+## Update n°3 clear GSAP inline styling
+
+After transitioning to Framer motion, I expected to have the same bug, but it worked fine without me needing to change anything. I guess the way they handle things internally is different even though they both use JavaScript.
+
 ## Blurry text
 
-Sometimes, the text appears blurry, I read in a GSAP forum that it can happen when you apply transformations for your element, since GSAP uses 3D transform to save on performance. It can be changed with gsap.config(force3D: false), but then performance drops, so will have to test it if I see too much blurry text.
+Sometimes, the text appears blurry, I read in a GSAP forum that it can happen when you apply transformations for your element, since GSAP uses 3D transform to save on performance. It can be changed with gsap.config(force3D: false), but then performance drops, so will have to test it if I see too much blurry text (or just have to avoid using scale, which would be a shame since animations of type transform are more performant).
 
 ## GSAP reverse animation not working
 
@@ -75,3 +83,5 @@ To my knowledge, there's no solution to this, so I just stopped using as (I didn
 ## The colors don't properly update
 
 I have one mainColor that I stock in my state, which worked fine when the site is loaded but didn't always update afterward. This problem was fixed when I started using animate presence in the app component, which also fixes the problem I had with intro animations not always triggering when (except when you reloaded the page).
+
+I had a lot of similar problems with animating the colors, but I either removed the animation (and then it gets the color automatically updated from styled-component) or I update the animate animation (from framer-motion) when the color changes, and then it fixes it.

@@ -13,7 +13,7 @@ const KodomoNoHi = ({ data, kanjisArr, numKanjis }) => {
       <IlluDecoOnGround
         color={poleColor}
         side="right"
-        margin={49}
+        margin={[42, 49]}
         width={1}
         height={21}
         kanjisArr={kanjisArr}
@@ -22,7 +22,7 @@ const KodomoNoHi = ({ data, kanjisArr, numKanjis }) => {
       <IlluDecoOnGround
         color={poleColor}
         side="right"
-        margin={32}
+        margin={[27, 32]}
         width={1}
         height={33}
         kanjisArr={kanjisArr}

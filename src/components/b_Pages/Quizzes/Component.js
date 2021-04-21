@@ -30,7 +30,11 @@ const Quizzes = ({
 }
           button={{ text: kanjisArr.length > 0 ? 'Continue' : 'Start', path: `quiz/${currentQuiz.slug}` }}
         />
-        <QuizzesNav currentQuizId={currentQuiz.id} />
+        <QuizzesNav
+          currentQuizId={currentQuiz.id}
+          prevQuiz={previousQuiz.length}
+          nextQuiz={nextQuiz.length}
+        />
         {previousQuiz.length ? <ButtonBig text={`Quiz ${previousQuiz[0].id}`} arrowDirection="left" path={`/quizzes/${previousQuiz[0].slug}`} /> : ''}
         {nextQuiz.length ? <ButtonBig text={`Quiz ${nextQuiz[0].id}`} side="right" path={`/quizzes/${nextQuiz[0].slug}`} /> : ''}
       </div>

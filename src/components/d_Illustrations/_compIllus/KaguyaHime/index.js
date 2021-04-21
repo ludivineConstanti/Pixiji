@@ -6,19 +6,19 @@ import PropTypes from 'prop-types';
 import IlluGround from 'src/components/d_Illustrations/_elements/IlluGround';
 import IlluDecoOnGround from 'src/components/d_Illustrations/_elements/IlluDecoOnGround';
 import {
-  greenD1, SMoon, SHime, bSettings,
+  bambooColors, SMoon, SHime, bSettings,
 } from './SKaguyaHime';
 
 const KaguyaHime = ({ data, kanjisArr, totalKanjis }) => (
   <>
-    <IlluGround color={greenD1} />
+    <IlluGround color={bambooColors[2]} />
     {
         bSettings.map((bamboo, i) => (
           <IlluDecoOnGround
             key={`bamboo${i}`}
             color={bamboo.color}
             side={bamboo.side}
-            margin={bamboo.margin}
+            margin={[bamboo.margin]}
             width={2}
             touchGround
             height={100}

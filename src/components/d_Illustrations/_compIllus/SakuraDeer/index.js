@@ -17,7 +17,7 @@ const SakuraDeer = ({ data, kanjisArr, numKanjis }) => {
       <IlluDecoOnGround
         color={trunkColor}
         side="right"
-        margin={46}
+        margin={[46]}
         width={2}
         height={10}
         touchGround
@@ -30,7 +30,7 @@ const SakuraDeer = ({ data, kanjisArr, numKanjis }) => {
       <IlluDecoOnGround
         color={trunkColor}
         side="right"
-        margin={38}
+        margin={[38]}
         width={2}
         height={20}
         touchGround
@@ -43,7 +43,7 @@ const SakuraDeer = ({ data, kanjisArr, numKanjis }) => {
       <IlluDecoOnGround
         color={trunkColor}
         side="right"
-        margin={8}
+        margin={[8]}
         width={2}
         height={25}
         touchGround
