@@ -97,7 +97,6 @@ const MenuIcon = ({
           });
         }
         else {
-          console.log('trigger else');
           setVIconT({ animate: { width: '20px' } });
           setVIconM({
             ...vIconM,

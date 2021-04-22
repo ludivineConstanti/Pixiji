@@ -10,7 +10,7 @@ const fishMaker = (hue) => {
   const colorD5 = `hsl(${hue}, 89%, 18%)`;
   const dark = `hsl(${hue}, 91%, 16%)`;
 
-  return [[{ // rope
+  const fishData = [[{ // rope
     s: 1, column: 1, row: 5, c: lightL1,
   }, {
     s: 1, column: 2, row: 5, c: lightL1,
@@ -115,6 +115,16 @@ const fishMaker = (hue) => {
   }, {
     s: 1, column: 23, row: 1, c: colorD5,
   }]];
+
+  fishData.forEach((subArr) => {
+    subArr.forEach((dataObj) => {
+      dataObj.animationCase = 'wind';
+    });
+  });
+
+  console.log(fishData);
+
+  return fishData;
 };
 
 const fish0 = fishMaker(150);

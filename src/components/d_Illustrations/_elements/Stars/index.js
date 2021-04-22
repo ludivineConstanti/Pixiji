@@ -50,7 +50,6 @@ const Stars = ({ color }) => {
   const y = useMotionValue(0);
 
   const handleMouseMove = (e) => {
-    console.log('listening');
     x.set(e.clientX);
     y.set(e.clientY);
   };
@@ -72,9 +71,11 @@ const Stars = ({ color }) => {
 
     setStarsObj({ s: arrStarsS, m: arrStarsM, l: arrStarsL });
 
-    document.addEventListener('mousemove', (e) => {
-      handleMouseMove(e);
-    });
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
   }, []);
 
   const createTranslate = (xOrY, val) => (

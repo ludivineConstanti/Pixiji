@@ -7,13 +7,34 @@ import { Color } from 'framer';
 import { zIMainSquareHover } from 'src/styles/g';
 import { tMSIFontSize, tMSIBFontSize } from 'src/styles/typo';
 import { motion } from 'framer-motion';
+import { aWind } from 'src/components/d_Illustrations/_helpers/animation';
 import SMainSquare, { SKanji, SInfos, SInfosBottom } from './SMainSquare';
 
 const MainSquare = ({
-  size, columnStart, rowStart, color, position, kanjiIndex, kanjisArr,
+  size, columnStart, rowStart, color, position, kanjiIndex, kanjisArr, animationCase,
 }) => {
   const [answer, setAnswer] = useState(false);
   const [infos, setInfos] = useState(false);
+
+  const colorI = Color(color);
+  let colorD1 = Color.darken(colorI, colorI.l * 30);
+  colorD1 = Color.toHexString(Color.desaturate(colorD1, colorI.l * 15));
+
+  const scaleFactor = 8 / size;
+
+  const [vMainSquare, setVMainSquare] = useState({
+    initial: { scale: 0 },
+    animateOff: { scale: 0.2 },
+    animateOn: { scale: 1 },
+    whileHoverEmpty: { scale: 1.5 },
+    whileHoverOn: {
+      scale: scaleFactor,
+      zIndex: zIMainSquareHover,
+      transformOrigin: position,
+      padding: `${8 / scaleFactor}px`,
+      backgroundColor: colorD1,
+    },
+  });
 
   useEffect(() => {
     if (!answer && kanjisArr[kanjiIndex]) {
@@ -30,26 +51,6 @@ const MainSquare = ({
       setInfos(false);
     }
   }, [kanjisArr]);
-
-  const colorI = Color(color);
-  let colorD1 = Color.darken(colorI, colorI.l * 30);
-  colorD1 = Color.toHexString(Color.desaturate(colorD1, colorI.l * 15));
-
-  const scaleFactor = 8 / size;
-
-  const vMainSquare = {
-    initial: { scale: 0 },
-    animateOff: { scale: 0.2 },
-    animateOn: { scale: 1 },
-    whileHoverEmpty: { scale: 1.5 },
-    whileHoverOn: {
-      scale: scaleFactor,
-      zIndex: zIMainSquareHover,
-      transformOrigin: position,
-      padding: `${8 / scaleFactor}px`,
-      backgroundColor: colorD1,
-    },
-  };
 
   const vInfos = {
     initial: { fontSize: 0 },
@@ -115,6 +116,11 @@ MainSquare.propTypes = {
   position: PropTypes.string.isRequired,
   kanjiIndex: PropTypes.number.isRequired,
   kanjisArr: PropTypes.array.isRequired,
+  animationCase: PropTypes.string,
+};
+
+MainSquare.defaultProps = {
+  animationCase: '',
 };
 
 // == Export

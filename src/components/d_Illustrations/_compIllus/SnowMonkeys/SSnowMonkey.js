@@ -17,7 +17,7 @@ left: calc(${squareUnitM} * 5);
 `;
 
 const dMonkeyRight = illuDimensions(9, 11);
-const pMonkeyRight = illuCustomPos({ right: { pos: [4] }, bottom: { pos: [6], sC: 'buttonWidth' } });
+const pMonkeyRight = illuCustomPos({ right: { pos: [4] }, bottom: { pos: [7], sC: 'buttonWidth' } });
 
 export const SMonkeyRight = styled.div`
 ${dMonkeyRight}

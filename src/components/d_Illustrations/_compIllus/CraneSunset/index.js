@@ -33,14 +33,15 @@ const CraneSunset = ({ data, kanjis, numKanjis }) => {
 
   const animateCloudLeft = () => {
     if (kanjis >= numKanjis[1]) {
-      cCloudLeft.start(() => ({
-        x: 50,
+      cCloudLeft.start({
+        x: [0, 50],
         transition: {
           repeat: Infinity,
-          repeatType: 'mirror',
-          duration: 2,
+          repeatType: 'reverse',
+          mass: 75000,
+          stiffness: 1,
         },
-      }));
+      });
     }
   };
 

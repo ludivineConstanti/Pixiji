@@ -23,6 +23,7 @@ export default (
           kanjiIndex={numPreviousGroups + i}
           position={square.position || ''}
           kanjisArr={kanjisArr}
+          animationCase={square.animationCase || ''}
         />);
       }
       else {
@@ -34,6 +35,7 @@ export default (
           color={square.c}
           kanjiIndex={numPreviousGroups + i}
           kanjisArrLength={kanjisArr.length}
+          animationCase={square.animationCase || ''}
         />);
       }
     });
