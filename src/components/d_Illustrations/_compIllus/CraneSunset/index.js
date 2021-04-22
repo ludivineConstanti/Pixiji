@@ -38,8 +38,8 @@ const CraneSunset = ({ data, kanjis, numKanjis }) => {
         transition: {
           repeat: Infinity,
           repeatType: 'reverse',
-          mass: 75000,
-          stiffness: 1,
+          ease: 'easeInOut',
+          duration: 5,
         },
       });
     }

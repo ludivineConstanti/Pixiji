@@ -7,7 +7,9 @@ import { Color } from 'framer';
 import { zIMainSquareHover } from 'src/styles/g';
 import { tMSIFontSize, tMSIBFontSize } from 'src/styles/typo';
 import { motion } from 'framer-motion';
-import { aWind } from 'src/components/d_Illustrations/_helpers/animation';
+import {
+  aWind, aShine, aAnimateOff, aAnimateOn,
+} from 'src/components/d_Illustrations/_helpers/animation';
 import SMainSquare, { SKanji, SInfos, SInfosBottom } from './SMainSquare';
 
 const MainSquare = ({
@@ -24,8 +26,8 @@ const MainSquare = ({
 
   const [vMainSquare, setVMainSquare] = useState({
     initial: { scale: 0 },
-    animateOff: { scale: 0.2 },
-    animateOn: { scale: 1 },
+    animateOff: aAnimateOff(size),
+    animateOn: aAnimateOn,
     whileHoverEmpty: { scale: 1.5 },
     whileHoverOn: {
       scale: scaleFactor,
@@ -33,8 +35,22 @@ const MainSquare = ({
       transformOrigin: position,
       padding: `${8 / scaleFactor}px`,
       backgroundColor: colorD1,
+      transition: { type: 'spring', damping: 15 },
     },
   });
+
+  const checkForAnimation = () => {
+    if (kanjisArr.length > kanjiIndex) {
+      if (animationCase.name === 'wind') {
+        aWind(setVMainSquare, vMainSquare, columnStart);
+      }
+      if (animationCase.name === 'shine') {
+        aShine(
+          setVMainSquare, vMainSquare, color, animationCase.values[0], animationCase.values[1],
+        );
+      }
+    }
+  };
 
   useEffect(() => {
     if (!answer && kanjisArr[kanjiIndex]) {
@@ -50,6 +66,7 @@ const MainSquare = ({
       setAnswer(false);
       setInfos(false);
     }
+    checkForAnimation();
   }, [kanjisArr]);
 
   const vInfos = {
@@ -80,6 +97,7 @@ const MainSquare = ({
       animate={kanjisArr.length > kanjiIndex ? 'animateOn' : 'animateOff'}
       // eslint-disable-next-line no-nested-ternary
       whileHover={!answer.kanji && kanjisArr.length > kanjiIndex ? 'whileHoverEmpty' : kanjisArr.length > kanjiIndex ? 'whileHoverOn' : 'whileHoverOff'}
+      onMouseEnter={() => setVMainSquare({ ...vMainSquare, animateOn: aAnimateOn })}
       exit="initial"
     >
       {answer && (
@@ -116,11 +134,11 @@ MainSquare.propTypes = {
   position: PropTypes.string.isRequired,
   kanjiIndex: PropTypes.number.isRequired,
   kanjisArr: PropTypes.array.isRequired,
-  animationCase: PropTypes.string,
+  animationCase: PropTypes.object,
 };
 
 MainSquare.defaultProps = {
-  animationCase: '',
+  animationCase: {},
 };
 
 // == Export

@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 
 // == Import
 import { zISquareHover } from 'src/styles/g';
-import { aWind } from 'src/components/d_Illustrations/_helpers/animation';
+import {
+  aWind, aShine, aAnimateOff, aAnimateOn,
+} from 'src/components/d_Illustrations/_helpers/animation';
 import SSquare from './SSquare';
 
 const Square = ({
@@ -12,15 +14,20 @@ const Square = ({
 }) => {
   const [vSquare, setVSquare] = useState({
     initial: { scale: 0 },
-    animateOff: { scale: 0.2 },
-    animateOn: { scale: 1 },
+    animateOff: aAnimateOff(size),
+    animateOn: aAnimateOn,
     whileHoverOff: {},
     whileHoverOn: { scale: 1.5, zIndex: zISquareHover },
   });
 
   useEffect(() => {
-    if (animationCase === 'wind' && kanjisArrLength > kanjiIndex) {
-      aWind(setVSquare, vSquare, columnStart);
+    if (kanjisArrLength > kanjiIndex) {
+      if (animationCase.name === 'wind') {
+        aWind(setVSquare, vSquare, columnStart);
+      }
+      if (animationCase.name === 'shine') {
+        aShine(setVSquare, vSquare, color, animationCase.values[0], animationCase.values[1]);
+      }
     }
   }, [kanjisArrLength]);
 
@@ -45,11 +52,11 @@ Square.propTypes = {
   color: PropTypes.string.isRequired,
   kanjiIndex: PropTypes.number.isRequired,
   kanjisArrLength: PropTypes.number.isRequired,
-  animationCase: PropTypes.string,
+  animationCase: PropTypes.object,
 };
 
 Square.defaultProps = {
-  animationCase: '',
+  animationCase: {},
 };
 
 // == Export

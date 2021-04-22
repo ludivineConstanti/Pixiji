@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import {
   zIquestion, contentL, buttonKanjiSize, buttonKanjiSizeGap, breakPointT, breakPointD, buttonWidth,
@@ -18,7 +19,7 @@ export const SText = styled.h2`
 
 const optionsWidth = `100vw - ${buttonWidth}`;
 
-export const SOptions = styled.div`
+export const SOptions = styled(motion.div)`
   display: grid;
   width: calc(${optionsWidth});
   height: calc((((${optionsWidth} - (${buttonKanjiSizeGap} * 3) ) / 4) * 3) + ${buttonKanjiSizeGap} * 2);

@@ -56,7 +56,7 @@ const ButtonKanji = ({
       variants={vButtonKanji}
       initial="initial"
       animate="animate"
-      exit="initial"
+      exit="exit"
       whileHover={disabled ? 'whileHoverOff' : 'whileHoverOn'}
     >
       {possibleAnswer.kanji}

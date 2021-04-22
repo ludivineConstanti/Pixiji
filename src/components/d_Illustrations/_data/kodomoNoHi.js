@@ -1,3 +1,5 @@
+import mapIllu from 'src/components/d_Illustrations/_helpers/mapIllu';
+
 const fishMaker = (hue) => {
   const lightL1 = `hsl(${hue}, 4%, 95%)`;
   const light = `hsl(${hue}, 15%, 85%)`;
@@ -116,15 +118,9 @@ const fishMaker = (hue) => {
     s: 1, column: 23, row: 1, c: colorD5,
   }]];
 
-  fishData.forEach((subArr) => {
-    subArr.forEach((dataObj) => {
-      dataObj.animationCase = 'wind';
-    });
-  });
+  const dataWithA = mapIllu(fishData, { name: 'wind' });
 
-  console.log(fishData);
-
-  return fishData;
+  return dataWithA;
 };
 
 const fish0 = fishMaker(150);
