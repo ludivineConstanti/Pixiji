@@ -21,7 +21,7 @@ const Quizzes = ({
   const textIntro = numFirstTry.length > 0 || numWrongAnswers.length > 0 ? '' : `This quiz contains the ${totalOptions} kanjis that are taught in the ${currentQuiz.title}, in Japan.`;
   return (
     <>
-      <Illu useCase="quiz" index={currentQuiz.id - 1} animationCase="quizPreview" kanjisArr={kanjisArr} />
+      <Illu useCase="quiz" index={currentQuiz.id - 1} kanjisArr={kanjisArr} />
       <div>
         <TextWithTitle
           title={`Quiz ${currentQuiz.id}`}

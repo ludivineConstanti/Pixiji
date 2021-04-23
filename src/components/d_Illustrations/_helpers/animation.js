@@ -24,13 +24,15 @@ export const aWind = (
           repeatType: 'reverse',
           delay: 0.25 * columnStart,
           repeatDelay: 3,
-          ease: 'easeInOut',
+          ease: 'linear',
           duration: 0.5,
         },
       },
     });
-  }, 1000);
+  }, 2000);
 };
+
+const shineDuration = 2.5;
 
 export const aShine = (
   setter, animation1, color, value1, value2,
@@ -40,13 +42,31 @@ export const aShine = (
   setter({
     ...animation1,
     animateOn: {
-      scale: 1,
+      scale: [1, 1],
       backgroundColor: [colorL1, colorD1],
       transition: {
         repeat: Infinity,
         repeatType: 'reverse',
+        ease: 'linear',
+        duration: shineDuration,
+      },
+    },
+  });
+};
+
+export const aShineBackground = (setter, animation1, presets, color) => {
+  const colorL1 = Color.toHexString(Color.lighten(Color(color), 1));
+  const colorD1 = Color.toHexString(Color.darken(Color(color), 3));
+  setter({
+    ...animation1,
+    animate: {
+      ...presets,
+      backgroundColor: [colorD1, colorL1],
+      transition: {
+        repeat: Infinity,
+        repeatType: 'reverse',
         ease: 'easeInOut',
-        duration: 2.5,
+        duration: shineDuration,
       },
     },
   });

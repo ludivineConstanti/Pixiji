@@ -118,9 +118,9 @@ const fishMaker = (hue) => {
     s: 1, column: 23, row: 1, c: colorD5,
   }]];
 
-  const dataWithA = mapIllu(fishData, { name: 'wind' });
+  // const dataWithA = mapIllu(fishData, { name: 'wind' });
 
-  return dataWithA;
+  return fishData;
 };
 
 const fish0 = fishMaker(150);

@@ -1,9 +1,9 @@
-import mapIllu from 'src/components/d_Illustrations/_helpers/mapIllu';
+// import mapIllu from 'src/components/d_Illustrations/_helpers/mapIllu';
 
 const black = '#000000';
 const white = '#FFFFFF';
 
-let sun = [[{
+const sun = [[{
   // top
   s: 1, column: 2, row: 1, c: '#AF0700',
 }, {
@@ -37,7 +37,7 @@ let sun = [[{
 },
 ]];
 
-sun = mapIllu(sun, { name: 'shine', values: [7, 3] });
+// sun = mapIllu(sun, { name: 'shine', values: [7, 3] });
 
 const cloudLeft = [
   // left part
@@ -97,7 +97,7 @@ const rockLeft = [
   }],
 ];
 
-let baby = [[
+const baby = [[
   {
     s: 1, column: 4, row: 7, c: black,
   }, {
@@ -179,9 +179,9 @@ let baby = [[
   },
 ]];
 
-baby = mapIllu(baby, { name: 'shine', values: [10, 7] });
+// baby = mapIllu(baby, { name: 'shine', values: [10, 7] });
 
-let adult = [
+const adult = [
   [ // beak
     {
       s: 1, column: 1, row: 1, c: '#655C51',
@@ -350,7 +350,7 @@ let adult = [
   ],
 ];
 
-adult = mapIllu(adult, { name: 'shine', values: [10, 7] });
+// adult = mapIllu(adult, { name: 'shine', values: [10, 7] });
 
 const rockRight = [[
   {

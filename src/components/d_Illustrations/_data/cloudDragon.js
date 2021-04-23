@@ -1,3 +1,5 @@
+// import mapIllu from 'src/components/d_Illustrations/_helpers/mapIllu';
+
 const orangeL4 = '#FFDFD9';
 const orangeL3 = '#FFBFB3';
 export const orangeL2 = '#FFA897';
@@ -30,6 +32,8 @@ const cloudTop = [[{
 }, {
   s: 1, column: 12, row: 4, c: orangeL2,
 }]];
+
+// cloudTop = mapIllu(cloudTop, { name: 'shine', values: [0, 1] });
 
 const dragon = [[{ // top tail (orange part)
   s: 1, column: 3, row: 1, c: orangeL4,
@@ -243,6 +247,8 @@ const cloudDragon = [[{
   s: 1, column: 30, row: 4, c: orangeL3,
 }]];
 
+// cloudDragon = mapIllu(cloudDragon, { name: 'shine', values: [1, 2] });
+
 const cloudBL = [[{
   s: 1, column: 1, row: 4, c: orangeL3,
 }, {
@@ -261,6 +267,8 @@ const cloudBL = [[{
   s: 1, column: 16, row: 4, c: orangeL2,
 }]];
 
+// cloudBL = mapIllu(cloudBL, { name: 'shine', values: [2, 5] });
+
 const cloudBR = [[{
   s: 1, column: 1, row: 4, c: orangeL2,
 }, {
@@ -276,6 +284,8 @@ const cloudBR = [[{
 }, {
   s: 2, column: 14, row: 3, c: orangeL2,
 }]];
+
+// cloudBR = mapIllu(cloudBR, { name: 'shine', values: [2, 5] });
 
 export const arrCloudDragon = [cloudTop, dragon, cloudDragon, cloudBL, cloudBR];
 export const colorCloudDragon = '#002A51';

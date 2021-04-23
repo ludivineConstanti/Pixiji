@@ -21,7 +21,7 @@ ${breakPointD} {
 `;
 
 const dRabbit = illuDimensions(15, 11);
-const pRabbit = illuCustomPos({ right: { pos: [7], sC: 'buttonWidth' }, bottom: { pos: [14] } });
+const pRabbit = illuCustomPos({ right: { pos: [7 + 5] }, bottom: { pos: [14] } });
 
 export const SRabbit = styled.div`
   ${dRabbit}
@@ -30,7 +30,7 @@ export const SRabbit = styled.div`
 `;
 
 const dMoon = illuDimensions(14, 28);
-const pMoon = illuCustomPos({ right: { pos: [0], sC: 'buttonWidth' } });
+const pMoon = illuCustomPos({ right: { pos: [5] } });
 
 export const SMoon = styled.div`
   ${dMoon}

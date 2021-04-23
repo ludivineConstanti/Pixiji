@@ -43,16 +43,6 @@ I discovered there is a special tool for inline styling in React ("styled compon
 
 I had some errors showing up in the console.log, complaining about the props I give to some components so that styled-components can use them. Therefore, I decided to always give those props in an object prop that I call s. This way, it's also easier for me to differentiate the props that are just used for styling (especially when there's a lot of them).
 
-## Actions
-
-Based on my previous experience with the project [An intro to Blockchain](https://github.com/ludivineConstanti/an-intro-to-Blockchain) I made, I decided to always recycle the same action if I need to modify only one value and create new ones every time more values need to be modified at the same time. I now make a main object per file with multiple properties that all contain an object. This way I can always stay consistent while updating one value: action(propertyNameMainObject, propertyNameSubObject, value). I also put the name of the file I am modifying at the end of each action (I think it's clearer that way, and it avoids the potential problem of wanting to use similar action, with identical names for different files).
-
-## Store
-
-If I generate a value in a Component and pass it to the store (from redux) I will use that value directly, and not try to recuperate the same value from the store afterward (decision taken after a bug I had, of the component rendering multiple times when I got the value).
-
-Update: I ended up having to do it anyway, because it didn't work with the value in the local hook...
-
 ## Typo
 
 I have more font sizes than intended, but I think, for the future, I might continue to use one name per role for the typo, and just extend a class if they are the same size. This way, I won't have to go look for it, in the original css file, if I want to make it different, I'll just remove the extend and write the new settings.

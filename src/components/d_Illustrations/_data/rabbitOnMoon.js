@@ -1,5 +1,4 @@
-const white = '#FFFFFF';
-const lightGrey = '#DFDFDF';
+// import mapIllu from 'src/components/d_Illustrations/_helpers/mapIllu';
 
 const planet = [
   [{
@@ -50,8 +49,15 @@ const planet = [
   }],
 ];
 
+const white = '#FFFFFF';
+const lightGrey = '#DFDFDF';
+const orangeL1 = '#F8AB82';
+const orange = '#F48A51';
+const orangeD1 = '#E0743A';
+const orangeD2 = '#D9672A';
+
 const rabbit = [
-  [{
+  [{ // head
     s: 1, column: 5, row: 1, c: 'rgba(255, 255, 255, 0.25)',
   }, {
     s: 1, column: 6, row: 1, c: lightGrey,
@@ -120,164 +126,170 @@ const rabbit = [
   }, {
     s: 1, column: 9, row: 7, c: 'rgba(255, 255, 255, 0.05)',
   }, {
-    s: 1, column: 4, row: 8, c: '#FEA271',
+    s: 1, column: 4, row: 8, c: orangeL1,
   }, {
-    s: 2, column: 5, row: 8, c: '#F39D6F',
+    s: 2, column: 5, row: 8, c: orange,
   }, {
-    s: 1, column: 7, row: 8, c: '#E39972',
+    s: 1, column: 7, row: 8, c: orange,
   }, {
-    s: 2, column: 8, row: 8, c: '#E79164',
+    s: 2, column: 8, row: 8, c: orangeD2,
   }, {
-    s: 1, column: 4, row: 9, c: '#FEA271',
+    s: 1, column: 4, row: 9, c: orange,
   }, {
-    s: 1, column: 7, row: 9, c: '#C28B6D',
+    s: 1, column: 7, row: 9, c: orangeD2,
   }, {
-    s: 1, column: 5, row: 10, c: '#E59469',
+    s: 1, column: 5, row: 10, c: orangeL1,
   }, {
-    s: 1, column: 6, row: 10, c: '#E59469',
+    s: 1, column: 6, row: 10, c: orangeL1,
   }, {
-    s: 2, column: 7, row: 10, c: '#AF7C60',
+    s: 2, column: 7, row: 10, c: orangeD1,
   }, {
-    s: 1, column: 4, row: 11, c: '#E59469',
+    s: 1, column: 4, row: 11, c: orangeL1,
   }, {
-    s: 2, column: 5, row: 11, c: '#DE7C48',
+    s: 2, column: 5, row: 11, c: orange,
   }, {
-    s: 2, column: 1, row: 12, c: '#E59469',
+    s: 2, column: 1, row: 12, c: orange,
   }, {
-    s: 1, column: 4, row: 12, c: '#E59469',
+    s: 1, column: 4, row: 12, c: orangeL1,
   }, {
-    s: 1, column: 7, row: 12, c: '#FEA271',
+    s: 1, column: 7, row: 12, c: orangeL1,
   }, {
-    s: 1, column: 8, row: 12, c: '#DE8E63',
+    s: 1, column: 8, row: 12, c: orange,
   }, {
-    s: 1, column: 9, row: 12, c: '#CE7749',
+    s: 1, column: 9, row: 12, c: orangeD1,
   }, {
     s: 1, column: 11, row: 12, c: white,
   }, {
-    s: 1, column: 3, row: 13, c: '#FEA271',
+    s: 1, column: 3, row: 13, c: orangeL1,
   }, {
-    s: 3, column: 4, row: 13, c: '#D17543', main: true,
+    s: 3, column: 4, row: 13, c: orangeD1, main: true,
   }, {
     s: 1, column: 7, row: 13, c: white,
   }, {
     s: 1, column: 8, row: 13, c: white,
   }, {
-    s: 1, column: 9, row: 13, c: '#DE7943',
+    s: 1, column: 9, row: 13, c: orangeD1,
   }, {
     s: 1, column: 10, row: 13, c: white,
   }, {
     s: 1, column: 11, row: 13, c: white,
   }, {
-    s: 2, column: 1, row: 14, c: '#E88550',
+    s: 2, column: 1, row: 14, c: orangeD1,
   }, {
-    s: 1, column: 3, row: 14, c: '#FF955C',
+    s: 1, column: 3, row: 14, c: orange,
   }, {
-    s: 2, column: 7, row: 14, c: '#DE7944',
+    s: 2, column: 7, row: 14, c: orangeD2,
   }, {
-    s: 1, column: 9, row: 14, c: '#CE7749',
+    s: 1, column: 9, row: 14, c: orangeD2,
   }, {
     s: 1, column: 10, row: 14, c: white,
   }, {
-    s: 1, column: 3, row: 15, c: '#FF8F54',
+    s: 1, column: 3, row: 15, c: orangeD1,
   },
   ],
 ];
 
+const yellowL1 = '#FFCC68';
+const yellow = '#FFBA31';
+const yellowD1 = '#FFA931';
+const yellowD2 = '#FF9B31';
+const yellowD3 = '#F59523';
+const yellowD4 = '#EA840B';
+
 const moon = [
   [{
-    s: 2, column: 11, row: 1, c: '#FED480',
+    s: 2, column: 11, row: 1, c: yellow,
   },
   {
-    s: 4, column: 13, row: 1, c: '#FEC475', main: true,
+    s: 4, column: 13, row: 1, c: yellow, main: true,
   },
   {
-    s: 2, column: 17, row: 1, c: '#FFBF68',
+    s: 2, column: 17, row: 1, c: yellow,
+  },
+  {
+    s: 2, column: 9, row: 1, c: yellowL1,
+  }, {
+    s: 2, column: 19, row: 1, c: yellowL1,
   },
   ],
   [{
-    s: 2, column: 9, row: 1, c: '#FAE0AB',
+    s: 4, column: 5, row: 3, c: yellow, main: true,
+  }, {
+    s: 2, column: 5, row: 7, c: yellow,
   },
   {
-    s: 4, column: 5, row: 3, c: '#FECF7F', main: true,
+    s: 2, column: 3, row: 5, c: yellowL1,
+  },
+  ], [{
+    s: 4, column: 9, row: 3, c: yellowD1, main: true,
   },
   {
-    s: 2, column: 3, row: 5, c: '#FBDCA2',
+    s: 2, column: 13, row: 5, c: yellowD1,
+  }, {
+    s: 2, column: 11, row: 7, c: yellowD1,
   },
   ], [{
-    s: 4, column: 9, row: 3, c: '#FFB361', main: true,
+    s: 2, column: 15, row: 5, c: yellowD2,
+  }, {
+    s: 4, column: 17, row: 3, c: yellowD2, main: true,
+  }, {
+    s: 2, column: 17, row: 7, c: yellowD2,
   },
-  {
-    s: 2, column: 13, row: 5, c: '#F9AB50',
-  },
-  {
-    s: 2, column: 13, row: 7, c: '#E48259',
+  ], [
+    {
+      s: 4, column: 21, row: 3, c: yellowD1, main: true,
+    }, {
+      s: 2, column: 25, row: 5, c: yellowL1,
+    }, {
+      s: 2, column: 23, row: 7, c: yellowD1,
+    },
+  ], [{
+    s: 2, column: 3, row: 7, c: yellowD3,
+  }, {
+    s: 6, column: 1, row: 9, c: yellowD3, main: true, position: 'bottom',
   },
   ], [{
-    s: 2, column: 15, row: 5, c: '#EF9D3C',
-  }, {
-    s: 2, column: 15, row: 7, c: '#E28865',
-  }, {
-    s: 4, column: 17, row: 3, c: '#F9AB50', main: true,
+    s: 4, column: 7, row: 7, c: yellowD2, main: true,
   },
   ], [{
-    s: 2, column: 19, row: 1, c: '#FFB44F',
-  },
-  {
-    s: 4, column: 21, row: 3, c: '#EF9D3C', main: true,
+    s: 4, column: 7, row: 11, c: yellow, main: true, position: 'bottom',
   }, {
-    s: 2, column: 25, row: 5, c: '#E99633',
+    s: 2, column: 11, row: 13, c: yellow,
+  },
+  ], [
+    {
+      s: 2, column: 11, row: 9, c: yellow,
+    },
+    {
+      s: 4, column: 13, row: 7, c: yellow, main: true,
+    },
+    {
+      s: 2, column: 17, row: 9, c: yellow,
+    },
+  ], [{
+    s: 2, column: 11, row: 11, c: yellowD3,
+  }, {
+    s: 4, column: 13, row: 11, c: yellowD3, main: true, position: 'bottom',
+  }, {
+    s: 2, column: 17, row: 11, c: yellowD3,
   },
   ], [{
-    s: 2, column: 3, row: 7, c: '#FBA06D',
-  }, {
-    s: 6, column: 1, row: 9, c: '#DE7D56', main: true, position: 'bottom',
+    s: 4, column: 19, row: 7, c: yellowD3, main: true,
   },
   ], [{
-    s: 2, column: 5, row: 7, c: '#F0976D',
+    s: 2, column: 17, row: 13, c: yellowD1,
   }, {
-    s: 4, column: 7, row: 7, c: '#E28865', main: true,
-  }, {
-    s: 2, column: 11, row: 7, c: '#F5986D',
+    s: 4, column: 19, row: 11, c: yellowD1, main: true, position: 'bottom',
   },
   ], [{
-    s: 4, column: 7, row: 11, c: '#D2724C', main: true, position: 'bottom',
+    s: 2, column: 25, row: 7, c: yellowD4,
   }, {
-    s: 2, column: 11, row: 9, c: '#E57C55',
-  }, {
-    s: 2, column: 11, row: 13, c: '#C2643F',
-  },
-  ], [{
-    s: 2, column: 11, row: 11, c: '#D06A42',
-  }, {
-    s: 2, column: 13, row: 9, c: '#C86540',
-  }, {
-    s: 2, column: 15, row: 9, c: '#E27750',
-  }, {
-    s: 4, column: 13, row: 11, c: '#D46E44', main: true, position: 'bottom',
-  }, {
-    s: 2, column: 17, row: 11, c: '#CF6741',
-  },
-  ], [{
-    s: 2, column: 17, row: 7, c: '#F5986D',
-  }, {
-    s: 4, column: 19, row: 7, c: '#F68F67', main: true,
-  }, {
-    s: 2, column: 23, row: 7, c: '#E17C53',
-  },
-  ], [{
-    s: 2, column: 17, row: 9, c: '#D37754',
-  }, {
-    s: 2, column: 17, row: 13, c: '#C2633F',
-  }, {
-    s: 4, column: 19, row: 11, c: '#E87343', main: true, position: 'bottom',
-  },
-  ], [{
-    s: 2, column: 25, row: 7, c: '#DC7245',
-  }, {
-    s: 6, column: 23, row: 9, c: '#D46E44', main: true, position: 'bottom',
+    s: 6, column: 23, row: 9, c: yellowD4, main: true, position: 'bottom',
   },
   ],
 ];
+
+// moon = mapIllu(moon, { name: 'shine', values: [3, 6] });
 
 export const arrRabbitOnMoon = [planet, rabbit, moon];
 export const colorRabbitOnMoon = '#0A2846';

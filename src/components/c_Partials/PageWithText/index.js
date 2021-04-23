@@ -7,13 +7,16 @@ import ButtonBig from 'src/components/e_Interactives/ButtonBig';
 import TextWithTitle from 'src/components/c_Partials/TextWithTitle';
 import Illu from 'src/components/d_Illustrations/Illu';
 
-const PageWithText = ({ illu, textWithTitle, buttonBig }) => (
+const PageWithText = ({
+  illu, textWithTitle, buttonBig, children,
+}) => (
   <>
     <Illu useCase={illu.useCase} kanjisArr={illu.kanjisArr} />
     <TextWithTitle
       title={textWithTitle.title}
       text={textWithTitle.text}
-    />
+    >{children}
+    </TextWithTitle>
     <ButtonBig text={buttonBig.text} path={buttonBig.path || ''} />
   </>
 );

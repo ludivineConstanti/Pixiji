@@ -14,7 +14,7 @@ And some others are following the original concept of being a learning experienc
 * The quiz is randomized, so each time you reload, you get different questions.
 * It keeps track of the wrong answers, so it will keep asking the same question over and over until you answer correctly.
 * The pixel art on the right (when you play the quiz) show you the answers again (and their translation), if you want to spend more time looking at them.
-* The number of times you answered wrong is also indicated (the number of time you answered correctly is not, since it's always one).
+* You can see japanese characters (and their prononciation + translation) on every page of the website (it reacts on hover).
 
 ## 🤓 Things I learned:
 * Redux toolkit makes it easier to write code and in a more succinct way.
@@ -24,10 +24,9 @@ And some others are following the original concept of being a learning experienc
 * It's better to use a toolset that works well together: I used GSAP at the beginning of the project, because that was the main library that I heard of. Afterward, I learned about framer-motion and it made a lot of things less complicated and shorter to write (I needed to use hooks to keep the animation state in memory. ref to know which element to animate, and then my animation didn't properly update when a prop updated... framer motion made a lot of that easier).
 * Too much organisation is not necessarily good (I tried to organise my state in advance, without having any real reason to, and same thing for writing code again afterward, I was ready to rechange a lot of the structure, when it wasn't necessary).
 
-## What I want to do better, on my next project 👍
-* Keep learning about React and its lifecycle.
-* Plan for reusable code (setting up the state properly, have components that work in a lot of different scenarios).
+## What I want to do better, for phase 2 👍
+* Read about React's good practices and apply them (I started reading some, and there's a lot of things I could improve, especially for performance).
+* Add testing (the great thing about changing a lot of things on a website, all the time, to add features, reorganise, or fix bugs, is that you realise pretty fast how easy it is to break things all over the place with every single change...).
 
-## Things that I will do later ⏱️
-* I want to do some testing on the website, just focused on solving the bugs I saw so far instead of writing test.
-* I just focused on the front end so far, I plan to do a phase 2 where I work on the back end (make login possible, lock the other quizzes, if you haven't done the 1st one, keep a track of the user's good or wrong answer to have a more personnalised experience...).
+## Things that I will do for phase 3 ⏱️
+* I just focused on the front end so far, I plan to make a back end to add the usual features that come with a quiz (make login possible, lock the other quizzes, if you haven't done the 1st one, keep a track of the user's good or wrong answer to have a more personnalised experience...).

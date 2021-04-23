@@ -19,7 +19,7 @@ const Quiz = ({
   const nextQuiz = dataQuizzes.filter((quiz) => quiz.id === currentQuiz.id + 1);
   return (
     <>
-      <Illu useCase="quiz" index={currentQuiz.id - 1} animationCase="quiz" kanjisArr={kanjisArr} />
+      <Illu useCase="quiz" index={currentQuiz.id - 1} kanjisArr={kanjisArr} />
       <SQuiz>
         <Header />
         <AnimatePresence exitBeforeEnter>

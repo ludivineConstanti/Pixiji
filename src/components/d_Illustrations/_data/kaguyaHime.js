@@ -24,7 +24,7 @@ const pinkD2 = '#E56E6D';
 const pinkD3 = '#D66160';
 const pinkD4 = '#CB5B5B';
 
-let hime = [[{ // hair
+const hime = [[{ // hair
   s: 2, column: 11, row: 1, c: brownD1,
 }, {
   s: 2, column: 13, row: 1, c: brownD2,
@@ -80,7 +80,7 @@ let hime = [[{ // hair
   s: 4, column: 21, row: 15, c: pinkL1, main: true,
 }]];
 
-hime = mapIllu(hime, { name: 'shine', values: [2, 3] });
+// hime = mapIllu(hime, { name: 'shine', values: [2, 3] });
 
 export const arrKaguyaHime = [moon, hime];
 export const colorKaguyaHime = '#02312E';

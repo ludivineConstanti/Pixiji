@@ -1,5 +1,5 @@
 // == Import npm
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
@@ -10,7 +10,7 @@ import STextWithTitle, {
 } from './STextWithTitle';
 
 const TextWithTitle = ({
-  title, text, button, colorMain,
+  title, text, button, colorMain, children,
 }) => {
   const vSquareTitle = {
     initial: { width: '1%', left: 0 },
@@ -46,13 +46,14 @@ const TextWithTitle = ({
       {// eslint-disable-next-line react/no-array-index-key
       text.map((e, i) => (
         <SText variants={vText} key={`textWithTitlePElement${i}`}>
-          {e.text ? (<>{e.text} <SLink href={e.path} target="_blank">{e.link}</SLink></>) : e}
+          {e.text ? (<>{e.text} <SLink href={e.path} target="_blank" rel="noreferrer">{e.link}</SLink></>) : e}
         </SText>
       ))
 }
       { button && (
       <ButtonInText text={button.text} path={button.path} />
       )}
+      {children}
       <SBackgroundColor s={{ colorMain }} variants={vBackgroundText} />
     </STextWithTitle>
   );

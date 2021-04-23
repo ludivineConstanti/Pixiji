@@ -1,5 +1,5 @@
 // == Import npm
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Color } from 'framer';
 
@@ -10,23 +10,24 @@ import IlluIndex from 'src/components/d_Illustrations/_compIllus/IlluIndex';
 import { SPColorMain, SColorMain } from './SIllu';
 
 const Illu = ({
-  useCase, index, animationCase, colorMain, pColorMain, kanjisArr, updateValueGlobal,
+  useCase, index, colorMain, pColorMain, kanjisArr, updateValueGlobal,
 }) => {
   const { arrIllu, colorIllu } = arrDataIllu[useCase][index];
 
-  const arrNumKanjis = [];
-  let numKanjisCounter = 0;
-  for (let i = 0; i < arrIllu.length; i += 1) {
-    numKanjisCounter += arrIllu[i].length;
-    arrNumKanjis.push(numKanjisCounter);
-  }
-  const colorI = Color.toHsl(Color(colorIllu));
-  colorI.l /= 1.25;
-  colorI.s = 1;
-  const colorIlluL1 = Color.toHexString(Color.lighten(Color(colorIllu), 10));
-  const colorIlluD1 = Color.toHexString(Color(colorI));
+  const [vSColorMain, setVsColorMain] = useState({});
 
   useEffect(() => {
+    setVsColorMain({
+      initial: { width: '0vw' },
+      animate: { width: '100vw', transition: { mass: 5 } },
+    });
+
+    const colorI = Color.toHsl(Color(colorIllu));
+    colorI.l /= 1.25;
+    colorI.s = 1;
+    const colorIlluL1 = Color.toHexString(Color.lighten(Color(colorIllu), 10));
+    const colorIlluD1 = Color.toHexString(Color(colorI));
+
     updateValueGlobal({ prop: ['colorMain', 'colorMainL1', 'colorMainD1'], value: [colorIllu, colorIlluL1, colorIlluD1] });
     setTimeout(() => {
       updateValueGlobal({ prop: ['pColorMain'], value: [colorIllu] });
@@ -44,10 +45,12 @@ const Illu = ({
     beginAtIndex += arrIllu[i].length;
   }
 
-  const vSColorMain = {
-    initial: { width: '0vw' },
-    animate: { width: '100vw', transition: { mass: 5 } },
-  };
+  const arrNumKanjis = [];
+  let numKanjisCounter = 0;
+  for (let i = 0; i < arrIllu.length; i += 1) {
+    numKanjisCounter += arrIllu[i].length;
+    arrNumKanjis.push(numKanjisCounter);
+  }
 
   return (
     <>
@@ -72,7 +75,6 @@ const Illu = ({
 Illu.propTypes = {
   useCase: PropTypes.string.isRequired,
   index: PropTypes.number,
-  animationCase: PropTypes.string,
   colorMain: PropTypes.string.isRequired,
   pColorMain: PropTypes.string.isRequired,
   kanjisArr: PropTypes.array,
@@ -82,7 +84,6 @@ Illu.propTypes = {
 Illu.defaultProps = {
   kanjisArr: [],
   index: 0,
-  animationCase: 'deco',
 };
 
 // == Export
