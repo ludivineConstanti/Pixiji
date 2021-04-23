@@ -30,3 +30,8 @@ And some others are following the original concept of being a learning experienc
 
 ## Things that I will do for phase 3 ⏱️
 * I just focused on the front end so far, I plan to make a back end to add the usual features that come with a quiz (make login possible, lock the other quizzes, if you haven't done the 1st one, keep a track of the user's good or wrong answer to have a more personnalised experience...).
+
+## And phase 4? 🤔
+* I have more animations ect... that I wanted to add, but I will do everything that is more "bonus feature" later to practice things written above, that I spent less time doing until now.
+* Make it possible to see the kanjis in their hover mode, on mobile and tablet (by clicking on it instead of hovering).
+* Have the array of wrong answer update so that the ones that are answered wrong the most go to the top (at the moment every time you play at the quiz still pushes answers in the array but the first answers are the ones that are shown in the illustrations, and that doesn't update).

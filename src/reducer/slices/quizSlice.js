@@ -20,6 +20,13 @@ const initialState = (quizId) => {
   };
 };
 
+const emptyAnswer = {
+  answer: {
+    kanji: '', en: '', kana: '', kanaEn: '',
+  },
+  infosAnswer: { answeredRight: 1, answeredWrong: 0 },
+};
+
 // put it there since I need it in 2 different actions
 const initialize = (state, payload) => {
   const { quizId } = payload;
@@ -92,21 +99,12 @@ export const quizSlice = createSlice({
           tempWrongAnswers.push({ answer: payload.answer, infosAnswer });
         }
         if (cQ.dataQuiz[0].infosAnswer.answeredWrong === 0) {
-          tempWrongAnswers.push({
-            answer: {
-              kanji: '', en: '', kana: '', kanaEn: '',
-            },
-            infosAnswer: { answeredRight: 1, answeredWrong: 0 },
-          });
+          tempWrongAnswers.push(emptyAnswer);
         }
         if (cQ.totalQuestions === cQ.rightAnswers.length) {
           cQ.finished = true;
         }
-        tempWrongAnswers.sort((a, b) => {
-          console.log(a, a.infosAnswer.answeredWrong);
-          return a.infosAnswer.answeredWrong - b.infosAnswer.answeredWrong;
-        });
-        console.log(tempWrongAnswers);
+        tempWrongAnswers.sort((a, b) => a.infosAnswer.answeredWrong - b.infosAnswer.answeredWrong);
         cQ.wrongAnswers = tempWrongAnswers;
       }
       else {
@@ -127,6 +125,7 @@ export const quizSlice = createSlice({
     },
     cheatingButtonFinishQuiz: (state, { payload }) => {
       const cQ = state[`quiz${payload.quizId}`];
+      const tempWrongAnswers = [];
 
       if (!cQ.finished) {
         cQ.dataQuiz.forEach((e) => {
@@ -137,12 +136,21 @@ export const quizSlice = createSlice({
           else {
             answerIndex = Math.floor(Math.random() * e.arrAnswers.length);
           }
+          if (e.infosAnswer.answeredWrong > 0) {
+            tempWrongAnswers.push(
+              { answer: e.arrAnswers[answerIndex], infosAnswer: e.infosAnswer },
+            );
+          }
+          if (e.infosAnswer.answeredWrong === 0) {
+            tempWrongAnswers.push(emptyAnswer);
+          }
           cQ.rightAnswers.push(
             { answer: e.arrAnswers[answerIndex], infosAnswer: { ...e.infosAnswer, answerIndex } },
           );
-          cQ.dataQuiz = quizFormatter(kanjisInitial);
-          cQ.finished = true;
         });
+        cQ.dataQuiz = quizFormatter(kanjisInitial);
+        cQ.finished = true;
+        cQ.wrongAnswers = [...cQ.wrongAnswers, ...tempWrongAnswers];
       }
       else {
         initialize(state, { quizId: payload.quizId });
