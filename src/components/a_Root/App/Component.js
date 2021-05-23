@@ -1,23 +1,21 @@
 // == Import npm
 import React from 'react';
 import {
-  Route, Switch, Redirect, useLocation,
+  Route, Switch, useLocation,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { AnimatePresence } from 'framer-motion';
 
 // == Import local
+import routes from 'src/assets/routes';
 import Menu from 'src/components/b_Fixed/Menu';
 // Pages
-import Home from 'src/components/b_Pages/Home';
 import Quizzes from 'src/components/b_Pages/Quizzes';
 import Quiz from 'src/components/b_Pages/Quiz';
-import ReadMe from 'src/components/b_Pages/ReadMe';
-import About from 'src/components/b_Pages/About';
 import Error404 from 'src/components/b_Pages/Error404';
 
 const App = ({
-  dataQuizzes, updateIdQuiz, initializeQuiz,
+  dataQuizzes,
 }) => {
   const location = useLocation();
   return (
@@ -25,34 +23,25 @@ const App = ({
       <Menu isPlaying={/\/quiz\//.test(location.pathname)} />
       <AnimatePresence exitBeforeEnter>
         <Switch location={location} key={location.key}>
-          <Route path="/" exact component={Home} />
-          <Route
-            path="/quizzes/:slug"
-            exact
-            render={({ match }) => {
-              const currentQuiz = dataQuizzes.filter((quiz) => quiz.slug === match.params.slug);
-              if (!currentQuiz[0]) {
-                return <Redirect to="/404-not-found" />;
-              }
-              updateIdQuiz({ quizId: currentQuiz[0].id, slug: currentQuiz[0].slug });
-              return <Quizzes currentQuiz={currentQuiz[0]} />;
-            }}
-          />
-          <Route
-            path="/quiz/:slug"
-            exact
-            render={({ match }) => {
-              const currentQuiz = dataQuizzes.filter((quiz) => quiz.slug === match.params.slug);
-              if (!currentQuiz[0]) {
-                return <Redirect to="/404-not-found" />;
-              }
-              updateIdQuiz({ quizId: currentQuiz[0].id, slug: currentQuiz[0].slug });
-              initializeQuiz({ quizId: currentQuiz[0].id, title: currentQuiz[0].title });
-              return <Quiz currentQuiz={currentQuiz[0]} />;
-            }}
-          />
-          <Route path="/read-me" exact component={ReadMe} />
-          <Route path="/about" exact component={About} />
+          {routes.map((route) => (
+            <Route path={route.path} key={route.path} exact component={route.component} />
+          ))}
+          {dataQuizzes.map((quiz) => (
+            <Route
+              path={`/quizzes/${quiz.slug}`}
+              key={`/quizzes/${quiz.slug}`}
+              exact
+              render={() => <Quizzes currentQuiz={quiz} />}
+            />
+          ))}
+          {dataQuizzes.map((quiz) => (
+            <Route
+              path={`/quiz/${quiz.slug}`}
+              key={`/quiz/${quiz.slug}`}
+              exact
+              render={() => <Quiz currentQuiz={quiz} />}
+            />
+          ))}
           <Route component={Error404} />
         </Switch>
       </AnimatePresence>
@@ -62,8 +51,7 @@ const App = ({
 
 App.propTypes = {
   dataQuizzes: PropTypes.array.isRequired,
-  updateIdQuiz: PropTypes.func.isRequired,
-  initializeQuiz: PropTypes.func.isRequired,
+
 };
 
 // == Export

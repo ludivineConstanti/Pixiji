@@ -1,57 +1,29 @@
 // == Import npm
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { AnimatePresence } from 'framer-motion';
 
 // == Import
-import ButtonBig from 'src/components/e_Interactives/ButtonBig';
-import TextWithTitle from 'src/components/c_Partials/TextWithTitle';
 import Illu from 'src/components/d_Illustrations/Illu';
 import SQuiz from './SQuiz';
 import Header from './Header';
-import Question from './Question';
+import StatePlaying from './StatePlaying';
+import StateFinished from './StateFinished';
 
 const Quiz = ({
-  answeredQuestion, answeredCorrectly, finishedQuiz, kanjisArr, currentQuiz,
-  dataQuizzes,
-  nextQuestionQuiz, restartQuiz,
+  finishedQuiz, kanjisArr, currentQuiz, updateIdQuiz, initializeQuiz,
 }) => {
-  const nextQuiz = dataQuizzes.filter((quiz) => quiz.id === currentQuiz.id + 1);
+  useEffect(() => {
+    updateIdQuiz({ quizId: currentQuiz.id, slug: currentQuiz.slug });
+    initializeQuiz({ quizId: currentQuiz.id, title: currentQuiz.title });
+  }, []);
   return (
     <>
       <Illu useCase="quiz" index={currentQuiz.id - 1} kanjisArr={kanjisArr} />
       <SQuiz>
-        <Header />
+            <Header />
         <AnimatePresence exitBeforeEnter>
-          { finishedQuiz ? (
-            <>
-              <TextWithTitle
-                title="Well done!"
-                text={['You answed all the questions!', 'Try putting your mouse over the squares, on the right, to look at the answers again.']}
-              />
-              <ButtonBig
-                text="Replay"
-                onClick={() => {
-                  restartQuiz({ quizId: currentQuiz.id, title: currentQuiz.title });
-                }}
-              />
-              {nextQuiz.length ? <ButtonBig text={`Quiz ${nextQuiz[0].id}`} side="right" path={`/quiz/${nextQuiz[0].slug}`} /> : ''}
-            </>
-          )
-            : (
-              <>
-                <Question quizId={currentQuiz.id} />
-                {!!answeredQuestion && (
-                <ButtonBig
-                  comment={answeredCorrectly ? 'correct!' : 'wrong!'}
-                  text="next"
-                  onClick={() => {
-                    nextQuestionQuiz({ quizId: currentQuiz.id });
-                  }}
-                />
-                )}
-              </>
-            )}
+          { finishedQuiz ? <StateFinished /> : <StatePlaying /> }
         </AnimatePresence>
       </SQuiz>
     </>
@@ -59,17 +31,15 @@ const Quiz = ({
 };
 
 Quiz.propTypes = {
-  answeredQuestion: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
-  answeredCorrectly: PropTypes.bool.isRequired,
   finishedQuiz: PropTypes.bool.isRequired,
   kanjisArr: PropTypes.array.isRequired,
   currentQuiz: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
   }).isRequired,
-  dataQuizzes: PropTypes.array.isRequired,
-  nextQuestionQuiz: PropTypes.func.isRequired,
-  restartQuiz: PropTypes.func.isRequired,
+  updateIdQuiz: PropTypes.func.isRequired,
+  initializeQuiz: PropTypes.func.isRequired,
 };
 
 // == Export

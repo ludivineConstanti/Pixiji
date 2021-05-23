@@ -4,61 +4,21 @@ import PropTypes from 'prop-types';
 
 // == Import
 import SMenuIcon, { SIconContainer, SIconStroke } from './SMenuIcon';
+import {
+  iVIconT, iVIconM, iVIconB, aVIconT, aVIconM, aVIconB,
+} from './animation';
 
 const MenuIcon = ({
   colorMainL1, colorMain, menuIsOpen, updateValueGlobal,
 }) => {
-  const vIconTB = {
-    initial: { width: 0 },
-    animate: { width: '100%', alignSelf: 'flex-end' },
-  };
-
   const [vMenuIcon, setVMenuIcon] = useState({});
-
-  const [vIconT, setVIconT] = useState({
-    initial: vIconTB.initial,
-    animate: vIconTB.animate,
-  });
-  const [vIconM, setVIconM] = useState({
-    initial: { width: 0 },
-    animate: { width: '75%' },
-  });
-  const [vIconB, setVIconB] = useState({
-    initial: vIconTB.initial,
-    animate: vIconTB.animate,
-  });
-  const transitionMenuHover = {
-    repeat: Infinity,
-    repeatType: 'mirror',
-    mass: 2,
-  };
+  const [vIcon, setVIcon] = useState({ t: iVIconT, m: iVIconM, b: iVIconB });
 
   useEffect(() => {
-    setVIconT({
-      ...vIconT,
-      animate: !menuIsOpen
-        ? vIconTB.animate
-        : {
-          transformOrigin: '100% 0%',
-          width: '142%',
-          alignSelf: 'flex-end',
-          rotate: -45,
-        },
-    });
-    setVIconM({
-      ...vIconM,
-      animate: !menuIsOpen ? { width: '75%' } : vIconM.initial,
-    });
-    setVIconB({
-      ...vIconB,
-      animate: !menuIsOpen
-        ? vIconTB.animate
-        : {
-          transformOrigin: '100% 100%',
-          width: '142%',
-          alignSelf: 'flex-end',
-          rotate: 45,
-        },
+    setVIcon({
+      t: { ...vIcon.t, animate: !menuIsOpen ? aVIconT.menuCloses : aVIconT.menuOpens },
+      m: { ...vIcon.m, animate: !menuIsOpen ? aVIconM.menuCloses : aVIconM.menuOpens },
+      b: { ...vIcon.b, animate: !menuIsOpen ? aVIconB.menuCloses : aVIconB.menuOpens },
     });
   }, [menuIsOpen, colorMain]);
 
@@ -96,17 +56,6 @@ const MenuIcon = ({
             animate: { backgroundColor: colorMain },
           });
         }
-        else {
-          setVIconT({ animate: { width: '20px' } });
-          setVIconM({
-            ...vIconM,
-            animate: { ...vIconM.initial, width: '100%', transition: transitionMenuHover },
-          });
-          setVIconB({
-            ...vIconB,
-            animate: { ...vIconTB.animate, width: '75%', transition: transitionMenuHover },
-          });
-        }
       }}
       onMouseLeave={() => {
         if (menuIsOpen) {
@@ -118,9 +67,9 @@ const MenuIcon = ({
       }}
     >
       <SIconContainer>
-        <SIconStroke variants={vIconT} s={{ colorMain: menuIsOpen ? '#FFF' : colorMain }} key="SIconStrokeTop" />
-        <SIconStroke variants={vIconM} s={{ colorMain }} key="SIconStrokeMiddle" />
-        <SIconStroke variants={vIconB} s={{ colorMain: menuIsOpen ? '#FFF' : colorMain }} key="SIconStrokeBottom" />
+        <SIconStroke variants={vIcon.t} s={{ colorMain: menuIsOpen ? '#FFF' : colorMain }} key="SIconStrokeTop" />
+        <SIconStroke variants={vIcon.m} s={{ colorMain }} key="SIconStrokeMiddle" />
+        <SIconStroke variants={vIcon.b} s={{ colorMain: menuIsOpen ? '#FFF' : colorMain }} key="SIconStrokeBottom" />
       </SIconContainer>
     </SMenuIcon>
   );

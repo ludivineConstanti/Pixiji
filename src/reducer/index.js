@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import { combineReducers } from 'redux';
 
 import globalSlice from 'src/reducer/slices/globalSlice';

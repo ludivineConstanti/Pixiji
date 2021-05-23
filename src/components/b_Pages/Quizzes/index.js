@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { updateIdQuiz } from 'src/reducer/slices/quizSlice';
 import Component from './Component';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -7,4 +8,8 @@ const mapStateToProps = (state, ownProps) => ({
   kanjisArr: state.quiz[`quiz${ownProps.currentQuiz.id}`].wrongAnswers,
 });
 
-export default connect(mapStateToProps, {})(Component);
+const mapDispatchToProps = (dispatch) => ({
+  updateIdQuiz: (payload) => dispatch(updateIdQuiz(payload)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

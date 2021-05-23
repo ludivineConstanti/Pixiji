@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
-import { updateIdQuiz, initializeQuiz } from 'src/reducer/slices/quizSlice';
+import { nextQuestionQuiz } from 'src/reducer/slices/quizSlice';
 import Component from './Component';
 
 const mapStateToProps = (state) => {
   const current = `quiz${state.quiz.currentQuizId}`;
   return {
-    finishedQuiz: state.quiz[current].finished,
-    kanjisArr: state.quiz[current].rightAnswers,
+    answeredQuestion: state.quiz[current].answeredQuestion,
+    answeredCorrectly: state.quiz[current].answeredCorrectly,
+    currentQuizId: state.quiz.currentQuizId,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  updateIdQuiz: (payload) => dispatch(updateIdQuiz(payload)),
-  initializeQuiz: (payload) => dispatch(initializeQuiz(payload)),
+  nextQuestionQuiz: (payload) => dispatch(nextQuestionQuiz(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

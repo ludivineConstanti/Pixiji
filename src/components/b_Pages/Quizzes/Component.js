@@ -1,5 +1,5 @@
 // == Import npm
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
@@ -9,7 +9,7 @@ import Illu from 'src/components/d_Illustrations/Illu';
 import QuizzesNav from './QuizzesNav';
 
 const Quizzes = ({
-  currentQuiz, dataQuizzes, totalOptions, kanjisArr,
+  currentQuiz, dataQuizzes, totalOptions, kanjisArr, updateIdQuiz,
 }) => {
   const previousQuiz = dataQuizzes.filter((quiz) => quiz.id === currentQuiz.id - 1);
   const nextQuiz = dataQuizzes.filter((quiz) => quiz.id === currentQuiz.id + 1);
@@ -19,6 +19,9 @@ const Quizzes = ({
   const numWrongAnswers = kanjisArr.filter((answer) => answer.infosAnswer.answeredWrong > 0);
   const textWrongAnswers = numWrongAnswers.length > 0 ? `Hover the squares on the right to look at the ${numWrongAnswers.length} answer${numWrongAnswers.length > 1 ? 's' : ''} you got wrong.` : '';
   const textIntro = numFirstTry.length > 0 || numWrongAnswers.length > 0 ? '' : `This quiz contains the ${totalOptions} kanjis that are taught in the ${currentQuiz.title}, in Japan.`;
+  useEffect(() => {
+    updateIdQuiz({ quizId: currentQuiz.id, slug: currentQuiz.slug });
+  }, []);
   return (
     <>
       <Illu useCase="quiz" index={currentQuiz.id - 1} kanjisArr={kanjisArr} />
@@ -51,6 +54,7 @@ Quizzes.propTypes = {
   dataQuizzes: PropTypes.array.isRequired,
   totalOptions: PropTypes.number.isRequired,
   kanjisArr: PropTypes.array.isRequired,
+  updateIdQuiz: PropTypes.func.isRequired,
 };
 
 // == Export

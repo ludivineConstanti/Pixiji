@@ -4,27 +4,20 @@ import PropTypes from 'prop-types';
 import { AnimatePresence } from 'framer-motion';
 
 // == Import
-import { contentMenuWidth } from 'src/styles/g';
 import MenuIcon from './MenuIcon';
 import MenuLink from './MenuLink';
 import MenuSetting from './MenuSetting';
 import SMenu, {
-  SContent, SLinks, SContainer, STitle,
+  SContent, SLinks, SContainer, STitle, variants,
 } from './SMenu';
 
 const Menu = ({
   isPlaying, colorMainL1, menuIsOpen, cheating, finishedQuiz, quizzesSlug, currentQuizId,
   updateValueGlobal, cheatingButtonFinishQuiz,
-}) => {
-  const variants = {
-    initial: { left: `calc((${contentMenuWidth} + 10px) * -1)` },
-    animate: { left: 0 },
-  };
-
-  return (
-    <SMenu>
-      <AnimatePresence exitBeforeEnter>
-        {menuIsOpen && (
+}) => (
+  <SMenu>
+    <AnimatePresence exitBeforeEnter>
+      {menuIsOpen && (
         <SContent
           variants={variants}
           initial="initial"
@@ -59,12 +52,11 @@ const Menu = ({
             )}
           </div>
         </SContent>
-        )}
-      </AnimatePresence>
-      <MenuIcon />
-    </SMenu>
-  );
-};
+      )}
+    </AnimatePresence>
+    <MenuIcon />
+  </SMenu>
+);
 
 Menu.propTypes = {
   isPlaying: PropTypes.bool.isRequired,

@@ -6,6 +6,11 @@ import {
 } from 'src/styles/g';
 import { tMenuSettingsTitle } from 'src/styles/typo';
 
+export const variants = {
+  initial: { left: `calc((${contentMenuWidth} + 10px) * -1)` },
+  animate: { left: 0 },
+};
+
 // initial css before comes in transition
 export default styled.div`
 z-index: ${zImenu};
