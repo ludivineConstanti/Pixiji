@@ -71,14 +71,6 @@ export const quizSlice = createSlice({
       }
       state.currentQuizId = payload.quizId;
     },
-    updateFirstQuestionQuiz: (state, { payload }) => {
-      // {quizId: num, prop: ["prop1", "prop2"], value: ["valueforProp1", "valueForProp2"]}
-      const cQ = state[`quiz${payload.quizId}`];
-
-      for (let i = 0; i < payload.prop.length; i += 1) {
-        cQ.dataQuiz[0].infosAnswer[payload.prop[i]] = payload.value[i];
-      }
-    },
     answeredQuestionQuiz: (state, { payload }) => {
       // {quizId: num, answer: answerObj}
       const cQ = state[`quiz${payload.quizId}`];
@@ -163,7 +155,6 @@ export const quizSlice = createSlice({
 export const {
   updateIdQuiz,
   initializeQuiz,
-  updateFirstQuestionQuiz,
   answeredQuestionQuiz,
   nextQuestionQuiz,
   cheatingButtonFinishQuiz,

@@ -4,7 +4,7 @@
   "env": {
     "browser": true
   },
-  "plugins": ["testing-library", "jest-dom", "eslint-plugin-jest"],
+  "plugins": ["testing-library", "jest-dom"],
   "rules": {
     "brace-style": ["error", "stroustrup"],
     "no-param-reassign": [

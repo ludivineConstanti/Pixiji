@@ -1,8 +1,52 @@
-# Problem list
+# Bug List GSAP 😵
 
-## Modifying the 1st element of an array in redux
+## The animation on hover, made with GSAP, blocked when the mouse entered the div slightly (when the enter and exit event of the mouse were not clear)
+=> Fixed by using a timeline for the animation
 
-=> I was not able to access the first element of the array I wanted to modify (tried accessing it by writing state.array[0], for some reasons it didn't work), I therefore decided to read the redux official documentation, to understand better how it work (so far I only used it based on the knowledge I got from the bootcamp I did) and I discovered redux toolkit which reduced the code by a lot, and is (in my opinion) easier to use. I then decided to use it and now the code works.
+## Passing a ref to a component not working
+
+=> I tried to make a custom element "MainSquare" for the illustrations, but passing a ref as a prop does not work in React, after reading the React doc, I found out that it does work if we use "React.forwardRef" to create the component, instead of making a simple function
+
+## Using redux with "React.forwardRef" not working
+
+=> Using redux modified the react component and converted it back to a function, which made using "React.forwardRef" pointless,it now works by adding extra arguments
+``` Javascript
+export default connect(mapStateToProps, {}, null, { forwardRef: true })(Component);
+```
+
+### Width of the button component was not big enough after the GSAP animation
+
+=> the width was using vw, every time GSAP performs a "to" animation in reverse, it just takes the previous value in px, therefore it doesn't work well with it
+=> removed the width prop at the end of the animation
+
+### Width of the menu button not being the right dimensions after the GSAP animation
+
+=> same problem, the value is put back in px.  
+=> I tried using a fromTo animation so that it goes back to a value with vw instead of just px, but the animation didn't transition smoothly (it looked like it was first changing the position of the button menu and then scaling it, instead of doing both at the same time smoothly).  
+=> I used scale instead.  
+=> I feel like every time I use width and height for animations, instead of scale, GSAP is trying to tell me that I shouldn't do it.  
+=> I read some comments on the internet about it, it seems scale does generally produce smoother results because of "subpixel rendering". It is generally recommended to use CSS transforms and opacity properties (x, y rotation, rotation, rotationX, rotationY, scaleX, scaleY or just scale, skewX and skewY) for animation. "Changing values that are not CSS Transforms or opacity can cause the browser to re-do its layout of the page which in extreme situations can hinder performance." (src: course from creative coding club).
+
+## Hue changing on hover even though it was not animated
+
+=> The animation that I use to make the squares darker on hover (so that the kanjis and their translation are more readable) should only animate the saturation and lightness of those square, but it changed from purple to green to red very fast for one of them (which was originally red).
+=> I tested with an over hue as a starting color (the one I used originally was 360), it worked by replacing 360 by 359, apparently GSAP has some trouble with some values (this one being the maximum hue we can put, it could be the reason?).
+
+## Quiz Illustration not behaving properly
+
+=> The quiz Illustration was not shrinking at the beggining of a quiz
+=> turns out I forgot the if statement that blocks the animation from starting if the array of quiz answers is not empty (and at the moment, I do not suppress the answers, even if you leave the quiz) 
+=> I put an other condition to see if you're just starting the quiz or not (might have to change it later depending on what I decide UX wise)
+
+## Menu icon not updating to the proper color
+
+=> I had a lot of problems with the color of the icon animation, first with GSAP, where it worked fine on the first page, but the colors value didn't update for the others, and then it kept a history of the colors, so it cycled through all of them...
+=> Most of the problems were solved when I started to use framer-motion, which is better integrated (to my knowledge) with react's lifecycle, but it still didn't want to update the colors properly.
+=> I still don't know why it didn't work, but I found an alternative way of toggling the color when it changes from the menu icon state, to the cross state, just by giving it as color prop to styled component (white if the menu is open and the current color if it's closed), and this one updates the colors correctly. Otherwise  just update the animate animation with a hook.
+
+## GSAP reverse animation not working
+
+The GSAP animations were working fine while using .to, but nothing happened while using reverse. After research, I found out that the hooks and lifecycle of React components can mix up badly with GSAP's timeline. However, by using hooks to create and modify the timeline, both work fine together.
 
 ## Having the divs scaling from the center on hover
 
@@ -67,14 +111,6 @@ After transitioning to Framer motion, I expected to have the same bug, but it wo
 ## Blurry text
 
 Sometimes, the text appears blurry, I read in a GSAP forum that it can happen when you apply transformations for your element, since GSAP uses 3D transform to save on performance. It can be changed with gsap.config(force3D: false), but then performance drops, so will have to test it if I see too much blurry text (or just have to avoid using scale, which would be a shame since animations of type transform are more performant).
-
-## GSAP reverse animation not working
-
-The GSAP animations were working fine while using .to, but nothing happened while using reverse. After research, I found out that the hooks and lifecycle of React components can mix up badly with GSAP's timeline. However, by using hooks to create and modify the timeline, both work fine together.
-
-## Removing kanjis from the kanjis array, the illustration used for deco also remove it from the quiz
-
-I thought the data array from the kanjis was not going to be affected if I remove some characters from it, in another file, but I was wrong. I then tried again with making a local copy of it, but it didn't work (since it was a dynamic one). After another try, using the spread opearator, in an array, to make a copy, it worked.
 
 ## The as prop of styled component doesn't work with animate of framer motion
 

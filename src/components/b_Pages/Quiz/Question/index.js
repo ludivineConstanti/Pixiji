@@ -1,7 +1,4 @@
 import { connect } from 'react-redux';
-import {
-  updateFirstQuestionQuiz,
-} from 'src/reducer/slices/quizSlice';
 import Component from './Component';
 
 const mapStateToProps = (state) => {
@@ -12,8 +9,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  updateFirstQuestionQuiz: (payload) => dispatch(updateFirstQuestionQuiz(payload)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Component);
+export default connect(mapStateToProps, {})(Component);

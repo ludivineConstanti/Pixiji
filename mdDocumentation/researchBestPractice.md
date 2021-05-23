@@ -8,3 +8,7 @@ So here is a list of rules that I am not applying and will transition into:
 * Keep the component's size to a minimum  
 ✔️ Makes it easier to have an overview of the code.  
 ✔️ Code that should not be reexecuted all the time (and is not inside a hook) is now outside of the component.  
+* Keep the props of the component to a minimum
+✔️ Makes it easier to have an overview of the code. 
+✔️ Avoid useless renders (every time a prop is updated, everything is re-rendered) 
+✔️ encourage restructuring a component in more small cmponents is part of React's philosophy.   

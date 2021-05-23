@@ -8,14 +8,21 @@ export default (dataQuiz) => {
   }
   const answers12 = Math.ceil(dataQuiz.length / 12) - answers11;
   const quizFormatted = [];
-  const infosAnswer = { answerIndex: false, answeredRight: 0, answeredWrong: 0 };
+  const infosAnswer = (num) => ({
+    answerIndex: Math.floor(Math.random() * num),
+    answeredRight: 0,
+    answeredWrong: 0,
+  });
   for (let i = 0; i < answers12; i += 1) {
-    quizFormatted.push({ infosAnswer, arrAnswers: dataQuiz.slice(i * 12, (i * 12) + 12) });
+    quizFormatted.push({
+      infosAnswer: infosAnswer(12),
+      arrAnswers: dataQuiz.slice(i * 12, (i * 12) + 12),
+    });
   }
   const offset = answers12 * 12;
   for (let i = 0; i < answers11; i += 1) {
     quizFormatted.push({
-      infosAnswer,
+      infosAnswer: infosAnswer(11),
       arrAnswers: dataQuiz.slice(offset + (i * 11), offset + ((i * 11) + 11)),
     });
   }
