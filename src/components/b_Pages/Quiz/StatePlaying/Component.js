@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // == Import
 import ButtonBig from 'src/components/e_Interactives/ButtonBig';
 import Question from '../Question';
+import { lQuiz } from 'src/assets/labels';
 
 const StatePlaying = ({
   answeredQuestion, answeredCorrectly, currentQuizId, nextQuestionQuiz,

@@ -12,7 +12,7 @@ import SButtonBig, {
 } from './SButtonBig';
 
 const ButtonBig = ({
-  comment, text, onClick, colorMain, colorButton, side, path, arrowDirection,
+  comment, text, onClick, colorMain, colorButton, side, path, arrowDirection
 }) => {
   const vButtonBig = {
     initial: { [side]: -200, color: '#FFF', transition: { duration: 0.25 } },
@@ -70,6 +70,7 @@ ButtonBig.propTypes = {
   path: PropTypes.string,
   arrowDirection: PropTypes.string,
   colorButton: PropTypes.string,
+  altLabel: PropTypes.string,
 };
 
 ButtonBig.defaultProps = {

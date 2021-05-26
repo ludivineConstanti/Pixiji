@@ -53,3 +53,30 @@ As mentionned earlier need to reconfigurate everything so that it works with jes
 <Provider store={store}></Provider>
 ``` 
 around the component
+
+## screen.debug() does not print all elements
+
+screen.debug() has a limit, by default, for the quantity of elements it can console.log(). We can override that by using screen.debug(null, Infinity)
+
+## How to select components we want to test
+
+The official recommendation for selecting elements we want to test is:
+1. By role
+2. By label text
+3. By placeholder text
+4. By text  
+
+### Challenge with the role
+=> there can be multiple elements with the same role (buttons...) and if not, it's not very flexible if we want to add some
+
+### Challenge with the text content
+=> the text content changes a lot and is sometimes assigned randomly (answer for quizzes...)
+
+I decided to use label text, when I can not use text, because I find it to be quite flexible. Also, I keep it in a separate file to be able to edit it all at once, if I want to improve its text later.
+
+
+## Jest is complaining that it can not find an element, when we are checking to make sure that it does not exist
+=> getBy always throw an error if no element is found (or if more than one element is found), can use queryBy instead:
+```
+expect(screen.queryByText(/next/i)).toBeNull();
+```
