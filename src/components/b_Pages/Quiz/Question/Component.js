@@ -12,7 +12,7 @@ const Question = ({
   if (!dataObj) return null;
   const { infosAnswer, arrAnswers } = dataObj;
   return (
-    <SQuestion>
+    <SQuestion aria-label="question">
       <SText>Which character means {arrAnswers[infosAnswer.answerIndex].en}?</SText>
       <SOptions>
         {// eslint-disable-next-line max-len

@@ -9,6 +9,7 @@ import { tMSIFontSize, tMSIBFontSize } from 'src/styles/typo';
 import { motion } from 'framer-motion';
 import { aAnimateOn } from 'src/components/d_Illustrations/_helpers/animation';
 import SMainSquare, { SKanji, SInfos, SInfosBottom } from './SMainSquare';
+import { lIllu } from 'src/assets/labels';
 
 const MainSquare = ({
   size, columnStart, rowStart, color, position, kanjiIndex, kanjisArr,
@@ -90,6 +91,7 @@ const MainSquare = ({
       whileHover={!answer.kanji && kanjisArr.length > kanjiIndex ? 'whileHoverEmpty' : kanjisArr.length > kanjiIndex ? 'whileHoverOn' : 'whileHoverOff'}
       onMouseEnter={() => setVMainSquare({ ...vMainSquare, animateOn: aAnimateOn })}
       exit="initial"
+      aria-label={lIllu.mainSquare}
     >
       {answer && (
       <>

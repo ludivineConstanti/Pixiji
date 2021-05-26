@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // == Import
 import { strokeWidth } from 'src/styles/g';
 import SButtonKanji from './SButtonKanji';
+import { lQuiz } from 'src/assets/labels';
 
 const ButtonKanji = ({
   quizId, possibleAnswer, disabled,
@@ -58,6 +59,7 @@ const ButtonKanji = ({
       animate="animate"
       exit="exit"
       whileHover={disabled ? 'whileHoverOff' : 'whileHoverOn'}
+      aria-label={lQuiz.buttonKanji}
     >
       {possibleAnswer.kanji}
     </SButtonKanji>

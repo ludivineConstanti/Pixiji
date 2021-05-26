@@ -21,7 +21,7 @@ const Quiz = ({
     <>
       <Illu useCase="quiz" index={currentQuiz.id - 1} kanjisArr={kanjisArr} />
       <SQuiz>
-            <Header />
+        <Header />
         <AnimatePresence exitBeforeEnter>
           { finishedQuiz ? <StateFinished /> : <StatePlaying /> }
         </AnimatePresence>

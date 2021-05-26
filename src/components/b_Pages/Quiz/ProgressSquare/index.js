@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 // == Import
 import SProgressSquare from './SProgressSquare';
+import { lQuiz } from 'src/assets/labels';
 
 const ProgressSquare = ({ squareNum, currentQuestion }) => {
   const [vProgressSquare, setVProgressSquare] = useState({
@@ -28,6 +29,7 @@ const ProgressSquare = ({ squareNum, currentQuestion }) => {
       initial="initial"
       animate="animate"
       exit="initial"
+      aria-label={lQuiz.progressSquare}
     />
   );
 };

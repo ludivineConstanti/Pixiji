@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // == Import
 import SSquare from './SSquare';
 import iVSquare from './animation';
+import { lIllu } from 'src/assets/labels';
 
 const Square = ({
   size, columnStart, rowStart, color, kanjiIndex, kanjisArrLength,
@@ -18,6 +19,7 @@ const Square = ({
     animate={kanjisArrLength > kanjiIndex ? 'animateOn' : 'animateOff'}
     whileHover={kanjisArrLength > kanjiIndex ? 'whileHoverOn' : 'whileHoverOff'}
     exit="initial"
+    aria-label={lIllu.square}
   />
 );
 
