@@ -20,3 +20,8 @@ I thought the data array from the kanjis was not going to be affected if I remov
 
 => I was not able to access the first element of the array I wanted to modify (tried accessing it by writing state.array[0], for some reasons it didn't work), I therefore decided to read the redux official documentation, to understand better how it work (so far I only used it based on the knowledge I got from the bootcamp I did) and I discovered redux toolkit which reduced the code by a lot, and is (in my opinion) easier to use. I then decided to use it and now the code works.
 
+## False positive with .toBeDefined
+
+I got confused about what .toBeDefined does, I thought it could be used to verify that an element is in the document. But it just checks if a value is not undefined (so null works too).  
+=> I replaced it with toBeTruthy
+

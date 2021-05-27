@@ -49,11 +49,11 @@ const ButtonBig = ({
   return (
     <>
       {path ? (
-        <NavLink to={path}>
+        <NavLink to={path} aria-label={text}>
           {content}
         </NavLink>
       ) : (
-        <SButton onClick={onClick} type="button" s={{ side }}>
+        <SButton onClick={onClick} type="button" s={{ side }} aria-label={text}>
           {content}
         </SButton>
       )}
