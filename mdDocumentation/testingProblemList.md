@@ -67,7 +67,7 @@ The official recommendation for selecting elements we want to test is:
 4. By text  
 
 ### Challenge with the role
-=> there can be multiple elements with the same role (buttons...) and if not, it's not very flexible if we want to add some
+=> there can be multiple elements with the same role (buttons...) and if not, it's not very flexible if we want to add some later.
 
 ### Challenge with the text content
 => the text content changes a lot and is sometimes assigned randomly (answer for quizzes...)
@@ -80,3 +80,8 @@ I decided to use label text, when I can not use text, because I find it to be qu
 ```
 expect(screen.queryByText(/next/i)).toBeNull();
 ```
+
+## The code is pretty long
+=> Every time I test something, I use a query and a reference and then the assertion, which leads to a very long line of code  
+=> Difficult to read + if I decide to change the way I select something later, I'll have to modify it everywhere  
+=> I found [this article](https://kentcdodds.com/blog/test-isolation-with-react) that shows how to reuse the same setup for every test
