@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import store from 'src/store';
 import dataQuiz from 'src/assets/dataQuiz/quizzes';
 import Quiz from '../index';
-import { lQuiz, lIllu } from 'src/assets/labels';
+import { lQuiz, lIllu, tIdQuiz } from 'src/assets/querySelectors';
 
 const returnRef = () => {
   return {
@@ -15,7 +15,10 @@ const returnRef = () => {
     buttonNext: screen.queryByLabelText('next'),
     arrProgressSquare: screen.getAllByLabelText(lQuiz.progressSquare),
     arrButtonKanji: screen.getAllByLabelText(lQuiz.buttonKanji),
+    rightAnswer: screen.getByTestId(tIdQuiz.rightAnswer),
+    arrWrongAnswer: screen.getAllByTestId(tIdQuiz.wrongAnswer),
     arrMainSquare: screen.getAllByLabelText(lIllu.mainSquare),
+    arrSquare: screen.queryAllByLabelText(lIllu.square),
   }
 }
 

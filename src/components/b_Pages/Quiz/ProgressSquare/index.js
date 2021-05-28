@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // == Import
 import SProgressSquare from './SProgressSquare';
-import { lQuiz } from 'src/assets/labels';
+import { lQuiz } from 'src/assets/querySelectors';
 
 const ProgressSquare = ({ squareNum, currentQuestion }) => {
   const [vProgressSquare, setVProgressSquare] = useState({

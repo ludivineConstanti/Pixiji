@@ -63,7 +63,7 @@ around the component
 
 ## screen.debug() does not print all elements
 
-screen.debug() has a limit, by default, for the quantity of elements it can console.log(). We can override that by using screen.debug(null, Infinity)
+```screen.debug()``` has a limit, by default, for the quantity of elements it can console.log(). We can override that by using ```screen.debug(null, Infinity)```
 
 ## How to select components we want to test
 
@@ -71,19 +71,23 @@ The official recommendation for selecting elements we want to test is:
 
 1. By role
 2. By label text
-3. By placeholder text
-4. By text  
+3. By text  
+4. By test id
 
 ### Challenge with the role
 
 => there can be multiple elements with the same role (buttons...) and if not, it's not very flexible if we want to add some later.
 
+### Challenge with label text
+
+=> There are some informations that I need to test that are not necessarily meant to be seen by the user (what is the right or wrong answer from the quiz).
+
 ### Challenge with the text content
 
 => the text content changes a lot and is sometimes assigned randomly (question, answer for quizzes...)  
-=> It's not possible to select by text if the text is inside children components (unless you go throught the children, but there's no utility, out of the box, to my knowledge)
+=> Selecting by text selects the element that contains the text (so it can be bad, if I want to interact with a button that has various divs imbricated in it).
 
-I decided to use label text, when I can not use text, because I find it to be quite flexible. Also, I keep it in a separate file to be able to edit it all at once, if I want to improve its text later.
+I therefore decided to use a mix between various query methods.
 
 ## Jest is complaining that it can not find an element, when we are checking to make sure that it does not exist
 
@@ -96,16 +100,52 @@ expect(screen.queryByText(/next/i)).toBeNull();
 ## The code is pretty long
 
 => Every time I test something, I use a query and a reference and then the assertion, which leads to a very long line of code  
+
+```Javascript
+expect(screen.getAllByLabelText(lQuiz.progressSquarelength).toEqual(screen.getAllByLabelText(lIllmainSquare).length);
+```
+
 => Difficult to read + if I decide to change the way I select something later, I'll have to modify it everywhere  
 => I found [this article](https://kentcdodds.com/blog/test-isolation-with-react) that shows how to reuse the same setup for tests
 
 ## Update n°1
 
-It works well, until I try to change state. Since I select the elements just after rendering the component, it always return them in this state. Therefore, it looks like nothing is updating when I interact with the elements (click on next button...), because I am still testing things on the elements on their initial state.  
+It works well, until I try to change state. Since I select the elements just after rendering the component, it always return them in this state. Therefore, it looks like nothing is updating when I interact with the elements (click on next button...), because I am still testing things on the elements on their initial state.
+
+```javascript
+let ref;
+
+beforeEach(() => {
+  render(<Provider store={store}><Quiz currentQuiz={dataQuiz[0]} /></Provider>);
+  ref = {
+    question: screen.getByLabelText('question'),
+    nextButton: screen.queryByText(/next/i)
+  }
+});
+```
+
 => I could do the same thing as mentionned in the article above (one function per state and triggers the function before each test), but I liked the idea of defining the selectors all in one place, and not multiple times.  
 => I decided to make a function that returns the state individually, and call it whenever I need it.
 
-## Different results when it should be equal
+## Update n°2
+
+There's one potential problem that if I have ask for an element that is not there, it breaks all the tests (I always keep the same references, and jest run the query for all those references every time, in my code, currently).  
+
+```javascript
+const returnRef = () => {
+  return {
+    title: screen.getByText(/Quiz/i),
+    question: screen.getByText(/Which character means/i),
+    buttonNext: screen.queryByLabelText('next'),
+    arrProgressSquare: screen.getAllByLabelText(lQuiz.progressSquare),
+    arrButtonKanji: screen.getAllByLabelText(lQuiz.buttonKanji),
+  }
+}
+```
+
+So if I make a mistake there, it breaks everything and if I use this, once I answered all the questions of the quiz, currently, it will break, because question should not be there anymore, same as arrProgressSquare and arrButtonKanji ect...
+
+## Get different results when they should be equal
 
 I saved the first state of a component (text content of the question) from one test (initial state, when the component just rendered), and the second from an other test (after the user clicks on an answer). The problem is that the text of a question is generated randomly, so it doesn't work if I take the value from 2 different tests because the Quiz component is rendered anew with every test, and the question randomly choosen again.
 

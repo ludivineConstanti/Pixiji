@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { renderComponent, setRef } from './helpers';
+import { renderComponent, setRef } from './_helpers';
 
 test('Quiz state after clicking on one answer', () => {
 
@@ -47,6 +47,7 @@ test('Comparison (equal, not equal) before and after clicking on one answer and 
   const tArrButtonKanjiS3 = ref.arrButtonKanji.map(button => button.textContent);
   expect(tArrButtonKanjiS3).not.toStrictEqual(tArrButtonKanjiS2);
 }
+
 });
 
 // window.getComputedStyle()

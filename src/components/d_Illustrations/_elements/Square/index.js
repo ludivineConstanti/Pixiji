@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // == Import
 import SSquare from './SSquare';
 import iVSquare from './animation';
-import { lIllu } from 'src/assets/labels';
+import { lIllu } from 'src/assets/querySelectors';
 
 const Square = ({
   size, columnStart, rowStart, color, kanjiIndex, kanjisArrLength,

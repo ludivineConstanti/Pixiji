@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { renderComponent, setRef } from './helpers';
+import { renderComponent, setRef } from './_helpers';
 
 test('Quiz initial state', () => {
 
@@ -37,8 +37,4 @@ test('Quiz initial state', () => {
       JSON.stringify(window.getComputedStyle(ref.arrProgressSquare[i + 1]))))
       .toBe(true);
   }
-
-  ref = setRef('hover', ref.arrMainSquare[0]);
-
-
 });
