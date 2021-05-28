@@ -19,27 +19,26 @@ const returnRef = () => {
   }
 }
 
-const stateInitial = () => {
+const renderQuiz = () => {
   render(<Provider store={store}><Quiz currentQuiz={dataQuiz[0]} /></Provider>);
   return returnRef();
 };
 
-const stateAnsweredOnce = () => {
-  const ref = stateInitial();
+const answerQuestion = () => {
+  const ref = returnRef();
   userEvent.click(ref.arrButtonKanji[0]);
   return returnRef();
 };
 
-const stateAnsweredOncePushedNext = () => {
-  const ref = stateAnsweredOnce();
+const pushNext = () => {
+  const ref = returnRef();
   userEvent.click(ref.buttonNext);
   return returnRef();
 };
 
-//screen.debug(null, Infinity);
 test('Quiz initial state', () => {
 
-  const ref = stateInitial();
+  const ref = renderQuiz();
   
   // TEST THE ELEMENTS ARE THERE
   expect(ref.question).toBeTruthy();
@@ -75,8 +74,9 @@ test('Quiz initial state', () => {
 });
 
 test('Quiz state after clicking on one answer', () => {
+  renderQuiz();
+  const ref = answerQuestion();
 
-  const ref = stateAnsweredOnce();
   // The button to go to the next question should now be displayed
   expect(ref.buttonNext).toBeTruthy();
 
@@ -85,24 +85,33 @@ test('Quiz state after clicking on one answer', () => {
 
 })
 
-/*test('Comparison before and after clicking on one answer and on the next button', () => {
+test('Comparison before and after clicking on one answer and on the next button', () => {
 
-  let ref = stateInitial();
+  let ref = renderQuiz();
+
   const tQuestionS1 = ref.question.textContent;
-  console.log(ref.nextButton);
-  userEvent.click(ref.arrButtonKanji[0]);
+  const tArrButtonKanjiS1 = ref.arrButtonKanji.map(button => button.textContent);
 
-  ref = stateAnsweredOnce();
+  ref = answerQuestion();
+
+  // The question should not change when the user clicks on an answer
   const tQuestionS2 = ref.question.textContent;
   expect(tQuestionS2).toBe(tQuestionS1);
+  // The answers should not change when the user clicks on an answer
+  const tArrButtonKanjiS2 = ref.arrButtonKanji.map(button => button.textContent);
+  expect(tArrButtonKanjiS2).toStrictEqual(tArrButtonKanjiS1);
 
-  ref = stateAnsweredOncePushedNext();
-  // console.log(screen.getByLabelText('next'));
-  // screen.debug(null, Infinity);
+  ref = pushNext();
 
-  // const tQuestionS3 = ref.question.textContent;
-  // expect(tQuestionS3).not.toBe(tQuestionS2);
+  // The question content should change when the user clicks on the next button
+  // only exception would be if there is only one question and the user answered wrong
+  // then it keeps asking the same question until the user answers right
+  const tQuestionS3 = ref.question.textContent;
+  expect(tQuestionS3).not.toBe(tQuestionS2);
+  // Once again, answers have should have the same behavior as question and change
+  const tArrButtonKanjiS3 = ref.arrButtonKanji.map(button => button.textContent);
+  expect(tArrButtonKanjiS3).not.toStrictEqual(tArrButtonKanjiS2);
 
-});*/
+});
 
 // window.getComputedStyle()

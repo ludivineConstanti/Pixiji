@@ -103,4 +103,14 @@ expect(screen.queryByText(/next/i)).toBeNull();
 
 It works well, until I try to change state. Since I select the elements just after rendering the component, it always return them in this state. Therefore, it looks like nothing is updating when I interact with the elements (click on next button...), because I am still testing things on the elements on their initial state.  
 => I could do the same thing as mentionned in the article above (one function per state and triggers the function before each test), but I liked the idea of defining the selectors all in one place, and not multiple times.  
-=> I decided to make a function that returns the state individually, and call it whenever I need it
+=> I decided to make a function that returns the state individually, and call it whenever I need it.
+
+## Different results when it should be equal
+
+I saved the first state of a component (text content of the question) from one test (initial state, when the component just rendered), and the second from an other test (after the user clicks on an answer). The problem is that the text of a question is generated randomly, so it doesn't work if I take the value from 2 different tests because the Quiz component is rendered anew with every test, and the question randomly choosen again.
+
+## Jest is complaining that there's 2 elements, where there should be only one
+
+=> I didn't set up my functions properly, it always rendered the component, which works when I only want to test one state, but renders the component various times if I use various states inside of the same test (initial state, then click button...).  
+
+=> I therefore decomposed my functions into smaller ones that I call step by step.
