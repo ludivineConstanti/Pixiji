@@ -1,4 +1,4 @@
-# Testing - How to ❌
+# Testing - How to + issues ❌
 
 ## Run the test
 
@@ -76,7 +76,11 @@ The official recommendation for selecting elements we want to test is:
 
 ### Challenge with the role
 
-=> there can be multiple elements with the same role (buttons...) and if not, it's not very flexible if we want to add some later.
+=> I wasn't sure how to know what role an element has, and what is its accessible name, but now I know that you can just look into the Accessibility tab while inspecting an element. I also thought it's not the best because many elements can have the same role (button...) but it can be complementary with the label text
+
+```JavaScript
+getByRole('image', { name: 'fancy image' })
+```
 
 ### Challenge with label text
 

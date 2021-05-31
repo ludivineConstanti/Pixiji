@@ -2,10 +2,9 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "env": {
-    "browser": true,
-    "jest/globals": true
+    "browser": true
   },
-  "plugins": ["jest"],
+  //"plugins": [jest] 
   "rules": {
     "brace-style": ["error", "stroustrup"],
     "no-param-reassign": [
@@ -47,6 +46,7 @@
         "not.toHaveBeenCalledWith": null
       }
     ]
+    
   },
   "settings": {
     "import/resolver": {

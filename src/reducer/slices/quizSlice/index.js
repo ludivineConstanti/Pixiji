@@ -1,50 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import kanjisInitial from 'src/assets/dataQuiz/kanjisInitial';
-import kanjis from 'src/assets/dataQuiz/kanjis';
 import quizFormatter from 'src/helpers/formatters/quizFormatter';
 import quizzes from 'src/assets/dataQuiz/quizzes';
-
-const initialState = (quizId) => {
-  const currentQuiz = kanjis.filter((e) => e.quizId === quizId);
-  return {
-    dataQuiz: quizFormatter(kanjisInitial),
-    totalQuestions: 0,
-    totalOptions: currentQuiz.length,
-    title: quizzes[quizId - 1].title,
-    finished: false,
-    answeredQuestion: false,
-    answeredCorrectly: false,
-    rightAnswers: [],
-    wrongAnswers: [],
-  };
-};
-
-const emptyAnswer = {
-  answer: {
-    kanji: '', en: '', kana: '', kanaEn: '',
-  },
-  infosAnswer: { answeredRight: 1, answeredWrong: 0 },
-};
-
-// put it there since I need it in 2 different actions
-const initialize = (state, payload) => {
-  const { quizId } = payload;
-
-  const cQ = state[`quiz${quizId}`];
-  const currentQuiz = kanjis.filter((e) => e.quizId === quizId);
-  const formattedQuiz = quizFormatter(currentQuiz);
-  cQ.dataQuiz = formattedQuiz;
-
-  if (cQ.totalQuestions === 0) {
-    cQ.totalQuestions = formattedQuiz.length;
-  }
-
-  cQ.finished = false;
-  cQ.answeredQuestion = false;
-  cQ.answeredCorrectly = false;
-  cQ.rightAnswers = [];
-};
+import { initialState, emptyAnswer, initialize } from './helpers';
 
 export const quizSlice = createSlice({
   name: 'quiz',
@@ -121,13 +80,7 @@ export const quizSlice = createSlice({
 
       if (!cQ.finished) {
         cQ.dataQuiz.forEach((e) => {
-          let answerIndex;
-          if (e.infosAnswer.answerIndex) {
-            answerIndex = e.infosAnswer.answerIndex;
-          }
-          else {
-            answerIndex = Math.floor(Math.random() * e.arrAnswers.length);
-          }
+          const { answerIndex } = e.infosAnswer;
           if (e.infosAnswer.answeredWrong > 0) {
             tempWrongAnswers.push(
               { answer: e.arrAnswers[answerIndex], infosAnswer: e.infosAnswer },

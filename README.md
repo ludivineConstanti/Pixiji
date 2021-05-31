@@ -2,6 +2,8 @@
 
 This website helps you to train your kanjis (characters from the Japanese writing system) knowledge. But that's mainly an excuse to create interactive pixel art.
 
+The deployed version is accessible [here](https://pixiji.surge.sh/)
+
 ![Homepage screenshot](https://user-images.githubusercontent.com/24965333/116855558-e27d4900-abf9-11eb-85e8-5defb196eb01.png)
 
 The ⚡⚡⚡ mdDocumentation folder ⚡⚡⚡ contains some observations made during the project (bugs, research...). Other observations are made in the code itself as comment.

@@ -23,6 +23,7 @@ const ProgressBar = ({ questionNumber, currentNumber }) => {
       initial="initial"
       animate="animate"
       exit="initial"
+      role="progressbar"
     >
       {squaresArr}
     </SProgressBar>

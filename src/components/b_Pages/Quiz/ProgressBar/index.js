@@ -5,7 +5,7 @@ const mapStateToProps = (state) => {
   const current = `quiz${state.quiz.currentQuizId}`;
   return {
     questionNumber: state.quiz[current].totalQuestions,
-    currentNumber: state.quiz[current].rightAnswers.length,
+    currentNumber: state.quiz[current].totalQuestions - state.quiz[current].dataQuiz.length,
   };
 };
 
