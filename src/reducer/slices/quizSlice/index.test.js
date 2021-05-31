@@ -2,10 +2,9 @@ import '@testing-library/jest-dom';
 
 import store from 'src/store';
 import quizzes from 'src/assets/dataQuiz/quizzes';
-import { array } from 'prop-types';
 import { updateIdQuiz, initializeQuiz } from './index';
 
-test('update quiz id', () => {
+test('updateIdQuiz', () => {
   // takes { quizId, slug} as argument
   quizzes.forEach((quiz) => {
     store.dispatch(updateIdQuiz({ quizId: quiz.id, slug: quiz.slug }));
@@ -15,7 +14,7 @@ test('update quiz id', () => {
   });
 });
 
-test.only('initialize', () => {
+test('initializeQuiz', () => {
   // takes { quizId } as a argument
   const quizId = quizzes[0].id;
 
@@ -24,6 +23,7 @@ test.only('initialize', () => {
 
   expect(state.quiz.currentQuizId).toBe(quizId);
   expect(state.quiz[`quiz${quizId}`].dataQuiz).toEqual(expect.any(Array));
+  // There should be minimum one question in the quiz
   expect(state.quiz[`quiz${quizId}`].dataQuiz.length).toBeGreaterThan(0);
 
   state.quiz[`quiz${quizId}`].dataQuiz.forEach((arr) => {
@@ -42,28 +42,31 @@ test.only('initialize', () => {
         quizId,
       })]),
     }));
+    // minimum 2 answers (1 wrong, 1 right)
+    expect(arr.arrAnswers.length).toBeGreaterThan(1);
+    // answer index is useless if it refers to an answer that is not in the array
+    expect(arr.infosAnswer.answerIndex).toBeGreaterThanOrEqual(0);
+    expect(arr.infosAnswer.answerIndex).toBeLessThan(arr.arrAnswers.length);
   });
+
+  expect(state.quiz[`quiz${quizId}`].totalQuestions).toBe(state.quiz[`quiz${quizId}`].dataQuiz.length);
+
+  // checks the number of total kanjis (possible answers)
+  // corresponds to what is written in the state
+  const arrAnswersLength = state.quiz[`quiz${quizId}`].dataQuiz.map((arr) => (
+    arr.arrAnswers.length
+  ));
+  const numTotalOptions = arrAnswersLength.reduce((a, b) => a + b);
+  expect(state.quiz[`quiz${quizId}`].totalOptions).toBe(numTotalOptions);
+
+  expect(state.quiz[`quiz${quizId}`].title).toBe(quizzes[quizId - 1].title);
+  expect(state.quiz[`quiz${quizId}`].finished).toBe(false);
+  expect(state.quiz[`quiz${quizId}`].answeredCorrectly).toBe(false);
+  expect(state.quiz[`quiz${quizId}`].rightAnswers).toEqual([]);
+  expect(state.quiz[`quiz${quizId}`].wrongAnswers).toEqual(expect.any(Array));
 });
-/*
 
-state[`quiz${quizId}`].dataQuiz
-* is an array
-* contains arrays
-* each subarrays has a minimum length of 2
-* each subarray has an infosAnswer property with an answerIndex between 0 and arr.length - 1
-
-state[`quiz${quizId}`].totalQuestions = state[`quiz${quizId}`].formattedQuiz.length
-state[`quiz${quizId}`].totalOptions
-= sum of length of subarrays in state[`quiz${quizId}`].formattedQuiz
-state[`quiz${quizId}`].title = quizzes[quizId - 1].title
-state[`quiz${quizId}`].finished = false
-state[`quiz${quizId}`].answeredQuestion = false
-state[`quiz${quizId}`].answeredCorrectly = false
-state[`quiz${quizId}`].rightAnswers = [];
-state[`quiz${quizId}`].wrongAnswers
-* is an array
-*/
-test.todo('answered question quiz correctly');
+test.only('answered question quiz correctly', () => {});
 /*
 {quizId: num, answer: {answer: {id: num, kanji, en, kana, kanaEn}}}
 
