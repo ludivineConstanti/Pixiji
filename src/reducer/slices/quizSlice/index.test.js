@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 
 import store from 'src/store';
 import quizzes from 'src/assets/dataQuiz/quizzes';
-import { updateIdQuiz, initializeQuiz } from './index';
+import { updateIdQuiz, initializeQuiz, answeredQuestionQuiz } from './index';
 
 test('updateIdQuiz', () => {
   // takes { quizId, slug} as argument
@@ -66,21 +66,33 @@ test('initializeQuiz', () => {
   expect(state.quiz[`quiz${quizId}`].wrongAnswers).toEqual(expect.any(Array));
 });
 
-test.only('answered question quiz correctly', () => {});
-/*
-{quizId: num, answer: {answer: {id: num, kanji, en, kana, kanaEn}}}
+test('answered question quiz correctly', () => {
+  const quizId = quizzes[0].id;
 
-state[`quiz${quizId}`].answeredQuestion = quizId;
-state[`quiz${quizId}`].answeredCorrectly = true;
-state[`quiz${quizId}`].infosAnswered.answeredRight = 1
-state[`quiz${quizId}`].rightAnswers.length = previous length + 1
-last element of the rightAnswer array is the current answer
+  store.dispatch(initializeQuiz({ quizId }));
 
-if total question = total correct answers state[`quiz${quizId}`].finished = true
+  const stateInitial = store.getState();
+  const cQInitial = stateInitial.quiz[`quiz${quizId}`];
+  expect(cQInitial.dataQuiz[0].infosAnswer.answeredRight).toBe(0);
+  const rALengthInitial = cQInitial.rightAnswers.length;
 
-*/
+  const currentQuestion = stateInitial.quiz[`quiz${quizId}`].dataQuiz[0];
+  const answer = currentQuestion.arrAnswers[currentQuestion.infosAnswer.answerIndex];
 
-test.todo('answered question quiz wrong');
+  // {quizId: num, answer: {answer: {id: num, kanji, en, kana, kanaEn}}}
+  store.dispatch(answeredQuestionQuiz({ quizId, answer }));
+
+  const state = store.getState();
+  const cQ = state.quiz[`quiz${quizId}`];
+
+  expect(cQ.answeredQuestion).toBe(answer.id);
+  expect(cQ.dataQuiz[0].infosAnswer.answeredRight).toBe(1);
+  expect(cQ.rightAnswers.length).toBe(rALengthInitial + 1);
+  expect(cQ.rightAnswers[cQ.rightAnswers.length - 1])
+    .toEqual({ answer, infosAnswer: cQ.dataQuiz[0].infosAnswer });
+});
+
+test.only('answered question quiz wrong', () => {});
 /*
 {quizId: num, answer: {answer: {id: num, kanji, en, kana, kanaEn}}}
 
