@@ -66,7 +66,7 @@ test('initializeQuiz', () => {
   expect(state.quiz[`quiz${quizId}`].wrongAnswers).toEqual(expect.any(Array));
 });
 
-test('answered question quiz correctly', () => {
+const answerQuestion = () => {
   const quizId = quizzes[0].id;
 
   store.dispatch(initializeQuiz({ quizId }));
@@ -74,9 +74,17 @@ test('answered question quiz correctly', () => {
   const stateInitial = store.getState();
   const cQInitial = stateInitial.quiz[`quiz${quizId}`];
   expect(cQInitial.dataQuiz[0].infosAnswer.answeredRight).toBe(0);
-  const rALengthInitial = cQInitial.rightAnswers.length;
 
   const currentQuestion = stateInitial.quiz[`quiz${quizId}`].dataQuiz[0];
+
+  const rALengthInitial = cQInitial.rightAnswers.length;
+
+  return { quizId, currentQuestion, rALengthInitial };
+};
+
+test('answered question quiz correctly', () => {
+  const { quizId, currentQuestion, rALengthInitial } = answerQuestion();
+
   const answer = currentQuestion.arrAnswers[currentQuestion.infosAnswer.answerIndex];
 
   // {quizId: num, answer: {answer: {id: num, kanji, en, kana, kanaEn}}}
@@ -92,17 +100,26 @@ test('answered question quiz correctly', () => {
     .toEqual({ answer, infosAnswer: cQ.dataQuiz[0].infosAnswer });
 });
 
-test.only('answered question quiz wrong', () => {});
-/*
-{quizId: num, answer: {answer: {id: num, kanji, en, kana, kanaEn}}}
+test('answered question quiz wrong', () => {
+  const { quizId, currentQuestion, rALengthInitial } = answerQuestion();
+  let wrongAnswerIndex = currentQuestion.infosAnswer.answerIndex - 1;
+  if (wrongAnswerIndex < 0) wrongAnswerIndex = currentQuestion.infosAnswer.answerIndex + 1;
 
-state[`quiz${quizId}`].answeredQuestion = quizId;
-state[`quiz${quizId}`].answeredCorrectly = false;
-state[`quiz${quizId}`].infosAnswered.answeredRight = 0;
-state[`quiz${quizId}`].rightAnswers.length = previous length
-state[`quiz${quizId}`].infosAnswered.answeredRight = previous state + 1
-*/
-test.todo('next question quiz');
+  const answer = currentQuestion.arrAnswers[wrongAnswerIndex];
+
+  // {quizId: num, answer: {answer: {id: num, kanji, en, kana, kanaEn}}}
+  store.dispatch(answeredQuestionQuiz({ quizId, answer }));
+
+  const state = store.getState();
+  const cQ = state.quiz[`quiz${quizId}`];
+
+  expect(cQ.answeredQuestion).toBe(answer.id);
+  expect(cQ.answeredCorrectly).toBe(false);
+  expect(cQ.dataQuiz[0].infosAnswer.answeredRight).toBe(0);
+  expect(cQ.rightAnswers.length).toBe(rALengthInitial);
+});
+
+test.only('next question quiz', () => {});
 /*
 
 state[`quiz${quizId}`].answeredQuestion = false;
