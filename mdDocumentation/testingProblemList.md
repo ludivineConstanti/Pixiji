@@ -158,3 +158,17 @@ I saved the first state of a component (text content of the question) from one t
 => I didn't set up my functions properly, it always rendered the component, which works when I only want to test one state, but renders the component various times if I use various states inside of the same test (initial state, then click button...).  
 
 => I therefore decomposed my functions into smaller ones that I call step by step.
+
+## Testing animations
+
+The visual side of this website is quite important (in my opinion) which is why I want to test it as well. However, to stay flexible on the type of animation / visual changes, I decided to test for changes instead of testing for precise characteristics.  
+
+The first problem I got, is that the css is identical, even though it should not be. I think there can be 2 potential reasons for this: 1. Things work differently in the testing environment since it uses node and not the browser 2. tests happen immediately, which means that the css does not have time to change. I tried again with a setTimeout but, by the time it gets executed, the clean up already happened, and the elements I want to test do not exist anymore.
+
+I didn't find much documentation on the subject just [this article](https://www.hectane.com/blog/mock-framer-motion-with-jest) and [that one](https://dev.to/tmikeschu/mocking-framer-motion-v4-19go) that are talking about mocking the animation library, but do not explain much, about the how and why they are doing it.
+
+Then I found [this article](https://benjaminjohnson.me/blog/testing-animations-in-react-native) which does not use framer motion, but is a lot more helpful and confirms that, as I suspected, testing animations directly doesn't work because they don't have time to be executed.
+
+## Tests for the quizSlice work when done individually, but not one after another
+
+I think jest clean up things, when you render a component, but does not reset the state, (at least if you do not render anything). I had now reset the state with an ```afterEach(() => {})``` and now it works.

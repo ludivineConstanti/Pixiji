@@ -5,7 +5,9 @@ import quizzes from 'src/assets/dataQuiz/quizzes';
 import {
   updateIdQuiz, initializeQuiz, nextQuestionQuiz, cheatingButtonFinishQuiz, resetStateQuiz,
 } from './index';
-import { answerQuestion } from './helpersTest';
+import {
+  answerQuestion, answerTemplate, infosAnswerTemplate, testInitializeQuiz, returnCurrentQuiz,
+} from './helpersTest';
 
 afterEach(() => {
   store.dispatch(resetStateQuiz());
@@ -26,58 +28,14 @@ test('initializeQuiz', () => {
   const quizId = quizzes[0].id;
 
   store.dispatch(initializeQuiz({ quizId }));
-  const state = store.getState();
 
-  expect(state.quiz.currentQuizId).toBe(quizId);
-  expect(state.quiz[`quiz${quizId}`].dataQuiz).toEqual(expect.any(Array));
-  // There should be minimum one question in the quiz
-  expect(state.quiz[`quiz${quizId}`].dataQuiz.length).toBeGreaterThan(0);
-
-  state.quiz[`quiz${quizId}`].dataQuiz.forEach((arr) => {
-    expect(arr).toEqual(expect.objectContaining({
-      infosAnswer: expect.objectContaining({
-        answerIndex: expect.any(Number),
-        answeredRight: expect.any(Number),
-        answeredWrong: expect.any(Number),
-      }),
-      arrAnswers: expect.arrayContaining([expect.objectContaining({
-        id: expect.any(Number),
-        kanji: expect.any(String),
-        en: expect.any(String),
-        kana: expect.any(String),
-        kanaEn: expect.any(String),
-        quizId,
-      })]),
-    }));
-    // minimum 2 answers (1 wrong, 1 right)
-    expect(arr.arrAnswers.length).toBeGreaterThan(1);
-    // answer index is useless if it refers to an answer that is not in the array
-    expect(arr.infosAnswer.answerIndex).toBeGreaterThanOrEqual(0);
-    expect(arr.infosAnswer.answerIndex).toBeLessThan(arr.arrAnswers.length);
-  });
-
-  expect(state.quiz[`quiz${quizId}`].totalQuestions).toBe(state.quiz[`quiz${quizId}`].dataQuiz.length);
-
-  // checks the number of total kanjis (possible answers)
-  // corresponds to what is written in the state
-  const arrAnswersLength = state.quiz[`quiz${quizId}`].dataQuiz.map((arr) => (
-    arr.arrAnswers.length
-  ));
-  const numTotalOptions = arrAnswersLength.reduce((a, b) => a + b);
-  expect(state.quiz[`quiz${quizId}`].totalOptions).toBe(numTotalOptions);
-
-  expect(state.quiz[`quiz${quizId}`].title).toBe(quizzes[quizId - 1].title);
-  expect(state.quiz[`quiz${quizId}`].finished).toBe(false);
-  expect(state.quiz[`quiz${quizId}`].answeredCorrectly).toBe(false);
-  expect(state.quiz[`quiz${quizId}`].rightAnswers).toEqual([]);
-  expect(state.quiz[`quiz${quizId}`].wrongAnswers).toEqual(expect.any(Array));
+  testInitializeQuiz(quizId);
 });
 
 test('answered question quiz correctly', () => {
   const { quizId, answer, rALengthInitial } = answerQuestion('right');
 
-  const state = store.getState();
-  const cQ = state.quiz[`quiz${quizId}`];
+  const cQ = returnCurrentQuiz(quizId);
 
   expect(cQ.answeredQuestion).toBe(answer.id);
   expect(cQ.dataQuiz[0].infosAnswer.answeredRight).toBe(1);
@@ -89,8 +47,7 @@ test('answered question quiz correctly', () => {
 test('answered question quiz wrong', () => {
   const { quizId, rALengthInitial, answer } = answerQuestion('wrong');
 
-  const state = store.getState();
-  const cQ = state.quiz[`quiz${quizId}`];
+  const cQ = returnCurrentQuiz(quizId);
 
   expect(cQ.answeredQuestion).toBe(answer.id);
   expect(cQ.answeredCorrectly).toBe(false);
@@ -100,14 +57,13 @@ test('answered question quiz wrong', () => {
 
 test('next question quiz answered right', () => {
   const { quizId } = answerQuestion('right');
-  const stateInitial = store.getState();
-  const cQInitial = stateInitial.quiz[`quiz${quizId}`];
+
+  const cQInitial = returnCurrentQuiz(quizId);
 
   // { quizId }
   store.dispatch(nextQuestionQuiz({ quizId }));
 
-  const state = store.getState();
-  const cQ = state.quiz[`quiz${quizId}`];
+  const cQ = returnCurrentQuiz(quizId);
 
   expect(cQ.answeredQuestion).toBe(false);
   expect(cQ.answeredCorrectly).toBe(false);
@@ -116,14 +72,10 @@ test('next question quiz answered right', () => {
 
 test('next question quiz answered wrong', () => {
   const { quizId } = answerQuestion('wrong');
-  const stateInitial = store.getState();
-  const cQInitial = stateInitial.quiz[`quiz${quizId}`];
+  const cQInitial = returnCurrentQuiz(quizId);
 
-  // { quizId }
   store.dispatch(nextQuestionQuiz({ quizId }));
-
-  const state = store.getState();
-  const cQ = state.quiz[`quiz${quizId}`];
+  const cQ = returnCurrentQuiz(quizId);
 
   expect(cQ.answeredQuestion).toBe(false);
   expect(cQ.answeredCorrectly).toBe(false);
@@ -139,18 +91,25 @@ test('cheating button finish quiz', () => {
   // { quizId }
   store.dispatch(initializeQuiz({ quizId }));
   store.dispatch(cheatingButtonFinishQuiz({ quizId }));
-  const state = store.getState();
-  const cQ = state.quiz[`quiz${quizId}`];
-  expect(cQ.finished).toBe(true);
-  expect(cQ.rightAnswers.length).toBe(cQ.totalQuestions);
+
+  const cQFinished = returnCurrentQuiz(quizId);
+
+  expect(cQFinished.finished).toBe(true);
+  expect(cQFinished.rightAnswers.length).toBe(cQFinished.totalQuestions);
+  expect(cQFinished.rightAnswers.length).toBeGreaterThan(0);
+  expect(cQFinished.rightAnswers).toEqual(expect.arrayContaining([expect.objectContaining({
+    answer: answerTemplate(quizId),
+    infosAnswer: infosAnswerTemplate,
+  })]));
+
+  store.dispatch(cheatingButtonFinishQuiz({ quizId }));
+
+  testInitializeQuiz(quizId);
 });
+
 /*
 
-if state[`quiz${quizId}`].finished = false
 * state[`quiz${quizId}`].rightAnswers is an array of objects
 * each object has properties...
-
-else
-runs same tests as the initialise test
 
 */
