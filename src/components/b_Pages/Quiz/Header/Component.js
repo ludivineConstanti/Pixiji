@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { AnimatePresence } from 'framer-motion';
 
 // == Import
+import { tQuiz } from 'src/assets/querySelectors';
 import SHeader from './SHeader';
 import ProgressBar from '../ProgressBar';
 
@@ -11,7 +12,7 @@ const Header = ({
   quizId, title, totalOptions, finishedQuiz,
 }) => (
   <SHeader>
-    <h2>quiz {quizId} - {title} ({totalOptions} kanjis)</h2>
+    <h2>{tQuiz.title} {quizId} - {title} ({totalOptions} kanjis)</h2>
     <AnimatePresence exitBeforeEnter>
       {!finishedQuiz && (
         <ProgressBar />

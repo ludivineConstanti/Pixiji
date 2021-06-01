@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // == Import
+import { tQuiz } from 'src/assets/querySelectors';
 import ButtonKanji from '../ButtonKanji';
 import SQuestion, { SText, SOptions } from './SQuestion';
 
@@ -13,7 +14,7 @@ const Question = ({
   const { infosAnswer, arrAnswers } = dataObj;
   return (
     <SQuestion>
-      <SText>Which character means {arrAnswers[infosAnswer.answerIndex].en}?</SText>
+      <SText>{tQuiz.question} {arrAnswers[infosAnswer.answerIndex].en}?</SText>
       <SOptions>
         {// eslint-disable-next-line max-len
         arrAnswers.map((e) => <ButtonKanji quizId={quizId} key={e.id} possibleAnswer={e} disabled={answeredQuestion} />)

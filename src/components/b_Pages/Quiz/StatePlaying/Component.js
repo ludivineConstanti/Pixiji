@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 // == Import
 import ButtonBig from 'src/components/e_Interactives/ButtonBig';
+import { tQuiz } from 'src/assets/querySelectors';
 import Question from '../Question';
-import { lQuiz } from 'src/assets/querySelectors';
 
 const StatePlaying = ({
   answeredQuestion, answeredCorrectly, currentQuizId, nextQuestionQuiz,
@@ -14,8 +14,8 @@ const StatePlaying = ({
     <Question quizId={currentQuizId} />
     {!!answeredQuestion && (
     <ButtonBig
-      comment={answeredCorrectly ? 'correct!' : 'wrong!'}
-      text="next"
+      comment={answeredCorrectly ? tQuiz.answeredRight : tQuiz.answeredWrong}
+      text={tQuiz.buttonNext}
       onClick={() => {
         nextQuestionQuiz({ quizId: currentQuizId });
       }}
