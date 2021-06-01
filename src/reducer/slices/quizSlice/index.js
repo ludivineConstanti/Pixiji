@@ -2,21 +2,20 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import kanjisInitial from 'src/assets/dataQuiz/kanjisInitial';
 import quizFormatter from 'src/helpers/formatters/quizFormatter';
-import quizzes from 'src/assets/dataQuiz/quizzes';
 import { initialState, emptyAnswer, initialize } from './helpers';
 
 export const quizSlice = createSlice({
   name: 'quiz',
-  initialState: {
-    dataQuizzes: quizzes,
-    currentQuizId: 1,
-    currentSlug: quizzes[0].slug,
-    quiz1: initialState(1),
-    quiz2: initialState(2),
-    quiz3: initialState(3),
-  },
+  initialState,
 
   reducers: {
+    resetStateQuiz: (state) => {
+      // putting state = initialState directly doesn't work
+      const stateKeys = Object.keys(state);
+      stateKeys.forEach((key) => {
+        state[key] = initialState[key];
+      });
+    },
     updateIdQuiz: (state, { payload }) => {
       // { quizId, slug}
       state.currentQuizId = payload.quizId;
@@ -80,13 +79,13 @@ export const quizSlice = createSlice({
 
       if (!cQ.finished) {
         cQ.dataQuiz.forEach((e) => {
-          const { answerIndex } = e.infosAnswer;
-          if (e.infosAnswer.answeredWrong > 0) {
+          const { answerIndex, answeredWrong } = e.infosAnswer;
+          if (answeredWrong > 0) {
             tempWrongAnswers.push(
               { answer: e.arrAnswers[answerIndex], infosAnswer: e.infosAnswer },
             );
           }
-          if (e.infosAnswer.answeredWrong === 0) {
+          if (answeredWrong === 0) {
             tempWrongAnswers.push(emptyAnswer);
           }
           cQ.rightAnswers.push(
@@ -106,6 +105,7 @@ export const quizSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  resetStateQuiz,
   updateIdQuiz,
   initializeQuiz,
   answeredQuestionQuiz,

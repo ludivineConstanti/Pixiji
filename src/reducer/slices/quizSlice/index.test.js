@@ -2,7 +2,14 @@ import '@testing-library/jest-dom';
 
 import store from 'src/store';
 import quizzes from 'src/assets/dataQuiz/quizzes';
-import { updateIdQuiz, initializeQuiz, answeredQuestionQuiz } from './index';
+import {
+  updateIdQuiz, initializeQuiz, nextQuestionQuiz, cheatingButtonFinishQuiz, resetStateQuiz,
+} from './index';
+import { answerQuestion } from './helpersTest';
+
+afterEach(() => {
+  store.dispatch(resetStateQuiz());
+});
 
 test('updateIdQuiz', () => {
   // takes { quizId, slug} as argument
@@ -66,29 +73,8 @@ test('initializeQuiz', () => {
   expect(state.quiz[`quiz${quizId}`].wrongAnswers).toEqual(expect.any(Array));
 });
 
-const answerQuestion = () => {
-  const quizId = quizzes[0].id;
-
-  store.dispatch(initializeQuiz({ quizId }));
-
-  const stateInitial = store.getState();
-  const cQInitial = stateInitial.quiz[`quiz${quizId}`];
-  expect(cQInitial.dataQuiz[0].infosAnswer.answeredRight).toBe(0);
-
-  const currentQuestion = stateInitial.quiz[`quiz${quizId}`].dataQuiz[0];
-
-  const rALengthInitial = cQInitial.rightAnswers.length;
-
-  return { quizId, currentQuestion, rALengthInitial };
-};
-
 test('answered question quiz correctly', () => {
-  const { quizId, currentQuestion, rALengthInitial } = answerQuestion();
-
-  const answer = currentQuestion.arrAnswers[currentQuestion.infosAnswer.answerIndex];
-
-  // {quizId: num, answer: {answer: {id: num, kanji, en, kana, kanaEn}}}
-  store.dispatch(answeredQuestionQuiz({ quizId, answer }));
+  const { quizId, answer, rALengthInitial } = answerQuestion('right');
 
   const state = store.getState();
   const cQ = state.quiz[`quiz${quizId}`];
@@ -101,14 +87,7 @@ test('answered question quiz correctly', () => {
 });
 
 test('answered question quiz wrong', () => {
-  const { quizId, currentQuestion, rALengthInitial } = answerQuestion();
-  let wrongAnswerIndex = currentQuestion.infosAnswer.answerIndex - 1;
-  if (wrongAnswerIndex < 0) wrongAnswerIndex = currentQuestion.infosAnswer.answerIndex + 1;
-
-  const answer = currentQuestion.arrAnswers[wrongAnswerIndex];
-
-  // {quizId: num, answer: {answer: {id: num, kanji, en, kana, kanaEn}}}
-  store.dispatch(answeredQuestionQuiz({ quizId, answer }));
+  const { quizId, rALengthInitial, answer } = answerQuestion('wrong');
 
   const state = store.getState();
   const cQ = state.quiz[`quiz${quizId}`];
@@ -119,29 +98,57 @@ test('answered question quiz wrong', () => {
   expect(cQ.rightAnswers.length).toBe(rALengthInitial);
 });
 
-test.only('next question quiz', () => {});
-/*
+test('next question quiz answered right', () => {
+  const { quizId } = answerQuestion('right');
+  const stateInitial = store.getState();
+  const cQInitial = stateInitial.quiz[`quiz${quizId}`];
 
-state[`quiz${quizId}`].answeredQuestion = false;
-state[`quiz${quizId}`].answeredCorrectly = false;
+  // { quizId }
+  store.dispatch(nextQuestionQuiz({ quizId }));
 
-if state[`quiz${quizId}`].answeredCorrectly = true
-state[`quiz${quizId}`].dataQuiz.length = previous length - 1
+  const state = store.getState();
+  const cQ = state.quiz[`quiz${quizId}`];
 
-if state[`quiz${quizId}`].answeredCorrectly = false
-state[`quiz${quizId}`].dataQuiz.length = previous length
-first element of dataQuiz should not be the same as previous state
-last element of dataQuiz should be first element of previous state
+  expect(cQ.answeredQuestion).toBe(false);
+  expect(cQ.answeredCorrectly).toBe(false);
+  expect(cQ.dataQuiz.length).toBe(cQInitial.dataQuiz.length - 1);
+});
 
-*/
-test.todo('cheating button finish quiz');
+test('next question quiz answered wrong', () => {
+  const { quizId } = answerQuestion('wrong');
+  const stateInitial = store.getState();
+  const cQInitial = stateInitial.quiz[`quiz${quizId}`];
+
+  // { quizId }
+  store.dispatch(nextQuestionQuiz({ quizId }));
+
+  const state = store.getState();
+  const cQ = state.quiz[`quiz${quizId}`];
+
+  expect(cQ.answeredQuestion).toBe(false);
+  expect(cQ.answeredCorrectly).toBe(false);
+  // There should still be the same amount of question
+  expect(cQ.dataQuiz.length).toBe(cQInitial.dataQuiz.length);
+  // It's just pushed at the back of the array
+  expect(cQ.dataQuiz[0].arrAnswers).not.toEqual(cQInitial.dataQuiz[0].arrAnswers);
+  expect(cQ.dataQuiz[cQ.dataQuiz.length - 1].arrAnswers).toEqual(cQInitial.dataQuiz[0].arrAnswers);
+});
+
+test('cheating button finish quiz', () => {
+  const quizId = quizzes[0].id;
+  // { quizId }
+  store.dispatch(initializeQuiz({ quizId }));
+  store.dispatch(cheatingButtonFinishQuiz({ quizId }));
+  const state = store.getState();
+  const cQ = state.quiz[`quiz${quizId}`];
+  expect(cQ.finished).toBe(true);
+  expect(cQ.rightAnswers.length).toBe(cQ.totalQuestions);
+});
 /*
 
 if state[`quiz${quizId}`].finished = false
-state[`quiz${quizId}`].rightAnswers.length = state[`quiz${quizId}`].totalQuestions
 * state[`quiz${quizId}`].rightAnswers is an array of objects
 * each object has properties...
-state[`quiz${quizId}`].finished = true
 
 else
 runs same tests as the initialise test

@@ -3,7 +3,7 @@ import quizFormatter from 'src/helpers/formatters/quizFormatter';
 import kanjisInitial from 'src/assets/dataQuiz/kanjisInitial';
 import quizzes from 'src/assets/dataQuiz/quizzes';
 
-export const initialState = (quizId) => {
+export const initialStateQuiz = (quizId) => {
   const currentQuiz = kanjis.filter((e) => e.quizId === quizId);
   return {
     dataQuiz: quizFormatter(kanjisInitial),
@@ -16,6 +16,15 @@ export const initialState = (quizId) => {
     rightAnswers: [],
     wrongAnswers: [],
   };
+};
+
+export const initialState = {
+  dataQuizzes: quizzes,
+  currentQuizId: 1,
+  currentSlug: quizzes[0].slug,
+  quiz1: initialStateQuiz(1),
+  quiz2: initialStateQuiz(2),
+  quiz3: initialStateQuiz(3),
 };
 
 export const emptyAnswer = {
